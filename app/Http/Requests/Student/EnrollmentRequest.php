@@ -24,7 +24,6 @@ class EnrollmentRequest extends FormRequest
      */
     public function rules()
     {
-        dd(request()->all());
         return [
             'name' => ['required','string'],
             'email' => ['required','email','unique:users,email,'.Auth::user()->id],

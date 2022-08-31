@@ -78,12 +78,16 @@
     });
     $(".myDate").flatpickr({
         dateFormat: "Y-m-d",
-        defaultDate: "<?php echo date('Y-m-d');?>)",
+        defaultDate: "<?php echo date('Y-m-d');?>",
     });
 
 
     $(".currentDate").flatpickr({
-        maxDate : "<?php echo date('Y-m-d');?>)",
+        maxDate : "<?php echo date('Y-m-d');?>",
+        dateFormat: "Y-m-d",
+    });
+    $(".futureDate1").flatpickr({
+        minDate: "<?php echo date('Y-m-d');?>",
         dateFormat: "Y-m-d",
     });
     //starting loader

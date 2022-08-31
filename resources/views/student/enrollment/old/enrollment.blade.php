@@ -7,39 +7,9 @@
         {!! Form::open(['url' => 'student/enrollments','id' => 'enrollment' ,'method' => 'POST', 'files' => true ,'onsubmit' => 'return validateForm()']) !!}
     {{--    @csrf--}}
         <div class="form-row">
-            <div class="student-enrollment-header">
-                <div class="enrollment-title">
-                    <h1>Student Enrollment Form</h1>
-                    <p>Please read the form carefully and complete all the sections.</p>
-                </div>
-                <div class="enrollment-steps">
-                    <span class="middle-bar" style="display: none"></span>
-                    <div class="steps-form">
-                        <span class="circle-num">1</span>
-                        <h5>Personal Details</h5>
-                    </div>
-                    <span class="middle-bar"></span>
-                    <div class="steps-form">
-                        <span class="circle-num">2</span>
-                        <h5>Residential</h5>
-                    </div>
-                    <span class="middle-bar"></span>
-                    <div class="steps-form">
-                        <span class="circle-num">3</span>
-                        <h5>Emergency Contact</h5>
-                    </div>
-                    <span class="middle-bar"></span>
-                    <div class="steps-form">
-                        <span class="circle-num">4</span>
-                        <h5>Terms & Conditions</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="progress" style="height: 1px;">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-
-            <div class="card step p-5 mt-5">
+            <h1>Student Enrollment Form</h1>
+            <p>Please read the form carefully and complete all the sections.</p>
+            <div class="card p-5 mt-5">
                 <div class='card-title'>
                     <div>
                         <i class="fa-solid fa-user"></i>
@@ -50,7 +20,6 @@
                 </div>
                 <div class='card-body'>
                     <div class="row g-4">
-
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="input-first-name">Name</label>
@@ -61,7 +30,6 @@
                             </div>
                         </div>
                         <div class='col-md-4 gender-radio'>
-                            <div class="form-group">
                             <label>
                                 Gender
                             </label>
@@ -88,7 +56,6 @@
                             </div>
                             <div id="gender-error" class="error">
 
-                            </div>
                             </div>
                         </div>
                         <div class='col-md-4'>
@@ -168,27 +135,23 @@
                             </div>
                         </div>
                         <div class='col-md-4'>
-                            <div class="form-group">
-                                <label>Commencement Date</label>
-                                <input type="text" class="form-control futureDate" placeholder="Select your commencement date"  name="commencement_date" value="{{old('commdate')}}" id="commdate" onchange="validatecommdate()" />
-                                <div id="commdate-error" class="error">
-
-                                </div>
+                            <label>Commencement Date</label>
+                            <div id="commdate-error" class="error">
+                                <input type="date" class="form-control" placeholder="Select your commencement date" name="commencement_date" value="{{old('commencement_date')}}" id="commdate" onchange="validatecommdate()" required/>
                             </div>
                         </div>
                         <div class='col-md-4'>
-                            <div class="form-group">
-                                <label>Upload Profile Image</label>
-                                <input type="file" class="form-control" id="profile-image" name="image" onchange="validateimage()" value="{{old('image')}}"/>
-                                <div id="image-error" class="error">
+                            <label>Upload Profile Image</label>
+                            <input type="file" class="form-control" id="profile-image" name="image" onchange="validateimage()" value="{{old('image')}}"/>
+                            <div id="image-error" class="error">
 
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card step mt-4 p-5">
+
+            <div class="card mt-4 p-5">
                 <div class='card-title'>
                     <div>
                         <i class="fa-solid fa-house-chimney"></i>
@@ -286,7 +249,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card step mt-4 p-5">
+            <div class="card mt-4 p-5">
                 <div class='card-title'>
                     <div>
                         <i class="fa-solid fa-phone"></i>
@@ -325,7 +288,7 @@
                     </div>
                 </div>
             </div>
-            <div class='privacy-section step mt-5'>
+            <div class='privacy-section mt-5'>
                 <div class='card p-5'>
                     <div class='card-title'>Terms and conditions</div>
                     <div class='card-body'>
@@ -398,12 +361,6 @@
                     <div class='col-md-12 text-center'>
                         <button class='next-submit' type="submit">Submit</button>
                     </div>
-                </div>
-            </div>
-            <div class="enrollment-btn">
-                <div style="float:right;">
-                    <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fa-solid fa-angles-left"></i> Previous</button>
-                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next <i class="fa-solid fa-angles-right"></i></button>
                 </div>
             </div>
         </div>

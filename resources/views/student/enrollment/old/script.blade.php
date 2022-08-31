@@ -14,12 +14,13 @@
     });
     $(".myDate").flatpickr({
         dateFormat: "Y-m-d",
-        defaultDate: "<?php echo date('Y-m-d');?>",
+        defaultDate: "<?php echo date('Y-m-d');?>)",
     });
     $(".futureDate").flatpickr({
-        minDate: "<?php echo date('Y-m-d');?>",
         dateFormat: "Y-m-d",
-        defaultDate: "<?php echo date('Y-m-d');?>",
+    });
+    $("#commdate").flatpickr({
+        dateFormat: "Y-m-d",
     });
 
     var fnameError = document.getElementById('fname-error')
@@ -385,49 +386,6 @@
         signatureError.innerHTML = '';
         return true;
     }
-    function firstValidate(){
-        if(!validatefname()  || !validateemail() || !validategender() || !validatedob() || !validatecob() || !validatemobnum() || !validateresaddress() || !validatestate() || !validatepostcode() || !validatecourse() || !validatecommdate() || !validateimage() ){
-            swal("Invalid form !", "Please fill up the form as instructed !", "info");
-            return false;
-        }
-        else{
-            document.getElementsByClassName("step")[currentTab].className += " finish";
-            return true;
-        }
-    }
-
-    function secondValidate(){
-        if(!validatepr() || !validatecurrentcountry()|| !validatelivingcountry() || !validatepassexp() || !validatecurrentvisaType() || !validatepassportNum()){
-            swal("Invalid form !", "Please fill up the form as instructed !", "info");
-            return false;
-        }
-        else{
-            document.getElementsByClassName("step")[currentTab].className += " finish";
-            return true;
-        }
-    }
-
-    function thirdValidate(){
-        if(!validatefullname() || !validaterelation() || !validatecontact()){
-            swal("Invalid form !", "Please fill up the form as instructed !", "info");
-            return false;
-        }
-        else {
-            document.getElementsByClassName("step")[currentTab].className += " finish";
-            return true;
-        }
-    }
-
-    function fourthValidate(){
-        if(!validatecondition() || !validateprivacy() || !validatesignature()){
-            swal("Invalid form !", "Please fill up the form as instructed !", "info");
-            return false;
-        }
-        else {
-            document.getElementsByClassName("step")[currentTab].className += " finish";
-            return true;
-        }
-    }
 
     function validateForm(){
         // event.preventDefault();
@@ -439,71 +397,8 @@
             }
         }else{
             // swal("Good job!", "Your form has been submitted !", "success");
-            document.getElementsByClassName("middle-bar")[currentTab].className += " finish";
             return true;
         }
-    }
-
-    var currentTab = 0; // Current tab is set to be the first tab (0)
-    showTab(currentTab); // Display the current tab
-
-    function showTab(n) {
-        // This function will display the specified tab of the form...
-        var x = document.getElementsByClassName("step");
-        x[n].style.display = "block";
-        //... and fix the Previous/Next buttons:
-        if (n == 0) {
-            document.getElementById("prevBtn").style.display = "none";
-        } else {
-            document.getElementById("prevBtn").style.display = "inline";
-        }
-        if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit"+ " " + "<li class='fa'>&#xf101;</li><br>";
-        } else {
-            document.getElementById("nextBtn").innerHTML = "Next"+ " " + "<li class='fa'>&#xf101;</li><br>";
-        }
-        //... and run a function that will display the correct step indicator:
-        fixStepIndicator(n)
-    }
-    function nextPrev(n) {
-        // This function will figure out which tab to display
-        var x = document.getElementsByClassName("step");
-        // Exit the function if any field in the current tab is invalid:
-        if (n == 1 && !firstValidate()) return false;
-        console.log(currentTab)
-        if(n == 1 && currentTab && !secondValidate()) return false;
-        if(n == 1 && currentTab == 2 && !thirdValidate()) return false;
-        if(n == 1 && currentTab == 3 && !fourthValidate()) return false;
-        // Hide the current tab:
-        x[currentTab].style.display = "none";
-        // Increase or decrease the current tab by 1:
-        currentTab = currentTab + n;
-        // document.getElementById("middle-bar").className.replace("active-bar")
-        // if you have reached the end of the form...
-        if (currentTab >= x.length) {
-            // ... the form gets submitted:
-            document.getElementById("enrollment").submit();
-            return false;
-        }
-        // Otherwise, display the correct tab:
-        showTab(currentTab);
-    }
-    function fixStepIndicator(n) {
-        // This function removes the "active" class of all steps...
-        var i, x = document.getElementsByClassName("middle-bar");
-        for (i = 0; i < x.length; i++) {
-            x[i].className = x[i].className.replace(" middle-bar", " ");
-        }
-        //... and adds the "active" class to the current step:
-        x[n].className += " bar-active";
-
-        var j, y = document.getElementsByClassName("circle-num");
-        for (j= 0; j < y.length; j++){
-            y[j].className = y[j].className.replace(" circle-num", "");
-        }
-        y[n].className += " circle-active";
-
-        var progress = document.getElementById("progress-bar").css
     }
 </script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
