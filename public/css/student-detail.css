@@ -1,0 +1,671 @@
+.attendence-section{
+    background: #F4F7FF;
+    width: 100%;
+}
+.profile-col{
+    display: flex;
+    align-items: flex-start;
+}
+.profile-general{
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+    gap: 10px;
+}
+.profile-general img{
+    border-radius: 50%;
+}
+.profile-desc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.profile-top h1{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #030E1E;
+}
+.general-section h1{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #030E1E;
+}
+.error{
+    color: red;
+    float: left;
+    font-size: 12px;
+    margin: 10px 0px;
+}
+.course-placeholder{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #555555;
+}
+h1{
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    color: #030E1E;
+}
+h2{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    color: #7D7D7D;
+}
+.button-col{
+    display: flex;
+    align-items: flex-end;
+}
+.course-col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.course-general{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.course-general h2{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #7D7D7D;
+}
+.general-button{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+}
+.addstudent-btn{
+    margin: 65px 0px;
+    padding: 10px 20px;
+    display: flex;
+    gap: 10px;
+    background: #DDE6FF;
+    border: none;
+    border-radius: 4px;
+}
+.addstudent-btn h2{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+}
+/* attendence tab */
+.attendance-tab{
+    background-color: rgba(100%, 100%, 100%, 100%);
+    border-radius: 4px;
+    margin: 20px;
+    padding: 20px;
+}
+.general-section{
+    display: flex;
+    margin: 4px;
+    justify-content: center;
+    gap: 12px;
+}
+.general-section .fa-solid{
+    color: #000000 ;
+}
+.student-nav-tabs .nav-link.active .fa-solid{
+    color: #e72fa7;
+}
+.student-nav-tabs .nav-link.active{
+    border-color: #ffffff #ffffff #df1a89 !important;
+}
+.student-nav-tabs .nav-link:hover{
+    border-color: #ffffff #ffffff #df1a89 !important;
+}
+.general-forms p{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 17px;
+    color: #E62395;
+}
+.general-settings{
+    background: #FFFFFF;
+    border: 1px solid #cac9c9;
+    border-radius: 10px;
+}
+.signature-settings{
+    background: #FFFFFF;
+    border: 1px solid #cac9c9;
+    border-radius: 10px;
+}
+.residency-information{
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+}
+.emergency-settings{
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+}
+.general-last{
+    display: flex;
+    justify-content: flex-end;
+}
+.residency-last{
+    display: flex;
+    justify-content: flex-end;
+}
+.terms-policy a{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #030E1E;
+}
+.dob{
+    background-color: #FFFFFF !important;
+}
+/* .input-group-text{
+    padding: 0.94rem 0.75rem !important;
+} */
+.dropdown-country{
+    border: 1px solid #ebedf2;
+    align-items: center;
+}
+.dropdown-arrow{
+    background: #0c426d;
+}
+.dropdown-default{
+    background: none;
+    border: none;
+}
+.form-group label{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #030E1E;
+}
+.selectpicker{
+    font-size: 14px;
+}
+.terms-policy{
+    display: flex;
+    gap: 10px;
+}
+.terms{
+    display: flex;
+    align-items: flex-start;
+    font-size: 14px;
+}
+.policy{
+    display: flex;
+    align-items: flex-end;
+}
+.form-check-input:checked{
+    background-color: #cd0f9b;
+    border-color: #fd0deb;
+}
+.detail-submit{
+    margin-top: 40px;
+    float: right;
+}
+.detail-student-btn{
+    width: 200px;
+    height: 44px;
+    font-weight: 700;
+    line-height: 17px;
+    color: #FFFFFF;
+    font-size: 16px;
+    border: #2367C7;
+    background: #2367C7;
+    border-radius: 6px;
+}
+.student-details{
+    display: flex;
+    align-items: center;
+}
+.student-details .fa-solid{
+    color: #E62395;
+}
+.student-details h1{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #555555;
+}
+.student-details-edit{
+    display: flex;
+    float: right;
+    gap: 10px;
+    justify-content: end;
+    padding: 20px 30px;
+}
+.student-details-edit .fa-solid{
+    color: #E62395;
+}
+.student-details-edit a{
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+/*Attendence css starts*/
+.filter-btnwrap {
+    display: flex;
+    align-items: center;
+    margin: 40px 0px;
+}
+.attendence-log{
+    display: flex;
+    gap: 20px;
+}
+.attendence-log p{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #E62395;
+}
+.calender-view p{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #E62395;
+}
+.record-detail{
+    background: #FFFFFF;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+    padding: 20px;
+}
+.record-top::after{
+    content: '';
+    justify-items: center;
+    border-bottom: 2px solid #D9D9D9;
+    margin: 10px 20px;
+    width: 100%;
+}
+.record-top h2{
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    color: #555555;
+}
+.record-top p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    color: #E62395;
+}
+.record-bottom td, .examination-middle td{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #555555;
+}
+.filter-btn{
+    background: #E62395;
+    padding: 9px;
+    border: 1px solid #E62395;
+    border-radius: 4px;
+    width: min-content;
+}
+.filter-btn .icon{
+    color: #e5e5e5;
+}
+.show-count{
+    background: #E62395;
+    border: 1px solid #C8157E;
+    border-radius: 4px;
+    color: #ffffff !important;
+}
+.attendence-action{
+    /*background: #FFEDF6;*/
+    background: #FFEDF6;
+    color: #EA95C0;
+    padding: 50px;
+    border-radius: 40px;
+}
+.sd-table .attendance-table{
+    border: 1px solid #FFE4F4 !important;
+    border-radius: 10px !important;
+}
+.attendance-table thead th{
+    font-weight: 700 !important;
+    font-size: 16px;
+    background: #FFE9F6;
+    color: #555555;
+    padding: 20px;
+}
+.calender-detail{
+    background: #FFFFFF;
+    border: 1px solid #BCBCBC;
+    border-radius: 10px;
+    padding: 20px;
+}
+.calender-arrow .fa-solid{
+    color: #E62395;
+}
+.calender-bottom li{
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: #555555;
+}
+.status-table-absent {
+    background: rgba(230, 35, 149, 0.23);
+    color: #E62395;
+    padding: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* codepen */
+.wrapper {
+    max-width: 1100px;
+}
+
+.container-calendar {
+    background: #ffffff;
+    max-width: 475px;
+    margin: 0 auto;
+    overflow: auto;
+}
+.table-calendar th, .table-calendar td{
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: #555555;
+}
+.calender-button{
+    border: none;
+    background: none;
+}
+.button-container-calendar button {
+    cursor: pointer;
+    display: inline-block;
+    zoom: 1;
+    background: #00a2b7;
+    color: #fff;
+    border: 1px solid #0aa2b5;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+
+.table-calendar {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-calendar td, .table-calendar th {
+    padding: 5px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.date-picker.selected {
+    font-weight: bold;
+    background: #1AAC4C;
+    color: #ffffff;
+}
+
+.date-picker.selected span {
+    border-bottom: 2px solid currentColor;
+}
+
+/* sunday */
+.date-picker:nth-child(1) {
+    color: red;
+}
+
+/* saturday */
+.date-picker:nth-child(7) {
+    color: red;
+}
+
+#monthAndYear {
+    text-align: center;
+    margin-top: 0;
+}
+
+.button-container-calendar {
+    position: relative;
+    margin-bottom: 1em;
+    overflow: hidden;
+    clear: both;
+}
+
+#previous {
+
+}
+
+#next {
+
+}
+
+.footer-container-calendar {
+    margin-top: 1em;
+    padding: 10px 0;
+}
+
+.footer-container-calendar select {
+    cursor: pointer;
+    display: inline-block;
+    zoom: 1;
+    background: #ffffff;
+    color: #585858;
+    border: 1px solid #bfc5c5;
+    border-radius: 3px;
+    padding: 5px 1em;
+}
+
+/* Quiz section */
+.quiz-left{
+    padding: 10px;
+}
+.quiz-left h1{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+.quiz-left p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #E62395;
+}
+.quiz-left .table th{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+.quiz-left .table td{
+    padding: 15px 25px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #030E1E;
+}
+.take-exam{
+    margin-bottom: 0;
+    width: min-content;
+    background: #2367C7;
+    padding: 5px 7px;
+    border-style: solid;
+    border-color: #2367C7;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+}
+.take-exam:hover{
+    background: rgba(230, 35, 149, 0.23);
+    border-color: rgba(230, 35, 149, 0.23);
+    color: #E62395;
+}
+.completed-exams{
+    margin-top: 20px;
+}
+.quiz-left .table tr:nth-child(even) {
+    background: #F4F7FF;
+}
+.quiz-section{
+    margin-top: 20px;
+}
+.quiz-detail, .quiz-questions{
+    padding: 20px;
+    background: #FFF4FA;
+    border: 1px solid #E62395;
+    border-radius: 10px;
+}
+.quiz-right h1{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+.quiz-right p{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #E62395;
+}
+.examination-report{
+    padding: 20px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+}
+.examination-report h1{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+.examination-report p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #E62395;
+}
+.remarks h2{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+.remarks p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #030E1E;
+}
+
+/* tests css */
+.tests-section{
+    padding: 30px;
+}
+
+.test-title h1{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+.test-title p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #E62395;
+}
+.test-breadcrum .breadcrumb{
+    border: none;
+    text-decoration: none;
+}
+.test-breadcrum .breadcrumb-item a{
+    color: #BCBCBC;
+}
+.test-body{
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+}
+.question-title{
+    padding: 10px;
+    background: #F6FAFF;
+    border-radius: 10px;
+}
+.question-section{
+    padding: 20px;
+}
+.questions{
+    background: #D9D9D9;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    justify-items: center;
+    text-align: center;
+}
+.next-button{
+    background: #2367C7;
+    color: #FFFFFF;
+    border-color: #2367C7;
+    border-radius: 6px;
+    border-style: solid;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px;
+    color: #FFFFFF;
+}
+
+/* Score css */
+.score-section{
+    padding: 30px;
+}
+.total-score{
+    padding: 20px;
+    height: 120px;
+    align-items: center;
+    background: #DDE6FF;
+    border-radius: 10px;
+}
+.question-answers{
+    margin: 20px 0px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+.correct-answer, .provided-answer{
+    padding: 20px;
+    display: flex;
+    gap: 4px;
+}
+.quiz-answers{
+    display: flex;
+}
+.correct-answer .revail-btn{
+    background: #2367C7;
+    color: #FFFFFF;
+    border-color: #2367C7;
+    border-radius: 6px;
+    border-style: solid;
+}
+.revail-btn{
+    font-weight: 500;
+    font-size: 14px;
+}
+.correct-ans{
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    color: #0d6efd;
+    display: none;
+}
+.correct-answer span{
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    color: #0d6efd;
+}
