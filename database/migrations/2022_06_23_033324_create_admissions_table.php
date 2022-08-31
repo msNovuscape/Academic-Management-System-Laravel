@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('batch_id')->references('id')->on('batches');
             $table->date('date');
             $table->string('student_id');
+            $table->float('payable_amount');
             $table->softDeletes();
             $table->timestamps();
         });

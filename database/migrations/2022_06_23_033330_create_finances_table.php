@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('transaction_no')->nullable();
             $table->enum('status',['1','2']); //1 for paid 2 for unpaid
             $table->enum('bank_status',['1','2']); //1 for verified 2 for unverified
+            $table->string('remark')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -167,9 +167,6 @@
                                             @endif
                                         </div>
                                     </div>
-
-
-
                                     <div class="col-sm-12 col-md-12 mt-4">
                                         <div class="button-section d-flex justify-content-end">
                                             <a href="{{url('admissions')}}">

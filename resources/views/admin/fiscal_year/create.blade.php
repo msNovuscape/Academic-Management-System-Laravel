@@ -34,7 +34,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input name="name" type="text" class="form-control" placeholder="Username"/>
+                                                                <input name="name" type="text" class="form-control" required/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -92,7 +92,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input  name="end_date" type="text" id="to_date" class="form-control" placeholder="Please select course end date"/>
+                                                                <input  name="end_date" type="text" id="to_date" class="form-control" placeholder="Please select course end date" required/>
                                                                 <div class="input-group-prepend d-flex">
                                                                     <div class="input-group-text">
                                                                         <img src="{{url('images/calender-icon.png')}}" alt="calender-icon"/>
