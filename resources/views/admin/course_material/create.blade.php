@@ -120,10 +120,15 @@
                                             </div>
                                         </div>
                                     </div>
-                        {{-- section for doc and video link--}}
-                                    <div id="value_section">
 
+                        {{-- section for doc and video link--}}
+                                    <div class="col-md-6">
+                                        <div id="value_section">
+
+                                        </div>
                                     </div>
+
+
 
 
 
@@ -159,7 +164,7 @@
                     $('#docx').remove();
                     $('#video').remove();
                     if(val == 1){
-                        html += '<div class="col-sm-12 col-md-6 mt-4" id="docx">'+
+                        html += '<div class="col-sm-12 col-md-12 mt-4" id="docx">'+
                                     '<div class="form-group batch-form">'+
                                         '<div class="col-md-12">'+
                                             '<div class="row">'+
@@ -177,7 +182,7 @@
                                 '</div>';
                         $('#value_section').append(html);
                     }else {
-                        html += '<div class="col-sm-12 col-md-6 mt-4" id="video">'+
+                        html += '<div class="col-sm-12 col-md-12 mt-4" id="video">'+
                             '<div class="form-group batch-form">'+
                             '<div class="col-md-12">'+
                             '<div class="row">'+

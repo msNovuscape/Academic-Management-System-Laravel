@@ -121,43 +121,51 @@
                                         </div>
                                     </div>
                                     {{-- section for doc and video link--}}
-                                    <div id="value_section">
-                                        @if($setting->type == 1)
-                                            <div class="col-sm-12 col-md-6 mt-4" id="docx">
-                                                <div class="form-group batch-form">
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <label>Doc</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <div class="input-group">
-                                                                    <input type="file" name="link" class="form-control" value="{{old('link')}}" placeholder="Note"  required/>
+                                    <div class="col-md-6">
+                                        <div id="value_section">
+                                            @if($setting->type == 1)
+                                                <div class="col-sm-12 col-md-12 mt-4" id="docx">
+                                                    <div class="form-group batch-form">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label>Doc</label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group">
+                                                                        <input type="file" name="link" class="form-control" value="{{old('link')}}" placeholder="Note"  required/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <a href="{{url($setting->link)}}" target="_blank">Link</a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                        @else
-                                            <div class="col-sm-12 col-md-6 mt-4" id="video">
-                                                <div class="form-group batch-form">
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <label>Video</label>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <div class="input-group">
-                                                                    <input type="text" name="link" class="form-control" value="{{$setting->link}}"   required/>
+                                            @else
+                                                <div class="col-sm-12 col-md-12 mt-4" id="video">
+                                                    <div class="form-group batch-form">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <label>Video</label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group">
+                                                                        <input type="text" name="link" class="form-control" value="{{$setting->link}}"   required/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <a href="{{$setting->link}}" target="_blank">Link</a>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endif
+                                            @endif
+                                        </div>
                                     </div>
 
 
@@ -194,7 +202,7 @@
                     $('#docx').remove();
                     $('#video').remove();
                     if(val == 1){
-                        html += '<div class="col-sm-12 col-md-6 mt-4" id="docx">'+
+                        html += '<div class="col-sm-12 col-md-12 mt-4" id="docx">'+
                             '<div class="form-group batch-form">'+
                             '<div class="col-md-12">'+
                             '<div class="row">'+
@@ -212,7 +220,7 @@
                             '</div>';
                         $('#value_section').append(html);
                     }else {
-                        html += '<div class="col-sm-12 col-md-6 mt-4" id="video">'+
+                        html += '<div class="col-sm-12 col-md-12 mt-4" id="video">'+
                             '<div class="form-group batch-form">'+
                             '<div class="col-md-12">'+
                             '<div class="row">'+
