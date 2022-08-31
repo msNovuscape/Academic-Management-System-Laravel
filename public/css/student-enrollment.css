@@ -38,6 +38,19 @@
 .progress-bar{
     background-color: #E62395;
 }
+#dynamic0{
+    width: 25%;
+}
+#dynamic1{
+    width: 50%;
+}
+#dynamic2{
+    width: 75%;
+}
+#dynamic3{
+    width: 100%;
+}
+
 .enrollment-btn{
     overflow:auto;
 }

@@ -114,6 +114,16 @@
                                                 </label>
                                                 </div>
                                             </div>
+                                            <form id="search">
+                                                <div class="attendance-calender mx-4">
+                                                    <div class="input-group">
+                                                    <span>
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    </span>
+                                                        <input name="student_name" type="text" class="form-control" id="student_name_id"  placeholder="Search by name" required onkeyup="getStudentSearch()"/>
+                                                    </div>
+                                                </div>
+                                            </form>
                                             <div class="attendance-calender mx-4">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -409,7 +419,22 @@
                     }
                 });
             }
+
+            function getStudentSearch() {
+                debugger;
+                var student_name = $('#student_name_id').val();
+                var attendance_date = $('#fromDateToDate').val();
+                var batch_id = '<?php echo $batch->id; ?>';
+                if(student_name.trim().length > 0){
+                    start_loader();
+                    debugger;
+                }
+                debugger;
+            }
         @endif
+
+{{--        for searching student --}}
+
 
     </script>
 @endsection

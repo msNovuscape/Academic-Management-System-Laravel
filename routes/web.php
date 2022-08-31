@@ -122,6 +122,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('attendance',[AttendanceController::class,'store']); //ajax call for make batch attendance
     Route::post('attendance/{id}',[AttendanceController::class,'update']); //ajax call for update single attendance
     Route::post('attendance_by_date',[AttendanceController::class,'attendanceByDate']); //ajax call for update single attendance
+    Route::post('attendance_by_name',[AttendanceController::class,'getStudentSearch']); //ajax call for search student by name
 
 //    Routes for students
     Route::group(['middleware'=>'student','prefix'=>'student'],function (){

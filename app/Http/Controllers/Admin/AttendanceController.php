@@ -130,4 +130,12 @@ class AttendanceController extends Controller
         //endif
     }
 
+    /**
+     * @return  string html  Attendance by name and date and batch if found otherwise return list of student  to make attendance at that given date
+     */
+    public function getStudentSearch()
+    {
+
+    }
+
 }

@@ -455,6 +455,9 @@
         if (n == 0) {
             document.getElementById("prevBtn").style.display = "none";
         } else {
+            $('.my-p-bar').remove();
+            var p_bar = '<div class="progress-bar my-p-bar" id="dynamic'+n+'" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>';
+            $('#progress-id').append(p_bar);
             document.getElementById("prevBtn").style.display = "inline";
         }
         if (n == (x.length - 1)) {

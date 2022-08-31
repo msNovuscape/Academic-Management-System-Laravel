@@ -39,7 +39,6 @@
     {!! Html::style('/css/css-loader.css') !!}
     {{--    for dispalying confirmation--}}
     {!! Html::style('confirm/jquery-confirm.min.css') !!}
-    {!! Html::style('plugins/multiple-select-1.5.2/dist/multiple-select.min.css') !!}
     @yield('style')
 </head>
 <body>
@@ -61,7 +60,6 @@
 {!! Html::script('plugins/flatpickr/dist/flatpickr.js') !!}
 {!! Html::style('plugins/vanilla-calendar-main/vanilla-calendar.min.js') !!}
 {!! Html::script('confirm/jquery-confirm.min.js') !!}
-{!! Html::script('plugins/multiple-select-1.5.2/dist/multiple-select.min.js') !!}
 
 <script>
     Laravel = {
@@ -99,10 +97,6 @@
         $('#loader').removeClass('is-active');
     }
 
-    //for multiple select
-    $(function () {
-        $('.select1').multipleSelect();
-    })
 
 
 
@@ -134,6 +128,7 @@
         });
     }
     function filterList() {
+        debugger;
         var baseurl = window.location.origin+window.location.pathname;
         window.location = baseurl+'?'+$('#search').serialize();
     }

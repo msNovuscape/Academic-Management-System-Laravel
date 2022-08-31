@@ -35,8 +35,8 @@
                     </div>
                 </div>
             </div>
-            <div class="progress" style="height: 1px;">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress" style="height: 1px;" id="progress-id">
+                <div class="progress-bar my-p-bar" id="dynamic0" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
 
             <div class="card step p-5 mt-5">
@@ -277,7 +277,7 @@
                         <div class='col-md-4'>
                             <div class="form-group">
                                 <label>Password Expiry Date</label>
-                                <input type="date" class="form-control getDate" placeholder="Select your date of passport expiry" name="passport_expiry_date" value="{{old('passport_expiry_date')}}" id="passexp" onchange="validatepassexp()"/>
+                                <input type="date" class="form-control futureDate" placeholder="Select your date of passport expiry" name="passport_expiry_date" value="{{old('passport_expiry_date')}}" id="passexp" onchange="validatepassexp()"/>
                                 <div id="passportexp-error" class="error">
 
                                 </div>
@@ -392,11 +392,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class='row next-button'>
-                    <div class='col-md-12 text-center'>
-                        <button class='next-submit' type="submit">Submit</button>
                     </div>
                 </div>
             </div>

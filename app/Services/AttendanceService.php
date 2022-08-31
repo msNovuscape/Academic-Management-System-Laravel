@@ -42,6 +42,7 @@ class AttendanceService {
         return $attendances;
     }
 
+
     /**
      * @param array of attendance request which have student_id,status,symbol,here [status 1 for Present and 2 for Absent] [symbol P for Present and A for Absent]
      * @param date $attendance_date date of attendance
