@@ -46,6 +46,11 @@ class AdmissionController extends Controller
         $returnHtml = view($this->view.'batch_dom',['settings' => $settings])->render();
         return response()->json(array('success' =>true, 'html' => $returnHtml));
     }
+    public function getBatchInfo($batch_id)
+    {
+        $batch = Batch::findOrFail($batch_id);
+        return response()->json(array('success' =>true, 'batch' => $batch));
+    }
 
     public function getBatchCalender($batch_id)
     {

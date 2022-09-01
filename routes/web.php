@@ -77,6 +77,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('admissions',[AdmissionController::class,'index']);
     Route::get('admissions/create',[AdmissionController::class,'create']);
     Route::get('admissions/get_batches/{course_id}',[AdmissionController::class,'getBatch']);
+    Route::get('admissions/get_batch_info/{batch_id}',[AdmissionController::class,'getBatchInfo']);
     Route::get('admissions/get_batch_calender/{batch_id}',[AdmissionController::class,'getBatchCalender']);
     Route::post('admissions',[AdmissionController::class,'store']);
     Route::get('admissions/show/{id}',[AdmissionController::class,'show']);

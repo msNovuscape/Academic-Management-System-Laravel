@@ -5,6 +5,9 @@
 @section('main-panel')
     <div class="main-panel">
         <div class="content-wrapper">
+            {{--start loader--}}
+                <div class="loader loader-default" id="loader"></div>
+            {{--end loader--}}
             <div class="row">
                 <div class="col-sm-12 col-md-12 stretch-card">
                     <div class="card-wrap form-block p-0">
@@ -23,7 +26,7 @@
                         @include('errors.error')
                         <div class="row p-4">
                             <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
-                                {!! Form::open(['url' => 'admissions','method' => 'POST']) !!}
+                                {!! Form::open(['url' => 'admissions','method' => 'POST','onsubmit' => 'return validateForm()']) !!}
                                     <div class="row">
                                             <div class="col-12 table-responsive">
                                                 <div class="row">
@@ -89,7 +92,7 @@
                                                                     </div>
                                                                     <div class="col-md-9">
                                                                         <div class="input-group">
-                                                                            <select name="batch_id" id="batch_id" class="form-control" required>
+                                                                            <select name="batch_id" id="batch_id" class="form-control" required onchange="getBatchInfo()">
                                                                                 <option value="" selected disabled class="option">Please Select the Batch</option>
 
                                                                             </select>
@@ -108,7 +111,7 @@
                                                                     </div>
                                                                     <div class="col-md-9">
                                                                         <div class="input-group">
-                                                                            <input type="number" name="amount" min="1"  value="{{old('amount')}}" class="form-control" required/>
+                                                                            <input type="number" name="amount" min="1"  value="{{old('amount')}}" class="form-control" id="amount" required/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -124,7 +127,7 @@
                                                                     </div>
                                                                     <div class="col-md-9">
                                                                         <div class="input-group">
-                                                                            <input type="number" name="discount" min="0.0"  value="{{old('discount')}}" class="form-control" required/>
+                                                                            <input type="number" name="discount" min="0.0"  value="{{old('discount')}}" class="form-control" id="discount" required/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -233,7 +236,7 @@
                                                                 <i class="fa-solid fa-angles-right"></i>
                                                             </button>
                                                         </a>
-                                                        <button>
+                                                        <button type="submit">
                                                             Save & Continue
                                                             <i class="fas fa-angle-double-right"></i>
                                                         </button>
@@ -249,11 +252,14 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('script')
     <script>
+
         function getBatch() {
             var course_id = $('#course_id').val();
+            start_loader();
             $.ajax({
                 type:'GET',
                 url:Laravel.url+'/admissions/get_batches/'+course_id,
@@ -261,14 +267,53 @@
                 processData: false,  // tell jQuery not to process the data
                 contentType: false,
                 success:function (data){
+                    end_loader();
+                    debugger;
                     $('.option').remove();
                     $('#batch_id').append(data['html'])
                 },
                 error: function (error){
+                    end_loader()
                     errorDisplay('Something went worng !');
                 }
             });
+        }
 
+        var batch_amount = 0;
+        function getBatchInfo() {
+            debugger;
+            var batch_id = $('#batch_id').val();
+            debugger;
+            start_loader()
+            $.ajax({
+                type:'GET',
+                url:Laravel.url+'/admissions/get_batch_info/'+batch_id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,
+                success:function (data){
+                    end_loader();
+                   batch_amount = parseFloat(data['batch']['fee']);
+                },
+                error: function (error){
+                    end_loader();
+                    debugger;
+                    errorDisplay('Something went worng !');
+                }
+            });
+        }
+
+        function validateForm() {
+                var amount = parseFloat($('#amount').val());
+                var discount = parseFloat($('#discount').val());
+                var payable_amount = batch_amount - discount;
+
+                if(amount > payable_amount){
+                    errorDisplay('Installment amount is greater than amount to pay!');
+                    return false;
+                }else {
+                    return  true;
+                }
         }
     </script>
 @endsection

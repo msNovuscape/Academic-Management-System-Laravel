@@ -94,22 +94,12 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{url('admissions')}}">
             <div class="sidebar-icon  @if(Request::segment(1) == 'admissions') active @endif w-100" id="myBtnAdmission">
                 <i class="bi bi-card-checklist"></i>
-                <span class="menu-title w-100">Admission<i class="fa-solid fa-angle-down" id="icon-toggle-admission"></i></span>
+                <span class="menu-title w-100">Admission</span>
             </div>
         </a>
-        <div class="collapse" id="myCollapseAdmission">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                    <a class="nav-link @if(Request::segment(1) == 'admissions') active @endif" href="{{url('admissions')}}">List of Admission</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="#">Add Admission</a>
-                </li>
-            </ul>
-        </div>
     </li>
     <li class="nav-item">
         <a class="nav-link"  href="#">
@@ -195,34 +185,6 @@
             </ul>
         </div>
     </li>
-    <!-- <li class="nav-item">
-        <a class="nav-link"  href="#">
-            <div class="sidebar-icon w-100" id="myMaterialsBtn">
-                <i class="fa-solid fa-book"></i>
-                <span class="menu-title w-100">Materials<i class="fa-solid fa-angle-down" id="icon-toggle-materials"></i></span>
-            </div>
-        </a>
-        <div class="collapse" id="myCollapseMaterials">
-            <ul class="nav sub-nav">
-                <li class="nav-item sub-nav-item">
-                    <a class="nav-link" href="{{url('course-materials')}}">
-                        <div class="sidebar-icon w-100 @if(Request::segment(1) == 'course-materials') active @endif" id="myBtnSettingsCourse">
-                            <i class="bi bi-file-earmark-text"></i>
-                            <span class="menu-title w-100">Course Materials</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item sub-nav-item" >
-                    <a class="nav-link" href="{{url('batch-course-materials')}}">
-                        <div class="sidebar-icon  w-100 @if(Request::segment(1) == 'batch-course-materials') active @endif" id="myBtnTimetable">
-                            <i class="bi bi-calendar4"></i>
-                            <span class="menu-title w-100">Batch Materials</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </li> -->
     <li class="nav-item">
         <a class="nav-link" href="#">
             <div class="sidebar-icon @if(Request::segment(1) == 'students') active @endif w-100" id="myBtnAttendance">

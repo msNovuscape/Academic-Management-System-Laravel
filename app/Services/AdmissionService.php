@@ -42,26 +42,52 @@ class AdmissionService
 
             // Create income from student
             foreach ($batch->batch_installments as $batch_installment){
-                if($batch_installment->installment_type == 1){
-                    $finance = Finance::firstOrNew(['admission_id' => $setting->id,'batch_installment_id'=> $batch_installment->id]);
-                    $finance->created_by = Auth::user()->id;
-                    $finance->amount = $requestAll['amount'];
-                    $finance->date = $requestAll['date'];
-                    $finance->status = $requestAll['payment_status'];
-                    $finance->transaction_no = $requestAll['transaction_no'];
-                    $finance->bank_status = $requestAll['bank_status'];
-                    $finance->remark = $requestAll['remark'];
-                    $finance->save();
+
+                if(request('amount') == $setting->payable_amount){
+                    if($batch_installment->installment_type == 1){
+                        $finance = Finance::firstOrNew(['admission_id' => $setting->id,'batch_installment_id'=> $batch_installment->id]);
+                        $finance->created_by = Auth::user()->id;
+                        $finance->amount = $requestAll['amount'];
+                        $finance->date = $requestAll['date'];
+//                        $finance->status = $requestAll['payment_status'];
+                        $finance->status = array_search('Paid',config('custom.payment_status'));
+                        $finance->transaction_no = $requestAll['transaction_no'];
+                        $finance->bank_status = $requestAll['bank_status'];
+                        $finance->remark = $requestAll['remark'];
+                        $finance->save();
+                    }else{
+                        $finance = Finance::firstOrNew(['admission_id' => $setting->id,'batch_installment_id'=> $batch_installment->id]);
+                        $finance->created_by = Auth::user()->id;
+                        $finance->amount = 0.0;
+                        $finance->date = $requestAll['date'];
+                        $finance->status = array_search('Paid',config('custom.payment_status'));
+                        $finance->transaction_no = '';
+                        $finance->bank_status = $requestAll['bank_status'];
+                        $finance->remark = '';
+                        $finance->save();
+                    }
                 }else{
-                    $finance = Finance::firstOrNew(['admission_id' => $setting->id,'batch_installment_id'=> $batch_installment->id]);
-                    $finance->created_by = Auth::user()->id;
-                    $finance->amount = 0.0;
-                    $finance->date = $requestAll['date'];
-                    $finance->status = 2; // unpaid
-                    $finance->transaction_no = '';
-                    $finance->bank_status = 2; //unverified
-                    $finance->remark = '';
-                    $finance->save();
+                    if($batch_installment->installment_type == 1){
+                        $finance = Finance::firstOrNew(['admission_id' => $setting->id,'batch_installment_id'=> $batch_installment->id]);
+                        $finance->created_by = Auth::user()->id;
+                        $finance->amount = $requestAll['amount'];
+                        $finance->date = $requestAll['date'];
+                        $finance->status = $requestAll['payment_status'];
+                        $finance->transaction_no = $requestAll['transaction_no'];
+                        $finance->bank_status = $requestAll['bank_status'];
+                        $finance->remark = $requestAll['remark'];
+                        $finance->save();
+                    }else{
+                        $finance = Finance::firstOrNew(['admission_id' => $setting->id,'batch_installment_id'=> $batch_installment->id]);
+                        $finance->created_by = Auth::user()->id;
+                        $finance->amount = 0.0;
+                        $finance->date = $requestAll['date'];
+                        $finance->status = array_search('Unpaid',config('custom.payment_status')); // unpaid
+                        $finance->transaction_no = '';
+                        $finance->bank_status = 2; //unverified
+                        $finance->remark = '';
+                        $finance->save();
+                    }
                 }
             }
             //create discount for student
