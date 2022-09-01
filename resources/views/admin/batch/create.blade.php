@@ -94,7 +94,7 @@
                                                     </div>
                                                     <div class="col-md-9">
                                                         <div class="input-group">
-                                                            <input  name="end_date" type="text" id="to_date" class="form-control" placeholder="Please select course end date" onchange="getBatchCalender()"/>
+                                                            <input  name="end_date" type="text" id="to_date" class="form-control" placeholder="Please select course end date" onchange="getMyCalender()"/>
                                                             <div class="input-group-prepend d-flex">
                                                                 <div class="input-group-text p-2">
                                                                     <img src="{{url('images/calender-icon.png')}}" alt="calender-icon"/>
@@ -344,6 +344,13 @@
             if(check > 0){
                 var start  = parseInt(id) +1;
                 for(i= start; i <= parseInt(second_last_tr); i++){
+                    if($('#batchCalender'+i).val() == ''){
+                        $("#batchCalender"+i).flatpickr({
+                            minDate: $('#batchCalender'+id).val(),
+                            maxDate: $('#to_date').val(),
+                            dateFormat: "Y-m-d",
+                        });
+                    }
                     if(new Date($('#batchCalender'+i).val()) < new Date($('#batchCalender'+id).val()))
                     {
                         $('#batchCalender'+i).val('');
@@ -353,7 +360,6 @@
                             dateFormat: "Y-m-d",
                         });
                     }
-
                 }
             }
         }
