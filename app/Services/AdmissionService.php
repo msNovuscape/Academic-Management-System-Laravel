@@ -42,7 +42,6 @@ class AdmissionService
 
             // Create income from student
             foreach ($batch->batch_installments as $batch_installment){
-
                 if(request('amount') == $setting->payable_amount){
                     if($batch_installment->installment_type == 1){
                         $finance = Finance::firstOrNew(['admission_id' => $setting->id,'batch_installment_id'=> $batch_installment->id]);

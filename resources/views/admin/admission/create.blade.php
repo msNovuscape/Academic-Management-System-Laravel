@@ -268,7 +268,6 @@
                 contentType: false,
                 success:function (data){
                     end_loader();
-                    debugger;
                     $('.option').remove();
                     $('#batch_id').append(data['html'])
                 },
@@ -281,9 +280,7 @@
 
         var batch_amount = 0;
         function getBatchInfo() {
-            debugger;
             var batch_id = $('#batch_id').val();
-            debugger;
             start_loader()
             $.ajax({
                 type:'GET',
@@ -297,7 +294,6 @@
                 },
                 error: function (error){
                     end_loader();
-                    debugger;
                     errorDisplay('Something went worng !');
                 }
             });

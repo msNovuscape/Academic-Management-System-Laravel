@@ -87,45 +87,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="row mt-4">
-                                <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
-                                    <div class="card-wrap-bs-none form-block pt-0">
-                                        <div class="row">
-                                            <div class="col-12 table-responsive table-details">
-                                                <table class="table table-install" id="">
-                                                    <tbody id="student_list">
-                                                        <tr>
-                                                            <td rowspan="2">
-                                                                <div class="d-flex">
-                                                                    <img src="{{url('images/profile.png')}}" alt="">
-                                                                    <div class="d-flex flex-column name-table">
-                                                                        <p>{{$setting->user->email}}</p>
-                                                                        <p>{{$setting->student_id}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Course:&nbsp;&nbsp;Advanced Laravel</td>
-                                                            <td>fee:&nbsp;&nbsp;{{$setting->batch->fee}}</td>
-                                                            <td>Amount to pay:&nbsp;&nbsp;{{$setting->payable_amount}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Batch:&nbsp;&nbsp;AL-2022-1</td>
-                                                            <td>Discount:&nbsp;&nbsp;{{$setting->discount->amount}}</td>
-                                                            <td>Paid Amount:&nbsp;&nbsp;{{$setting->finances->sum('amount')}}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                         @include('success.success')
                         @include('errors.error')
                         <div class="row p-4 pt-0">
                             @foreach($setting->finances as $finance)
-                                {!! Form::open(['url' => 'finances/update/'.$finance->id,'method' => 'POST','onsubmit' => 'return validateForm('.$finance->id.')']) !!}
+                                {!! Form::open(['url' => 'finances/update/'.$finance->id,'method' => 'POST','onsubmit' => 'return validateForm('.$finance->id.','.$finance->amount.')']) !!}
                                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
                                         <div class="row border border-1 border-grey rounded-1 p-4 m-1 mt-4">
                                             <div class="col-12 table-responsive">
@@ -155,7 +122,7 @@
                                                                     </div>
                                                                     <div class="col-md-9">
                                                                         <div class="input-group">
-                                                                            <input type="number" name="amount" min="0"  value="{{$finance->amount}}" class="form-control" id="amount{{$finance->id}}" required/>
+                                                                            <input type="number" name="amount" min="0"  value="{{$finance->amount}}" class="form-control my_amount" id="amount{{$finance->id}}" required/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -171,7 +138,7 @@
                                                                     </div>
                                                                     <div class="col-md-9">
                                                                         <div class="input-group">
-                                                                            <input type="text" name="transaction_no"  value="{{$finance->transaction_no}}" class="form-control"    />
+                                                                            <input type="text" name="transaction_no"  value="{{$finance->transaction_no}}" class="form-control"/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -208,7 +175,7 @@
                                                                     </div>
                                                                     <div class="col-md-9">
                                                                         <div class="input-group">
-                                                                            <select name="payment_status" id="payment_status" class="form-control" required>
+                                                                            <select name="payment_status" id="payment_status{{$finance->id}}" class="form-control" required>
                                                                                 <option value="" selected disabled class="option">Please Select the Status</option>
                                                                                 @foreach(config('custom.payment_status') as $index => $value)
                                                                                     <option value="{{$index}}" @if($finance->status == $index) selected @endif>{{$value}}</option>
@@ -328,12 +295,13 @@
 @endsection
 @section('script')
     <script>
-        function validateForm(id) {
-            var installment_amount = $('#amount'+id).val();
+        function validateForm(id,paid_installment_amount) {
+            var request_installment_amount = $('#amount'+id).val();
             var payble_amount = '<?php echo $setting->payable_amount; ?>';
             var paid_amount =  '<?php  echo $paid_amount; ?>';
-            var amount = parseFloat(paid_amount) + parseFloat(installment_amount);
-            if(parseFloat(amount) > parseFloat(payble_amount)){
+            var rest_installment_payment_amount = parseFloat(paid_amount) - parseFloat(paid_installment_amount);
+            var actual_total_amount = rest_installment_payment_amount + parseFloat(request_installment_amount);
+            if(parseFloat(actual_total_amount) > parseFloat(payble_amount)){
                 errorDisplay('Amount is greater than amount to pay!')
                 return false;
             }else {
