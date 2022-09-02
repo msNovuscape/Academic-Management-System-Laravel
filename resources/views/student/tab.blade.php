@@ -78,7 +78,9 @@
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                 @include('student.quiz.quiz')
             </div>
-            <div class="tab-pane fade " id="nav-finance" role="tabpanel" aria-labelledby="nav-home-tab">Finance</div>
+            <div class="tab-pane fade " id="nav-finance" role="tabpanel" aria-labelledby="nav-home-tab">
+                @include('student.finance.index')
+            </div>
             <div class="tab-pane fade" id="nav-performance" role="tabpanel" aria-labelledby="nav-profile-tab">Performance</div>
             <div class="tab-pane fade" id="nav-exam" role="tabpanel" aria-labelledby="nav-contact-tab">Book Exam</div>
         </div>
