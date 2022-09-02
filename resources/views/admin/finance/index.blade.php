@@ -388,11 +388,9 @@
                 processData: false,  // tell jQuery not to process the data
                 contentType: false,
                 success:function (data){
-                    debugger;
                     window.location.href = Laravel.url+'/finances';
                 },
                 error: function (error){
-                    debugger;
                     errorDisplay('Something went worng !');
                 }
             });
@@ -424,12 +422,10 @@
                                 /* remind that 'data' is the response of the AjaxController */
                                 success: function (data) {
                                     end_loader();
-                                    debugger;
                                     errorDisplay(data['message']);
                                 },
                                 error: function(error) {
                                     end_loader();
-                                    debugger;
                                     errorDisplay('Something went wrong !');
                                 }
                             });

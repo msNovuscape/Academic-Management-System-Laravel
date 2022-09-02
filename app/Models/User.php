@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOneThrough(Student::class,Admission::class);
     }
+
+    public function student_password()
+    {
+       return $this->hasOne(StudentPassword::class);
+    }
 }

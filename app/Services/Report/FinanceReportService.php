@@ -2,6 +2,7 @@
 namespace App\Services\Report;
 
 use App\Models\Admission;
+use App\Models\DueEmailInfo;
 
 class FinanceReportService {
 
@@ -116,6 +117,15 @@ class FinanceReportService {
             });
         }
         return $settings;
+    }
+
+    public function due_email_info($setting)
+    {
+        $due_email_info = new DueEmailInfo();
+        $due_email_info->finance_id = $setting->id;
+        $due_email_info->content = '<p>Please be advised that you’ve been temporarily removed from the Skype Learning Group as we haven’t received '.config('custom.installment_types')[$setting->batch_installment->installment_type].' payment update from your side.</p>';
+        $due_email_info->save();
+        return $due_email_info;
     }
 
 }

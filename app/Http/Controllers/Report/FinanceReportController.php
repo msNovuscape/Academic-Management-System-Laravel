@@ -91,10 +91,10 @@ class FinanceReportController extends Controller
             'finance_id' => 'required|numeric'
         ]);
         $setting = Finance::findOrFail(\request('finance_id'));
-//        $email = $setting->admission->user->email;
-//        $email = 'pooja@extratechs.com.au';
-        $email = 'swadesh.chaudhary@gmail.com';
+        $email = $setting->admission->user->email;
+//        $email = 'swadesh.chaudhary@gmail.com';
         Mail::to($email)->send(new DueEmail($setting));
+        $this->financeReportService->due_email_info($setting);
         return response()->json(['data' => $setting,'message' => 'Email has been send to '.$setting->admission->user->name.'!'],200);
     }
 

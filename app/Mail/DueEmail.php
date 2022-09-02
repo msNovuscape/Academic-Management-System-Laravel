@@ -29,6 +29,6 @@ class DueEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('for paying installment')->markdown('emails.due_email');
+        return $this->subject('for paying' .'  '.config('custom.installment_types')[$this->setting->batch_installment->installment_type].' installment')->markdown('emails.due_email');
     }
 }

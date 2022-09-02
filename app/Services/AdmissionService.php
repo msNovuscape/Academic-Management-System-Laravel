@@ -2,10 +2,12 @@
 namespace App\Services;
 
 use App\Models\Admission as Model;
+use App\Models\AdmissionEmailInfo;
 use App\Models\Batch;
 use App\Models\Count;
 use App\Models\Discount;
 use App\Models\Finance;
+use App\Models\StudentPassword;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,10 +27,16 @@ class AdmissionService
             $user = new User();
             $user->name = $requestAll['name'];
             $user->email = $requestAll['email'];
-            $user->password = Hash::make('password');
+            $random_password = $this->randString(6);
+            $user->password = Hash::make($random_password);
             $user->status = array_search('Active', config('custom.status')); //active
             $user->user_type = array_search('Student', config('custom.user_types'));
             $user->save();
+            //save student password
+            $student_password = new StudentPassword();
+            $student_password->user_id = $user->id;
+            $student_password->password = $random_password;
+            $student_password->save();
             // Create User admission
             $batch = Batch::findOrFail($requestAll['batch_id']);
             $setting = new Model();
@@ -109,6 +117,22 @@ class AdmissionService
         $count = Count::getCount();
         $student_id = 'ET' . date('Y') . date('m') . $count;
         return $student_id;
+    }
+
+    //to generate random password
+    public function randString( $length ) {
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        return substr(str_shuffle($chars),0,$length);
+    }
+
+    //save the admission email information
+    public function storeAdmissionEmailInfo($admission)
+    {
+      $admission_email = new AdmissionEmailInfo();
+      $admission_email->admission_id = $admission->id;
+      $admission_email->content = '<p>Thank You for making the enrollment payment. We are excited to have you onboard and wish you have an amazing learning experience in <strong>&nbsp;Extratech</strong>.</p> <p>We would like to kindly request you to change your temporary password to complete the enrollment form. Then download Skype and send a message to Binod Kunwar at Skype ID: binod.kunwar56 to be added in the learning group.</p> <p> <strong>Your AMS Login Details</strong> </p><p> <strong>Username :</strong> '.$admission->user->email.'</p><p> <strong>Password :</strong>'.$admission->user->student_password.'</p>';
+      $admission_email->save();
+      return $admission_email;
     }
 
     public function updateData($requestAll, $id)
