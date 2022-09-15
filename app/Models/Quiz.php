@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Quiz extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['created_by','course_id','name','time_period','status','date','remark'];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+}

@@ -21,6 +21,12 @@ class SettingService {
             }
             return $directory = 'images/course_material/'.$year.'/'.$month.'/'.$day.'/';
         }
+        if(config('custom.image_folders')[$image_folder_type] == 'quiz_image'){
+            if (!is_dir(public_path().'/images/quiz_image/'.$year.'/'.$month.'/'.$day)) {
+                mkdir(public_path().'/images/quiz_image/'.$year.'/'.$month.'/'.$day, 0755, true);
+            }
+            return $directory = 'images/quiz_image/'.$year.'/'.$month.'/'.$day.'/';
+        }
 
         if(config('custom.image_folders')[$image_folder_type] == 'service'){
             if (!is_dir(public_path().'/images/service/'.$year.'/'.$month.'/'.$day)) {

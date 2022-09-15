@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\FinanceController;
 use App\Http\Controllers\Admin\EmailController;
 use App\Http\Controllers\Admin\PdfController;
 use App\Http\Controllers\Report\FinanceReportController;
+use App\Http\Controllers\Admin\QuizQuestionController;
 
 
 /*
@@ -87,7 +88,14 @@ Route::group(['middleware'=>['auth']],function (){
 
 
     Route::get('quiz',[QuizController::class,'index']);
-
+    Route::get('quiz/create',[QuizController::class,'create']);
+    Route::post('quiz',[QuizController::class,'store']);
+    //routes for creating quiz questions
+    Route::get('quiz/question_create/{quiz_id}',[QuizQuestionController::class,'create']);
+    Route::get('quiz_option/{dom_id}/{no_of_option}',[QuizQuestionController::class,'quizOptionDom']);//api call for quiz option
+    Route::get('quiz_question_dom/{dom_id}/{question_type}',[QuizQuestionController::class,'quizQuestionDom']);//api call for quiz question type
+    Route::get('quiz_question/{dom_id}',[QuizQuestionController::class,'quizQuestion']);//api call for quiz question type
+    Route::post('quiz/question_create/{quiz_id}',[QuizQuestionController::class,'store']);
 
     Route::get('course-materials',[CourseMaterialController::class,'index']);
     Route::get('course-materials/create',[CourseMaterialController::class,'create']);

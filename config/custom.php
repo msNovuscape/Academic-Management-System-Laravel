@@ -13,7 +13,8 @@ return [
     'image_folders' => [
         '1' => 'student',
         '2' => 'course_material',
-        '3'=>'DOCX'
+        '3'=>'DOCX',
+        '4'=>'quiz_image',
     ],
     'genders' =>[
         '1' => 'Male',
@@ -23,6 +24,14 @@ return [
     'states' =>[
         '1' => 'Yes',
         '2' => 'No'
+    ],
+    'question_types' =>[
+        '1' => 'Text',
+        '2' => 'Image'
+    ],
+    'no_of_options' =>[
+        '4' => '4',
+        '5' => '5'
     ],
     'setting_types'=>[
         '1'=>'DOCX',
@@ -51,6 +60,7 @@ return [
         '2' => 'pdf',
         '3' => 'excel'
     ],
+
 ]
 
 
