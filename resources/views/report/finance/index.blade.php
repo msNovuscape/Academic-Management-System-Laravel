@@ -374,7 +374,7 @@
             maxDate: "<?php echo date('Y-m-d');?>",
             dateFormat: "Y-m-d"
         });
-        function getMinDate(){
+    function getMinDate(){
             var min_date = $('#from_date').val();
             if(min_date != ''){
                 $('#to_date').flatpickr({
