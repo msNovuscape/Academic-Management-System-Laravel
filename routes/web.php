@@ -96,6 +96,11 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('quiz_question_dom/{dom_id}/{question_type}',[QuizQuestionController::class,'quizQuestionDom']);//api call for quiz question type
     Route::get('quiz_question/{dom_id}',[QuizQuestionController::class,'quizQuestion']);//api call for quiz question type
     Route::post('quiz/question_create/{quiz_id}',[QuizQuestionController::class,'store']);
+    Route::get('quiz/question_show/{quiz_id}',[QuizQuestionController::class,'show']); //show the list of quiz question
+    Route::get('quiz/quiz_question_show/{id}',[QuizQuestionController::class,'getShow']); //show the individual question
+    Route::get('quiz/quiz_question_edit/{id}',[QuizQuestionController::class,'edit']); //show the individual question
+    Route::post('quiz/quiz_question_edit/{id}',[QuizQuestionController::class,'update']); //show the individual question
+    Route::get('quiz_question_dom_update/{dom_id}/{question_type}',[QuizQuestionController::class,'quizQuestionDomUpdate']);//api call for quiz question type
 
     Route::get('course-materials',[CourseMaterialController::class,'index']);
     Route::get('course-materials/create',[CourseMaterialController::class,'create']);
