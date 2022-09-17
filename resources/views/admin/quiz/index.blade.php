@@ -73,10 +73,16 @@
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
                                                                             <li>
-                                                                                <a class="dropdown-item"   href="{{url('quiz/question_create/'.$setting->id)}}" ><i class="fa-solid fa-eye"></i></a>
+                                                                                <a class="dropdown-item"   href="{{url('quiz/question_create/'.$setting->id)}}" ><i class="fa-solid fa-plus"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a class="dropdown-item"  href="{{url('course-materials/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                                <a class="dropdown-item"   href="{{url('quiz/question_show/'.$setting->id)}}" ><i class="fa-solid fa-eye"></i></a>
+                                                                            </li>
+{{--                                                                            <li>--}}
+{{--                                                                                <a class="dropdown-item"  href="{{url('course-materials/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>--}}
+{{--                                                                            </li>--}}
+                                                                            <li>
+                                                                                <a class="dropdown-item"   href="{{url('quiz/show_all_questions/'.$setting->id)}}" ><i class="fa-solid fa-eye"></i></a>
                                                                             </li>
                                                                         </ul>
                                                                     </td>

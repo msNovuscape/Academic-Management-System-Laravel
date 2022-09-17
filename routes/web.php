@@ -90,6 +90,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('quiz',[QuizController::class,'index']);
     Route::get('quiz/create',[QuizController::class,'create']);
     Route::post('quiz',[QuizController::class,'store']);
+    Route::get('quiz/show_all_questions/{id}',[QuizController::class,'showAll']);
     //routes for creating quiz questions
     Route::get('quiz/question_create/{quiz_id}',[QuizQuestionController::class,'create']);
     Route::get('quiz_option/{dom_id}/{no_of_option}',[QuizQuestionController::class,'quizOptionDom']);//api call for quiz option

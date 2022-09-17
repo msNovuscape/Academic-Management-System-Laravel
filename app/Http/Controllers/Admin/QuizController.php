@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Quiz\QuizRequest;
 use App\Models\Course;
 use App\Models\Quiz;
+use App\Models\QuizQuestion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -35,6 +36,15 @@ class QuizController extends Controller
         Session::flash('success','Quiz  has been created!');
         return redirect($this->redirect);
 
+    }
+
+    public function showAll($id)
+    {
+
+        $quiz = Quiz::findOrFail($id);
+        $settings = QuizQuestion::where('quiz_id',$quiz->id)->orderBy('id','asc');
+        $settings = $settings->paginate(2);
+        return view($this->view.'show_all_question',compact('settings'));
     }
 
 

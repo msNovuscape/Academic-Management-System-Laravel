@@ -71,7 +71,7 @@ class QuizQuestionController extends Controller
             'status' => 'required|array',
         ]);
         $quiz = Quiz::findOrFail($quiz_id);
-        $this->quizQuestionService->storeData($quiz);
+        $aaa = $this->quizQuestionService->storeData($quiz);
         Session::flash('success','Quiz question has been created successfully!');
         return redirect($this->redirect);
     }
@@ -87,12 +87,18 @@ class QuizQuestionController extends Controller
 
     public function getShow($id)
     {
-        dd(98);
+        $setting = QuizQuestion::findOrFail($id);
+//        dd($setting->);
+//        dd($setting->quiz_options);
+//        dd($setting->quiz_options[0]->quiz_question_answer);
+        return view($this->view.'show',compact('setting'));
     }
 
     public function edit($id)
     {
         $setting = QuizQuestion::findOrFail($id);
+//        dd($setting->);
+//        dd($setting->quiz_options);
 //        dd($setting->quiz_options[0]->quiz_question_answer);
         return view($this->view.'edit',compact('setting'));
     }

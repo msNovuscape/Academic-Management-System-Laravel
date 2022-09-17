@@ -42,6 +42,32 @@
                 }
             });
         }
+        function getQuestionDomEdit(id) {
+            var question_type = $('#question_type'+id).val();
+            var dom_id = id;
+            debugger;
+            start_loader();
+            $.ajax({
+                type:'GET',
+                url:Laravel.url+'/quiz_question_dom_update/'+dom_id+'/'+question_type,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,
+                success:function (data){
+                    end_loader();
+                    debugger;
+                    $('#question-block1').remove();
+
+                    $('#suppotingblock1').prepend(data['html']);
+                    debugger;
+                },
+                error: function (error){
+                    end_loader();
+                    debugger;
+                    errorDisplay('Something went worng !');
+                }
+            });
+        }
 
         function getOption(id) {
             start_loader()
@@ -60,6 +86,32 @@
                         $('#fifth-option'+id).remove();
                     }else {
                         $('#dom-option'+id).after(data['html']);
+                    }
+                },
+                error: function (error){
+                    end_loader();
+                    debugger;
+                    errorDisplay('Something went worng !');
+                }
+            });
+        }
+        function getOptionEdit(id) {
+            start_loader()
+            var no_of_option = $('#no_of_option'+id).val();
+            var dom_id = id;
+            $.ajax({
+                type:'GET',
+                url:Laravel.url+'/quiz_option/'+dom_id+'/'+no_of_option,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,
+                success:function (data){
+                    end_loader();
+                    debugger;
+                    if(data['no_of_option'] == 4){
+                        $('#fifth-option5').remove();
+                    }else {
+                        $('#dom-option1').after(data['html']);
                     }
                 },
                 error: function (error){

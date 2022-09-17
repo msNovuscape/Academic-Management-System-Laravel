@@ -57,35 +57,39 @@
                                                         <thead>
                                                         <tr>
                                                             <th>S.N.</th>
-                                                            <th>Material Name</th>
-                                                            <th>Course</th>
+                                                            <th>Question</th>
                                                             <th>Type</th>
-                                                            <th>Link</th>
+                                                            <th>Image</th>
                                                             <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody id="student_list">
-{{--                                                            @foreach($settings as $setting)--}}
-{{--                                                                <tr>--}}
-{{--                                                                    <td>{{$loop->iteration}}</td>--}}
-{{--                                                                    <td>{{$setting->name}}</td>--}}
-{{--                                                                    <td>{{$setting->course->name}}</td>--}}
-{{--                                                                    <td> {{config('custom.setting_types')[$setting->type]}}</td>--}}
-{{--                                                                    <td>{{$setting->link}}</td>--}}
-{{--                                                                    <td>{{config('custom.status')[$setting->status]}}</td>--}}
-{{--                                                                    <td class="action-icons">--}}
-{{--                                                                        <ul class="icon-button d-flex">--}}
-{{--                                                                            <li>--}}
-{{--                                                                                <a class="dropdown-item" data-bs-target="#modalAddCourse{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button"><i class="fa-solid fa-eye"></i></a>--}}
-{{--                                                                            </li>--}}
-{{--                                                                            <li>--}}
-{{--                                                                                <a class="dropdown-item"  href="{{url('course-materials/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>--}}
-{{--                                                                            </li>--}}
-{{--                                                                        </ul>--}}
-{{--                                                                    </td>--}}
-{{--                                                                </tr>--}}
-{{--                                                            @endforeach--}}
+                                                            @foreach($settings as $setting)
+                                                                <tr>
+                                                                    <td>{{$settings->firstItem() + $loop->index}}</td>
+                                                                    <td>{{$setting->question}}</td>
+                                                                    <td> {{config('custom.question_types')[$setting->question_type]}}</td>
+                                                                    @if($setting->quiz_question_image)
+                                                                        <td>
+                                                                            <img src="{{url($setting->quiz_question_image->image)}}" alt="" width="100px">
+                                                                        </td>
+                                                                    @else
+                                                                        <td>-</td>
+                                                                    @endif
+                                                                    <td>{{config('custom.status')[$setting->status]}}</td>
+                                                                    <td class="action-icons">
+                                                                        <ul class="icon-button d-flex">
+                                                                            <li>
+                                                                                <a class="dropdown-item"   href="{{url('quiz/quiz_question_show/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('quiz/quiz_question_edit/'.$setting->id)}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>

@@ -22,7 +22,9 @@ class QuizQuestionService{
 //        dd(request()->all());
         try{
             DB::beginTransaction();
+            $aa = 0;
             foreach (request('count') as $index => $value){
+                $aa = $aa +1;
                 //inserting value to quiz questions table
                     $quiz_question = new QuizQuestion();
                     $quiz_question->quiz_id = $quiz->id;
@@ -68,6 +70,9 @@ class QuizQuestionService{
             }
 
             DB::commit();
+            return $aa;
+            return $aa;
+
         }
         catch(\Exception $e){
             DB::rollback();
@@ -99,7 +104,17 @@ class QuizQuestionService{
                 $quiz_question->save();
             //inserting value to quiz question images table
             if(request('question_type')== array_search('Image',config('custom.question_types'))){
-                self::update_image($quiz_question);
+                if(request('image')){
+                    self::update_image($quiz_question);
+                }
+            }else{
+                if($quiz_question->quiz_question_image){
+                    $unlink_path = public_path().'/'.$quiz_question->quiz_question_image->image;
+                    if (is_file($unlink_path) && file_exists($unlink_path)){
+                        unlink($unlink_path);
+                    }
+                    $quiz_question->quiz_question_image->delete();
+                }
             }
 
             //all option are not old option
