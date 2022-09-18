@@ -48,5 +48,4 @@ class Admission extends Model
         return $this->hasMany(ExtendDate::class);
     }
 
-
 }

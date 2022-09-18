@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    <title>Quiz Batch</title>
+    <title>Quiz Individual</title>
 @endsection
 @section('main-panel')
     <div class="main-panel">
@@ -12,11 +12,11 @@
                 <div class="col-sm-12 col-md-12 stretch-card">
                     <div class="card-wrap form-block p-0">
                         <div class="block-header p-4">
-                            <h3>Quiz Batch</h3>
+                            <h3>Quiz Individual</h3>
                             <div class="tbl-buttons">
                                 <ul>
                                     <li>
-                                        <a href="{{url('quiz_batch')}}"><img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/></a>
+                                        <a href="{{url('quiz_individual')}}"><img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/></a>
                                     </li>
                                 </ul>
                             </div>
@@ -25,10 +25,27 @@
                         @include('errors.error')
                         <div class="row p-4">
                             <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
-                                {!! Form::open(['url' => 'quiz_batch_create','method' => 'POST']) !!}
+                                {!! Form::open(['url' => 'quiz_individual_create','method' => 'POST']) !!}
                                     <div class="row">
                                             <div class="col-12 table-responsive">
                                                 <div class="row">
+                                                    <div class="col-sm-12 col-md-6 mt-4">
+                                                        <div class="form-group batch-form">
+                                                            <div class="col-md-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>Name</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control" value="{{$admission->user->name}}">
+                                                                            <input type="hidden" name="admission_id" required value="{{$admission->id}}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
@@ -43,25 +60,6 @@
                                                                                 @foreach($courses as $course)
                                                                                     <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
                                                                                 @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-6 mt-4">
-                                                        <div class="form-group batch-form">
-                                                            <div class="col-md-12">
-                                                                <div class="row">
-                                                                    <div class="col-md-3">
-                                                                        <label>Batch</label>
-                                                                    </div>
-                                                                    <div class="col-md-9">
-                                                                        <div class="input-group">
-                                                                            <select name="batch_id" id="batch_id" class="form-control" required>
-                                                                                <option value="" selected disabled class="option">Please Select the Batch</option>
-
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -116,7 +114,7 @@
                                                 <div class="button-section d-flex justify-content-end mt-2 mb-4">
                                                 <div class="row">
                                                     <div class="button-section d-flex justify-content-end mt-2 mb-4">
-                                                        <a href="{{url('quiz_batch')}}">
+                                                        <a href="{{url('quiz_individual')}}">
                                                             <button type="button">
                                                                 Skip
                                                                 <i class="fa-solid fa-angles-right"></i>

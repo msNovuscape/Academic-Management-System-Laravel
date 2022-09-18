@@ -116,6 +116,13 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('quiz_batch_edit/{id}',[QuizBatchController::class,'edit']);
     Route::post('quiz_batch_update/{id}',[QuizBatchController::class,'update']);
 
+    //routes for quiz assign to individual
+    Route::get('quiz_individual',[QuizIndiviualController::class,'index']);
+    Route::get('quiz_individual_create/{admission_id}',[QuizIndiviualController::class,'create']);
+    Route::post('quiz_individual_create',[QuizIndiviualController::class,'store']);
+    Route::get('quiz_individual_edit/{id}',[QuizIndiviualController::class,'edit']);
+    Route::post('quiz_individual/{id}',[QuizIndiviualController::class,'update']);
+
     Route::get('course-materials',[CourseMaterialController::class,'index']);
     Route::get('course-materials/create',[CourseMaterialController::class,'create']);
     Route::post('course-materials',[CourseMaterialController::class,'store']);

@@ -13,7 +13,7 @@ class QuizIndiviualRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class QuizIndiviualRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'admission_id' => ['required','numeric'],
+            'quiz_id' => ['required','numeric'],
+            'status' => ['required','numeric'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'admission_id.required' => 'Admission Name is required',
+            'quiz_id.required' => 'Quiz is required',
+            'status.required' => 'Status is required',
         ];
     }
 }
