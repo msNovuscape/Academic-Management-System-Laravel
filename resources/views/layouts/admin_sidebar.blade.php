@@ -208,7 +208,7 @@
         <a class="nav-link" href="#">
             <div class="sidebar-icon @if(Request::segment(1) == 'quiz') active @endif w-100" id="myBtnQuiz">
                 <i class="bi bi-trophy"></i>
-                <span class="menu-title w-100">Quiz<i class="fa-solid fa-angle-down" id="icon-toggle-quiz"></i></span>
+                <span class="menu-title w-100">Quiz Management<i class="fa-solid fa-angle-down" id="icon-toggle-quiz"></i></span>
             </div>
         </a>
         <div class="collapse" id="myCollapseQuiz">
@@ -217,8 +217,12 @@
                     <a class="nav-link @if(Request::segment(1) == 'quiz') active @endif" href="{{url('quiz')}}">List of Quiz</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="#">Add Quiz</a>
+                    <a class="nav-link" @if(Request::segment(1) == 'quiz') active @endif"  href="{{url('quiz_batch')}}">Quiz To Group</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" @if(Request::segment(1) == 'quiz') active @endif"  href="{{url('quiz_individual')}}">Quiz To Individual</a>
+                </li>
+
             </ul>
         </div>
     </li>

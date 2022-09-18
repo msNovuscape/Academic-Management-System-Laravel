@@ -21,6 +21,10 @@ use App\Http\Controllers\Admin\EmailController;
 use App\Http\Controllers\Admin\PdfController;
 use App\Http\Controllers\Report\FinanceReportController;
 use App\Http\Controllers\Admin\QuizQuestionController;
+use App\Http\Controllers\Admin\QuizBatchController;
+use App\Http\Controllers\Admin\QuizIndiviualController;
+
+
 
 
 /*
@@ -87,6 +91,7 @@ Route::group(['middleware'=>['auth']],function (){
 
 
 
+    //routes for quiz create
     Route::get('quiz',[QuizController::class,'index']);
     Route::get('quiz/create',[QuizController::class,'create']);
     Route::post('quiz',[QuizController::class,'store']);
@@ -102,6 +107,14 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('quiz/quiz_question_edit/{id}',[QuizQuestionController::class,'edit']); //show the individual question
     Route::post('quiz/quiz_question_edit/{id}',[QuizQuestionController::class,'update']); //show the individual question
     Route::get('quiz_question_dom_update/{dom_id}/{question_type}',[QuizQuestionController::class,'quizQuestionDomUpdate']);//api call for quiz question type
+
+    //routes for quiz assign to batch
+    Route::get('quiz_batch',[QuizBatchController::class,'index']);
+    Route::get('quiz_batch_create',[QuizBatchController::class,'create']);
+    Route::get('quiz_batch_dom/{course_id}',[QuizBatchController::class,'getBatch']); //ajax call
+    Route::post('quiz_batch_create',[QuizBatchController::class,'store']);
+    Route::get('quiz_batch_edit/{id}',[QuizBatchController::class,'edit']);
+    Route::post('quiz_batch_update/{id}',[QuizBatchController::class,'update']);
 
     Route::get('course-materials',[CourseMaterialController::class,'index']);
     Route::get('course-materials/create',[CourseMaterialController::class,'create']);
