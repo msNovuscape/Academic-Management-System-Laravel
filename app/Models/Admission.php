@@ -48,4 +48,9 @@ class Admission extends Model
         return $this->hasMany(ExtendDate::class);
     }
 
+    public function quiz_individuals()
+    {
+        return $this->hasMany(QuizIndiviual::class);
+    }
+
 }

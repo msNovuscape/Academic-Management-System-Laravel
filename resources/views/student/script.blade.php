@@ -315,7 +315,23 @@
             });
         }
     }
-        function validateClick() {
+        function validateClickForBatchQuiz(quiz_batch_id,admission_id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to take this exam!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#1AAC4C',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, take me!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href =  Laravel.url+'/tests';
+                    // window.open(Laravel.url+'/tests', '_blank');
+                }
+            })
+        }
+    function validateClickForIndividualQuiz(quiz_individual_id,admission_id) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You want to take this exam!",
@@ -326,7 +342,8 @@
             confirmButtonText: 'Yes, take me!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href="/tests"
+                window.location.href = Laravel.url+'/tests_individual';
+                // window.open(Laravel.url+'/tests_individual', '_blank');
             }
         })
     }

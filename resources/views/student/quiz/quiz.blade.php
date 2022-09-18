@@ -8,46 +8,42 @@
                     <thead>
                         <tr>
                             <th>S.N</th>
-                            <th>Title</th>
+                            <th>Quiz Name</th>
                             <th>No.Ques</th>
                             <th>Duration</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody class="table-body">
-                        <tr>
-                            <td>1</td>
-                            <td>CCNA Chapter 4</td>
-                            <td>253</td>
-                            <td>5 Hrs</td>
-                            <td>
-                                <button onclick="validateClick()" class="take-exam">
-                                    Take Exam
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>CCNA Chapter 4</td>
-                            <td>253</td>
-                            <td>5 Hrs</td>
-                            <td>
-                                <button onclick="validateClick()" class="take-exam">
-                                    Take Exam
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>CCNA Chapter 4</td>
-                            <td>253</td>
-                            <td>5 Hrs</td>
-                            <td>
-                                <button onclick="validateClick()" class="take-exam">
-                                    Take Exam
-                                </button>
-                            </td>
-                        </tr>
+                        @php
+                            $sn = 0;
+                        @endphp
+                        @foreach($setting->admission->batch->quiz_batches->where('status',1) as $quiz_batch)
+                            <tr>
+                                <td>{{$sn + $loop->iteration}}</td>
+                                <td>{{$quiz_batch->quiz->name}}</td>
+                                <td>{{$quiz_batch->quiz->QuizQuestions->count()}}</td>
+                                <td>{{gmdate('H:i:s', $quiz_batch->quiz->time_period*60)}}</td>
+                                <td>
+                                    <button onclick="validateClickForBatchQuiz({{$quiz_batch->id}},{{$setting->admission->id}})" class="take-exam">
+                                        Take Exam
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                        @foreach($setting->admission->quiz_individuals->where('status',1) as $quiz_individual)
+                            <tr>
+                                <td>{{$sn + $loop->iteration}}</td>
+                                <td>{{$quiz_individual->quiz->name}}</td>
+                                <td>{{$quiz_individual->quiz->QuizQuestions->count()}}</td>
+                                <td>{{gmdate('H:i:s', $quiz_individual->quiz->time_period *60)}}</td>
+                                <td>
+                                    <button onclick="validateClickForIndividualQuiz({{$quiz_individual->id}},{{$setting->admission->id}})" class="take-exam">
+                                        Take Exam
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

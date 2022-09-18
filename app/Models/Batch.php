@@ -38,4 +38,9 @@ class Batch extends Model
     {
         return $this->hasMany(BatchCourseMaterial::class);
     }
+
+    public function quiz_batches()
+    {
+        return $this->hasMany(QuizBatch::class);
+    }
 }
