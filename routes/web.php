@@ -23,6 +23,7 @@ use App\Http\Controllers\Report\FinanceReportController;
 use App\Http\Controllers\Admin\QuizQuestionController;
 use App\Http\Controllers\Admin\QuizBatchController;
 use App\Http\Controllers\Admin\QuizIndiviualController;
+use App\Http\Controllers\Student\StudentQuizBatchController;
 
 
 
@@ -169,6 +170,12 @@ Route::group(['middleware'=>['auth']],function (){
         Route::post('update/{id}', [StudentController::class,'update']);
 
         Route::get('materials', [StudentController::class,'getMaterial']);
+
+        //routes for quiz for batch students
+        Route::post('student_quiz_batch',[StudentQuizBatchController::class,'postQuiz']); //ajax call to initiate quiz
+        Route::get('quiz_exam',[StudentQuizBatchController::class,'getQuiz']);
+        Route::post('student_quiz_batch_next_question',[StudentQuizBatchController::class,'getNextQuestion']);
+
 
 
     });

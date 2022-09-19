@@ -37,4 +37,5 @@
 @section('script')
     @include('student.script')
     @include('student.attendence.attendance_script')
+{{--    @include('student.quiz.script')--}}
 @endsection

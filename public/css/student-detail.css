@@ -669,3 +669,7 @@ h2{
     line-height: 24px;
     color: #0d6efd;
 }
+.questions-lists{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

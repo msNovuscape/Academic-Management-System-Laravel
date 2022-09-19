@@ -315,23 +315,51 @@
             });
         }
     }
-        function validateClickForBatchQuiz(quiz_batch_id,admission_id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You want to take this exam!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#1AAC4C',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, take me!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href =  Laravel.url+'/tests';
-                    // window.open(Laravel.url+'/tests', '_blank');
-                }
-            })
-        }
+    function validateClickForBatchQuiz(quiz_batch_id,admission_id) {
+        debugger;
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to take this exam!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#1AAC4C',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, take me!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // window.location.href =  Laravel.url+'/tests';
+                // window.open(Laravel.url+'/tests', '_blank');
+                var formData = new FormData();
+                formData.append('quiz_batch_id', quiz_batch_id);
+                formData.append('admission_id', admission_id);
+                //start ajax call
+                $.ajax({
+                    /* the route pointing to the post function */
+                    type: 'POST',
+                    url: Laravel.url +"/student/student_quiz_batch",
+                    dataType: 'json',
+                    data: formData,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,
+                    /* remind that 'data' is the response of the AjaxController */
+                    success: function (data) {
+                        end_loader();
+                        debugger;
+                        window.location.href =  Laravel.url+'/student/quiz_exam';
+                        // $('#attendance_table').remove();
+                        // $('#mytable').append(data['html']);
+                    },
+                    error: function(error) {
+                        end_loader();
+                        debugger;
+                        errorDisplay('Something went wrong !');
+                    }
+                });
+            }
+        })
+    }
     function validateClickForIndividualQuiz(quiz_individual_id,admission_id) {
+        debugger;
         Swal.fire({
             title: 'Are you sure?',
             text: "You want to take this exam!",
