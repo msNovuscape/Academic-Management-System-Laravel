@@ -61,7 +61,7 @@ class StudentQuizBatchController extends Controller
            //if student has given quiz and finished
            if($check_student_quiz_batch->status == '1'){
                //checking no. of attempt
-               if($check_student_quiz_batch->count() > 2){
+               if($check_student_quiz_batch->count() > $check_student_quiz_batch->quiz_batch->no_of_attempt){
                    Session::flash('success','Dear student your quiz no. of attempt has been exceeded!');
                    return response()->json(['status' => 'No'],200);
                }else{
