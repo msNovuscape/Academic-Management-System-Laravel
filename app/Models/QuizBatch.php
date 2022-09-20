@@ -20,4 +20,9 @@ class QuizBatch extends Model
     {
         return $this->belongsTo(Batch::class);
     }
+
+    public function student_quiz_batches()
+    {
+        return $this->hasMany(StudentQuizBatch::class);
+    }
 }

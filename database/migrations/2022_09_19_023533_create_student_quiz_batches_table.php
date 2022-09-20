@@ -20,6 +20,8 @@ return new class extends Migration
             $table->bigInteger('admission_id')->unsigned();
             $table->foreign('admission_id')->references('id')->on('admissions');
             $table->date('date');
+            $table->time('start_time');
+            $table->enum('status',['0','1','2'])->default('0'); // 0 for not started, 1 for completed and 2 for started
             $table->softDeletes();
             $table->timestamps();
         });

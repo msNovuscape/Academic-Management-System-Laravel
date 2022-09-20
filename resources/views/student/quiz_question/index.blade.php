@@ -134,13 +134,40 @@
                 view_hours.textContent = hours;
                 view_minute.textContent = minutes;
                 view_seconds.textContent = seconds;
-                --countdown;
+                if(--countdown < 0){
+                    start_loader();
+                    var formData = new FormData();
+                    $.ajax({
+                        /* the route pointing to the post function */
+                        type: 'POST',
+                        url: Laravel.url +"/student/student_quiz_batch_time_out",
+                        dataType: 'json',
+                        data: formData,
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,
+                        /* remind that 'data' is the response of the AjaxController */
+                        success: function (data) {
+                            end_loader();
+                            debugger;
+                            window.location.href =  Laravel.url+'/student';
+                            // $('#attendance_table').remove();
+                            // $('#mytable').append(data['html']);
+                        },
+                        error: function(error) {
+                            end_loader();
+                            debugger;
+                            errorDisplay('Something went wrong !');
+                        }
+                    });
+                    // window.local.replace('/')
+                }
+                // --countdown;
             }, 1000);
         }
 
         window.onload = function () {
-            // var calculationInHours = 1 * 60 * 60;
-            var calculationInHours = '<?php  echo $time_period; ?>';
+            var calculationInHours = 60;
+            {{--var calculationInHours = '<?php  echo $time_period; ?>';--}}
             view_hours = document.querySelector('#hours');
             view_minute = document.querySelector('#minutes');
             view_seconds = document.querySelector('#seconds');
@@ -179,11 +206,17 @@
                     success: function (data) {
                         end_loader();
                         debugger;
-                        $('#recent_quiz_dom').remove();
-                        $('#old_button').remove();
-                        $('#new_quiz_dom').prepend(data['html']);
-                        $('#new_button').append(data['button']);
-                        // window.location.href =  Laravel.url+'/student/quiz_exam';
+                        if(data['quiz_status'] == 'Yes'){
+                            $('#recent_quiz_dom').remove();
+                            $('#old_button').remove();
+                            $('#new_quiz_dom').prepend(data['html']);
+                            $('#new_button').append(data['button']);
+                        }
+                        if(data['quiz_status'] == 'No'){
+                            window.location.href =  Laravel.url+'/student';
+                        }
+
+
                         // $('#attendance_table').remove();
                         // $('#mytable').append(data['html']);
                     },

@@ -16,4 +16,9 @@ class StudentQuizQuestionBatch extends Model
     {
         return $this->belongsTo(QuizQuestion::class);
     }
+
+    public function student_quiz_batch()
+    {
+        return $this->belongsTo(StudentQuizBatch::class);
+    }
 }

@@ -14,13 +14,33 @@ class QuizBatchService{
     {
         $student_quiz_batch_id = Session::get('student_quiz_batch_id');
         $student_quiz_batch = StudentQuizBatch::findOrFail($student_quiz_batch_id);
-        $quiz_questions = $student_quiz_batch->quiz_batch->quiz->QuizQuestions;
-        if($quiz_questions->count() > 0){
-            $quiz_question = $quiz_questions->first();
-            return $quiz_question;
+        //quiz has not started or student has not given any answer to quiz question
+        if($student_quiz_batch->status == '0'){
+            $quiz_questions = $student_quiz_batch->quiz_batch->quiz->QuizQuestions;
+            if($quiz_questions->count() > 0){
+                $quiz_question = $quiz_questions->first();
+                return $quiz_question;
+            }else{
+                return false;
+            }
         }else{
-            return false;
+            //quiz has given the quiz but left it by some technical or other reason
+            $student_quiz_question_batches = $student_quiz_batch->student_quiz_question_batches->orderBy('id','desc');
+            if($student_quiz_question_batches->count() > 0){
+                $old_question_id = $student_quiz_question_batches->first()->quiz_question_id;
+                $quiz_id = $student_quiz_question_batches->first()->quiz_question->quiz->id;
+                $quiz_questions  = QuizQuestion::where('id', '>',$old_question_id)->where('quiz_id',$quiz_id)->get();
+                if($quiz_questions->count() > 0){
+                    $quiz_question = $quiz_questions->first();
+                    return $quiz_question;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
         }
+
 
     }
 
@@ -35,6 +55,7 @@ class QuizBatchService{
                 $setting = StudentQuizQuestionBatch::firstOrNew(['student_quiz_batch_id' => $student_quiz_batch->id,'quiz_question_id' => $quiz_question->id]);
 //                $setting->student_quiz_batch_id = $student_quiz_batch->id;
 ////                $setting->quiz_question_id  = $quiz_question->id;
+                $setting->start_time = date('h:i:s');
                 $setting->save();
                 foreach ($option_ids as $in => $val){
                     $s_q_o_b_a = new StudentQuizQuestionBatchAnswer();
@@ -42,6 +63,8 @@ class QuizBatchService{
                     $s_q_o_b_a->quiz_option_id  = $val;
                     $s_q_o_b_a->save();
                 }
+                $student_quiz_batch->status = '2';
+                $student_quiz_batch->save(); //quiz has been started
 
             DB::commit();
                 return $setting;
