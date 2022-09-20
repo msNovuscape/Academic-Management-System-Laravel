@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('student_quiz_question_batch_answers', function (Blueprint $table) {
+        Schema::create('student_quiz_question_individual_answers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('s_q_q_b_id')->unsigned();
-            $table->foreign('s_q_q_b_id')->references('id')->on('student_quiz_question_batches');
+            $table->bigInteger('s_q_q_i_id')->unsigned();
+            $table->foreign('s_q_q_i_id')->references('id')->on('student_quiz_question_individuals');
             $table->bigInteger('quiz_option_id')->unsigned();
             $table->foreign('quiz_option_id')->references('id')->on('quiz_options');
             $table->softDeletes();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_quiz_question_batch_answers');
+        Schema::dropIfExists('student_quiz_question_individual_answers');
     }
 };
