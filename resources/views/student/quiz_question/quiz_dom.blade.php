@@ -3,6 +3,8 @@
         <div class="question-title">
             <h1>Question {{$question_count}} [Please must select {{$no_of_right_answers}} option for right answer]</h1>
         </div>
+        <input type="hidden" value="{{$question_count}}" id="my_quiz_count">
+        <input type="hidden" value="{{$no_of_right_answers}}" id="my_quiz_answer_count">
         @if($quiz_question->question_type == 1)
             <div class="question-section">
                 <h1>{{$quiz_question->question}} </h1>

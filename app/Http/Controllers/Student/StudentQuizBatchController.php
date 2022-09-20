@@ -69,7 +69,7 @@ class StudentQuizBatchController extends Controller
         $option_ids = json_decode(\request('option_id'));
         if(Session::has('student_quiz_batch_id')){
             $setting = $this->quizBatchService->storeQuizAnswer($option_ids);
-            $quiz_question  = QuizQuestion::where('id', '>', $setting->quiz_question_id)->orderBy('id')->get();
+            $quiz_question  = QuizQuestion::where('id', '>', $setting->quiz_question_id)->where('quiz_id',$setting->quiz_question->quiz->id)->orderBy('id')->get();
             if($quiz_question->count() > 0){
                 $quiz_question = $quiz_question->first();
                 $no_of_right_answers = $quiz_question->quiz_question_answers->count();
@@ -79,7 +79,7 @@ class StudentQuizBatchController extends Controller
                 return response()->json(array('success' =>true, 'html' => $returnHtml,'button' => $newButtonHtml,'no_of_right_answers' =>$no_of_right_answers));
 //                return view($this->view.'index',compact('quiz_question','question_count','total_question','time_period','no_of_right_answers'));
             }else{
-
+                return response()->json(['aa' => 'quiz end'],200);
             }
 
         }else{

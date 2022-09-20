@@ -11,4 +11,9 @@ class StudentQuizQuestionBatch extends Model
     use HasFactory , SoftDeletes;
 
     protected $fillable = ['student_quiz_batch_id','quiz_question_id'];
+
+    public function quiz_question()
+    {
+        return $this->belongsTo(QuizQuestion::class);
+    }
 }

@@ -8,6 +8,9 @@
 @endsection
 @section('main-panel')
     <div class="main-panel">
+        {{--start loader--}}
+        <div class="loader loader-default" id="loader"></div>
+        {{--end loader--}}
         <section class='tests-section'>
             <div class="container-fluid">
                 <div class="d-flex justify-content-between">
@@ -30,6 +33,8 @@
                                 <div class="question-title">
                                     <h1>Question {{$question_count}} [Please must select {{$no_of_right_answers}} option for right answer]</h1>
                                 </div>
+                                <input type="hidden" value="{{$question_count}}" id="my_quiz_count">
+                                <input type="hidden" value="{{$no_of_right_answers}}" id="my_quiz_answer_count">
                                 @if($quiz_question->question_type == 1)
                                     <div class="question-section">
                                         <h1>{{$quiz_question->question}} </h1>
@@ -141,11 +146,12 @@
             view_seconds = document.querySelector('#seconds');
             startTimer(calculationInHours, view_hours, view_minute, view_seconds);
         };
-        var right_answer = 0;
         function getNextQuestion(quiz_question_id) {
 
             debugger;
-            var right_answer = <?php echo $no_of_right_answers; ?>;
+            var right_answer = parseInt($('#my_quiz_answer_count').val());
+            var quiz_count = parseInt($('#my_quiz_count').val());
+            debugger;
             let a = [];
             $(".student-answers:checked").each(function() {
                 a.push(this.value);
@@ -153,7 +159,7 @@
             if(a.length > 0 && a.length == right_answer) {
                 debugger;
                 var myJson = JSON.stringify(a);
-                var quiz_question_count = <?php echo $question_count;?>;
+                var quiz_question_count = quiz_count;
                 debugger;
                 var formData = new FormData();
                 formData.append('quiz_question_id', quiz_question_id);
@@ -173,7 +179,6 @@
                     success: function (data) {
                         end_loader();
                         debugger;
-                        right_answer = data['no_of_right_answers'];
                         $('#recent_quiz_dom').remove();
                         $('#old_button').remove();
                         $('#new_quiz_dom').prepend(data['html']);
