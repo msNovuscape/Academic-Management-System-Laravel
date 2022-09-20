@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\QuizQuestionController;
 use App\Http\Controllers\Admin\QuizBatchController;
 use App\Http\Controllers\Admin\QuizIndiviualController;
 use App\Http\Controllers\Student\StudentQuizBatchController;
+use App\Http\Controllers\Student\StudentQuizIndividualController;
 
 
 
@@ -176,6 +177,12 @@ Route::group(['middleware'=>['auth']],function (){
         Route::get('quiz_exam',[StudentQuizBatchController::class,'getQuiz']);
         Route::post('student_quiz_batch_next_question',[StudentQuizBatchController::class,'getNextQuestion']);
         Route::post('student_quiz_batch_time_out',[StudentQuizBatchController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
+
+        //routes for quiz for individual students
+        Route::post('student_quiz_individual',[StudentQuizIndividualController::class,'postQuiz']); //ajax call to initiate quiz
+        Route::get('my_quiz_exam',[StudentQuizIndividualController::class,'getQuiz']);
+        Route::post('student_quiz_individual_next_question',[StudentQuizIndividualController::class,'getNextQuestion']);
+        Route::post('student_quiz_individual_time_out',[StudentQuizIndividualController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
 
 
 

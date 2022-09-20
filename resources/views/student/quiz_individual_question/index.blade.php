@@ -76,7 +76,7 @@
                                     <div class="col-md-6 d-flex gap-4 justify-content-end">
                                         <div class="">
                                             <h2>Date</h2>
-                                            <p>{{date('Y-m-d')}}</p>
+                                            <p>6/4/2022</p>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between">
@@ -96,12 +96,12 @@
                                         <tr>
                                             <td>Total Time</td>
                                             <td>:</td>
-                                            <td>{{gmdate('h:i:s', $time_period)}}</td>
+                                            <td>1:20:00</td>
                                         </tr>
                                         <tr>
                                             <td>Total Questions</td>
                                             <td>:</td>
-                                            <td>{{count(\App\Models\QuizQuestion::where('quiz_id',$quiz_question->quiz_id)->get())}}</td>
+                                            <td>69</td>
                                         </tr>
                                         <tr>
                                             <td>Pass Mark</td>
@@ -140,7 +140,7 @@
                     $.ajax({
                         /* the route pointing to the post function */
                         type: 'POST',
-                        url: Laravel.url +"/student/student_quiz_batch_time_out",
+                        url: Laravel.url +"/student/student_quiz_individual_time_out",
                         dataType: 'json',
                         data: formData,
                         processData: false,  // tell jQuery not to process the data
@@ -197,7 +197,7 @@
                 $.ajax({
                     /* the route pointing to the post function */
                     type: 'POST',
-                    url: Laravel.url +"/student/student_quiz_batch_next_question",
+                    url: Laravel.url +"/student/student_quiz_individual_next_question",
                     dataType: 'json',
                     data: formData,
                     processData: false,  // tell jQuery not to process the data

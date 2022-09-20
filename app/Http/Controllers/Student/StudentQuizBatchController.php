@@ -29,6 +29,9 @@ class StudentQuizBatchController extends Controller
        if(Session::has('student_quiz_batch_id')){
            Session::forget('student_quiz_batch_id');
        }
+        if(Session::has('student_quiz_individual_id')){
+            Session::forget('student_quiz_individual_id');
+        }
        $check_student_quiz_batches = StudentQuizBatch::where('quiz_batch_id',request('quiz_batch_id'))->where('admission_id',request('admission_id'))->orderBy('id','desc')->get();
 //       return response()->json(['check_student_quiz_batch' => $check_student_quiz_batch,'data' =>request()->all(),'count' => $check_student_quiz_batch->count()]);
        if($check_student_quiz_batches->count() > 0){
