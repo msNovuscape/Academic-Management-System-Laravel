@@ -21,7 +21,12 @@
                         @foreach($setting->admission->batch->quiz_batches->where('status',1) as $quiz_batch)
                             <tr>
                                 <td>{{$sn + $loop->iteration}}</td>
-                                <td>{{$quiz_batch->quiz->name}}</td>
+                                <td>
+                                    {{$quiz_batch->quiz->name}}
+                                    @if($quiz_batch->student_quiz_batches->where('admission_id',Auth::user()->admission->id)->where('status','!=','1')->count() > 0)
+                                        [ In going Quiz ]
+                                    @endif
+                                </td>
                                 <td>{{$quiz_batch->quiz->QuizQuestions->count()}}</td>
                                 <td>{{gmdate('H:i:s', $quiz_batch->quiz->time_period*60)}}</td>
                                 <td>
