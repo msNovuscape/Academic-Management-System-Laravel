@@ -166,8 +166,8 @@
         }
 
         window.onload = function () {
-            var calculationInHours = 60;
-            {{--var calculationInHours = '<?php  echo $time_period; ?>';--}}
+            // var calculationInHours = 60;
+            var calculationInHours = '<?php  echo $time_period; ?>';
             view_hours = document.querySelector('#hours');
             view_minute = document.querySelector('#minutes');
             view_seconds = document.querySelector('#seconds');

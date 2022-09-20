@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\QuizBatch;
 use App\Models\QuizQuestion;
 use App\Models\StudentQuizBatch;
 
@@ -28,8 +29,10 @@ class StudentQuizBatchController extends Controller
        if(Session::has('student_quiz_batch_id')){
            Session::forget('student_quiz_batch_id');
        }
-       $check_student_quiz_batch = StudentQuizBatch::where('quiz_batch_id')->where('admission_id',request('admission_id'))->orderBy('id','desc')->get();
+       $check_student_quiz_batch = StudentQuizBatch::where('quiz_batch_id',request('quiz_batch_id'))->where('admission_id',request('admission_id'))->orderBy('id','desc')->get();
+//       return response()->json(['check_student_quiz_batch' => $check_student_quiz_batch,'data' =>request()->all(),'count' => $check_student_quiz_batch->count()]);
        if($check_student_quiz_batch->count() > 0){
+//           return response()->json(['check_student_quiz_batch' => $check_student_quiz_batch],200);
            //student has given the quiz but not finished or due to some technical error not quiz has not finished
            $check_student_quiz_batch = $check_student_quiz_batch->first();
            //student has enter on quiz but not submitted any of questions (0) or student has  given answers at least one quiz (2)
@@ -48,16 +51,22 @@ class StudentQuizBatchController extends Controller
            //if student has given quiz and finished
            if($check_student_quiz_batch->status == '1'){
                $setting = new StudentQuizBatch();
+               $quiz_batch = QuizBatch::findOrFail(\request('quiz_batch_id'));
                $setting->quiz_batch_id = \request('quiz_batch_id');
                $setting->admission_id = \request('admission_id');
                $setting->date = date('Y-m-d');
                $setting->start_time = date('h:i:s');
+//               $setting->start_time = date('Y-m-d h:i:s');
+//               $time_periods_in_seconds = $quiz_batch->quiz->time_period * 60;
+//               $setting->end_time = date("Y-m-d H:i:s", (strtotime(date('Y-m-d h:i:s')) + $time_periods_in_seconds));
                $setting->status = '0'; //not started
                $setting->save();
                Session::put('student_quiz_batch_id',$setting->id);
                return response()->json(['status' => 'Ok'],200);
            }
+
        }else{
+//           return response()->json(['check_student_quiz_batch_test' => 'test'],200);
            //student has not given any quiz
            $setting = new StudentQuizBatch();
            $setting->quiz_batch_id = \request('quiz_batch_id');
@@ -76,14 +85,15 @@ class StudentQuizBatchController extends Controller
     public function getQuiz()
     {
         if(Session::has('student_quiz_batch_id')){
-
             $quiz_question  = $this->quizBatchService->getQuizSetting();
             if($quiz_question == false){
                 Session::flash('success','No any question for this quiz has been found!');
                 return redirect('');
             }else{
-                $question_count = 1;
-                $quiz_question  = $this->quizBatchService->getQuizSetting();
+                $quiz_question_result  = $this->quizBatchService->getQuizSetting();
+                $quiz_question = $quiz_question_result[0];
+                $question_count = $quiz_question_result[1] + 1;
+//                $time_period = $quiz_question_result[2];
                 $total_question = QuizQuestion::where('quiz_id',$quiz_question->quiz_id)->count();
                 $time_period = $quiz_question->quiz->time_period * 60;
                 $no_of_right_answers = $quiz_question->quiz_question_answers->count();

@@ -7,6 +7,7 @@ use App\Models\StudentQuizQuestionBatch;
 use App\Models\StudentQuizQuestionBatchAnswer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Nette\Utils\DateTime;
 
 class QuizBatchService{
 
@@ -15,24 +16,31 @@ class QuizBatchService{
         $student_quiz_batch_id = Session::get('student_quiz_batch_id');
         $student_quiz_batch = StudentQuizBatch::findOrFail($student_quiz_batch_id);
         //quiz has not started or student has not given any answer to quiz question
-        if($student_quiz_batch->status == '0'){
+        if($student_quiz_batch->status == '0' || $student_quiz_batch->status == '1'){
             $quiz_questions = $student_quiz_batch->quiz_batch->quiz->QuizQuestions;
             if($quiz_questions->count() > 0){
                 $quiz_question = $quiz_questions->first();
-                return $quiz_question;
+                $time_period = $quiz_question->quiz->time_period * 60;
+                return [$quiz_question,0];
             }else{
                 return false;
             }
         }else{
-            //quiz has given the quiz but left it by some technical or other reason
-            $student_quiz_question_batches = $student_quiz_batch->student_quiz_question_batches->orderBy('id','desc');
+            //quiz has given the quiz but left it by some technical or other reason (for status 2)
+            $student_quiz_question_batches = $student_quiz_batch->student_quiz_question_batches;
             if($student_quiz_question_batches->count() > 0){
                 $old_question_id = $student_quiz_question_batches->first()->quiz_question_id;
                 $quiz_id = $student_quiz_question_batches->first()->quiz_question->quiz->id;
                 $quiz_questions  = QuizQuestion::where('id', '>',$old_question_id)->where('quiz_id',$quiz_id)->get();
                 if($quiz_questions->count() > 0){
                     $quiz_question = $quiz_questions->first();
-                    return $quiz_question;
+//                    dd($student_quiz_question_batches->first()->start_time);
+//                    dd($student_quiz_batch->first()->start_time);
+                    $start_time = strtotime($student_quiz_batch->first()->start_time);
+                    $end_time = strtotime($student_quiz_question_batches->first()->start_time);
+                    $time_period = intval($end_time - $start_time);
+//                    dd($time_period);
+                    return [$quiz_question,$student_quiz_question_batches->count()];
                 }else{
                     return false;
                 }
