@@ -345,7 +345,13 @@
                     success: function (data) {
                         end_loader();
                         debugger;
-                        window.location.href =  Laravel.url+'/student/quiz_exam';
+                        if(data['status'] == 'Ok'){
+                            window.location.href =  Laravel.url+'/student/quiz_exam';
+                        }
+                        if(data['status'] == 'No'){
+                            window.location.href =  Laravel.url+'/student';
+                        }
+                        // window.location.href =  Laravel.url+'/student/quiz_exam';
                         // $('#attendance_table').remove();
                         // $('#mytable').append(data['html']);
                     },

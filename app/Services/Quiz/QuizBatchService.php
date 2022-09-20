@@ -21,7 +21,7 @@ class QuizBatchService{
             if($quiz_questions->count() > 0){
                 $quiz_question = $quiz_questions->first();
                 $time_period = $quiz_question->quiz->time_period * 60;
-                return [$quiz_question,0];
+                return [$quiz_question,0,$time_period];
             }else{
                 return false;
             }
@@ -33,14 +33,15 @@ class QuizBatchService{
                 $quiz_id = $student_quiz_question_batches->first()->quiz_question->quiz->id;
                 $quiz_questions  = QuizQuestion::where('id', '>',$old_question_id)->where('quiz_id',$quiz_id)->get();
                 if($quiz_questions->count() > 0){
+
                     $quiz_question = $quiz_questions->first();
-//                    dd($student_quiz_question_batches->first()->start_time);
-//                    dd($student_quiz_batch->first()->start_time);
-                    $start_time = strtotime($student_quiz_batch->first()->start_time);
-                    $end_time = strtotime($student_quiz_question_batches->first()->start_time);
-                    $time_period = intval($end_time - $start_time);
-//                    dd($time_period);
-                    return [$quiz_question,$student_quiz_question_batches->count()];
+                    //remaining time calculation for quiz
+                    $initial_start_time = strtotime($student_quiz_batch->start_time);
+                    $time_when_halt = strtotime($student_quiz_question_batches->first()->end_time);
+                    $time_spend_before_halt = $time_when_halt - $initial_start_time;
+                    $total_time_of_halt = strtotime(date('Y-m-d h:i:s')) - $time_when_halt;
+                    $total_remaining_time = ($quiz_question->quiz->time_period * 60) - ($time_spend_before_halt + $total_time_of_halt);
+                    return [$quiz_question,$student_quiz_question_batches->count(),$total_remaining_time];
                 }else{
                     return false;
                 }

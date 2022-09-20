@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum('status',['1','2']);
             $table->date('date');
             $table->string('remark');
+            $table->integer('no_of_attempt');
             $table->timestamps();
         });
     }
