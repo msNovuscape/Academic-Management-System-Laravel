@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('student_quiz_batch_id')->references('id')->on('student_quiz_batches');
             $table->bigInteger('quiz_question_id')->unsigned();
             $table->foreign('quiz_question_id')->references('id')->on('quiz_questions');
-            $table->time('start_time');
+            $table->dateTime('end_time');
             $table->softDeletes();
             $table->timestamps();
         });

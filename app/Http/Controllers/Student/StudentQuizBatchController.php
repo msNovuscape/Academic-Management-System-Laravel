@@ -50,15 +50,15 @@ class StudentQuizBatchController extends Controller
            }
            //if student has given quiz and finished
            if($check_student_quiz_batch->status == '1'){
-               $setting = new StudentQuizBatch();
                $quiz_batch = QuizBatch::findOrFail(\request('quiz_batch_id'));
+               $setting = new StudentQuizBatch();
                $setting->quiz_batch_id = \request('quiz_batch_id');
                $setting->admission_id = \request('admission_id');
                $setting->date = date('Y-m-d');
-               $setting->start_time = date('h:i:s');
-//               $setting->start_time = date('Y-m-d h:i:s');
-//               $time_periods_in_seconds = $quiz_batch->quiz->time_period * 60;
-//               $setting->end_time = date("Y-m-d H:i:s", (strtotime(date('Y-m-d h:i:s')) + $time_periods_in_seconds));
+//               $setting->start_time = date('h:i:s');
+               $setting->start_time = date('Y-m-d h:i:s');
+               $time_periods_in_seconds = $quiz_batch->quiz->time_period * 60;
+               $setting->end_time = date("Y-m-d H:i:s", (strtotime(date('Y-m-d h:i:s')) + $time_periods_in_seconds));
                $setting->status = '0'; //not started
                $setting->save();
                Session::put('student_quiz_batch_id',$setting->id);
@@ -69,10 +69,13 @@ class StudentQuizBatchController extends Controller
 //           return response()->json(['check_student_quiz_batch_test' => 'test'],200);
            //student has not given any quiz
            $setting = new StudentQuizBatch();
+           $quiz_batch = QuizBatch::findOrFail(\request('quiz_batch_id'));
            $setting->quiz_batch_id = \request('quiz_batch_id');
            $setting->admission_id = \request('admission_id');
            $setting->date = date('Y-m-d');
-           $setting->start_time = date('h:i:s');
+           $setting->start_time = date('Y-m-d h:i:s');
+           $time_periods_in_seconds = $quiz_batch->quiz->time_period * 60;
+           $setting->end_time = date("Y-m-d H:i:s", (strtotime(date('Y-m-d h:i:s')) + $time_periods_in_seconds));
            $setting->status = '0'; //not started
            $setting->save();
            Session::put('student_quiz_batch_id',$setting->id);

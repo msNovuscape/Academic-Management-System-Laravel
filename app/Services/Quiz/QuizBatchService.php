@@ -63,7 +63,7 @@ class QuizBatchService{
                 $setting = StudentQuizQuestionBatch::firstOrNew(['student_quiz_batch_id' => $student_quiz_batch->id,'quiz_question_id' => $quiz_question->id]);
 //                $setting->student_quiz_batch_id = $student_quiz_batch->id;
 ////                $setting->quiz_question_id  = $quiz_question->id;
-                $setting->start_time = date('h:i:s');
+                $setting->end_time = date('Y-m-d h:i:s');
                 $setting->save();
                 foreach ($option_ids as $in => $val){
                     $s_q_o_b_a = new StudentQuizQuestionBatchAnswer();
