@@ -592,6 +592,7 @@ h2{
     background: #FFFFFF;
     border: 1px solid #D9D9D9;
     border-radius: 10px;
+    margin: 16px 0;
 }
 .question-title{
     padding: 10px;
@@ -634,10 +635,7 @@ h2{
     border-radius: 10px;
 }
 .question-answers{
-    margin: 16px 0;
-    display: grid;
-    gap: 16px;
-    grid-template-columns: 1fr 1fr;
+    margin: 16px;
 }
 .correct-answer, .provided-answer{
     padding: 20px;
