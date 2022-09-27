@@ -183,6 +183,9 @@ Route::group(['middleware'=>['auth']],function (){
         Route::get('my_quiz_exam',[StudentQuizIndividualController::class,'getQuiz']);
         Route::post('student_quiz_individual_next_question',[StudentQuizIndividualController::class,'getNextQuestion']);
         Route::post('student_quiz_individual_time_out',[StudentQuizIndividualController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
+        Route::get('quiz_individual/{id}',[StudentQuizIndividualController::class,'quizIndividualResult']);
+
+
 
 
 

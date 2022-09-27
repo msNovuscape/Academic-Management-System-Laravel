@@ -59,10 +59,11 @@
                     <thead>
                         <tr>
                             <th>S.N</th>
+                            <th>Date</th>
                             <th>Title</th>
                             <th>No.Ques</th>
                             <th>Duration</th>
-                            <th>Marks</th>
+                            <th>Result</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,11 +71,29 @@
                         @if($student_quiz_batch->end_time < date('Y-m-d h:i:s'))
                             <tr>
                                 <td>{{$loop->iteration}}</td>
+                                <td>{{$student_quiz_batch->date}}</td>
                                 <td>{{$student_quiz_batch->quiz_batch->quiz->name}}</td>
                                 <td>{{$student_quiz_batch->quiz_batch->quiz->QuizQuestions->count()}}</td>
                                 <td>{{gmdate('H:i:s', $student_quiz_batch->quiz_batch->quiz->time_period *60)}}</td>
 {{--                                <td>{{\App\Models\Student::getMarks($student_quiz_batch)}}</td>--}}
-                                <td>200</td>
+                                <td>
+                                    <a class="dropdown-item unpaid-email" href="{{url('')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                    @foreach($setting->admission->student_quiz_individuals as $student_quiz_individual)
+                        @if($student_quiz_individual->end_time < date('Y-m-d h:i:s') || $student_quiz_individual->status == '1')
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$student_quiz_individual->date}}</td>
+                                <td>{{$student_quiz_individual->quiz_individual->quiz->name}}</td>
+                                <td>{{$student_quiz_individual->quiz_individual->quiz->QuizQuestions->count()}}</td>
+                                <td>{{gmdate('H:i:s', $student_quiz_individual->quiz_individual->quiz->time_period *60)}}</td>
+                                {{--                                <td>{{\App\Models\Student::getMarks($student_quiz_batch)}}</td>--}}
+                                <td>
+                                    <a class="dropdown-item unpaid-email" href="{{url('student/quiz_individual/'.$student_quiz_individual->id)}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                </td>
                             </tr>
                         @endif
                     @endforeach

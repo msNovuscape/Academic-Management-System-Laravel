@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class StudentQuizQuestionIndividualAnswer extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function quiz_option()
+    {
+        return $this->belongsTo(QuizOption::class);
+    }
 }

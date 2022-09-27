@@ -18,4 +18,14 @@ class StudentQuizIndividual extends Model
     {
         return $this->hasMany(StudentQuizQuestionIndividual::class,'s_q_individual_id')->orderBy('id','desc');
     }
+
+    public function student_quiz_question_individuals_list()
+    {
+        return $this->hasMany(StudentQuizQuestionIndividual::class,'s_q_individual_id');
+    }
+
+    public function individual_quiz_result()
+    {
+       return $this->hasOne(IndividualQuizResult::class,'s_q_individual_id');
+    }
 }
