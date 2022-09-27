@@ -53,4 +53,9 @@ class Admission extends Model
         return $this->hasMany(QuizIndiviual::class);
     }
 
+    public function student_quiz_batches()
+    {
+        return $this->hasMany(StudentQuizBatch::class);
+    }
+
 }

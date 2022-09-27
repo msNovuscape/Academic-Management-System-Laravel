@@ -57,36 +57,27 @@
                 <p>Attempt all questions.  Click on take exam button to start .</p>
                 <table class="table">
                     <thead>
-                    <tr>
-                        <th>S.N</th>
-                        <th>Title</th>
-                        <th>No.Ques</th>
-                        <th>Duration</th>
-                        <th>Marks</th>
-                    </tr>
+                        <tr>
+                            <th>S.N</th>
+                            <th>Title</th>
+                            <th>No.Ques</th>
+                            <th>Duration</th>
+                            <th>Marks</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>CCNA Chapter 4</td>
-                        <td>253</td>
-                        <td>5 Hrs</td>
-                        <td>200</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>CCNA Chapter 4</td>
-                        <td>253</td>
-                        <td>5 Hrs</td>
-                        <td>200</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>CCNA Chapter 4</td>
-                        <td>253</td>
-                        <td>5 Hrs</td>
-                        <td>200</td>
-                    </tr>
+                    @foreach($setting->admission->student_quiz_batches as $student_quiz_batch)
+                        @if($student_quiz_batch->end_time < date('Y-m-d h:i:s'))
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$student_quiz_batch->quiz_batch->quiz->name}}</td>
+                                <td>{{$student_quiz_batch->quiz_batch->quiz->QuizQuestions->count()}}</td>
+                                <td>{{gmdate('H:i:s', $student_quiz_batch->quiz_batch->quiz->time_period *60)}}</td>
+{{--                                <td>{{\App\Models\Student::getMarks($student_quiz_batch)}}</td>--}}
+                                <td>200</td>
+                            </tr>
+                        @endif
+                    @endforeach
                     </tbody>
                 </table>
             </div>

@@ -30,5 +30,18 @@ class Student extends Model
 //        return $this->hasMany(Attendance::class)->where('date',$attendance_date);
 //    }
 
+    public static function getMarks($student_quiz_batch)
+    {
+        if($student_quiz_batch->student_quiz_question_batches->count() > 0){
+            foreach ($student_quiz_batch->student_quiz_question_batches as $student_quiz_question_batch){
+//                if($student_quiz_question_batch->student_quiz_question_batch_answers->count() > 0){
+                    dd($student_quiz_question_batch->student_quiz_question_batch_answers);
+//                }
+            }
+
+        }else{
+            return 0;
+        }
+    }
 
 }
