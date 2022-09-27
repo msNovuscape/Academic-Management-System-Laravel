@@ -27,8 +27,10 @@
                                     <td>{{$sn}}</td>
                                     <td>
                                         {{$quiz_batch->quiz->name}}
-                                        @if($quiz_batch->student_quiz_batches_list->first()->end_time > date('Y-m-d h:i:s') && $quiz_batch->student_quiz_batches_list->first()->status != '1')
-                                            [ In going Quiz ]
+                                        @if($quiz_batch->student_quiz_batches_list->count() > 0)
+                                            @if($quiz_batch->student_quiz_batches_list->first()->end_time > date('Y-m-d h:i:s') && $quiz_batch->student_quiz_batches_list->first()->status != '1')
+                                                [ In going Quiz ]
+                                            @endif
                                         @endif
                                     </td>
                                     <td>{{$quiz_batch->quiz->QuizQuestions->count()}}</td>
@@ -50,8 +52,10 @@
                                     <td>{{$sn}}</td>
                                     <td>
                                         {{$quiz_individual->quiz->name}}
-                                        @if($quiz_individual->student_quiz_individuals_list->first()->end_time > date('Y-m-d h:i:s') && $quiz_individual->student_quiz_individuals_list->first()->status != '1')
-                                            [ In going Quiz ]
+                                        @if($quiz_individual->student_quiz_individuals_list->count() > 0)
+                                            @if($quiz_individual->student_quiz_individuals_list->first()->end_time > date('Y-m-d h:i:s') && $quiz_individual->student_quiz_individuals_list->first()->status != '1')
+                                                [ In going Quiz ]
+                                            @endif
                                         @endif
 
                                     </td>
