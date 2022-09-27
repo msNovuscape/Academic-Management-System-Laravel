@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-sm-12 col-md-12 stretch-card mt-4">
                             <div class="card-wrap form-block p-0">
-                                <div class="block-header bg-header d-flex justify-content-between p-4">
+                                <div class="block-header bg-header d-flex justify-content-between p-4 pb-0">
                                     <div class="d-flex flex-column">
                                         <h3>Fiscal Year Table</h3>
                                     </div>
@@ -86,14 +86,18 @@
                                         </a>
                                     </div>
                                 </div>
-                                @include('success.success')
-                                @include('errors.error')
+                                <div class="row px-4">
+                                    <div class="col-md-12">
+                                        @include('success.success')
+                                        @include('errors.error')
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
-                                        <div class="card-wrap card-wrap-bs-none form-block p-4 pt-0">
+                                        <div class="card-wrap card-wrap-bs-none form-block p-4">
                                             <div class="row">
                                                 <div class="col-12 table-responsive table-details">
-                                                    <table class="table" id="">
+                                                    <table class="table mb-0" id="">
                                                         <thead>
                                                         <tr>
                                                             <th>S.N.</th>

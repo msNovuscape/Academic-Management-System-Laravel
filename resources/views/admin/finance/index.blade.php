@@ -25,9 +25,9 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-4">
                                         <div class="input-group">
-                                                <span>
-                                                    <i class="fa-solid fa-book-open"></i>
-                                                </span>
+                                            <span>
+                                                <i class="fa-solid fa-book-open"></i>
+                                            </span>
                                             <select class="form-select" aria-label="Default select example" name="course_id" onchange="filterList2()">
                                                 <option selected disabled >Search by courses</option>
                                                 @foreach($courses as $course)
@@ -35,15 +35,15 @@
                                                 @endforeach
                                             </select>
                                             <span>
-                                                    <i class="fa-solid fa-caret-down"></i>
-                                                </span>
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="input-group">
-                                                <span>
-                                                    <i class="fa-solid fa-book-open"></i>
-                                                </span>
+                                            <span>
+                                                <i class="fa-solid fa-book-open"></i>
+                                            </span>
                                             <select class="form-select" aria-label="Default select example" name="batch_id" onchange="filterList2()">
                                                 <option selected disabled >Search by Batch</option>
                                                 @foreach($batches as $batch)
@@ -51,8 +51,8 @@
                                                 @endforeach
                                             </select>
                                             <span>
-                                                    <i class="fa-solid fa-caret-down"></i>
-                                                </span>
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -184,13 +184,15 @@
                                                         @foreach($settings as $setting)
                                                         <tr>
                                                             <td>{{$settings->firstItem() + $loop->index}}</td>
-                                                            <td class="d-flex">
-                                                                <div class="table-image">
-                                                                    <img src="{{url('images/profile.png')}}" alt=""/>
-                                                                </div>
-                                                                <div class="d-flex flex-column name-table">
-                                                                    <p>{{$setting->user->name}}</p>
-                                                                    <p>{{$setting->student_id}}</p>
+                                                            <td class="">
+                                                                <div class="d-flex">
+                                                                    <div class="table-image">
+                                                                        <img src="{{url('images/profile.png')}}" alt=""/>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column name-table">
+                                                                        <p>{{$setting->user->name}}</p>
+                                                                        <p>{{$setting->student_id}}</p>
+                                                                    </div>
                                                                 </div>
                                                             </td>
                                                             <td>
@@ -276,11 +278,11 @@
                                                                 <ul class="icon-button d-flex">
                                                                     @if($setting->student)
                                                                         <li>
-                                                                            <a class="dropdown-item unpaid-email" href="{{url('finances/'.$setting->student->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
+                                                                            <a class="dropdown-item" href="{{url('finances/'.$setting->student->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
                                                                         </li>
                                                                     @endif
                                                                     <li>
-                                                                        <a class="dropdown-item unpaid-email" href="{{url('finances/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                        <a class="dropdown-item" href="{{url('finances/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
                                                                     </li>
                                                                 </ul>
                                                             </td>

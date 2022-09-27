@@ -1038,7 +1038,7 @@ nav {
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active {
-    color: #0d6efd !important;
+    /* color: #0d6efd !important; */
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link i {
