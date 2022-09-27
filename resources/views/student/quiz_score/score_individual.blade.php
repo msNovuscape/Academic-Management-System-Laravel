@@ -65,12 +65,12 @@
                     </div>
                 </div>
                 <div class="row g-3">
-                    @foreach($setting->student_quiz_question_individuals_list as $student_quiz_question)
+                    @foreach($my_settings as $student_quiz_question)
                         @if ($loop->even)
                             <div class="col-md-6">
                                 <div class="test-body">
                                     <div class="question-title">
-                                        <h1>Question {{$loop->iteration}}</h1>
+                                        <h1>Question {{$my_settings->firstItem() + $loop->index}}</h1>
                                     </div>
                                     <div class="question-section">
                                         <h1>{{$student_quiz_question->quiz_question->question}}</h1>
@@ -93,9 +93,9 @@
                                             </div>
                                             <div class="hide-show-ans">
                                                 <div>
-                                                    <button class="revail-btn" onclick="revailAns({{$loop->iteration}})">Reveal Answer</button>
+                                                    <button class="revail-btn" onclick="revailAns({{$my_settings->firstItem() + $loop->index}})">Reveal Answer</button>
                                                 </div>
-                                                <span id="correct-ans{{$loop->iteration}}" class="correct-ans">
+                                                <span id="correct-ans{{$my_settings->firstItem() + $loop->index}}" class="correct-ans">
                                                     @foreach($student_quiz_question->quiz_question->quiz_question_answers as $an)
                                                         {{$an->quiz_option->label}}
                                                     @endforeach
@@ -132,7 +132,7 @@
                             <div class="col-md-6">
                                 <div class="test-body">
                                     <div class="question-title">
-                                        <h1>Question {{$loop->iteration}}</h1>
+                                        <h1>Question {{$my_settings->firstItem() + $loop->index}}</h1>
                                     </div>
                                     <div class="question-section">
                                         <h1>{{$student_quiz_question->quiz_question->question}}</h1>
@@ -155,9 +155,9 @@
                                             </div>
                                             <div class="hide-show-ans">
                                                 <div>
-                                                    <button class="revail-btn" onclick="revailAns({{$loop->iteration}})">Reveal Answer</button>
+                                                    <button class="revail-btn" onclick="revailAns({{$my_settings->firstItem() + $loop->index}})">Reveal Answer</button>
                                                 </div>
-                                                <span id="correct-ans{{$loop->iteration}}" class="correct-ans">
+                                                <span id="correct-ans{{$my_settings->firstItem() + $loop->index}}" class="correct-ans">
                                                     @foreach($student_quiz_question->quiz_question->quiz_question_answers as $an)
                                                         {{$an->quiz_option->label}}
                                                     @endforeach
@@ -192,6 +192,11 @@
                             </div>
                         @endif
                     @endforeach
+                        <div class="row">
+                            <div class="pagination-section">
+                                {{$my_settings->links()}}
+                            </div>
+                        </div>
                 </div>
             </div>
         </section>

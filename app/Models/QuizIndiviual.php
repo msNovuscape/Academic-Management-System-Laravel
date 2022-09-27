@@ -20,4 +20,14 @@ class QuizIndiviual extends Model
     {
         return $this->belongsTo(Quiz::class);
     }
+
+    public function student_quiz_individuals()
+    {
+        return $this->hasMany(StudentQuizIndividual::class);
+    }
+
+    public function student_quiz_individuals_list()
+    {
+        return $this->hasMany(StudentQuizIndividual::class)->orderBy('id','desc');
+    }
 }

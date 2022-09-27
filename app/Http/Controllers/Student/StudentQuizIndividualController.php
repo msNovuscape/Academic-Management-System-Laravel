@@ -205,6 +205,8 @@ class StudentQuizIndividualController extends Controller
     public function quizIndividualResult($id)
     {
         $setting = StudentQuizIndividual::findOrFail($id);
+//        $my_settings = $setting->student_quiz_question_individuals_list;
+        $my_settings = StudentQuizQuestionIndividual::where('s_q_individual_id',$setting->id)->paginate(config('custom.per_page'));
         if(!$setting->individual_quiz_result){
             $count = 0;
             foreach ($setting->student_quiz_question_individuals_list as $sqqi){
@@ -218,9 +220,9 @@ class StudentQuizIndividualController extends Controller
             $individual_quiz_result->total_question_attempted  = $setting->student_quiz_question_individuals_list->count();
             $individual_quiz_result->score  = $count;
             $individual_quiz_result->save();
-            return view('student.quiz_score.score_individual',compact('setting','individual_quiz_result'));
+            return view('student.quiz_score.score_individual',compact('setting','individual_quiz_result','my_settings'));
         }
-        return view('student.quiz_score.score_individual',compact('setting'));
+        return view('student.quiz_score.score_individual',compact('setting','my_settings'));
     }
 
     public static  function ans_right_or_wrong($student_quiz_question_individual_id)

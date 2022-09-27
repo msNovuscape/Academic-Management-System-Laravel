@@ -21,4 +21,14 @@ class StudentQuizBatch extends Model
     {
         return $this->hasMany(StudentQuizQuestionBatch::class,'student_quiz_batch_id')->orderBy('id','desc');
     }
+
+    public function student_quiz_question_batches_list()
+    {
+        return $this->hasMany(StudentQuizQuestionBatch::class,'student_quiz_batch_id');
+    }
+
+    public function batch_quiz_result()
+    {
+       return $this->hasOne(BatchQuizResult::class);
+    }
 }

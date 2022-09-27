@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\BatchQuizResult;
 use App\Models\QuizBatch;
 use App\Models\QuizQuestion;
+use App\Models\QuizQuestionAnswer;
 use App\Models\StudentQuizBatch;
 
+use App\Models\StudentQuizQuestionBatch;
 use App\Services\Quiz\QuizBatchService;
 use Illuminate\Support\Facades\Session;
 
@@ -194,5 +197,45 @@ class StudentQuizBatchController extends Controller
             Session::flash('custom_success','Your session has been expired!');
             return redirect('student');
         }
+    }
+
+    public function quizBatchResult($id)
+    {
+        $setting = StudentQuizBatch::findOrFail($id);
+//        $my_settings = $setting->student_quiz_question_batches_list;
+        $my_settings = StudentQuizQuestionBatch::where('student_quiz_batch_id',$setting->id)->paginate(config('custom.per_page'));
+        if(!$setting->batch_quiz_result){
+            $count = 0;
+            foreach ($setting->student_quiz_question_batches_list as $sqqi){
+                $my_result = self::ans_right_or_wrong($sqqi->id);
+                if($my_result == 'Correct'){
+                    $count = $count +1;
+                }
+            }
+            $individual_quiz_result = new BatchQuizResult();
+            $individual_quiz_result->student_quiz_batch_id  = $setting->id;
+            $individual_quiz_result->total_question_attempted  = $setting->student_quiz_question_batches_list->count();
+            $individual_quiz_result->score  = $count;
+            $individual_quiz_result->save();
+            return view('student.quiz_score.score_batch',compact('setting','individual_quiz_result','my_settings'));
+        }
+        return view('student.quiz_score.score_batch',compact('setting','my_settings'));
+    }
+
+    public static  function ans_right_or_wrong($student_quiz_question_individual_id)
+    {
+        $result = 'Correct';
+        $sqqi = StudentQuizQuestionBatch::findOrFail($student_quiz_question_individual_id);
+        foreach ($sqqi->student_quiz_question_batch_answers as $ans1){
+            $quiz_question_ans = QuizQuestionAnswer::where('quiz_question_id',$sqqi->quiz_question_id)
+                ->where('quiz_option_id',$ans1->quiz_option_id)->get();
+            if(count($quiz_question_ans) > 0){
+                $result = 'Correct';
+            }else{
+                $result = 'Incorrect';
+                break;
+            }
+        }
+        return $result;
     }
 }
