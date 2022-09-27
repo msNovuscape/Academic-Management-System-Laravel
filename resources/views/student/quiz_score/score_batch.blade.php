@@ -65,9 +65,9 @@
                     </div>
                 </div>
                 <div class="row g-3">
-                    @foreach($my_settings as $student_quiz_question)
-                        @if ($loop->even)
-                            <div class="col-md-6">
+                    <div class="col-md-6">
+                        @foreach($my_settings as $student_quiz_question)
+                            @if ($loop->odd)
                                 <div class="test-body">
                                     <div class="question-title">
                                         <h1>Question {{$my_settings->firstItem() + $loop->index}}</h1>
@@ -127,9 +127,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @elseif ($loop->odd)
-                            <div class="col-md-6">
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="col-md-6">
+                        @foreach($my_settings as $student_quiz_question)
+                            @if ($loop->even)
                                 <div class="test-body">
                                     <div class="question-title">
                                         <h1>Question {{$my_settings->firstItem() + $loop->index}}</h1>
@@ -189,9 +192,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
                 <div class="row">
                     <div class="pagination-section">
