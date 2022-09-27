@@ -15,6 +15,10 @@
 .profile-general img{
     border-radius: 50%;
 }
+.profile-img{
+    width:100px;
+    height: 100px;
+}
 .profile-desc{
     display: flex;
     flex-direction: column;
