@@ -38,7 +38,7 @@
                                             <div class="col-12 table-responsive">
                                                 {!! Form::open(['url' => 'quiz/question_create/'.$setting->id,'method'=>'Post','files' => true]) !!}
                                                     {{--    start section for quiz questions--}}
-                                                    <div class="row quiz-add" id="add-more-block1">
+                                                    <div class="quiz-add" id="add-more-block1">
                                                         <div class="col-md-12 d-flex justify-content-end">
                                                             <a onclick="getCancel(1)"><img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"></a>
                                                         </div>

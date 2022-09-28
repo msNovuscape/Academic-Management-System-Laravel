@@ -52,7 +52,7 @@
         </div>
     </li> -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link">
             <div class="sidebar-icon @if(Request::segment(1) == 'settings') active @endif w-100" id="mySettingsBtn">
                 <i class="bi bi-gear"></i>
                 <span class="menu-title w-100">Settings<i class="fa-solid fa-angle-down" id="icon-toggle-settings"></i></span>
@@ -76,7 +76,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link"  href="#">
+        <a class="nav-link">
             <div class="sidebar-icon @if(Request::segment(1) == 'batches') active @endif w-100" id="myBtnBatch">
             <i class="bi bi-grid"></i>
                 <span class="menu-title w-100">Batch<i class="fa-solid fa-angle-down" id="icon-toggle-batch"></i></span>
@@ -102,7 +102,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link"  href="#">
+        <a class="nav-link" >
             <div class="sidebar-icon  @if(Request::segment(1) == 'students') active @endif w-100" id="myBtnStudent">
                 <i class="bi bi-people"></i>
                 <span class="menu-title w-100">Students<i class="fa-solid fa-angle-down" id="icon-toggle-student"></i></span>
@@ -120,7 +120,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link">
             <div class="sidebar-icon @if(Request::segment(1) == 'finance') active @endif w-100" id="myFinanceBtn">
                 <i class="fa-solid fa-cash-register"></i>
                 <span class="menu-title w-100">Finance<i class="fa-solid fa-angle-down" id="icon-toggle-finance"></i></span>
@@ -214,9 +214,5 @@
         </div>
     </li>
 </ul>
-
-
-
-
 
 
