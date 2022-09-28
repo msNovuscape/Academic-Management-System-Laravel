@@ -104,6 +104,8 @@
                                                                 <p>Branch:</p>
                                                                 <p>Day:</p>
                                                                 <p>Time Slot:</p>
+                                                                <p>Start Date:</p>
+                                                                <p>End Date:</p>
                                                                 <p>Status:</p>
                                                                 <p>Fee:</p>
                                                                 @foreach($setting->batch_installments as $installment)
@@ -115,6 +117,8 @@
                                                                 <p>{{$setting->time_slot->branch->name}}</p>
                                                                 <p>{{$setting->time_slot->time_table->day}}</p>
                                                                 <p>{{$setting->time_slot->time_table->start_time}} - {{$setting->time_slot->time_table->end_time}}</p>
+                                                                <p>{{$setting->start_date}}</p>
+                                                                <p>{{$setting->end_date}}</p>
                                                                 <p>{{config('custom.status')[$setting->status]}}</p>
                                                                 <p>{{$setting->fee}}</p>
                                                                 @foreach($setting->batch_installments as $installment)

@@ -87,9 +87,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('batches')}}">List of Batch</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="#">Add Batch</a>
-                </li>
             </ul>
         </div>
     </li>
@@ -101,24 +98,24 @@
             </div>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link"  href="#">
-            <div class="sidebar-icon  @if(Request::segment(1) == 'students') active @endif w-100" id="myBtnStudent">
-                <i class="bi bi-people"></i>
-                <span class="menu-title w-100">Students<i class="fa-solid fa-angle-down" id="icon-toggle-student"></i></span>
-            </div>
-        </a>
-        <div class="collapse" id="myCollapseStudent">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                    <a class="nav-link @if(Request::segment(1) == 'students') active @endif" href="{{url('admin/students')}}">List of Students</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="{{url('admissions/create')}}">Add Student</a>
-                </li>
-            </ul>
-        </div>
-    </li>
+{{--    <li class="nav-item">--}}
+{{--        <a class="nav-link"  href="#">--}}
+{{--            <div class="sidebar-icon  @if(Request::segment(1) == 'students') active @endif w-100" id="myBtnStudent">--}}
+{{--                <i class="bi bi-people"></i>--}}
+{{--                <span class="menu-title w-100">Students<i class="fa-solid fa-angle-down" id="icon-toggle-student"></i></span>--}}
+{{--            </div>--}}
+{{--        </a>--}}
+{{--        <div class="collapse" id="myCollapseStudent">--}}
+{{--            <ul class="nav flex-column sub-menu">--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link @if(Request::segment(1) == 'students') active @endif" href="{{url('admin/students')}}">List of Students</a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link"  href="{{url('admissions/create')}}">Add Student</a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--        </div>--}}
+{{--    </li>--}}
     <li class="nav-item">
         <a class="nav-link" href="#">
             <div class="sidebar-icon w-100" id="myFinanceBtn">
@@ -186,23 +183,12 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
-            <div class="sidebar-icon @if(Request::segment(1) == 'students') active @endif w-100" id="myBtnAttendance">
-                <i class="bi bi-calendar2-check"></i>
-                <span class="menu-title w-100">Attendance<i class="fa-solid fa-angle-down" id="icon-toggle-attendance"></i></span>
-
+        <a class="nav-link" href="{{url('attendance')}}">
+            <div class="sidebar-icon  @if(Request::segment(1) == 'attendance') active @endif w-100" >
+                <i class="bi bi-card-checklist"></i>
+                <span class="menu-title w-100">Attendance</span>
             </div>
         </a>
-        <div class="collapse" id="myCollapseAttendance">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                    <a class="nav-link @if(Request::segment(1) == 'attendance') active @endif" href="{{url('attendance')}}">List of Attendance</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="{{url('attendance')}}">Add Attendance</a>
-                </li>
-            </ul>
-        </div>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="#">
