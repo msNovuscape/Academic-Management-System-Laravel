@@ -17,8 +17,19 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('ip_address');
+            $table->string('ip_address')->nullable();
+            $table->string('browser')->nullable();
+            $table->string('device')->nullable();
+            $table->string('os')->nullable();
             $table->string('location')->nullable();
+            $table->string('country_name')->nullable();
+            $table->string('country_code')->nullable();
+            $table->string('region_code')->nullable();
+            $table->string('region_name')->nullable();
+            $table->string('city_name')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
         });
     }
