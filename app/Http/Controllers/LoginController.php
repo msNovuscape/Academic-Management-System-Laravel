@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\LoginService;
 
 class LoginController extends Controller
 {
@@ -22,6 +23,8 @@ class LoginController extends Controller
             'password'=>'required',
         ]);
         if (Auth::attempt(['email'=>request('email'),'password'=>request('password'),'status'=>1],request()->has('remember'))){
+            //saving in log table
+            $log = LoginService::log();
             if(Auth::user()->user_type == 3){
                 if(self::student_restriction()){
                     if(Auth::user()->student){

@@ -1,7 +1,9 @@
 <?php
 namespace App\Services;
 
+use App\Models\Log;
 use Illuminate\Support\Facades\Auth;
+use Stevebauman\Location\Facades\Location;
 
 class LoginService{
 
@@ -166,6 +168,29 @@ class LoginService{
             return 'Computer';
         }
 
+    }
+
+    public static function log()
+    {
+        $setting = new Log();
+        $setting->user_id  = Auth::user()->id;
+        $setting->ip_address  = \request()->ip();
+        $setting->browser  = self::get_browsers();
+        $setting->device  = self::get_device();
+        $setting->os  = self::get_os();
+        $currentUserInfo = Location::get(\request()->ip());
+        if($currentUserInfo){
+            $setting->country_name  = $currentUserInfo->countryName;
+            $setting->country_code	  = $currentUserInfo->countryCode;
+            $setting->region_code  = $currentUserInfo->regionCode;
+            $setting->region_name  = $currentUserInfo->regionName;
+            $setting->city_name  = $currentUserInfo->cityName;
+            $setting->zip_code  = $currentUserInfo->zipCode;
+            $setting->latitude  = $currentUserInfo->latitude;
+            $setting->longitude  = $currentUserInfo->longitude;
+        }
+        $setting->save();
+        return $setting;
     }
 
 }
