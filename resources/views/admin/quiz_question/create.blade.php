@@ -23,8 +23,8 @@
                                 <div class="block-header p-4">
                                     <h3>Add Quiz Question</h3>
                                     <div class="tbl-buttons">
-                                        <ul class="mb-0 px-2">
-                                            <li>
+                                        <ul class="mb-0">
+                                            <li class="m-0">
                                                 <a href="{{url('quiz')}}">
                                                     <img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/>
                                                 </a>
@@ -38,7 +38,7 @@
                                             <div class="col-12 table-responsive">
                                                 {!! Form::open(['url' => 'quiz/question_create/'.$setting->id,'method'=>'Post','files' => true]) !!}
                                                     {{--    start section for quiz questions--}}
-                                                    <div class="row quiz-add mt-4 pt-4 add-more-block" id="add-more-block1">
+                                                    <div class="quiz-add" id="add-more-block1">
                                                         <div class="col-md-12 d-flex justify-content-end">
                                                             <a onclick="getCancel(1)"><img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"></a>
                                                         </div>

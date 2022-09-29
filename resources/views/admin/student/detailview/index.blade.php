@@ -1,7 +1,7 @@
 @if(isset($edit_status))
 <div class=" general-forms mt-4" id="detailForm" style="display: none">
 @else
-    <div class=" general-forms mt-4" id="detailForm">
+    <div class=" general-forms" id="detailForm">
 @endif
     <div class="row">
         <span class="student-details-edit">

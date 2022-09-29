@@ -13,7 +13,7 @@
                             <p>Fill the following fields to create a Fiscal Year</p>
                             <div class="tbl-buttons">
                                 <ul>
-                                    <li>
+                                    <li class="m-0">
                                         <a href="{{url('fiscal-years')}}">
                                             <img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/>
                                         </a>

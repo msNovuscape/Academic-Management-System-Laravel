@@ -1789,10 +1789,19 @@ table tr:first-child th:first-child {
     border-top-left-radius: 10px;
 }
 
+.table-installment tr:first-child th:first-child {
+    border-top-left-radius: 0px;
+}
+
 table tr:first-child th:last-child,
 table tr:first-child td:last-child {
     border-top-right-radius: 10px;
 }
+
+.table-installment tr:first-child th:last-child {
+    border-top-right-radius: 0px;
+}
+
 
 .table-details table thead th {
     padding: 10px;
@@ -1844,6 +1853,11 @@ table tr:first-child td:last-child {
 
 .table-details .action-icons a i {
     font-size: 13px;
+    color: #848484;
+}
+
+.table-details .action-icons a i:hover {
+    color: #000;
 }
 
 .table-details table td img {
@@ -1955,6 +1969,10 @@ table tr:first-child td:last-child {
     line-height: normal;
 }
 
+.quiz-add .input-group span {
+    font-size: 10px;
+}
+
 .quiz-add .input-group select {
     background: none;
     border: none;
@@ -2033,7 +2051,7 @@ table tr:first-child td:last-child {
 }
 
 .add-more-block {
-    border-top: 1px solid #848484;
+    border-top: 1px solid #d5d5d5;
 }
 
 .quiz-add .col-md-11 {
@@ -2177,6 +2195,11 @@ table tr:first-child td:last-child {
 
 .select-table {
     color: #848484 !important;
+    
+}
+
+.select-table::placeholder {
+    color: red;
 }
 
 .block-header-pdf .brand-logo-mini {
@@ -2252,7 +2275,7 @@ table tr:first-child td:last-child {
 }
 
 .unpaid-email i {
-    color: #848484;
+    color: #de1212;
 }
 
 .main-panel-table {

@@ -109,13 +109,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 d-flex mt-2">
+                                                    <div class="col-md-6 d-flex mt-4">
                                                         <div class="col-md-3">
                                                             <label>Remark</label>
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" placeholder="remark" name="remark">
+                                                                <input type="text" class="form-control" placeholder="Write your remarks" name="remark">
                                                             </div>
                                                         </div>
                                                     </div>
