@@ -60,6 +60,15 @@ return [
         '2' => 'pdf',
         '3' => 'excel'
     ],
+    'due_days' => [
+        'Over' => 'Over Dues',
+        '0' => '0 days',
+        '1' => '1 days',
+        '2' => '2 days',
+        '3' => '3 days',
+        '4' => '4 days',
+        '5' => '5 days',
+    ],
 
 ]
 

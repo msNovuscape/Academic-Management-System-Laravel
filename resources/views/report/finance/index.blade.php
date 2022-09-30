@@ -328,11 +328,9 @@
                                         <div class="button-section d-flex justify-content-center mt-4">
                                             <div class="row col-md-2">
                                                 <div class="w-100 button-section d-flex justify-content-end mt-2 mb-2">
-                                                    <a href="http://127.0.0.1:8000/finances" class="extend-button w-100">
-                                                        <button type="submit" class="w-100">
-                                                            Report
-                                                        </button>
-                                                    </a>
+                                                    <button type="submit" class="w-100">
+                                                        Report
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

@@ -10,4 +10,9 @@ class ExtendDate extends Model
     use HasFactory;
 
     protected  $fillable = ['admission_id','batch_installment_id','finance_id','created_by','due_date'];
+
+    public function batch_installment()
+    {
+       return $this->belongsTo(BatchInstallment::class);
+    }
 }

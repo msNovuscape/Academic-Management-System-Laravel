@@ -3,6 +3,7 @@ namespace App\Services\Report;
 
 use App\Models\Admission;
 use App\Models\DueEmailInfo;
+use App\Models\Finance;
 
 class FinanceReportService {
 
@@ -126,6 +127,35 @@ class FinanceReportService {
         $due_email_info->content = '<p>Please be advised that you’ve been temporarily removed from the Skype Learning Group as we haven’t received '.config('custom.installment_types')[$setting->batch_installment->installment_type].' payment update from your side.</p>';
         $due_email_info->save();
         return $due_email_info;
+    }
+
+    public static function dueList()
+    {
+        $due_day = \request('due_day');
+        $installment_type = \request('installment_type');
+
+        if($due_day == 'Over'){
+            $date_required_to_compare = date('Y-m-d');
+            $settings = Finance::whereHas('batch_installment',function ($q) use ($installment_type,$date_required_to_compare){
+                $q->where('due_date','<',$date_required_to_compare)
+                    ->where('installment_type',$installment_type);
+            })->where('extend_status',1)->orWhereHas('extend_date',function ($e) use($date_required_to_compare,$installment_type){
+                $e->whereHas('batch_installment',function ($i) use ($installment_type){
+                    $i->where('installment_type',$installment_type);
+                })->where('due_date','<',$date_required_to_compare);
+            })->where('extend_status',2)->where('status',2)->get();
+        }else{
+            $date_required_to_compare = date('Y-m-d', strtotime('+'.$due_day.' day'));
+            $settings = Finance::whereHas('batch_installment',function ($q) use ($installment_type,$date_required_to_compare){
+                $q->where('due_date',$date_required_to_compare)
+                    ->where('installment_type',$installment_type);
+            })->where('extend_status',1)->orWhereHas('extend_date',function ($e) use($date_required_to_compare,$installment_type){
+                $e->whereHas('batch_installment',function ($i) use ($installment_type){
+                    $i->where('installment_type',$installment_type);
+                })->where('due_date',$date_required_to_compare);
+            })->where('extend_status',2)->where('status',2)->get();
+        }
+        return $settings;
     }
 
 }

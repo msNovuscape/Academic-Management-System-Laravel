@@ -26,6 +26,11 @@ class Finance extends Model
         return $this->hasOne(ExtendDate::class);
     }
 
+    public function extend_dates()
+    {
+        return $this->hasMany(ExtendDate::class);
+    }
+
 
 
     public static function checkForStatus($admission,$total_paid)

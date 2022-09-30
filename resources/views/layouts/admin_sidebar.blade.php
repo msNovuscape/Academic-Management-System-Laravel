@@ -135,6 +135,11 @@
                         <i class="bi bi-file-earmark-text"></i>Report
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('reports/due_finance')}}">
+                        <i class="bi bi-file-earmark-text"></i>Due List
+                    </a>
+                </li>
             </ul>
         </div>
     </li>

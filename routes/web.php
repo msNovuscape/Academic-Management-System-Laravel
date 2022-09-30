@@ -213,6 +213,8 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('reports/finance/student/{batch_id}',[FinanceReportController::class,'getStudent']);
     Route::post('reports/finance',[FinanceReportController::class,'report']);
     Route::post('send_due_email',[FinanceReportController::class,'sendEmail']);
+    Route::get('reports/due_finance',[FinanceReportController::class,'dueFinance']);
+    Route::post('reports/due_finance',[FinanceReportController::class,'postDueFinance']);
     Route::get('reports/financetest',[FinanceReportController::class,'financetest']);
 
 

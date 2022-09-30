@@ -40,10 +40,13 @@ class FinanceService {
 
     public function extendDate()
     {
+        $finance = Finance::findOrFail(request('finance_id'));
         $setting = ExtendDate::firstOrNew(['admission_id' => request('admission_id'),'batch_installment_id' => request('batch_installment_id'),'finance_id' => request('finance_id')]);
         $setting->created_by = Auth::user()->id;
         $setting->due_date = request('due_date');
         $setting->save();
+        $finance->extend_status = 2; // extend
+        $finance->save();
         return $setting;
     }
 
@@ -153,5 +156,8 @@ class FinanceService {
                 'path' => LengthAwarePaginator::resolveCurrentPath(),
             ]);
     }
+
+
+
 
 }

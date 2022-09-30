@@ -59,6 +59,7 @@ class AdmissionService
 //                        $finance->status = $requestAll['payment_status'];
                         $finance->status = array_search('Paid',config('custom.payment_status'));
                         $finance->transaction_no = $requestAll['transaction_no'];
+                        $finance->extend_status = 1; //not extend
                         $finance->bank_status = $requestAll['bank_status'];
                         $finance->remark = $requestAll['remark'];
                         $finance->save();
@@ -70,6 +71,7 @@ class AdmissionService
                         $finance->status = array_search('Paid',config('custom.payment_status'));
                         $finance->transaction_no = '';
                         $finance->bank_status = $requestAll['bank_status'];
+                        $finance->extend_status = 1; //not extend
                         $finance->remark = '';
                         $finance->save();
                     }
@@ -82,6 +84,7 @@ class AdmissionService
                         $finance->status = $requestAll['payment_status'];
                         $finance->transaction_no = $requestAll['transaction_no'];
                         $finance->bank_status = $requestAll['bank_status'];
+                        $finance->extend_status = 1; //not extend
                         $finance->remark = $requestAll['remark'];
                         $finance->save();
                     }else{
@@ -92,6 +95,7 @@ class AdmissionService
                         $finance->status = array_search('Unpaid',config('custom.payment_status')); // unpaid
                         $finance->transaction_no = '';
                         $finance->bank_status = 2; //unverified
+                        $finance->extend_status = 1; //not extend
                         $finance->remark = '';
                         $finance->save();
                     }

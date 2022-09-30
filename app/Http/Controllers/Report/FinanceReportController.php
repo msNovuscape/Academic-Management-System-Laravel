@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Report;
 
+use App\Exports\DueFinanceExport;
 use App\Exports\FinanceExport;
 use App\Http\Controllers\Controller;
 use App\Mail\DueEmail;
@@ -15,6 +16,7 @@ use App\Services\Report\FinanceReportService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 
 class FinanceReportController extends Controller
@@ -96,6 +98,41 @@ class FinanceReportController extends Controller
         Mail::to($email)->send(new DueEmail($setting));
         $this->financeReportService->due_email_info($setting);
         return response()->json(['data' => $setting,'message' => 'Email has been send to '.$setting->admission->user->name.'!'],200);
+    }
+
+    public function dueFinance()
+    {
+        return view($this->view.'due.index');
+    }
+
+    public function postDueFinance()
+    {
+        $this->validate(\request(),[
+            'due_day' => 'required',
+            'installment_type' => 'required|numeric',
+            'type' => 'required',
+        ]);
+
+        if(\request('type') == 'report'){
+            return Excel::download(new DueFinanceExport(),'due_list.xlsx');
+        }elseif (\request('type') == 'send_email'){
+            $settings = FinanceReportService::dueList();
+            if(count($settings) > 0){
+                foreach ($settings as $setting){
+                    $email = $setting->admission->user->email;
+                    Mail::to($email)->send(new DueEmail($setting));
+                    $due_email_info = $this->financeReportService->due_email_info($setting);
+                }
+                Session::flash('success','Due Email Has been sent!');
+                return  redirect('reports/due_finance');
+            }else{
+                Session::flash('success','No any data found!');
+                return  redirect('reports/due_finance');
+            }
+        }
+
+
+
     }
 
     public function financetest()
