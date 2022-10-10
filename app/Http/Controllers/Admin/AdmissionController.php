@@ -29,8 +29,10 @@ class AdmissionController extends Controller
 
     public function index()
     {
-        $settings = Model::orderBy('id','desc')->paginate(config('custom.per_page'));
-        return view($this->view.'index',compact('settings'));
+        $courses = Course::where('status',1)->orderBy('id','desc')->get();
+        $batches = Batch::where('status',1)->orderBy('id','desc')->get();
+        $settings = $this->admissionService->search();
+        return view($this->view.'index',compact('settings','courses','batches'));
     }
 
     public function create()
@@ -98,4 +100,5 @@ class AdmissionController extends Controller
         $batches = $course->batches->where('end_date','>=',date('Y-m-d'))->where('status',array_search('Active',config('custom.status')));
         return view($this->view.'show',compact('courses','setting','time_slot','batches'));
     }
+
 }

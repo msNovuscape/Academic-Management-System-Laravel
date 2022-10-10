@@ -24,12 +24,7 @@ class BatchController extends Controller
     public function index()
     {
         $courses = Course::where('status',1)->get();
-      //  $settings = Course::first();
-       // dd($settings->first()->batches());
-
-      // dd($settings->getTimeSlot);
-        $settings = Model::paginate(config('custom.per_page'));
-        //dd(123);
+        $settings = $this->batchService->search();
         return view($this->view.'index',compact('settings','courses'));
     }
 

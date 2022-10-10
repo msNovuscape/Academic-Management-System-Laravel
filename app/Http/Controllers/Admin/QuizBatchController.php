@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Quiz\QuizBatchRequest;
+use App\Models\Batch;
 use App\Models\Course;
 use App\Models\QuizBatch;
 use Illuminate\Http\Request;
@@ -18,8 +19,20 @@ class QuizBatchController extends Controller
 
     public function index()
     {
-        $settings = QuizBatch::orderBy('id','desc')->paginate(config('custom.per_page'));
-       return view($this->view.'index',compact('settings'));
+        $settings = QuizBatch::orderBy('id','DESC');
+        if(\request('name')){
+            $key = \request('name');
+            $settings = $settings->whereHas('quiz',function ($q) use($key){
+                                $q->where('name','like','%'.$key.'%');
+                         });
+        }
+        if(\request('batch_id')){
+            $key = \request('batch_id');
+            $settings = $settings->where('batch_id',$key);
+        }
+        $settings = $settings->paginate(config('custom.per_page'));
+        $batches = Batch::whereHas('quiz_batches')->get();
+       return view($this->view.'index',compact('settings','batches'));
     }
 
     public function create()

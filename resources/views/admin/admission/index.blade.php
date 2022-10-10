@@ -12,75 +12,98 @@
                             <div>
                                 <h4>Student Lists</h4>
                                 <p>
-                                    You can search the student by <a href="#" class="card-heading-link">name, group, date,</a> and can view all available courses.
+                                    You can search the student by <a href="#" class="card-heading-link">name or student id, course, batch, date</a> and can view all available admission records.
                                 </p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-11">
-                                <div class="row">
-                                    <div class="filter-btnwrap justify-content-between">
-                                        <div class="d-flex">
-                                            <div class="input-group">
-                                                <span>
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Name" name="fullname" value=""/>
-                                            </div>
-                                            <div class="input-group mx-4">
-                                                <span>
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Code" name="fullname" value=""/>
-                                            </div>
-                                            <div class="refresh-btn mx-4">
-                                                <a href="">
-                                                    <img src="{{url('images/refresh-icon.png')}}" alt=""/>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 d-flex justify-content-end">
-                                            <div class="d-flex align-items-center">
-                                                <p class="m-0">
-                                                    Show
-                                                </p>
-                                                <select class="form-select mx-2 show-select" aria-label="Default select example">
-                                                    <option selected>10</option>
-                                                    <option value="1">10</option>
-                                                    <option value="2">20</option>
-                                                    <option value="3">30</option>
-                                                </select>
+                        <form id="search">
+                            <div class="row">
+                                <div class="col-md-11">
+                                        <div class="row">
+                                            <div class="filter-btnwrap justify-content-between">
+                                                <div class="d-flex">
+                                                    <div class="input-group">
+                                                        <span>
+                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control currentDate"  placeholder="Search by Date" name="date" onchange="filterList()" value="{{old('date')}}"/>
+                                                    </div>
+                                                    <div class="input-group mx-4">
+                                                        <span>
+                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control"  placeholder="Search by Name or Id" name="name" onchange="filterList()" value="{{old('name')}}"/>
+                                                    </div>
+                                                    <div class="input-group mx-4">
+                                                        <span>
+                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                        </span>
+                                                        <select name="course_id" class="form-control" onchange="filterList()">
+                                                            <option value="" selected disabled>Search by Course </option>
+                                                            @foreach($courses as $course)
+                                                                <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-group mx-4">
+                                                        <span>
+                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                        </span>
+                                                        <select name="batch_id" class="form-control" onchange="filterList()">
+                                                            <option value="" selected disabled>Search by Batch </option>
+                                                            @foreach($batches as $batch)
+                                                                <option value="{{$batch->id}}" @if(old('batch_id') == $batch->id) selected @endif>{{$batch->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+{{--                                                f    <div class="refresh-btn mx-4">--}}
+{{--                                                        <a href="">--}}
+{{--                                                            <img src="{{url('images/refresh-icon.png')}}" alt=""/>--}}
+{{--                                                        </a>--}}
+{{--                                                    </div>--}}
+                                                </div>
+{{--                                                <div class="col-md-2 d-flex justify-content-end">--}}
+{{--                                                    <div class="d-flex align-items-center">--}}
+{{--                                                        <p class="m-0">--}}
+{{--                                                            Show--}}
+{{--                                                        </p>--}}
+{{--                                                        <select class="form-select mx-2 show-select" aria-label="Default select example" onchange="filterList()">--}}
+{{--                                                            <option value="1">20</option>--}}
+{{--                                                            <option value="2">30</option>--}}
+{{--                                                            <option value="3">40</option>--}}
+{{--                                                        </select>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+{{--                                <div class="col-md-1 d-flex align-items-center p-0">--}}
+{{--                                    <div class="tbl-buttons">--}}
+{{--                                        <div class="export-button">--}}
+{{--                                            <div class="dropdown-export">--}}
+{{--                                                <button type="submit" name="submit" onclick="submit;" class="student-btn d-flex">--}}
+{{--                                                    <img src="http://localhost/ams/public/images/export-icon.png" alt="">Export--}}
+{{--                                                </button>--}}
+{{--                                                <div class="dropdown-content-export">--}}
+{{--                                                    <ul>--}}
+{{--                                                        <li>--}}
+{{--                                                            <a href="#">--}}
+{{--                                                                Export.csv--}}
+{{--                                                            </a>--}}
+{{--                                                        </li>--}}
+{{--                                                        <li>--}}
+{{--                                                            <a href="#">--}}
+{{--                                                                Export.pdf--}}
+{{--                                                            </a>--}}
+{{--                                                        </li>--}}
+{{--                                                    </ul>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
-                            <div class="col-md-1 d-flex align-items-center p-0">
-                                <div class="tbl-buttons">
-                                    <div class="export-button">
-                                        <div class="dropdown-export">
-                                            <button type="submit" name="submit" onclick="submit;" class="student-btn d-flex">
-                                                <img src="http://localhost/ams/public/images/export-icon.png" alt="">Export
-                                            </button>
-                                            <div class="dropdown-content-export">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">
-                                                            Export.csv
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            Export.pdf
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                         <div>
                             @include('success.success')
                             @include('errors.error')

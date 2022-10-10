@@ -130,6 +130,7 @@
     function filterList() {
         debugger;
         var baseurl = window.location.origin+window.location.pathname;
+        debugger;
         window.location = baseurl+'?'+$('#search').serialize();
     }
     function filterList2() {

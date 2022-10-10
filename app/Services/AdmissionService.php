@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\Admission;
 use App\Models\Admission as Model;
 use App\Models\AdmissionEmailInfo;
 use App\Models\Batch;
@@ -186,4 +187,32 @@ class AdmissionService
             throw $e;
         }
     }
+
+    public function search()
+    {
+        $settings = Admission::orderBy('id','desc');
+
+        if(request('date')){
+            $key = \request('date');
+            $settings = $settings->where('date',$key);
+        }
+        if(request('name')){
+            $key = \request('name');
+            $settings = $settings->whereHas('user',function ($u) use($key){
+                $u->where('name','like','%'.$key.'%');
+            })->orWhere('student_id','like','%'.$key.'%');
+        }
+        if(request('course_id')){
+            $key = \request('course_id');
+            $settings = $settings->whereHas('batch.time_slot',function ($q) use($key){
+                $q->where('course_id',$key);
+            });
+        }
+        if(request('batch_id')){
+            $key = \request('batch_id');
+            $settings = $settings->where('batch_id',$key);
+        }
+        return $settings->paginate(config('custom.per_page'));
+    }
+
 }

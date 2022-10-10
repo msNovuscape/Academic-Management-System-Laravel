@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    <title>Course Material</title>
+    <title> Quiz Question </title>
 @endsection
 @section('main-panel')
     <div class="main-panel">
@@ -10,9 +10,9 @@
                     <div class="row">
                         <div class="card-heading">
                             <div>
-                                <h4>QuizLists</h4>
+                                <h4>Quiz Question Lists</h4>
                                 <p>
-                                    You can search the materials by <a href="#" class="card-heading-link">name</a> and can view all available courses materials.
+                                    You can search the materials by <a href="#" class="card-heading-link">Question</a> and can view all available quiz questions.
                                 </p>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                                                 <span>
                                                     <i class="fa-solid fa-magnifying-glass"></i>
                                                 </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by material name or course name" name="name" onchange="filterList()"/>
+                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Question" name="name" onchange="filterList()"/>
                                             </div>
                                         </div>
                                     </div>

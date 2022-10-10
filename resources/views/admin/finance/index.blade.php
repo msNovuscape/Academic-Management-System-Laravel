@@ -107,7 +107,7 @@
                                                             <th>
                                                                 <div class="filter-btnwrap">
                                                                     <div class="input-group">
-                                                                        <input type="text" class="form-control" id="inputText" placeholder="Search" name="name" value="{{request('name')}}" onchange="filterList()">
+                                                                        <input type="text" class="form-control" id="inputText" placeholder="Search by name or id" name="name" value="{{request('name')}}" onchange="filterList()">
                                                                     </div>
                                                                 </div>
                                                             </th>

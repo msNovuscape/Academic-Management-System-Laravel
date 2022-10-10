@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Batch;
 use App\Models\Batch as Model;
 use App\Models\BatchCount;
 use App\Models\BatchInstallment;
@@ -93,5 +94,21 @@ class BatchServices
             }
         }
         return $setting;
+    }
+
+    public function search()
+    {
+        $settings = Batch::orderBy('id','desc');
+        if(request('name')){
+            $key = \request('name');
+            $settings = $settings->where('name','like','%'.$key.'%');
+        }
+        if(request('course_id')){
+            $key = \request('course_id');
+            $settings = $settings->whereHas('time_slot',function ($q) use($key){
+                                $q->where('course_id',$key);
+            });
+        }
+        return $settings->paginate(config('custom.per_page'));
     }
 }

@@ -79,9 +79,12 @@ class QuizQuestionController extends Controller
     public function show($quiz_id)
     {
         $quiz = Quiz::findOrFail($quiz_id);
-        $settings = QuizQuestion::where('quiz_id',$quiz->id)->paginate(config('custom.per_page'));
-//        $settings = QuizQuestion::where('quiz_id',$quiz->id)->get();
-//        dd($settings);
+        $key = \request('name');
+        $settings = QuizQuestion::where('quiz_id',$quiz->id);
+        if(\request('name')){
+            $settings = $settings->where('question','like','%'.$key.'%');
+        }
+        $settings = $settings->paginate(config('custom.per_page'));
         return view($this->view.'index',compact('settings','quiz'));
     }
 

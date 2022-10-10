@@ -18,8 +18,18 @@ class QuizController extends Controller
 
     public function index()
     {
-         $settings = Quiz::paginate(config('custom.per_page'));
-        return view($this->view.'index',compact('settings'));
+        $settings = Quiz::orderBy('id','DESC');
+        if(request('name')){
+            $key = \request('name');
+            $settings = $settings->where('name','like','%'.$key.'%');
+        }
+        if(request('course_id')){
+            $key = \request('course_id');
+            $settings = $settings->where('course_id',$key);
+        }
+         $settings = $settings->paginate(config('custom.per_page'));
+         $courses = Course::whereHas('quizzes')->orderBy('id','DESC')->get();
+        return view($this->view.'index',compact('settings','courses'));
     }
 
     public function create()

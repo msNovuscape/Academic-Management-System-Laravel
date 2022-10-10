@@ -16,33 +16,35 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-11">
-                                <div class="row">
-                                    <div class="filter-btnwrap justify-content-between">
-                                        <div class="d-flex">
-                                            <div class="input-group">
-                                                <span>
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Name" name="fullname" value=""/>
-                                            </div>
-                                            <div class="input-group mx-4">
-                                                <span>
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Code" name="fullname" value=""/>
-                                            </div>
-                                            <div class="refresh-btn mx-4">
-                                                <a href="">
-                                                    <img src="{{url('images/refresh-icon.png')}}" alt=""/>
-                                                </a>
+                        <form id="search">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="filter-btnwrap justify-content-between">
+                                            <div class="d-flex">
+                                                <div class="input-group">
+                                                    <span>
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    </span>
+                                                    <input type="text" class="form-control" id="inputText" placeholder="Search by Quiz" name="name" onchange="filterList()"/>
+                                                </div>
+                                                <div class="input-group mx-4">
+                                                    <span>
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    </span>
+                                                    <select name="batch_id" class="form-control" onchange="filterList()">
+                                                        <option value="" selected disabled>Search by Batch</option>
+                                                        @foreach($batches as $batch)
+                                                            <option value="{{$batch->id}}">{{$batch->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                         <div>
                             @include('success.success')
                             @include('errors.error')

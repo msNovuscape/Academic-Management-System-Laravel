@@ -22,6 +22,14 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-4">
                                         <div class="input-group">
+                                                <span>
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                </span>
+                                            <input type="text" class="form-control"  placeholder="Search By Batch Name" name="name" onchange="filterList()"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
                                             <span>
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </span>
@@ -34,27 +42,6 @@
                                             <span>
                                                 <i class="fa-solid fa-caret-down"></i>
                                             </span>
-                                        </div>
-                                    </div>
-{{--                                    <div class="col-md-4">--}}
-{{--                                        <div class="input-group d-flex justify-content-between">--}}
-{{--                                            <span>--}}
-{{--                                                <i class="fa-solid fa-magnifying-glass"></i>--}}
-{{--                                            </span>--}}
-{{--                                            <select aria-label="Default select example" name="branch_id"  onchange="filterList()">--}}
-{{--                                                <option selected disabled value="">Search by Branch</option>--}}
-{{--                                                @foreach($branches as $branch)--}}
-{{--                                                    <option value="{{$branch->id}}">{{$branch->name}}</option>--}}
-{{--                                                @endforeach--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-                                    <div class="col-md-4">
-                                        <div class="input-group">
-                                                <span>
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </span>
-                                            <input type="text" class="form-control"  placeholder="Search by Day or Time" name="name" onchange="filterList()"/>
                                         </div>
                                     </div>
                                 </div>
