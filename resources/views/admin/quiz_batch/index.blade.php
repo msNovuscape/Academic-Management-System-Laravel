@@ -12,7 +12,7 @@
                             <div>
                                 <h4>Quiz Assigned To Batch Lists</h4>
                                 <p>
-                                    You can search the student by <a href="#" class="card-heading-link">name, group, date,</a> and can view all available courses.
+                                    You can search  by <a href="#" class="card-heading-link">quiz, batch</a> and can view all available records.
                                 </p>
                             </div>
                         </div>
