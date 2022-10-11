@@ -55,7 +55,7 @@
                             <div class="card-wrap form-block p-0">
                                 <div class="block-header bg-header d-flex justify-content-between p-4">
                                     <div class="d-flex flex-column">
-                                        <h3>Course Material Table</h3>
+                                        <h3>Quiz Table</h3>
                                     </div>
                                     <div class="add-button">
                                         <a class="nav-link" href="{{url('quiz/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add quiz</a>
@@ -91,11 +91,14 @@
                                                                             <li>
                                                                                 <a class="dropdown-item"   href="{{url('quiz/question_show/'.$setting->id)}}" ><i class="fa-solid fa-eye"></i></a>
                                                                             </li>
-{{--                                                                            <li>--}}
-{{--                                                                                <a class="dropdown-item"  href="{{url('course-materials/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>--}}
-{{--                                                                            </li>--}}
                                                                             <li>
-                                                                                <a class="dropdown-item"   href="{{url('quiz/show_all_questions/'.$setting->id)}}" ><i class="fa-solid fa-eye"></i></a>
+                                                                                <a class="dropdown-item"   href="{{url('quiz/show_all_questions/'.$setting->id)}}"><i class="fa-solid fa-list-ul"></i></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('quiz/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('quiz/delete/'.$setting->id)}}" role="button" onclick="getConfirm()"><i class="fa-solid fa-trash"></i></a>
                                                                             </li>
                                                                         </ul>
                                                                     </td>
@@ -120,4 +123,17 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        function getConfirm() {
+            debugger;
+            if (confirm('Do you sure want to delete quiz?')) {
+
+            } else {
+                event.preventDefault();
+                location.reload();
+            }
+        }
+    </script>
 @endsection

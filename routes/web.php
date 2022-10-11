@@ -97,6 +97,9 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('quiz',[QuizController::class,'index']);
     Route::get('quiz/create',[QuizController::class,'create']);
     Route::post('quiz',[QuizController::class,'store']);
+    Route::get('quiz/{id}/edit',[QuizController::class,'edit']);
+    Route::post('quiz/{id}',[QuizController::class,'update']);
+    Route::get('quiz/delete/{id}',[QuizController::class,'delete']);
     Route::get('quiz/show_all_questions/{id}',[QuizController::class,'showAll']);
     //routes for creating quiz questions
     Route::get('quiz/question_create/{quiz_id}',[QuizQuestionController::class,'create']);

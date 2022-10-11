@@ -9,6 +9,7 @@ use App\Models\Quiz;
 use App\Models\QuizQuestion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use function Symfony\Component\VarDumper\Dumper\esc;
 
 class QuizController extends Controller
 {
@@ -48,13 +49,64 @@ class QuizController extends Controller
 
     }
 
+    public function edit($id)
+    {
+        $setting = Quiz::findOrFail($id);
+        $courses = Course::where('status',1)->get();
+        return view($this->view.'edit',compact('setting','courses'));
+    }
+
+    public function update(QuizRequest $request,$id)
+    {
+        $setting = Quiz::findOrFail($id);
+        $validatedData = $request->validated();
+        $setting->created_by  = Auth::user()->id;
+        if($setting->quiz_batch || $setting->quiz_individual){
+
+        }else{
+            $setting->course_id  = $validatedData['course_id'];
+        }
+        $setting->name  = $validatedData['name'];
+        $setting->time_period  = $validatedData['time_period'];
+        $setting->status  = $validatedData['status'];
+        $setting->date  = $validatedData['date'];
+        $setting->remark  = $validatedData['remark'];
+        $setting->save();
+        Session::flash('success','Quiz  has been updated!');
+        return redirect($this->redirect);
+    }
+
     public function showAll($id)
     {
-
         $quiz = Quiz::findOrFail($id);
         $settings = QuizQuestion::where('quiz_id',$quiz->id)->orderBy('id','asc');
         $settings = $settings->paginate(2);
         return view($this->view.'show_all_question',compact('settings'));
+    }
+
+    public function delete($id)
+    {
+        $setting = Quiz::findOrFail($id);
+        if($setting->quiz_batch || $setting->quiz_individual){
+            $message = 'You can not delete quiz!';
+        }else{
+            foreach ($setting->QuizQuestions as $quizQuestion){
+                $quizQuestion->quiz_question_answers()->delete();
+                $quizQuestion->quiz_options()->delete();
+                if($quizQuestion->quiz_question_image){
+                    $image_path = public_path().'/'.$quizQuestion->quiz_question_image->image;
+                    if(file_exists($image_path) && is_file($image_path)){
+                        unlink($image_path);
+                    }
+                    $quizQuestion->quiz_question_image->delete();
+                }
+            }
+            $setting->QuizQuestions()->delete();
+            $setting->delete();
+            $message = 'Quiz  has been deleted!';
+        }
+        Session::flash('success',$message);
+        return redirect($this->redirect);
     }
 
 

@@ -21,5 +21,15 @@ class Quiz extends Model
         return $this->hasMany(QuizQuestion::class);
     }
 
+    public function quiz_batch()
+    {
+        return $this->hasOne(QuizBatch::class);
+    }
+
+    public function quiz_individual()
+    {
+        return $this->hasOne(QuizIndiviual::class);
+    }
+
 
 }

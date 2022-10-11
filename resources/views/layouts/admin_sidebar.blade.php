@@ -223,6 +223,11 @@
                         <i class="bi bi-file-earmark-text"></i>Due List
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('reports/attendance')}}">
+                        <i class="bi bi-file-earmark-text"></i>Attendance
+                    </a>
+                </li>
             </ul>
         </div>
     </li>

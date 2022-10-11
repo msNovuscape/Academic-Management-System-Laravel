@@ -18,7 +18,7 @@
                         <div class="col-sm-12 col-md-12 stretch-card">
                             <div class="card-wrap form-block p-0">
                                 <div class="block-header p-4">
-                                    <h3>Add Quiz</h3>
+                                    <h3>Edit Quiz</h3>
                                     <div class="tbl-buttons">
                                         <ul class="mb-0 px-2">
                                             <li>
@@ -33,7 +33,7 @@
                                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
                                         <div class="row">
                                             <div class="col-12 table-responsive">
-                                                {!! Form::open(['url' => 'quiz','method'=>'Post']) !!}
+                                                {!! Form::open(['url' => 'quiz/'.$setting->id,'method'=>'Post']) !!}
                                                 <div class="row quiz-add">
                                                     <div class="col-md-6 d-flex mt-2">
                                                         <div class="col-md-3">
@@ -47,7 +47,7 @@
                                                                 <select class="form-select" aria-label="Default select example" name="course_id" required>
                                                                     <option value="" selected disabled>Please Select Course</option>
                                                                     @foreach($courses as $course)
-                                                                        <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
+                                                                        <option value="{{$course->id}}" @if($setting->course_id == $course->id) selected @endif>{{$course->name}}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <span>
@@ -62,7 +62,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" placeholder="Write quiz name here" name="name" required>
+                                                                <input type="text" class="form-control" placeholder="Write quiz name here" name="name" required value="{{$setting->name}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -72,7 +72,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input name="time_period" min="1"  type="number" class="form-control"  required>
+                                                                <input name="time_period" min="1"  type="number" class="form-control"  required value="{{$setting->time_period}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -85,7 +85,7 @@
                                                                 <select name="status" class="form-control" required>
                                                                     <option value="" selected="" disabled="">Please Select Status</option>
                                                                     @foreach(config('custom.status') as $index => $value)
-                                                                        <option value="{{$index}}" @if(old('status') == $index) selected @endif>{{$value}}</option>
+                                                                        <option value="{{$index}}" @if($setting->status == $index) selected @endif>{{$value}}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <span>
@@ -100,7 +100,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input name="date" type="text" class="form-control flatpickr-input" id="from_date" placeholder="Please select course start date" required>
+                                                                <input name="date" type="text" class="form-control flatpickr-input" id="from_date" placeholder="Please select course start date" required value="{{$setting->date}}">
                                                                 <div class="input-group-prepend d-flex">
                                                                     <div class="input-group-text p-2">
                                                                         <img src="{{url('images/calender-icon.png')}}" alt="calender-icon">
@@ -115,7 +115,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" placeholder="Write your remarks" name="remark">
+                                                                <input type="text" class="form-control" placeholder="Write your remarks" name="remark" {{$setting->remark}}>
                                                             </div>
                                                         </div>
                                                     </div>
