@@ -204,6 +204,28 @@
             </ul>
         </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link">
+            <div class="sidebar-icon @if(Request::segment(1) == 'reports') active @endif w-100" id="myReportBtn">
+                <i class="bi bi-file-earmark-text"></i>
+                <span class="menu-title w-100">Reports<i class="fa-solid fa-angle-down" id="icon-toggle-report"></i></span>
+            </div>
+        </a>
+        <div class="collapse" id="myReport">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item" >
+                    <a class="nav-link" href="{{url('reports/finance')}}">
+                        <i class="bi bi-file-earmark-text"></i>Finance
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('reports/due_finance')}}">
+                        <i class="bi bi-file-earmark-text"></i>Due List
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
 </ul>
 
 
