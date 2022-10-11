@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\QuizBatchController;
 use App\Http\Controllers\Admin\QuizIndiviualController;
 use App\Http\Controllers\Student\StudentQuizBatchController;
 use App\Http\Controllers\Student\StudentQuizIndividualController;
+use App\Http\Controllers\Report\AttendanceReportController;
 
 
 
@@ -216,9 +217,14 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('reports/finance/student/{batch_id}',[FinanceReportController::class,'getStudent']);
     Route::post('reports/finance',[FinanceReportController::class,'report']);
     Route::post('send_due_email',[FinanceReportController::class,'sendEmail']);
+    //routes for due email
     Route::get('reports/due_finance',[FinanceReportController::class,'dueFinance']);
     Route::post('reports/due_finance',[FinanceReportController::class,'postDueFinance']);
     Route::get('reports/financetest',[FinanceReportController::class,'financetest']);
+    //routes for attendance
+    Route::get('reports/attendance',[AttendanceReportController::class,'index']);
+    Route::post('reports/attendance',[AttendanceReportController::class,'report']);
+
 
 
 

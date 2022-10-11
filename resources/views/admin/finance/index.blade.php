@@ -187,7 +187,11 @@
                                                             <td class="">
                                                                 <div class="d-flex">
                                                                     <div class="table-image">
-                                                                        <img src="{{url('images/profile.png')}}" alt=""/>
+                                                                        @if($setting->student)
+                                                                            <img src="{{url($setting->student->image)}}" alt=""/>
+                                                                        @else
+                                                                            <img src="{{url('images/no_images.png')}}" alt=""/>
+                                                                        @endif
                                                                     </div>
                                                                     <div class="d-flex flex-column name-table">
                                                                         <p>{{$setting->user->name}}</p>
