@@ -132,15 +132,6 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" value="2" type="radio" name="report_type" id="flexRadioDefault2">
-                                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                                <i class="fa-solid fa-file-pdf"></i>
-                                                                Pdf
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-check">
                                                             <input class="form-check-input" value="3" type="radio" name="report_type" id="flexRadioDefault3">
                                                             <label class="form-check-label" for="flexRadioDefault1">
                                                                 <i class="fa-solid fa-file-excel"></i>
@@ -195,7 +186,7 @@
         var course_id = $('#course_id').val();
         $.ajax({
             type:'GET',
-            url:Laravel.url+'/reports/finance/batch/'+course_id,
+            url:Laravel.url+'/reports/attendance/batch/'+course_id,
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             processData: false,  // tell jQuery not to process the data
             contentType: false,
@@ -213,7 +204,7 @@
         var batch_id = $('#batch_id').val();
         $.ajax({
             type:'GET',
-            url:Laravel.url+'/reports/finance/student/'+batch_id,
+            url:Laravel.url+'/reports/attendance/student/'+batch_id,
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             processData: false,  // tell jQuery not to process the data
             contentType: false,
