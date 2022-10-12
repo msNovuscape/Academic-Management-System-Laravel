@@ -1,6 +1,6 @@
 <?php
 return [
-    'per_page' =>200,
+    'per_page' =>20,
     'status' =>[
         '1' => 'Active',
         '2' => 'Deactive'
