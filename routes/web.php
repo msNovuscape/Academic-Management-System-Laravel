@@ -224,6 +224,8 @@ Route::group(['middleware'=>['auth']],function (){
     //routes for attendance
     Route::get('reports/attendance',[AttendanceReportController::class,'index']);
     Route::post('reports/attendance',[AttendanceReportController::class,'report']);
+    Route::get('reports/attendance/batch/{course_id}',[AttendanceReportController::class,'getBatch']);
+    Route::get('reports/attendance/student/{batch_id}',[AttendanceReportController::class,'getStudent']);
 
 
 

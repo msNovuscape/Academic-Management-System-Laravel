@@ -95,7 +95,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="pagination-section">
-{{--                                                        {{$settings->links()}}--}}
+                                                        {{$settings->links()}}
                                                     </div>
                                                 </div>
                                             </div>

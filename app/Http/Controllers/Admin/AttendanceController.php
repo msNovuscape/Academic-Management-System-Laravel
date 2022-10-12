@@ -121,8 +121,9 @@ class AttendanceController extends Controller
             return response()->json( array('success' => true,'message' => 'Attendance has been done !', 'html'=>$returnHTML) );
         }else{
             //attendance data is not available for given date
-            $settings = Student::whereHas('admission', function ($q) use ($batch) {
-                $q->where('batch_id', $batch->id);
+            $settings = Student::whereHas('admission', function ($q) use ($batch,$attendance_date) {
+                $q->where('batch_id', $batch->id)
+                    ->where('date','<=',$attendance_date);
             })->get();
             $returnHTML = view($this->view.'table.table_without_status',['settings'=> $settings,'attendance_date' => $attendance_date])->render();// or method that you prefere to return data + RENDER is the key here
             return response()->json( array('success' => true,'message' => 'Attendance has been done !', 'html'=>$returnHTML) );
