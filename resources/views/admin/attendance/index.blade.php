@@ -267,6 +267,7 @@
                                                 if(data['success']){
                                                     $('#attendance_table').remove();
                                                     $('#mytable').append(data['html']);
+                                                    mySelectAllInitiate();
                                                 }else {
                                                     errorDisplay(data['message']);
                                                 }
@@ -330,7 +331,8 @@
                                 success: function (data) {
                                     end_loader();
                                     $('#att_btn'+data['data']['id']).remove();
-                                    $('#td_status'+data['data']['id']).append(data['html'])
+                                    $('#td_status'+data['data']['id']).append(data['html']);
+                                    mySelectAllInitiate();
                                     successDisplay(data['message']);
                                 },
                                 error: function(error) {
