@@ -1059,11 +1059,13 @@ li {
 .status-table {
     background: #1aac4c;
     color: #fff;
-    padding: 10px;
+    padding: 8px 18px;
     border-radius: 4px;
     text-decoration: none;
 }
-
+.status-table:hover{
+    color: #FFE9F6;
+}
 .name-table {
     margin-left: 10px;
 }
@@ -1514,10 +1516,7 @@ label {
 
 /* .pagination */
 
-.pagination-section {
-    /* margin-top: 30px !important;
-    margin-bottom: 10px; */
-}
+
 
 .pagination-section .navigation span {
     border-radius: 4px;
