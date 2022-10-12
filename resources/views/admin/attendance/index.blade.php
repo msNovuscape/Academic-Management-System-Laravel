@@ -154,6 +154,15 @@
         select_all.addEventListener("change", function(e){
             for (i = 0; i < checkboxes.length; i++) {
                 checkboxes[i].checked = select_all.checked;
+                if(this.checked == true){
+                    var id = checkboxes[i].value;
+                    $('#student_row'+id).addClass('student active')
+                }
+                if(this.checked == false){
+                    var id = checkboxes[i].value;
+                    $('#student_row'+id).removeClass('student active')
+                }
+                // console.log(checkboxes[i].value)
             }
         });
 
@@ -163,10 +172,16 @@
                 //uncheck "select all", if one of the listed checkbox item is unchecked
                 if(this.checked == false){
                     select_all.checked = false;
+                    var id = $(this).val()
+                    $('#student_row'+id).removeClass('student active')
                 }
                 //check "select all" if all checkbox items are checked
                 if(document.querySelectorAll('.checkbox:checked').length == checkboxes.length){
                     select_all.checked = true;
+                }
+                if(this.checked == true){
+                    var id = $(this).val()
+                    $('#student_row'+id).addClass('student active')
                 }
             });
         }
@@ -252,6 +267,7 @@
                                                 if(data['success']){
                                                     $('#attendance_table').remove();
                                                     $('#mytable').append(data['html']);
+                                                    mySelectAllInitiate();
                                                 }else {
                                                     errorDisplay(data['message']);
                                                 }
@@ -315,7 +331,8 @@
                                 success: function (data) {
                                     end_loader();
                                     $('#att_btn'+data['data']['id']).remove();
-                                    $('#td_status'+data['data']['id']).append(data['html'])
+                                    $('#td_status'+data['data']['id']).append(data['html']);
+                                    mySelectAllInitiate();
                                     successDisplay(data['message']);
                                 },
                                 error: function(error) {

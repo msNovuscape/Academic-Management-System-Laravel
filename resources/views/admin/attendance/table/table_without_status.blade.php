@@ -15,7 +15,7 @@
     </thead>
     <tbody id="student_list">
     @foreach($settings as $setting)
-        <tr>
+        <tr id="student_row{{$setting->id}}">
             <td>
                 <div class="tblform-check">
                     <input class="checkbox" type="checkbox" value="{{$setting->id}}" id="form-check-input{{$loop->iteration}}">
