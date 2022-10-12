@@ -403,19 +403,29 @@ h2 {
     border-radius: 40px;
 }
 
-.sd-table .attendance-table {
-    border: 1px solid #FFE4F4 !important;
-    border-radius: 10px !important;
+.sd-table table tr:last-child{
+    border-bottom: #FFE9F6 !important;
 }
 
-.attendance-table thead th {
+.sd-table .table>:not(:last-child)>:last-child>*{
+    border-bottom-color: #FFE9F6 !important;
+}
+.attendance-table thead th{
     font-weight: 700 !important;
     font-size: 16px;
     background: #FFE9F6;
     color: #555555;
     padding: 20px;
 }
-
+.attendance-table tr{
+    text-align: center;
+}
+.attendance-table tbody td {
+    font-weight: 700 !important;
+    font-size: 14px;
+    color: #000000;
+    padding: 20px;
+}
 .calender-detail {
     background: #FFFFFF;
     border: 1px solid #BCBCBC;
@@ -437,11 +447,13 @@ h2 {
 .status-table-absent {
     background: rgba(230, 35, 149, 0.23);
     color: #E62395;
-    padding: 10px;
+    padding: 8px 18px;
     border-radius: 4px;
     text-decoration: none;
 }
-
+.status-table-absent:hover{
+    color: #1aac4c;
+}
 /* codepen */
 .wrapper {
     max-width: 1100px;
@@ -522,9 +534,6 @@ h2 {
     clear: both;
 }
 
-#previous {}
-
-#next {}
 
 .footer-container-calendar {
     margin-top: 1em;
