@@ -1800,16 +1800,16 @@ table tr:first-child td:last-child {
 .table-installment tr:first-child th:last-child {
     border-top-right-radius: 0px;
 }
-
-
+.student.active{
+    background: aliceblue;
+}
 .table-details table thead th {
-    padding: 10px;
     font-size: 14px;
     line-height: 1;
 }
 
 .table-details table tbody td {
-    padding: 5px;
+    padding: 20px;
     vertical-align: top;
     color: #030e1e;
     font-weight: 500;
