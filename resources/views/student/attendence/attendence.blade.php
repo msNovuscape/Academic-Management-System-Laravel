@@ -3,45 +3,45 @@
         <div class="row">
             <div class="filter-btnwrap justify-content-between">
                 <div class="d-flex">
-                    <div class="input-group">
-                        <span>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </span>
-                        <input type="text" class="form-control" id="inputText" placeholder="Search" name="fullname" value=""/>
-                    </div>
-                    <div class="filter-btn mx-4">
-                        <a href="" class="d-flex gap-2 text-decoration-none text-white">
-                            <img src="{{url('icons/union.svg')}}" class="icon" alt=""/>
-                            Filter
-                        </a>
-                    </div>
-                    <div class="filter-btn mx-2">
-                        <a href="" >
-                            <img src="{{url('icons/refresh-icon.svg')}}" alt=""/>
-                        </a>
-                    </div>
+{{--                    <div class="input-group">--}}
+{{--                        <span>--}}
+{{--                            <i class="fa-solid fa-magnifying-glass"></i>--}}
+{{--                        </span>--}}
+{{--                        <input type="text" class="form-control" id="inputText" placeholder="Search" name="fullname" value=""/>--}}
+{{--                    </div>--}}
+{{--                    <div class="filter-btn mx-4">--}}
+{{--                        <a href="" class="d-flex gap-2 text-decoration-none text-white">--}}
+{{--                            <img src="{{url('icons/union.svg')}}" class="icon" alt=""/>--}}
+{{--                            Filter--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                    <div class="filter-btn mx-2">--}}
+{{--                        <a href="" >--}}
+{{--                            <img src="{{url('icons/refresh-icon.svg')}}" alt=""/>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <div class="col-md-8">
                 <h1>Attendence Log Details</h1>
                 <div class="attendence-log  justify-content-between">
-                    <p>Daily Attendance Login details. Click on pen icon to edit</p>
-                    <div class="d-flex">
-                        <div>
-                            <p class="m-0">
-                                Show
-                            </p>
-                        </div>
-                        <div>
-                            <select class="mx-2 show-count">
-                                <option selected>10</option>
-                                <option value="1">10</option>
-                                <option value="2">20</option>
-                                <option value="3">30</option>
-                            </select>
-                        </div>
-                    </div>
-                    <p>Showing 1 - 11 of  100 results</p>
+                    <p>Daily Attendance Login details</p>
+{{--                    <div class="d-flex">--}}
+{{--                        <div>--}}
+{{--                            <p class="m-0">--}}
+{{--                                Show--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                        <div>--}}
+{{--                            <select class="mx-2 show-count">--}}
+{{--                                <option selected>10</option>--}}
+{{--                                <option value="1">10</option>--}}
+{{--                                <option value="2">20</option>--}}
+{{--                                <option value="3">30</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <p>Showing 1 - 11 of  100 results</p>--}}
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
@@ -51,43 +51,27 @@
                                     <table class="table attendance-table" id="">
                                         <thead>
                                         <tr>
-                                            <th>
-                                                <div class="tblform-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="">
-                                                </div>
-                                            </th>
                                             <th>S.N.</th>
-                                            <th>Day</th>
                                             <th>Date</th>
                                             <th>Status</th>
-                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                             <tbody id="student_list">
-                                            <tr>
-                                                <td>
-                                                    <div class="tblform-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                        <label class="form-check-label" for="flexCheckDefault"></label>
-                                                    </div>
-                                                </td>
-                                                <td>1</td>
-                                                <td>Tues</td>
-                                                <td>7th, june, 2022</td>
-                                                    <td style="display: block" id="present" onclick="replace('present','absent')">
-                                                        <a type="button" id="presentStudent" data-title="" class="status-table text-decoration-none">Present</a>
-                                                    </td>
-                                                    <td style="display: none" id="absent" onclick="replace('absent', 'present')">
-                                                        <a type="button" id="absentStudent" data-title="" class="status-table-absent text-decoration-none">Absent</a>
-                                                    </td>
-                                                <td>
-
-                                                    <a type="button" data-title="" class="text-decoration-none">
-                                                        <img src="{{url('icons/edit-icon.svg')}}">
-                                                    </a>
-                                                </td>
-                                            </tr>
-
+                                                @foreach($setting->attendances as $attendance)
+                                                    <tr>
+                                                        <td>{{$loop->iteration}}</td>
+                                                        <td>{{$attendance->date}}</td>
+                                                        @if($attendance->status == 1)
+                                                            <td>
+                                                                <a type="button"  class="status-table text-decoration-none">Present</a>
+                                                            </td>
+                                                        @else
+                                                            <td>
+                                                                <a type="button" class="status-table-absent text-decoration-none">Absent</a>
+                                                            </td>
+                                                        @endif
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                     </table>
                                 </div>
@@ -153,53 +137,49 @@
                     <h1>Records</h1>
                     <p>Attendance related records</p>
                     <div class="record-detail">
-                        <div class="row record-top">
-                            <div class="col-md-6">
-                                <div class="d-flex gap-1">
-                                    <div>
-                                        <img src="{{url('icons/time.svg')}}">
-                                    </div>
-                                    <div>
-                                        <h2>45 Hours </h2>
-                                    </div>
-                                </div>
-                                <p>Required Hours</p>
-                            </div>
-                            <div class="col-md-6 d-flex gap-4 justify-content-end">
-                                <div class="">
-                                    <div class="d-flex gap-1">
-                                        <div>
-                                            <img src="{{url('icons/time.svg')}}">
-                                        </div>
-                                        <div>
-                                            <h2>31.5 Hours  </h2>
-                                        </div>
-                                    </div>
-                                    <p>Remaining Hours</p>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="row record-top">--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <div class="d-flex gap-1">--}}
+{{--                                    <div>--}}
+{{--                                        <img src="{{url('icons/time.svg')}}">--}}
+{{--                                    </div>--}}
+{{--                                    <div>--}}
+{{--                                        <h2>45 Hours</h2>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <p>Required Hours</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-6 d-flex gap-4 justify-content-end">--}}
+{{--                                <div class="">--}}
+{{--                                    <div class="d-flex gap-1">--}}
+{{--                                        <div>--}}
+{{--                                            <img src="{{url('icons/time.svg')}}">--}}
+{{--                                        </div>--}}
+{{--                                        <div>--}}
+{{--                                            <h2>31.5 Hours  </h2>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <p>Remaining Hours</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <span class="line"></span>
                         <div class="record-bottom">
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Present</td>
                                     <td>:</td>
-                                    <td>9 Days</td>
+                                    <td>{{$setting->attendances->where('status',1)->count()}} Days</td>
                                 </tr>
                                 <tr>
                                     <td>Absent</td>
                                     <td>:</td>
-                                    <td>3 Days</td>
+                                    <td>{{$setting->attendances->where('status',2)->count()}} Days</td>
                                 </tr>
                                 <tr>
-                                    <td>Holidays</td>
-                                    <td>:</td>
-                                    <td>-</td>
-                                </tr><tr>
                                     <td>Hours</td>
                                     <td>:</td>
-                                    <td>13.5 Hours</td>
+                                    <td>{{$setting->attendances->where('status',1)->count() * ((strtotime($setting->admission->batch->time_slot->time_table->end_time) - strtotime($setting->admission->batch->time_slot->time_table->start_time)) / 3600)}} Hours</td>
                                 </tr>
                             </table>
                         </div>

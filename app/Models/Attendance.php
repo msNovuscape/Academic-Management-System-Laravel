@@ -9,10 +9,11 @@ class Attendance extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','student_id','status','symbol','date'];
+    protected $fillable = ['user_id', 'student_id', 'status', 'symbol', 'date'];
 
     public function student()
     {
-        return $this->belongsTo(Student::class,'student_id');
+        return $this->belongsTo(Student::class, 'student_id');
     }
+
 }
