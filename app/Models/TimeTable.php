@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TimeTable extends Model
 {
     use HasFactory;
+
+    public function time_slots() {
+        return $this->hasMany(TimeSlot::class);
+    }
 }

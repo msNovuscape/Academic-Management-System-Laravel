@@ -79,6 +79,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('timetables', [TimeTableController::class,'store']);
     Route::get('timetables/{id}/edit', [TimeTableController::class,'edit']);
     Route::post('timetables/{id}', [TimeTableController::class,'update']);
+    Route::get('timetables/delete/{id}', [TimeTableController::class,'delete']);
 
     Route::get('fiscal-years/', [FiscalYearController::class,'index']);
     Route::get('fiscal-years/create', [FiscalYearController::class,'create']);
