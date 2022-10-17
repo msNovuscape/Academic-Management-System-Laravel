@@ -65,8 +65,20 @@ class BatchController extends Controller
     public function update(BatchRequest $request, $id)
     {
         $validatedData = $request->validated();
-        $this->batchService->updateData($validatedData,$id);
-        Session::flash('success','Batch has been updated!');
+        $this->batchService->updateData($validatedData, $id);
+        Session::flash('success', 'Batch has been updated!');
+        return redirect($this->redirect);
+    }
+
+    public function delete($id)
+    {
+        $setting = Batch::findOrFail($id);
+        if ($setting->admissions->count() > 0) {
+            Session::flash('custom_error', 'The Batch has been assigned to Student!');
+        }else {
+            $setting->delete();
+            Session::flash('success', 'The Batch has been delete!');
+        }
         return redirect($this->redirect);
     }
 }

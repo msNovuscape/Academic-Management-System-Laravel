@@ -95,6 +95,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('batches/{id}', [BatchController::class,'show']);
     Route::get('batches/{id}/edit', [BatchController::class,'edit']);
     Route::post('batches/{id}', [BatchController::class,'update']);
+    Route::get('batches/delete/{id}', [BatchController::class,'delete']);
 
     Route::get('admissions', [AdmissionController::class,'index']);
     Route::get('admissions/create', [AdmissionController::class,'create']);

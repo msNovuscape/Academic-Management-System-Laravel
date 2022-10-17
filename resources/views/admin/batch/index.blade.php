@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </form>
-                    <div>
+                    <div class="mt-1">
                         @include('success.success')
                         @include('errors.error')
                     </div>
@@ -79,6 +79,9 @@
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                     <li>
                                                                         <a class="dropdown-item"   href="{{url('batches/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i>Edit</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="dropdown-item"   role="button" onclick="myConfirm({{$setting->id}})"><i class="fa-solid fa-trash"></i>Delete</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -151,6 +154,26 @@
             }
             }
         }
+        }
+
+        function myConfirm(id){
+            $.confirm({
+                title: 'Do you sure want to delete?',
+                content: false,
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Delete',
+                        btnClass: 'btn-red',
+                        action: function(){
+                            window.location = Laravel.url+'/batches/delete/'+id;
+                        }
+                    },
+                    close: function () {
+                    }
+                }
+            });
         }
     </script>
 @endsection
