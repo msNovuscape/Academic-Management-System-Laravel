@@ -52,4 +52,17 @@ class TimeSlotController extends Controller
         Session::flash('success','Time Slot has been Updated!');
         return redirect($this->redirect);
     }
+
+    public function delete($id)
+    {
+        $setting = TimeSlot::findOrFail($id);
+        if ($setting->batches->count() > 0) {
+            Session::flash('custom_error', 'The time slot is assigned to batch!');
+        }else {
+
+            $setting->delete();
+            Session::flash('success', 'The time slot has been delete!');
+        }
+        return redirect($this->redirect);
+    }
 }

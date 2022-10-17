@@ -72,6 +72,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('timeslots', [TimeSlotController::class,'store']);
     Route::get('timeslots/{id}/edit', [TimeSlotController::class,'edit']);
     Route::post('timeslots/{id}', [TimeSlotController::class,'update']);
+    Route::get('timeslots/delete/{id}', [TimeSlotController::class,'delete']);
 
     Route::get('timetables', [TimeTableController::class,'index']);
     Route::get('timetables/create', [TimeTableController::class,'create']);
