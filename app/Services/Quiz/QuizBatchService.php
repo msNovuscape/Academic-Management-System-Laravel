@@ -1,7 +1,9 @@
 <?php
 namespace App\Services\Quiz;
 
+use App\Models\BatchQuizResult;
 use App\Models\QuizQuestion;
+use App\Models\QuizQuestionAnswer;
 use App\Models\StudentQuizBatch;
 use App\Models\StudentQuizQuestionBatch;
 use App\Models\StudentQuizQuestionBatchAnswer;
@@ -83,4 +85,49 @@ class QuizBatchService{
             throw $e;
         }
     }
+
+    //store quiz result
+    public function quizBatchResult()
+    {
+        if (Session::has('student_quiz_batch_id')) {
+            $studentQuizBatchId = Session::get('student_quiz_batch_id');
+        }
+        $setting = StudentQuizBatch::findOrFail($studentQuizBatchId);
+        if (!$setting->batch_quiz_result) {
+            $count = 0;
+            foreach ($setting->student_quiz_question_batches_list as $sqqi) {
+                $my_result = self::ans_right_or_wrong($sqqi->id);
+                if ($my_result == 'Correct') {
+                    $count = $count +1;
+                }
+            }
+            $batchQuizResult = new BatchQuizResult();
+            $batchQuizResult->student_quiz_batch_id  = $setting->id;
+            $batchQuizResult->total_question_attempted  = $setting->student_quiz_question_batches_list->count();
+            $batchQuizResult->score  = $count;
+            $batchQuizResult->save();
+            return $batchQuizResult;
+        }
+
+
+    }
+
+    public static  function ans_right_or_wrong($student_quiz_question_individual_id)
+    {
+        $result = 'Correct';
+        $sqqi = StudentQuizQuestionBatch::findOrFail($student_quiz_question_individual_id);
+        foreach ($sqqi->student_quiz_question_batch_answers as $ans1) {
+            $quiz_question_ans = QuizQuestionAnswer::where('quiz_question_id', $sqqi->quiz_question_id)
+                ->where('quiz_option_id', $ans1->quiz_option_id)->get();
+            if (count($quiz_question_ans) > 0 ) {
+                $result = 'Correct';
+            } else {
+                $result = 'Incorrect';
+                break;
+            }
+        }
+        return $result;
+    }
+
+
 }

@@ -1,7 +1,9 @@
 <?php
 namespace App\Services\Quiz;
 
+use App\Models\IndividualQuizResult;
 use App\Models\QuizQuestion;
+use App\Models\QuizQuestionAnswer;
 use App\Models\StudentQuizIndividual;
 use App\Models\StudentQuizQuestionIndividual;
 use App\Models\StudentQuizQuestionIndividualAnswer;
@@ -81,6 +83,48 @@ class QuizIndividualService{
             DB::rollback();
             throw $e;
         }
+    }
+
+    //store quiz result
+
+    public function quizIndividualResult()
+    {
+        if (Session::has('student_quiz_individual_id')) {
+            $studentQuizIndividualId = Session::get('student_quiz_individual_id');
+        }
+        $setting = StudentQuizIndividual::findOrFail($studentQuizIndividualId);
+        if (!$setting->individual_quiz_result) {
+            $count = 0;
+            foreach ($setting->student_quiz_question_individuals_list as $sqqi) {
+                $my_result = self::ans_right_or_wrong($sqqi->id);
+                if ($my_result == 'Correct') {
+                    $count = $count +1;
+                }
+            }
+            $individual_quiz_result = new IndividualQuizResult();
+            $individual_quiz_result->s_q_individual_id  = $setting->id;
+            $individual_quiz_result->total_question_attempted  = $setting->student_quiz_question_individuals_list->count();
+            $individual_quiz_result->score  = $count;
+            $individual_quiz_result->save();
+            return $individual_quiz_result;
+        }
+    }
+
+    public static  function ans_right_or_wrong($student_quiz_question_individual_id)
+    {
+        $result = 'Correct';
+        $sqqi = StudentQuizQuestionIndividual::findOrFail($student_quiz_question_individual_id);
+        foreach ($sqqi->student_quiz_question_individual_answers as $ans1){
+            $quiz_question_ans = QuizQuestionAnswer::where('quiz_question_id',$sqqi->quiz_question_id)
+                ->where('quiz_option_id',$ans1->quiz_option_id)->get();
+            if (count($quiz_question_ans) > 0) {
+                $result = 'Correct';
+            } else {
+                $result = 'Incorrect';
+                break;
+            }
+        }
+        return $result;
     }
 
 }

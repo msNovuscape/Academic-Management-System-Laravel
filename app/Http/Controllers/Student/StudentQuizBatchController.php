@@ -23,9 +23,9 @@ class StudentQuizBatchController extends Controller
     {
         $this->quizBatchService = $service;
     }
-    public function postQuiz()
+    public function postQuiz ()
     {
-       $this->validate(\request(),[
+       $this->validate(\request(), [
            'quiz_batch_id' => 'required|numeric',
            'admission_id' => 'required|numeric'
        ]);
@@ -145,16 +145,16 @@ class StudentQuizBatchController extends Controller
     {
 //        $option_ids = json_decode(\request('option_id'));
 //        return response()->json(['data' => request()->all(),'option_id' => $option_ids]);
-        $this->validate(request(),[
+        $this->validate(request(), [
             'quiz_question_id' =>'required|numeric',
             'option_id' =>'required',
             'quiz_question_count' =>'required|numeric',
         ]);
         $option_ids = json_decode(\request('option_id'));
-        if(Session::has('student_quiz_batch_id')){
+        if (Session::has('student_quiz_batch_id')) {
             $setting = $this->quizBatchService->storeQuizAnswer($option_ids);
             $quiz_question  = QuizQuestion::where('id', '>', $setting->quiz_question_id)->where('quiz_id',$setting->quiz_question->quiz->id)->orderBy('id')->get();
-            if($quiz_question->count() > 0){
+            if($quiz_question->count() > 0) {
                 $quiz_question = $quiz_question->first();
                 $no_of_right_answers = $quiz_question->quiz_question_answers->count();
                 $question_count = request('quiz_question_count') +1;
@@ -162,17 +162,18 @@ class StudentQuizBatchController extends Controller
                 $newButtonHtml = view($this->view.'new_button_dom',['quiz_question' => $quiz_question])->render();
                 return response()->json(array('success' =>true, 'html' => $returnHtml,'button' => $newButtonHtml,'no_of_right_answers' =>$no_of_right_answers,'quiz_status' => 'Yes'));
 //                return view($this->view.'index',compact('quiz_question','question_count','total_question','time_period','no_of_right_answers'));
-            }else{
+            } else {
                 $setting->student_quiz_batch->status = '1';
                 $setting->student_quiz_batch->save();
+                $this->quizBatchService->quizBatchResult();
                 Session::forget('student_quiz_batch_id');
-                Session::flash('success','Dear student you have successfully given the exam !');
-                return response()->json(['quiz_status' => 'No'],200);
+                Session::flash('success', 'Dear student you have successfully given the exam !');
+                return response()->json(['quiz_status' => 'No'], 200);
             }
 
-        }else{
+        } else {
             Session::forget('student_quiz_batch_id');
-            Session::flash('custom_success','Your session has been expired!');
+            Session::flash('custom_success', 'Your session has been expired!');
             return redirect('student');
         }
 
@@ -184,17 +185,18 @@ class StudentQuizBatchController extends Controller
 
     public function quizBatchTimeOut()
     {
-        if(Session::has('student_quiz_batch_id')){
+        if (Session::has('student_quiz_batch_id')) {
             $student_quiz_batch_id = Session::get('student_quiz_batch_id');
             $student_quiz_batch = StudentQuizBatch::findOrFail($student_quiz_batch_id);
             $student_quiz_batch->status = '1';
             $student_quiz_batch->save();
+            $this->quizBatchService->quizBatchResult();
             Session::forget('student_quiz_batch_id');
-            Session::flash('success','Dear student your quiz time has been exceeded!');
-            return response()->json(['quiz_status' => 'No'],200);
-        }else{
+            Session::flash('success', 'Dear student your quiz time has been exceeded!');
+            return response()->json(['quiz_status' => 'No'], 200);
+        } else {
             Session::forget('student_quiz_batch_id');
-            Session::flash('custom_success','Your session has been expired!');
+            Session::flash('custom_success', 'Your session has been expired!');
             return redirect('student');
         }
     }
@@ -204,11 +206,11 @@ class StudentQuizBatchController extends Controller
         $setting = StudentQuizBatch::findOrFail($id);
 //        $my_settings = $setting->student_quiz_question_batches_list;
         $my_settings = StudentQuizQuestionBatch::where('student_quiz_batch_id',$setting->id)->paginate(config('custom.per_page'));
-        if(!$setting->batch_quiz_result){
+        if (!$setting->batch_quiz_result) {
             $count = 0;
             foreach ($setting->student_quiz_question_batches_list as $sqqi){
                 $my_result = self::ans_right_or_wrong($sqqi->id);
-                if($my_result == 'Correct'){
+                if ($my_result == 'Correct') {
                     $count = $count +1;
                 }
             }
@@ -217,21 +219,21 @@ class StudentQuizBatchController extends Controller
             $individual_quiz_result->total_question_attempted  = $setting->student_quiz_question_batches_list->count();
             $individual_quiz_result->score  = $count;
             $individual_quiz_result->save();
-            return view('student.quiz_score.score_batch',compact('setting','individual_quiz_result','my_settings'));
+            return view('student.quiz_score.score_batch', compact('setting','individual_quiz_result','my_settings'));
         }
-        return view('student.quiz_score.score_batch',compact('setting','my_settings'));
+        return view('student.quiz_score.score_batch', compact('setting','my_settings'));
     }
 
     public static  function ans_right_or_wrong($student_quiz_question_individual_id)
     {
         $result = 'Correct';
         $sqqi = StudentQuizQuestionBatch::findOrFail($student_quiz_question_individual_id);
-        foreach ($sqqi->student_quiz_question_batch_answers as $ans1){
-            $quiz_question_ans = QuizQuestionAnswer::where('quiz_question_id',$sqqi->quiz_question_id)
-                ->where('quiz_option_id',$ans1->quiz_option_id)->get();
-            if(count($quiz_question_ans) > 0){
+        foreach ($sqqi->student_quiz_question_batch_answers as $ans1) {
+            $quiz_question_ans = QuizQuestionAnswer::where('quiz_question_id', $sqqi->quiz_question_id)
+                ->where('quiz_option_id', $ans1->quiz_option_id)->get();
+            if (count($quiz_question_ans) > 0 ) {
                 $result = 'Correct';
-            }else{
+            } else {
                 $result = 'Incorrect';
                 break;
             }

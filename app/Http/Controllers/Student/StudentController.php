@@ -11,9 +11,12 @@ use App\Models\Country;
 use App\Models\CourseMaterial;
 use App\Models\Student;
 use App\Models\Student as Model;
+use App\Models\StudentQuizBatch;
+use App\Services\Quiz\QuizBatchService;
 use App\Services\Student\EnrollmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
@@ -33,11 +36,27 @@ class StudentController extends Controller
 
     public function index()
     {
-        if(Auth::user()->student){
+        if (Auth::user()->student) {
             $setting = Auth::user()->student;
             $countries = Country::all();
-            return view($this->view.'index',compact('setting','countries'));
-        }else{
+//            $studentQuizBatches = Auth::user()->admission->student_quiz_batches;
+//            $studentQuizBatches = $studentQuizBatches->join('batch_quiz_results', 'student_quiz_batches.id', '!=', 'batch_quiz_results.student_quiz_batch_id');
+////            dd(print_r($studentQuizBatches));
+//            $tests = DB::table('student_quiz_batches')
+//                ->join('batch_quiz_results', 'student_quiz_batches.id', '!=', 'batch_quiz_results.student_quiz_batch_id')
+//                ->select('student_quiz_batches.*')
+//                ->get();
+//            dd($tests);
+//            if ($studentQuizBatches->count() > 0) {
+//                foreach ($studentQuizBatches as $studentQuizBatch) {
+//                    if (!$studentQuizBatch->batch_quiz_result) {
+//                        $quizBatchService = new QuizBatchService();
+//                        $quizBatchService->quizBatchResult($studentQuizBatch);
+//                    }
+//                }
+//            }
+            return view($this->view.'index', compact('setting', 'countries'));
+        } else {
             return redirect('');
         }
 

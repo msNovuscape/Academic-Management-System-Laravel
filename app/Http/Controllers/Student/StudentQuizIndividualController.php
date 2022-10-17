@@ -165,17 +165,18 @@ class StudentQuizIndividualController extends Controller
                 $newButtonHtml = view($this->view.'new_button_dom',['quiz_question' => $quiz_question])->render();
                 return response()->json(array('success' =>true, 'html' => $returnHtml,'button' => $newButtonHtml,'no_of_right_answers' =>$no_of_right_answers,'quiz_status' => 'Yes'));
 //                return view($this->view.'index',compact('quiz_question','question_count','total_question','time_period','no_of_right_answers'));
-            }else{
+            } else {
                 $setting->student_quiz_Individual->status = '1';
                 $setting->student_quiz_Individual->save();
+                $this->quizIndividualService->quizIndividualResult();
                 Session::forget('student_quiz_individual_id');
-                Session::flash('success','Dear student you have successfully given the exam !');
-                return response()->json(['quiz_status' => 'No'],200);
+                Session::flash('success', 'Dear student you have successfully given the exam !');
+                return response()->json(['quiz_status' => 'No'], 200);
             }
 
-        }else{
+        } else {
             Session::forget('student_quiz_individual_id');
-            Session::flash('custom_success','Your session has been expired!');
+            Session::flash('custom_success', 'Your session has been expired!');
             return redirect('student');
         }
 
@@ -192,12 +193,13 @@ class StudentQuizIndividualController extends Controller
             $student_quiz_individual = StudentQuizIndividual::findOrFail($student_quiz_individual_id);
             $student_quiz_individual->status = '1';
             $student_quiz_individual->save();
+            $this->quizIndividualService->quizIndividualResult();
             Session::forget('student_quiz_individual_id');
-            Session::flash('success','Dear student your quiz time has been exceeded!');
-            return response()->json(['quiz_status' => 'No'],200);
-        }else{
+            Session::flash('success', 'Dear student your quiz time has been exceeded!');
+            return response()->json(['quiz_status' => 'No'], 200);
+        } else {
             Session::forget('student_quiz_individual_id');
-            Session::flash('custom_success','Your session has been expired!');
+            Session::flash('custom_success', 'Your session has been expired!');
             return redirect('student');
         }
     }
@@ -219,8 +221,9 @@ class StudentQuizIndividualController extends Controller
             $individual_quiz_result->s_q_individual_id  = $setting->id;
             $individual_quiz_result->total_question_attempted  = $setting->student_quiz_question_individuals_list->count();
             $individual_quiz_result->score  = $count;
-            $individual_quiz_result->save();
-            return view('student.quiz_score.score_individual',compact('setting','individual_quiz_result','my_settings'));
+            if($individual_quiz_result->save()){
+                return view('student.quiz_score.score_individual',compact('setting','individual_quiz_result','my_settings'));
+            }
         }
         return view('student.quiz_score.score_individual',compact('setting','my_settings'));
     }

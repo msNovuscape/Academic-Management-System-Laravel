@@ -83,31 +83,6 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-1 d-flex align-items-center p-0">
-                                            <div class="tbl-buttons">
-                                                <div class="export-button">
-                                                    <div class="dropdown-export">
-                                                        <button type="submit" name="submit" onclick="submit;" class="student-btn d-flex">
-                                                            <img src="{{url('images/export-icon.png')}}" alt=""/>Export
-                                                        </button>
-                                                        <div class="dropdown-content-export">
-                                                            <ul>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        Export.csv
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        Export.pdf
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
