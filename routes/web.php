@@ -65,7 +65,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('courses', [CourseController::class,'store']);
     Route::get('courses/{id}/edit', [CourseController::class,'edit']);
     Route::post('courses/{id}', [CourseController::class,'update']);
-    Route::get('batch_test', [CourseController::class,'batch_test']);
+    Route::get('courses/delete/{id}', [CourseController::class,'delete']);
 
     Route::get('timeslots', [TimeSlotController::class,'index']);
     Route::get('timeslots/create', [TimeSlotController::class,'create']);

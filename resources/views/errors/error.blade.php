@@ -22,3 +22,15 @@
         </div>
     </div>
 @endif
+@if(session()->has('custom_error'))
+    <div class="alert alert-danger">
+        <div>
+            <button type="button"  data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div>
+            <strong>Error!</strong>  {{ session()->get('custom_error') }}
+        </div>
+    </div>
+@endif
