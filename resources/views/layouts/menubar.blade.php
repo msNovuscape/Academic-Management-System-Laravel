@@ -52,7 +52,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="{{url('change-password')}}">
                                             Change Password
                                         </a>
                                     </li>

@@ -27,6 +27,7 @@ use App\Http\Controllers\Student\StudentQuizBatchController;
 use App\Http\Controllers\Student\StudentQuizIndividualController;
 use App\Http\Controllers\Report\AttendanceReportController;
 use App\Http\Controllers\ForgetPasswordController;
+use App\Http\Controllers\ChangePasswordController;
 
 
 
@@ -53,7 +54,11 @@ Route::post('forgot-password', [ForgetPasswordController::class,'sendLink'])->mi
 Route::get('reset-password/{token}', [ForgetPasswordController::class,'reset'])->middleware('guest')->name('password.reset');
 Route::post('reset-password', [ForgetPasswordController::class,'postReset'])->middleware('guest');
 
-Route::group(['middleware'=>['auth']],function (){
+Route::group(['middleware'=>['auth']], function () {
+    //routes for change password
+    Route::get('change-password', [ChangePasswordController::class,'index']);
+    Route::post('change-password', [ChangePasswordController::class,'changePassword']);
+
     Route::get('logout', [LoginController::class,'logout']);
     Route::get('courses', [CourseController::class,'index']);
     Route::get('courses/create', [CourseController::class,'create']);
