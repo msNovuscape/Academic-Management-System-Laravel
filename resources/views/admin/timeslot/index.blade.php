@@ -27,7 +27,7 @@
                                             <input type="text" class="form-control"  placeholder="Search by Day or Time" name="name" onchange="filterList()"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">   
+                                    <div class="col-md-4">
                                         <div class="input-group">
                                             <span>
                                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -43,7 +43,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">   
+                                    <div class="col-md-4">
                                         <div class="input-group">
                                             <span>
                                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -57,15 +57,6 @@
                                             <span>
                                                 <i class="fa-solid fa-caret-down"></i>
                                             </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <div class="row">
-                                            <div class="refresh-btn refresh-btn-small">
-                                                <a href="">
-                                                    <img src="{{url('images/refresh-icon.png')}}" alt=""/>
-                                                </a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('main-panel')
-    <a href="{{}}">Welcome Auth User !</a>
+    <a href="{{}}">Welcome to Dashboard!</a>
 @endsection

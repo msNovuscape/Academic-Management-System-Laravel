@@ -1,6 +1,6 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#dashboard" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" href="{{url('')}}" aria-expanded="false" aria-controls="ui-basic">
             <div class="sidebar-icon">
                 <img src="{{url('images/dashboard-icon.png')}}" alt="sidebar-icon"/>
                 <span class="menu-title">Dashboard</span>

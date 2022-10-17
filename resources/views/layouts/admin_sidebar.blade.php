@@ -1,6 +1,6 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="{{url('')}}" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" href="{{url('')}}" aria-expanded="false" aria-controls="ui-basic">
             <div class="sidebar-icon">
                 <i class="bi bi-speedometer"></i>
                 <span class="menu-title">Dashboard</span>
