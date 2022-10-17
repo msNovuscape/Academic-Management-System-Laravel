@@ -128,8 +128,6 @@
         }
 
         function myConfirm(id){
-            debugger;
-            // event.preventDefault();
             $.confirm({
                 title: 'Do you sure want to delete?',
                 content: false,
