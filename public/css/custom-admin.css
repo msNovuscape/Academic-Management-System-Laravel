@@ -885,6 +885,10 @@ ul.admin-breadcrumb li+li::before{
 ul.admin-breadcrumb li a:hover{
     text-decoration: underline;
 }
+ul.admin-breadcrumb li{
+    font-size: 14px;
+    font-weight: 400;
+}
 .card-wrap-bs-none {
     box-shadow: none;
 }
