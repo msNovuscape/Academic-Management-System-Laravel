@@ -872,7 +872,19 @@ li {
 .content-wrapper-bg {
     background: #F4F7FF !important;
 }
-
+.admin-breadcrumb{
+    display: flex;
+    gap: 10px;
+}
+ul.admin-breadcrumb li+li::before{
+    padding-right: 8px;
+    color: black;
+    content: "\f105";
+    font-family: FontAwesome;
+}
+ul.admin-breadcrumb li a:hover{
+    text-decoration: underline;
+}
 .card-wrap-bs-none {
     box-shadow: none;
 }

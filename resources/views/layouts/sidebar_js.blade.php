@@ -77,6 +77,10 @@
                 var x = document.getElementById('icon-toggle-report');
                 x.classList.toggle("fa-angle-right");
             });
+            $('#attendence').click(function(){
+                console.log("clciked")
+                $('#attendence').addClass('active')
+            })
         });
     </script>
 

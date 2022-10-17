@@ -8,13 +8,17 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 stretch-card">
                     <div class="row">
-                        <div class="card-heading">
+                        <div class="card-heading d-flex justify-content-between">
                             <div>
                                 <h4>Student Lists</h4>
                                 <p>
                                     You can search the student by <a href="#" class="card-heading-link">name or student id, course, batch, date</a> and can view all available admission records.
                                 </p>
                             </div>
+                            <ul class="admin-breadcrumb">
+                                <li><a href="/" class="card-heading-link">Home</a></li>
+                                <li>Admission</li>
+                            </ul>
                         </div>
                         <form id="search">
                             <div class="row">

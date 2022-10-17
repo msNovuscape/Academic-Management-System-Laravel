@@ -51,9 +51,9 @@
             </ul>
         </div>
     </li> -->
-    <li class="nav-item">
+    <li class="nav-item @if(Request::segment(1) == 'fiscal-years' || Request::segment(1) == 'courses' || Request::segment(1) == 'timetables' || Request::segment(1) == 'timeslots' ) active @endif ">
         <a class="nav-link">
-            <div class="sidebar-icon @if(Request::segment(1) == 'settings') active @endif w-100" id="mySettingsBtn">
+            <div class="sidebar-icon w-100" id="mySettingsBtn">
                 <i class="bi bi-gear"></i>
                 <span class="menu-title w-100">Settings<i class="fa-solid fa-angle-down" id="icon-toggle-settings"></i></span>
             </div>
@@ -75,9 +75,9 @@
             </ul>
         </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item @if(Request::segment(1) == 'batches') active @endif">
         <a class="nav-link">
-            <div class="sidebar-icon @if(Request::segment(1) == 'batches') active @endif w-100" id="myBtnBatch">
+            <div class="sidebar-icon w-100" id="myBtnBatch">
             <i class="bi bi-grid"></i>
                 <span class="menu-title w-100">Batch<i class="fa-solid fa-angle-down" id="icon-toggle-batch"></i></span>
             </div>
@@ -90,9 +90,9 @@
             </ul>
         </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item @if(Request::segment(1) == 'admissions') active @endif ">
         <a class="nav-link" href="{{url('admissions')}}">
-            <div class="sidebar-icon  @if(Request::segment(1) == 'admissions') active @endif w-100" id="myBtnAdmission">
+            <div class="sidebar-icon w-100" id="myBtnAdmission">
                 <i class="bi bi-card-checklist"></i>
                 <span class="menu-title w-100">Admission</span>
             </div>
@@ -116,9 +116,9 @@
 {{--            </ul>--}}
 {{--        </div>--}}
 {{--    </li>--}}
-    <li class="nav-item">
+    <li class="nav-item @if(Request::segment(1) == 'finances') active @endif ">
         <a class="nav-link">
-            <div class="sidebar-icon @if(Request::segment(1) == 'finance') active @endif w-100" id="myFinanceBtn">
+            <div class="sidebar-icon w-100" id="myFinanceBtn">
                 <i class="fa-solid fa-cash-register"></i>
                 <span class="menu-title w-100">Finance<i class="fa-solid fa-angle-down" id="icon-toggle-finance"></i></span>
             </div>
@@ -143,9 +143,9 @@
             </ul>
         </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item @if(Request::segment(1) == 'course-materials' || Request::segment(1) == 'batch-course-materials') active @endif">
         <a class="nav-link">
-            <div class="sidebar-icon @if(Request::segment(1) == 'materials') active @endif w-100" id="myMaterialsBtn">
+            <div class="sidebar-icon  w-100" id="myMaterialsBtn">
                 <i class="fa-solid fa-book"></i>
                 <span class="menu-title w-100">Materials<i class="fa-solid fa-angle-down" id="icon-toggle-materials"></i></span>
             </div>
@@ -175,7 +175,7 @@
             </ul>
         </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item @if(Request::segment(1) == 'attendance') active @endif">
         <a class="nav-link" href="{{url('attendance')}}">
             <div class="sidebar-icon  @if(Request::segment(1) == 'attendance') active @endif w-100" >
                 <i class="bi bi-card-checklist"></i>
@@ -183,30 +183,30 @@
             </div>
         </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item @if(Request::segment(1) == 'quiz' || Request::segment(1) =='quiz_batch' || Request::segment(1) =='quiz_individual') active @endif">
         <a class="nav-link" href="#">
-            <div class="sidebar-icon @if(Request::segment(1) == 'quiz') active @endif w-100" id="myBtnQuiz">
+            <div class="sidebar-icon  w-100" id="myBtnQuiz">
                 <i class="bi bi-trophy"></i>
                 <span class="menu-title w-100">Quiz Management<i class="fa-solid fa-angle-down" id="icon-toggle-quiz"></i></span>
             </div>
         </a>
         <div class="collapse" id="myCollapseQuiz">
             <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                    <a class="nav-link @if(Request::segment(1) == 'quiz') active @endif" href="{{url('quiz')}}">List of Quiz</a>
+                <li class="nav-item @if(Request::segment(1) == 'quiz') active @endif">
+                    <a class="nav-link " href="{{url('quiz')}}">List of Quiz</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link @if(Request::segment(1) == 'quiz') active @endif"  href="{{url('quiz_batch')}}">Quiz To Group</a>
+                <li class="nav-item  @if(Request::segment(1) == 'quiz_batch') active @endif">
+                    <a class="nav-link"  href="{{url('quiz_batch')}}">Quiz To Group</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link @if(Request::segment(1) == 'quiz') active @endif"  href="{{url('quiz_individual')}}">Quiz To Individual</a>
+                <li class="nav-item @if(Request::segment(1) == 'quiz_individual') active @endif">
+                    <a class="nav-link"  href="{{url('quiz_individual')}}">Quiz To Individual</a>
                 </li>
             </ul>
         </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item @if(Request::segment(1) == 'reports') active @endif ">
         <a class="nav-link">
-            <div class="sidebar-icon @if(Request::segment(1) == 'reports') active @endif w-100" id="myReportBtn">
+            <div class="sidebar-icon w-100" id="myReportBtn">
                 <i class="bi bi-file-earmark-text"></i>
                 <span class="menu-title w-100">Reports<i class="fa-solid fa-angle-down" id="icon-toggle-report"></i></span>
             </div>
