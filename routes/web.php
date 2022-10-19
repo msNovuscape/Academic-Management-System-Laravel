@@ -60,6 +60,15 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('change-password', [ChangePasswordController::class,'changePassword']);
 
     Route::get('logout', [LoginController::class,'logout']);
+});
+
+//routes for admin
+Route::group(['middleware'=>['myAdmin']], function () {
+//    //routes for change password
+//    Route::get('change-password', [ChangePasswordController::class,'index']);
+//    Route::post('change-password', [ChangePasswordController::class,'changePassword']);
+//
+//    Route::get('logout', [LoginController::class,'logout']);
     Route::get('courses', [CourseController::class,'index']);
     Route::get('courses/create', [CourseController::class,'create']);
     Route::post('courses', [CourseController::class,'store']);
@@ -180,33 +189,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('attendance_by_date', [AttendanceController::class,'attendanceByDate']); //ajax call for update single attendance
     Route::post('attendance_by_name', [AttendanceController::class,'getStudentSearch']); //ajax call for search student by name
 
-//    Routes for students
-    Route::group(['middleware'=>'student','prefix'=>'student'],function (){
-        Route::get('', [StudentController::class,'index']);
-        Route::get('new-password', [StudentController::class,'getNewPassword']);
-        Route::post('new-password', [StudentController::class,'postNewPassword']);
-        Route::get('enrollments', [StudentController::class,'getEnroll']);
-        Route::post('enrollments', [StudentController::class,'postEnroll']);
-        Route::post('update/{id}', [StudentController::class,'update']);
 
-        Route::get('materials', [StudentController::class,'getMaterial']);
-
-        //routes for quiz for batch students
-        Route::post('student_quiz_batch', [StudentQuizBatchController::class,'postQuiz']); //ajax call to initiate quiz
-        Route::get('quiz_exam', [StudentQuizBatchController::class,'getQuiz']);
-        Route::post('student_quiz_batch_next_question', [StudentQuizBatchController::class,'getNextQuestion']);
-        Route::post('student_quiz_batch_time_out', [StudentQuizBatchController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
-        Route::get('quiz_batch/{id}', [StudentQuizBatchController::class,'quizBatchResult']);
-
-        //routes for quiz for individual students
-        Route::post('student_quiz_individual', [StudentQuizIndividualController::class,'postQuiz']); //ajax call to initiate quiz
-        Route::get('my_quiz_exam', [StudentQuizIndividualController::class,'getQuiz']);
-        Route::post('student_quiz_individual_next_question', [StudentQuizIndividualController::class,'getNextQuestion']);
-        Route::post('student_quiz_individual_time_out', [StudentQuizIndividualController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
-        Route::get('quiz_individual/{id}', [StudentQuizIndividualController::class,'quizIndividualResult']);
-
-
-    });
 
     //routes for student finance
     Route::get('finances', [FinanceController::class,'index']);
@@ -241,8 +224,32 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('reports/attendance', [AttendanceReportController::class,'report']);
     Route::get('reports/attendance/batch/{course_id}', [AttendanceReportController::class,'getBatch']);
     Route::get('reports/attendance/student/{batch_id}', [AttendanceReportController::class,'getStudent']);
+});
 
+//    Routes for students
+Route::group(['middleware'=>'student','prefix'=>'student'],function (){
+    Route::get('', [StudentController::class,'index']);
+    Route::get('new-password', [StudentController::class,'getNewPassword']);
+    Route::post('new-password', [StudentController::class,'postNewPassword']);
+    Route::get('enrollments', [StudentController::class,'getEnroll']);
+    Route::post('enrollments', [StudentController::class,'postEnroll']);
+    Route::post('update/{id}', [StudentController::class,'update']);
 
+    Route::get('materials', [StudentController::class,'getMaterial']);
+
+    //routes for quiz for batch students
+    Route::post('student_quiz_batch', [StudentQuizBatchController::class,'postQuiz']); //ajax call to initiate quiz
+    Route::get('quiz_exam', [StudentQuizBatchController::class,'getQuiz']);
+    Route::post('student_quiz_batch_next_question', [StudentQuizBatchController::class,'getNextQuestion']);
+    Route::post('student_quiz_batch_time_out', [StudentQuizBatchController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
+    Route::get('quiz_batch/{id}', [StudentQuizBatchController::class,'quizBatchResult']);
+
+    //routes for quiz for individual students
+    Route::post('student_quiz_individual', [StudentQuizIndividualController::class,'postQuiz']); //ajax call to initiate quiz
+    Route::get('my_quiz_exam', [StudentQuizIndividualController::class,'getQuiz']);
+    Route::post('student_quiz_individual_next_question', [StudentQuizIndividualController::class,'getNextQuestion']);
+    Route::post('student_quiz_individual_time_out', [StudentQuizIndividualController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
+    Route::get('quiz_individual/{id}', [StudentQuizIndividualController::class,'quizIndividualResult']);
 
 
 });
