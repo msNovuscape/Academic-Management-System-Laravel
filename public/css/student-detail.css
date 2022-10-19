@@ -916,4 +916,21 @@ h2 {
     .quiz-left {
         padding: 20px;
     }
+    .navbar .navbar-menu-wrapper{
+        width: calc(100% - 300px);
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+    .attendance-tab .student-nav-tabs{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 10px 0;
+    }
+    .navbar .navbar-menu-wrapper{
+        width: auto;
+    }
+    .attendance-tab{
+        margin: 10px 5px;
+        padding: 10px 5px;
+    }
 }

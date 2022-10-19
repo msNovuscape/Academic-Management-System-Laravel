@@ -1329,7 +1329,7 @@ nav {
 
 .nav-profile .nav-profile-img {
     width: 40px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .nav-profile .nav-profile-img img {
@@ -1341,21 +1341,30 @@ nav {
     margin: 0 !important;
 }
 
+.nav-profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2367c7;
+    padding: 3px;
+    border-radius: 20px;
+}
 .nav-profile a {
     text-decoration: none;
     display: flex;
     align-items: center;
 }
-
 .nav-profile .nav-profile-text {
     text-decoration: none;
 }
-
+.nav-profile .fa-solid{
+    color: #ffffff;
+}
 .nav-profile-text p:nth-child(1) {
     font-size: 14px;
     font-weight: 500;
-    color: #000;
-    margin-bottom: 0px;
+    color: #ffffff;
+    margin-bottom: 0px !important;
 }
 
 .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini {

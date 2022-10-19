@@ -8,7 +8,7 @@
         </a>
         <a class="nav-link"  href="{{url('student/materials')}}" aria-expanded="false" aria-controls="ui-basic">
             <div class="sidebar-icon">
-                <i class="fa-solid fa-angle-down" id="icon-toggle-materials"></i>
+                <img src="{{url('images/course-icon.png')}}" alt="sidebar-icon"/>
                 <span class="menu-title">Materials</span>
             </div>
         </a>
