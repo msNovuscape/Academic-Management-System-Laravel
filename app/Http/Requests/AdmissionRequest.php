@@ -25,7 +25,7 @@ class AdmissionRequest extends FormRequest
     {
         return [
             'name' => ['required','string'],
-            'email' => ['required','email'],
+            'email' => ['required','email','unique:users,email'],
             'batch_id' => ['required','numeric'],
             'amount' => ['required'],
             'date' => ['required','date'],
@@ -40,7 +40,7 @@ class AdmissionRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Email address is required',
+            'email.required' => 'Email address must be unique',
             'batch_id.required' => 'Batch is required',
             'amount.required' => 'Amount is required',
             'name.required' => 'Name is required',

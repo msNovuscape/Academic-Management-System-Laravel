@@ -173,7 +173,8 @@
                                                 '</div>'+
                                                 '<div class="col-md-9">'+
                                                     '<div class="input-group">'+
-                                                        '<input type="file" name="link" class="form-control" value="{{old('link')}}" placeholder="Note"  required/>'+
+                                                        {{--'<input type="file" name="link" class="form-control" value="{{old('link')}}" placeholder="Note"  required/>'+--}}
+                                                        '<input type="text" name="link" class="form-control" value="{{old('link')}}" placeholder="doc link"  required/>'+
                                                     '</div>'+
                                                 '</div>'+
                                             '</div>'+
@@ -187,7 +188,7 @@
                             '<div class="col-md-12">'+
                             '<div class="row">'+
                             '<div class="col-md-3">'+
-                            '<label>Doc</label>'+
+                            '<label>Video Link</label>'+
                             '</div>'+
                             '<div class="col-md-9">'+
                             '<div class="input-group">'+

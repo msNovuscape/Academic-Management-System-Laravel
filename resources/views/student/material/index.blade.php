@@ -26,7 +26,7 @@
                                                 <span>
                                                     <i class="fa-solid fa-magnifying-glass"></i>
                                                 </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Course Name or Code" name="name" onchange="filterList()"/>
+                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Course doc or video name" name="name" onchange="filterList()"/>
                                             </div>
                                         </div>
                                     </div>
