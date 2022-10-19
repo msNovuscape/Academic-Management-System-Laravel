@@ -36,7 +36,7 @@
                         </label>
                         <a class="link-info forget-link" href="{{route('password.request')}}">Forgot your password?</a>
                         <label class="form-checkbox-wrapper">
-                            <input class="form-checkbox" type="checkbox"/>
+                            <input class="form-checkbox" type="checkbox" name="remember" value="1"/>
                             <span class="form-checkbox-label">Remember me next time</span>
                         </label>
                         <button class="form-btn primary-default-btn transparent-btn">

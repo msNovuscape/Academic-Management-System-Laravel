@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('quiz_question_id')->unsigned();
             $table->foreign('quiz_question_id')->references('id')->on('quiz_questions');
             $table->string('label');
-            $table->string('option');
+            $table->longText('option');
             $table->timestamps();
         });
     }

@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </form>
-                    <div>
+                    <div style="margin-top: 5px;">
                         @include('success.success')
                         @include('errors.error')
                     </div>
@@ -62,6 +62,10 @@
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                     <li>
                                                                         <a class="dropdown-item" data-bs-target="#modalAddCourse{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button"><i class="fa-solid fa-pen"></i>Edit</a>
+                                                                    </li>
+                                                                    <li>
+{{--                                                                        <a class="dropdown-item"  href="{{url('courses/delete',$setting->id)}}" role="button" onclick="myConfirm()"><i class="fa-solid fa-trash"></i>Delete</a>--}}
+                                                                        <a class="dropdown-item"  role="button" onclick="myConfirm({{$setting->id}})"><i class="fa-solid fa-trash"></i>Delete</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -122,5 +126,27 @@
                 }
             }
         }
+
+        function myConfirm(id){
+            $.confirm({
+                title: 'Do you sure want to delete?',
+                content: false,
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Delete',
+                        btnClass: 'btn-red',
+                        action: function(){
+                            window.location = Laravel.url+'/courses/delete/'+id;
+                        }
+                    },
+                    close: function () {
+                    }
+                }
+            });
+        }
+
+
     </script>
 @endsection

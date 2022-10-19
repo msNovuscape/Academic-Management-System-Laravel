@@ -43,8 +43,20 @@ class TimeTableController extends Controller
     public function update(StoreTimeTableRequest $request, $id)
     {
         $validatedData = $request->validated();
-        $this->TimeTable->updateData($validatedData,$id);
-        Session::flash('success','TimeTable has been updated!');
+        $this->TimeTable->updateData($validatedData, $id);
+        Session::flash('success', 'TimeTable has been updated!');
+        return redirect($this->redirect);
+    }
+
+    public function delete($id)
+    {
+        $setting = TimeTable::findOrFail($id);
+        if ($setting->time_slots->count() > 0) {
+            Session::flash('custom_error', 'The Time Table has been assigned to Time slot!');
+        }else {
+            $setting->delete();
+            Session::flash('success', 'The Time Table has been delete!');
+        }
         return redirect($this->redirect);
     }
 }

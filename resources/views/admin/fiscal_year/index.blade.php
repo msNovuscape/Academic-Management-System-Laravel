@@ -18,61 +18,20 @@
                         </div>
                         <div class="row">
                             <div class="col-md-11">
-                                <div class="row">
-                                    <div class="filter-btnwrap justify-content-between">
-                                        <div class="d-flex">
-                                            <div class="input-group">
+                                <form id="search">
+                                    <div class="row">
+                                        <div class="filter-btnwrap justify-content-between">
+                                            <div class="d-flex">
+                                                <div class="input-group">
                                                 <span>
                                                     <i class="fa-solid fa-magnifying-glass"></i>
                                                 </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Name" name="fullname" value=""/>
-                                            </div>
-                                            <div class="refresh-btn mx-4">
-                                                <a href="">
-                                                    <img src="{{url('images/refresh-icon.png')}}" alt=""/>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 d-flex justify-content-end">
-                                            <div class="d-flex align-items-center">
-                                                <p class="m-0">
-                                                    Show
-                                                </p>
-                                                <select class="form-select mx-2 show-select" aria-label="Default select example">
-                                                    <option selected>10</option>
-                                                    <option value="1">10</option>
-                                                    <option value="2">20</option>
-                                                    <option value="3">30</option>
-                                                </select>
+                                                    <input type="text" class="form-control" placeholder="Search by Name" name="name" onchange="filterList()"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-1 d-flex align-items-center p-0">
-                                <div class="tbl-buttons">
-                                    <div class="export-button">
-                                        <div class="dropdown-export">
-                                            <button type="submit" name="submit" onclick="submit;" class="student-btn d-flex">
-                                                <img src="{{url('images/export-icon.png')}}" alt=""/>Export
-                                            </button>
-                                            <div class="dropdown-content-export">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">
-                                                            Export.csv
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            Export.pdf
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-12 stretch-card mt-4">

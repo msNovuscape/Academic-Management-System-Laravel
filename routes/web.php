@@ -27,6 +27,7 @@ use App\Http\Controllers\Student\StudentQuizBatchController;
 use App\Http\Controllers\Student\StudentQuizIndividualController;
 use App\Http\Controllers\Report\AttendanceReportController;
 use App\Http\Controllers\ForgetPasswordController;
+use App\Http\Controllers\ChangePasswordController;
 
 
 
@@ -53,26 +54,32 @@ Route::post('forgot-password', [ForgetPasswordController::class,'sendLink'])->mi
 Route::get('reset-password/{token}', [ForgetPasswordController::class,'reset'])->middleware('guest')->name('password.reset');
 Route::post('reset-password', [ForgetPasswordController::class,'postReset'])->middleware('guest');
 
-Route::group(['middleware'=>['auth']],function (){
+Route::group(['middleware'=>['auth']], function () {
+    //routes for change password
+    Route::get('change-password', [ChangePasswordController::class,'index']);
+    Route::post('change-password', [ChangePasswordController::class,'changePassword']);
+
     Route::get('logout', [LoginController::class,'logout']);
     Route::get('courses', [CourseController::class,'index']);
     Route::get('courses/create', [CourseController::class,'create']);
     Route::post('courses', [CourseController::class,'store']);
     Route::get('courses/{id}/edit', [CourseController::class,'edit']);
     Route::post('courses/{id}', [CourseController::class,'update']);
-    Route::get('batch_test', [CourseController::class,'batch_test']);
+    Route::get('courses/delete/{id}', [CourseController::class,'delete']);
 
     Route::get('timeslots', [TimeSlotController::class,'index']);
     Route::get('timeslots/create', [TimeSlotController::class,'create']);
     Route::post('timeslots', [TimeSlotController::class,'store']);
     Route::get('timeslots/{id}/edit', [TimeSlotController::class,'edit']);
     Route::post('timeslots/{id}', [TimeSlotController::class,'update']);
+    Route::get('timeslots/delete/{id}', [TimeSlotController::class,'delete']);
 
     Route::get('timetables', [TimeTableController::class,'index']);
     Route::get('timetables/create', [TimeTableController::class,'create']);
     Route::post('timetables', [TimeTableController::class,'store']);
     Route::get('timetables/{id}/edit', [TimeTableController::class,'edit']);
     Route::post('timetables/{id}', [TimeTableController::class,'update']);
+    Route::get('timetables/delete/{id}', [TimeTableController::class,'delete']);
 
     Route::get('fiscal-years/', [FiscalYearController::class,'index']);
     Route::get('fiscal-years/create', [FiscalYearController::class,'create']);
@@ -88,6 +95,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('batches/{id}', [BatchController::class,'show']);
     Route::get('batches/{id}/edit', [BatchController::class,'edit']);
     Route::post('batches/{id}', [BatchController::class,'update']);
+    Route::get('batches/delete/{id}', [BatchController::class,'delete']);
 
     Route::get('admissions', [AdmissionController::class,'index']);
     Route::get('admissions/create', [AdmissionController::class,'create']);

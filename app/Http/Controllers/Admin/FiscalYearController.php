@@ -16,13 +16,18 @@ class FiscalYearController extends Controller
     protected $redirect = 'fiscal-years';
     private $fiscal_year_service;
 
-    public function __construct(FiscalYearService $service){
+    public function __construct(FiscalYearService $service) {
         $this->fiscal_year_service = $service;
     }
     public function index()
     {
-        $settings = Model::paginate(config('custom.per_page'));
-        return view($this->view.'index',compact('settings'));
+        $settings = Model::orderBy('id', 'asc');
+        if (request('name')) {
+            $key = \request('name');
+            $settings = $settings->where('name', 'like', '%'.$key.'%');
+        }
+        $settings = $settings->paginate(config('custom.per_page'));
+        return view($this->view.'index', compact('settings'));
     }
 
     public function create()
@@ -34,21 +39,21 @@ class FiscalYearController extends Controller
     {
         $validatedData = $request->validated();
         $this->fiscal_year_service->storeData($validatedData);
-        Session::flash('success','Fiscal Year has been created!');
+        Session::flash('success', 'Fiscal Year has been created!');
         return redirect($this->redirect);
     }
 
     public function edit($id)
     {
         $setting = Model::findOrFail($id);
-        return view($this->view.'edit',compact('setting'));
+        return view($this->view.'edit', compact('setting'));
     }
 
     public function update(FiscalYearRequest $request, $id)
     {
         $validatedData = $request->validated();
         $this->fiscal_year_service->updateData($validatedData,$id);
-        Session::flash('success','Fiscal Year has been updated!');
+        Session::flash('success', 'Fiscal Year has been updated!');
         return redirect($this->redirect);
     }
 }

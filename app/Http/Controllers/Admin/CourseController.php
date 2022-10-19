@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCourseRequest;
+use App\Models\Course;
 use App\Models\Course as Model;
 use App\Services\CourseService;
 use Illuminate\Support\Facades\Session;
@@ -47,13 +48,22 @@ class CourseController extends Controller
     public function update(StoreCourseRequest $request, $id)
     {
         $validatedData = $request->validated();
-        $this->courseService->updateData($validatedData,$id);
-        Session::flash('success','Course has been updated!');
+        $this->courseService->updateData($validatedData, $id);
+        Session::flash('success', 'Course has been updated!');
         return redirect($this->redirect);
     }
 
-    public function batch_test()
+    public function delete($id)
     {
-        return view('admin.batch.test');
+        $setting = Course::findOrFail($id);
+        if ($setting->time_slots->count() > 0) {
+           Session::flash('custom_error', 'The Course has been assigned to Time slot!');
+        }else {
+            $setting->delete();
+            Session::flash('success', 'The Course has been delete!');
+        }
+        return redirect($this->redirect);
     }
+
+
 }
