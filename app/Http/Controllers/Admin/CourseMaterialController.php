@@ -84,4 +84,16 @@ class CourseMaterialController extends Controller
         Session::flash('success','Course Material has been Updated!');
         return redirect($this->redirect);
     }
+
+    public function delete($id)
+    {
+        $setting = \App\Models\CourseMaterial::findOrFail($id);
+        if ($setting->batch_course_materials->count() > 0) {
+            Session::flash('custom_error', 'The Course Material has been assigned to batch!');
+        }else {
+            $setting->delete();
+            Session::flash('success', 'The Course has been delete!');
+        }
+        return redirect($this->redirect);
+    }
 }

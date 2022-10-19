@@ -11,7 +11,7 @@
                         <div class="block-header d-flex justify-content-between p-4">
                             <h3>Finance Due Report</h3>
                             <ul class="admin-breadcrumb">
-                                <li><a href="/" class="card-heading-link">Home</a></li>
+                                <li><a href="{{url('')}}" class="card-heading-link">Home</a></li>
                                 <li>Finance Due Report</li>
                             </ul>
                         </div>

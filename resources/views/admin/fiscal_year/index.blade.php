@@ -16,7 +16,7 @@
                                 </p>
                             </div>
                             <ul class="admin-breadcrumb">
-                                <li><a href="/" class="card-heading-link">Home</a></li>
+                                <li><a href="{{url('')}}" class="card-heading-link">Home</a></li>
                                 <li>Fiscal Year</li>
                             </ul>
                         </div>

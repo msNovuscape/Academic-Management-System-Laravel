@@ -11,7 +11,7 @@
                         <div class="block-header d-flex justify-content-between p-4">
                             <h3>Attendance Report</h3>
                             <ul class="admin-breadcrumb">
-                                <li><a href="/" class="card-heading-link">Home</a></li>
+                                <li><a href="{{url('')}}" class="card-heading-link">Home</a></li>
                                 <li>Attendance Report</li>
                             </ul>
                         </div>

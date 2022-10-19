@@ -16,7 +16,7 @@
                                 </p>
                             </div>
                             <ul class="admin-breadcrumb">
-                                <li><a href="/" class="card-heading-link">Home</a></li>
+                                <li><a href="{{url('')}}" class="card-heading-link">Home</a></li>
                                 <li>Material Lists</li>
                             </ul>
                         </div>
@@ -38,7 +38,7 @@
 
                         </form>
 
-                        <div>
+                        <div class="mt-1">
                             @include('success.success')
                             @include('errors.error')
                         </div>
@@ -86,6 +86,9 @@
                                                                         <li>
                                                                             <a class="dropdown-item"  href="{{url('course-materials/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
                                                                         </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item"  onclick="myConfirm({{$setting->id}})" role="button"><i class="fa-solid fa-trash"></i></a>
+                                                                        </li>
                                                                     </ul>
                                                                 </td>
                                                             </tr>
@@ -109,4 +112,28 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        function myConfirm(id){
+            debugger;
+            $.confirm({
+                title: 'Do you sure want to delete?',
+                content: false,
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Delete',
+                        btnClass: 'btn-red',
+                        action: function(){
+                            window.location = Laravel.url+'/course-materials/delete/'+id;
+                        }
+                    },
+                    close: function () {
+                    }
+                }
+            });
+        }
+    </script>
 @endsection

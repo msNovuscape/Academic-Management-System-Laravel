@@ -159,6 +159,8 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::get('course-materials/show/{id}', [CourseMaterialController::class,'show']);
     Route::get('course-materials/{id}/edit', [CourseMaterialController::class,'edit']);
     Route::post('course-materials/{id}', [CourseMaterialController::class,'update']);
+    Route::get('course-materials/delete/{id}', [CourseMaterialController::class,'delete']);
+
 
     Route::get('batch-course-materials', [BatchCourseMaterialController::class,'index']);
     Route::get('batch-course-materials/create', [BatchCourseMaterialController::class,'create']);
