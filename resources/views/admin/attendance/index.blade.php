@@ -33,6 +33,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-2">
+                                    <ul class="admin-breadcrumb">
+                                        <li><a href="/" class="card-heading-link">Home</a></li>
+                                        <li>Attendence</li>
+                                    </ul>
+                                </div>
                             </div>
                         </form>
                         @if(isset($batch))

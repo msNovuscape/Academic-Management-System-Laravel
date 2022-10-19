@@ -2,7 +2,7 @@
     <div class='row'>
         <nav>
             <div class="nav nav-tabs student-nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active col" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                <a href="{{url('materials')}}" class="nav-link active col" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
                     <div class="general-section">
                         <div>
                             <i class="fa-solid fa-user"></i>
@@ -11,8 +11,8 @@
                             <h1>General</h1>
                         </div>
                     </div>
-                </button>
-                <button class="nav-link col" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                </a>
+                <a href="" class="nav-link col" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                     <div class="general-section">
                         <div>
                             <i class="fa-solid fa-calendar-days"></i>
@@ -21,8 +21,8 @@
                             <h1>Attendance</h1>
                         </div>
                     </div>
-                </button>
-                <button class="nav-link col" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+                </a>
+                <a href="" class="nav-link col" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
                     <div class="general-section">
                         <div>
                             <i class="fa-solid fa-book-open"></i>
@@ -31,8 +31,8 @@
                             <h1>Quiz</h1>
                         </div>
                     </div>
-                </button>
-                <button class="nav-link col" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-finance" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                </a>
+                <a href="" class="nav-link col" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-finance" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
                     <div class="general-section">
                         <div>
                             <i class="fa-solid fa-credit-card"></i>
@@ -41,8 +41,8 @@
                             <h1>Finance</h1>
                         </div>
                     </div>
-                </button>
-                <button class="nav-link col general-section" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-performance" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                </a>
+                <a href="" class="nav-link col general-section" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-performance" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                     <div class="general-section">
                         <div>
                             <i class="fa-solid fa-bolt"></i>
@@ -51,8 +51,8 @@
                             <h1>Performance</h1>
                         </div>
                     </div>
-                </button>
-                <button class="nav-link col general-section" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-exam" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+                </a>
+                <a href="" class="nav-link col general-section" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-exam" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
                     <div class="general-section">
                         <div>
                             <i class="fa-solid fa-bolt"></i>
@@ -61,7 +61,7 @@
                             <h1>Book Exam</h1>
                         </div>
                     </div>
-                </button>
+                </a>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">

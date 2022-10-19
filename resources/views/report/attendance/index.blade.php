@@ -8,8 +8,12 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 stretch-card">
                     <div class="card-wrap form-block p-0">
-                        <div class="block-header p-4">
+                        <div class="block-header d-flex justify-content-between p-4">
                             <h3>Attendance Report</h3>
+                            <ul class="admin-breadcrumb">
+                                <li><a href="/" class="card-heading-link">Home</a></li>
+                                <li>Attendance Report</li>
+                            </ul>
                         </div>
                         <div class="row p-4">
                             {!! Form::open(['url' => 'reports/attendance','method' => 'POST', 'onsubmit' => 'return validateForm()']) !!}

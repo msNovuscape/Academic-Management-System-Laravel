@@ -8,13 +8,17 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 stretch-card">
                     <div class="row">
-                        <div class="card-heading">
+                        <div class="card-heading d-flex justify-content-between">
                             <div>
                                 <h4>Material Lists</h4>
                                 <p>
                                     You can search the materials by <a href="#" class="card-heading-link">name</a> and can view all available courses materials.
                                 </p>
                             </div>
+                            <ul class="admin-breadcrumb">
+                                <li><a href="/" class="card-heading-link">Home</a></li>
+                                <li>Material Lists</li>
+                            </ul>
                         </div>
                         <form id="search">
                             <div class="filter-btnwrap mt-4">

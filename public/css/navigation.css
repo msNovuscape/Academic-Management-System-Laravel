@@ -829,6 +829,7 @@ nav {
     transition-duration: 0.25s;
     transition-property: background;
     -webkit-transition-property: background;
+    cursor: pointer;
 }
 
 .sidebar .nav .nav-item .nav-link {
