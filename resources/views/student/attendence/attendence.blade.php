@@ -26,22 +26,6 @@
                 <h1>Attendence Log Details</h1>
                 <div class="attendence-log  justify-content-between">
                     <p>Daily Attendance Login details</p>
-{{--                    <div class="d-flex">--}}
-{{--                        <div>--}}
-{{--                            <p class="m-0">--}}
-{{--                                Show--}}
-{{--                            </p>--}}
-{{--                        </div>--}}
-{{--                        <div>--}}
-{{--                            <select class="mx-2 show-count">--}}
-{{--                                <option selected>10</option>--}}
-{{--                                <option value="1">10</option>--}}
-{{--                                <option value="2">20</option>--}}
-{{--                                <option value="3">30</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <p>Showing 1 - 11 of  100 results</p>--}}
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">

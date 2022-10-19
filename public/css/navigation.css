@@ -1091,13 +1091,18 @@ nav {
         top: 70px;
         bottom: 0;
         overflow: auto;
-        right: -260px;
+        right: -300px;
         -webkit-transition: all 0.25s ease-out;
         transition: all 0.25s ease-out;
     }
-
+    .sidebar-icon-only .sidebar-offcanvas {
+        right: 0;
+    }
     .sidebar-offcanvas.active {
         right: 0;
+    }
+    .navbar-nav{
+        display: none !important;
     }
 }
 
