@@ -51,7 +51,8 @@ class AdmissionController extends Controller
     public function getBatchInfo($batch_id)
     {
         $batch = Batch::findOrFail($batch_id);
-        return response()->json(array('success' =>true, 'batch' => $batch));
+        $firstInstallmentAmount = $batch->batch_installments[0]['amount'];
+        return response()->json(array('success' =>true, 'batch' => $batch , 'firstInstallmentAmount' => $firstInstallmentAmount));
     }
 
     public function getBatchCalender($batch_id)
