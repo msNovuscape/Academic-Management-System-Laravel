@@ -22,7 +22,7 @@
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                <i class="fa-regular fa-clock"></i>
                                             </span>
                                             <input type="text" class="form-control"  placeholder="Search by Day or Time" name="name" onchange="filterList()"/>
                                         </div>
@@ -30,7 +30,7 @@
                                     <div class="col-md-4">
                                         <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                <i class="fa-solid fa-book-open"></i>
                                             </span>
                                             <select class="form-select" aria-label="Default select example" name="course_id"  onchange="filterList()">
                                                 <option selected disabled value="">Search by Course</option>
@@ -46,7 +46,7 @@
                                     <div class="col-md-4">
                                         <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                <i class="fa-solid fa-sign-hanging"></i>
                                             </span>
                                             <select class="form-select" aria-label="Default select example" name="branch_id"  onchange="filterList()">
                                                 <option selected disabled value="">Search by Branch</option>

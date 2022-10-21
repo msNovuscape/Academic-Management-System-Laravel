@@ -31,7 +31,7 @@
                                     <div class="col-md-4">
                                         <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                <i class="fa-solid fa-book-open"></i>
                                             </span>
                                             <select class="form-select" aria-label="Default select example" name="course_id"  onchange="filterList()">
                                                 <option selected disabled value="">Search by Course</option>

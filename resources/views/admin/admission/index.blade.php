@@ -136,10 +136,10 @@
                                                                 <th>Course</th>
                                                                 <th>Batch</th>
                                                                 <th>Time Slot</th>
-                                                                <th>date</th>
-                                                                <th>Amount To Pay</th>
-                                                                <th>Discount</th>
-                                                                <th>First Installment</th>
+                                                                <th>Date</th>
+                                                                <th data-bs-toggle="tooltip" data-bs-title="Due Amount">Due Amt</th>
+                                                                <th data-bs-toggle="tooltip" data-bs-title="Discount">Disc</th>
+                                                                <th data-bs-toggle="tooltip" data-bs-title="First Installment">1st Inst</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -163,10 +163,10 @@
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
                                                                             <li>
-                                                                                <a class="dropdown-item"  href="{{url('admissions/show/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
+                                                                                <a class="dropdown-item"  href="{{url('admissions/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                                <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
                                                                             </li>
                                                                         </ul>
                                                                     </td>
