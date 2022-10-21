@@ -11,7 +11,7 @@
         @include('errors.error')
         <div class="container-fluid">
             <div class="row profile-top">
-                <div class="col-md-4 profile-col">
+                <div class="col-md-6 profile-col">
                     <div class='profile-general'>
                         <div class="profile-img">
                             <img class="img-fluid" src="{{url($setting->image)}}" alt="profile">
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 course-col">
+                <div class="col-md-6 course-col">
                     <div class="course-general">
                         <h1>{{$setting->admission->batch->time_slot->course->name}} [{{$setting->admission->batch->name}}]</h1>
                         <h2>{{$setting->admission->batch->time_slot->time_table->day}}
