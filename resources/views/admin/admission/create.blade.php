@@ -107,7 +107,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="row">
                                                                     <div class="col-md-3">
-                                                                        <label>Amount</label>
+                                                                        <label>First Installment</label>
                                                                     </div>
                                                                     <div class="col-md-9">
                                                                         <div class="input-group">
@@ -290,6 +290,8 @@
                 contentType: false,
                 success:function (data){
                     end_loader();
+                    debugger;
+                    $("#amount").attr('value', data['firstInstallmentAmount']);
                    batch_amount = parseFloat(data['batch']['fee']);
                 },
                 error: function (error){
