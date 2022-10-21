@@ -85,7 +85,7 @@
         <div class="collapse" id="myCollapseBatch">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('batches')}}">List of Batch</a>
+                    <a class="nav-link" href="{{url('batches')}}"><i class="fa-solid fa-list"></i> List of Batch</a>
                 </li>
             </ul>
         </div>

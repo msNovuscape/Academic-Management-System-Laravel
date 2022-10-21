@@ -27,7 +27,7 @@
                                             <input type="text" class="form-control"  placeholder="Search by Day or Time" name="name" onchange="filterList()"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
                                                 <i class="fa-solid fa-book-open"></i>
@@ -43,7 +43,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
                                                 <i class="fa-solid fa-sign-hanging"></i>
@@ -57,6 +57,19 @@
                                             <span>
                                                 <i class="fa-solid fa-caret-down"></i>
                                             </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 d-flex">
+                                        <div class="filter-group mx-3">
+                                            <span>
+                                                <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                            </span>
+                                            <a href="">Filter</a> 
+                                        </div>
+                                        <div class="refresh-group mx-2">
+                                            <a href="">
+                                                <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

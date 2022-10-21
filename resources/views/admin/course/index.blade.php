@@ -27,6 +27,19 @@
                                             <input type="text" class="form-control" id="inputText" placeholder="Search by Course Name or Code" name="name" onchange="filterList()"/>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 d-flex">
+                                        <div class="filter-group mx-2">
+                                            <span>
+                                                <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                            </span>
+                                            <a href="">Filter</a> 
+                                        </div>
+                                        <div class="refresh-group mx-2">
+                                            <a href="">
+                                                <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

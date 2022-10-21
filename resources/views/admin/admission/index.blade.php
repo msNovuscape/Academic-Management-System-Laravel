@@ -28,7 +28,7 @@
                                                 <div class="d-flex">
                                                     <div class="input-group">
                                                         <span>
-                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                            <i class="fa-solid fa-calendar-days"></i>
                                                         </span>
                                                         <input type="text" class="form-control currentDate"  placeholder="Search by Date" name="date" onchange="filterList()" value="{{old('date')}}"/>
                                                     </div>
@@ -40,7 +40,7 @@
                                                     </div>
                                                     <div class="input-group mx-4">
                                                         <span>
-                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                            <i class="fa-solid fa-book-open"></i>
                                                         </span>
                                                         <select name="course_id" class="form-control" onchange="filterList()">
                                                             <option value="" selected disabled>Search by Course </option>
@@ -51,7 +51,7 @@
                                                     </div>
                                                     <div class="input-group mx-4">
                                                         <span>
-                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                            <i class="bi bi-grid"></i>
                                                         </span>
                                                         <select name="batch_id" class="form-control" onchange="filterList()">
                                                             <option value="" selected disabled>Search by Batch </option>
@@ -59,6 +59,17 @@
                                                                 <option value="{{$batch->id}}" @if(old('batch_id') == $batch->id) selected @endif>{{$batch->name}}</option>
                                                             @endforeach
                                                         </select>
+                                                    </div>
+                                                    <div class="filter-group mx-2">
+                                                        <span>
+                                                            <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                        </span>
+                                                        <a href="">Filter</a> 
+                                                    </div>
+                                                    <div class="refresh-group mx-2">
+                                                        <a href="">
+                                                            <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                        </a>
                                                     </div>
 {{--                                                f    <div class="refresh-btn mx-4">--}}
 {{--                                                        <a href="">--}}
