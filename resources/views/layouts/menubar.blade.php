@@ -31,7 +31,7 @@
                             @if(Auth::user()->user_type == array_search('Student',config('custom.user_types')))
                                 <img src="{{url(Auth::user()->student->image)}}" alt="image" />
                             @else
-                                <img src="{{url('images/profile.jpg')}}" alt="image" />
+                                <img src="{{url('images/admin.png')}}" alt="image" />
                             @endif
                         </div>
                         <div class="nav-profile-text">
