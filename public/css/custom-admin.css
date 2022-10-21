@@ -1825,7 +1825,7 @@ table tr:first-child td:last-child {
 }
 
 .table-details table tbody td {
-    padding: 20px;
+    padding: 10px;
     vertical-align: top;
     color: #030e1e;
     font-weight: 500;
