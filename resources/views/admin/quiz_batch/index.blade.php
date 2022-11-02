@@ -34,7 +34,7 @@
                                                 </div>
                                                 <div class="input-group mx-4">
                                                     <span>
-                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                        <i class="bi bi-grid"></i>
                                                     </span>
                                                     <select name="batch_id" class="form-control" onchange="filterList()">
                                                         <option value="" selected disabled>Search by Batch</option>
@@ -42,6 +42,17 @@
                                                             <option value="{{$batch->id}}">{{$batch->name}}</option>
                                                         @endforeach
                                                     </select>
+                                                </div>
+                                                <div class="filter-group mx-2">
+                                                    <span>
+                                                        <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                    </span>
+                                                    <a href="">Filter</a> 
+                                                </div>
+                                                <div class="refresh-group mx-2">
+                                                    <a href="">
+                                                        <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +100,7 @@
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
                                                                             <li>
-                                                                                <a class="dropdown-item"  href="{{url('quiz_batch_edit/'.$setting->id)}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                                <a class="dropdown-item"  href="{{url('quiz_batch_edit/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
                                                                             </li>
                                                                         </ul>
                                                                     </td>

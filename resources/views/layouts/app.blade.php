@@ -138,7 +138,8 @@
         var baseurl = window.location.origin+window.location.pathname;
         window.location = baseurl+'?'+$('#search2').serialize();
     }
-
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
 @include('layouts.sidebar_js')
 
