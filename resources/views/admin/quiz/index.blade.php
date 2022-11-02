@@ -35,7 +35,7 @@
                                         <div class="col-md-4">
                                             <div class="input-group">
                                                 <span>
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                    <i class="fa-solid fa-book-open"></i>
                                                 </span>
                                                 <select name="course_id" class="form-control" onchange="filterList()">
                                                     <option value="" selected disabled>Search by Course</option>
@@ -43,6 +43,19 @@
                                                         <option value="{{$course->id}}">{{$course->name}}</option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 d-flex">
+                                            <div class="filter-group mx-2">
+                                                <span>
+                                                    <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                </span>
+                                                <a href="">Filter</a> 
+                                            </div>
+                                            <div class="refresh-group mx-2">
+                                                <a href="">
+                                                    <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -90,19 +103,19 @@
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
                                                                             <li>
-                                                                                <a class="dropdown-item"   href="{{url('quiz/question_create/'.$setting->id)}}" ><i class="fa-solid fa-plus"></i></a>
+                                                                                <a class="dropdown-item"   href="{{url('quiz/question_create/'.$setting->id)}}" data-bs-toggle="tooltip" data-bs-title="add"><i class="fa-solid fa-plus"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a class="dropdown-item"   href="{{url('quiz/question_show/'.$setting->id)}}" ><i class="fa-solid fa-eye"></i></a>
+                                                                                <a class="dropdown-item"   href="{{url('quiz/question_show/'.$setting->id)}}" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a class="dropdown-item"   href="{{url('quiz/show_all_questions/'.$setting->id)}}"><i class="fa-solid fa-list-ul"></i></a>
+                                                                                <a class="dropdown-item"   href="{{url('quiz/show_all_questions/'.$setting->id)}}" data-bs-toggle="tooltip" data-bs-title="lists"><i class="fa-solid fa-list-ul"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a class="dropdown-item"  href="{{url('quiz/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                                <a class="dropdown-item"  href="{{url('quiz/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a class="dropdown-item"  href="{{url('quiz/delete/'.$setting->id)}}" role="button" onclick="getConfirm()"><i class="fa-solid fa-trash"></i></a>
+                                                                                <a class="dropdown-item"  href="{{url('quiz/delete/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="delete" onclick="getConfirm()"><i class="fa-solid fa-trash"></i></a>
                                                                             </li>
                                                                         </ul>
                                                                     </td>

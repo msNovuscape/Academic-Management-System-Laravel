@@ -22,15 +22,15 @@
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                <i class="fa-regular fa-clock"></i>
                                             </span>
                                             <input type="text" class="form-control"  placeholder="Search by Day or Time" name="name" onchange="filterList()"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                <i class="fa-solid fa-book-open"></i>
                                             </span>
                                             <select class="form-select" aria-label="Default select example" name="course_id"  onchange="filterList()">
                                                 <option selected disabled value="">Search by Course</option>
@@ -43,10 +43,10 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                <i class="fa-solid fa-sign-hanging"></i>
                                             </span>
                                             <select class="form-select" aria-label="Default select example" name="branch_id"  onchange="filterList()">
                                                 <option selected disabled value="">Search by Branch</option>
@@ -57,6 +57,19 @@
                                             <span>
                                                 <i class="fa-solid fa-caret-down"></i>
                                             </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 d-flex">
+                                        <div class="filter-group mx-3">
+                                            <span>
+                                                <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                            </span>
+                                            <a href="">Filter</a> 
+                                        </div>
+                                        <div class="refresh-group mx-2">
+                                            <a href="">
+                                                <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

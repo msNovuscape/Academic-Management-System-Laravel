@@ -46,7 +46,7 @@
                                     <div class="col-md-4">
                                         <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-book-open"></i>
+                                                <i class="bi bi-grid"></i>
                                             </span>
                                             <select class="form-select" aria-label="Default select example" name="batch_id" onchange="filterList2()">
                                                 <option selected disabled >Search by Batch</option>
@@ -57,6 +57,19 @@
                                             <span>
                                                 <i class="fa-solid fa-caret-down"></i>
                                             </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 d-flex">
+                                        <div class="filter-group mx-2">
+                                            <span>
+                                                <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                            </span>
+                                            <a href="">Filter</a> 
+                                        </div>
+                                        <div class="refresh-group mx-2">
+                                            <a href="">
+                                                <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -286,11 +299,11 @@
                                                                 <ul class="icon-button d-flex">
                                                                     @if($setting->student)
                                                                         <li>
-                                                                            <a class="dropdown-item" href="{{url('finances/'.$setting->student->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
+                                                                            <a class="dropdown-item" href="{{url('finances/'.$setting->student->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
                                                                         </li>
                                                                     @endif
                                                                     <li>
-                                                                        <a class="dropdown-item" href="{{url('finances/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                        <a class="dropdown-item" href="{{url('finances/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
                                                                     </li>
                                                                 </ul>
                                                             </td>
