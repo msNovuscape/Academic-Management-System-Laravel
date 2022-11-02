@@ -20,7 +20,7 @@
                                 <li>Admission</li>
                             </ul>
                         </div>
-                        <form id="search">
+                        {!! Form::open(['url' => 'admissions', 'method' => 'GET']) !!}
                             <div class="row">
                                 <div class="col-md-11">
                                         <div class="row">
@@ -28,21 +28,21 @@
                                                 <div class="d-flex">
                                                     <div class="input-group">
                                                         <span>
-                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                            <i class="fa-solid fa-calendar-days"></i>
                                                         </span>
-                                                        <input type="text" class="form-control currentDate"  placeholder="Search by Date" name="date" onchange="filterList()" value="{{old('date')}}"/>
+                                                        <input type="text" class="form-control currentDate reset-class"  placeholder="Search by Date" name="date" value="{{old('date')}}"/>
                                                     </div>
                                                     <div class="input-group mx-4">
                                                         <span>
                                                             <i class="fa-solid fa-magnifying-glass"></i>
                                                         </span>
-                                                        <input type="text" class="form-control"  placeholder="Search by Name or Id" name="name" onchange="filterList()" value="{{old('name')}}"/>
+                                                        <input type="text" class="form-control reset-class"  placeholder="Search by Name or Id" name="name" value="{{old('name')}}"/>
                                                     </div>
                                                     <div class="input-group mx-4">
                                                         <span>
-                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                            <i class="fa-solid fa-book-open"></i>
                                                         </span>
-                                                        <select name="course_id" class="form-control" onchange="filterList()">
+                                                        <select name="course_id" class="form-control reset-class">
                                                             <option value="" selected disabled>Search by Course </option>
                                                             @foreach($courses as $course)
                                                                 <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
@@ -51,63 +51,46 @@
                                                     </div>
                                                     <div class="input-group mx-4">
                                                         <span>
-                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                            <i class="bi bi-grid"></i>
                                                         </span>
-                                                        <select name="batch_id" class="form-control" onchange="filterList()">
+                                                        <select name="batch_id" class="form-control reset-class">
                                                             <option value="" selected disabled>Search by Batch </option>
                                                             @foreach($batches as $batch)
                                                                 <option value="{{$batch->id}}" @if(old('batch_id') == $batch->id) selected @endif>{{$batch->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
-{{--                                                f    <div class="refresh-btn mx-4">--}}
-{{--                                                        <a href="">--}}
-{{--                                                            <img src="{{url('images/refresh-icon.png')}}" alt=""/>--}}
-{{--                                                        </a>--}}
-{{--                                                    </div>--}}
+                                                    <div class="col-md-2 d-flex justify-content-end">
+                                                        <div class="d-flex align-items-center">
+                                                            <p class="m-0">
+                                                                Show
+                                                            </p>
+                                                            <select class="form-select mx-2 show-select reset-class" aria-label="Default select example" name="per_page">
+                                                                <option value="20">20</option>
+                                                                <option value="30">30</option>
+                                                                <option value="40">40</option>
+                                                                <option value="50">50</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="filter-group mx-2">
+                                                        <span>
+                                                            <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                        </span>
+                                                        <button class="fltr-btn" type="submit">Filter</button>
+                                                    </div>
+                                                    <div class="refresh-group mx-2">
+                                                        <a onclick="getReset('{{Request::segment(1)}}')">
+                                                            <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                        </a>
+                                                    </div>
                                                 </div>
-{{--                                                <div class="col-md-2 d-flex justify-content-end">--}}
-{{--                                                    <div class="d-flex align-items-center">--}}
-{{--                                                        <p class="m-0">--}}
-{{--                                                            Show--}}
-{{--                                                        </p>--}}
-{{--                                                        <select class="form-select mx-2 show-select" aria-label="Default select example" onchange="filterList()">--}}
-{{--                                                            <option value="1">20</option>--}}
-{{--                                                            <option value="2">30</option>--}}
-{{--                                                            <option value="3">40</option>--}}
-{{--                                                        </select>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
                                             </div>
                                         </div>
                                     </div>
-{{--                                <div class="col-md-1 d-flex align-items-center p-0">--}}
-{{--                                    <div class="tbl-buttons">--}}
-{{--                                        <div class="export-button">--}}
-{{--                                            <div class="dropdown-export">--}}
-{{--                                                <button type="submit" name="submit" onclick="submit;" class="student-btn d-flex">--}}
-{{--                                                    <img src="http://localhost/ams/public/images/export-icon.png" alt="">Export--}}
-{{--                                                </button>--}}
-{{--                                                <div class="dropdown-content-export">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li>--}}
-{{--                                                            <a href="#">--}}
-{{--                                                                Export.csv--}}
-{{--                                                            </a>--}}
-{{--                                                        </li>--}}
-{{--                                                        <li>--}}
-{{--                                                            <a href="#">--}}
-{{--                                                                Export.pdf--}}
-{{--                                                            </a>--}}
-{{--                                                        </li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                         <div>
                             @include('success.success')
                             @include('errors.error')
@@ -136,10 +119,10 @@
                                                                 <th>Course</th>
                                                                 <th>Batch</th>
                                                                 <th>Time Slot</th>
-                                                                <th>date</th>
-                                                                <th>Amount To Pay</th>
-                                                                <th>Discount</th>
-                                                                <th>First Installment</th>
+                                                                <th>Date</th>
+                                                                <th data-bs-toggle="tooltip" data-bs-title="Due Amount">Due Amt</th>
+                                                                <th data-bs-toggle="tooltip" data-bs-title="Discount">Disc</th>
+                                                                <th data-bs-toggle="tooltip" data-bs-title="First Installment">1st Inst</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -163,10 +146,10 @@
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
                                                                             <li>
-                                                                                <a class="dropdown-item"  href="{{url('admissions/show/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
+                                                                                <a class="dropdown-item"  href="{{url('admissions/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                                <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
                                                                             </li>
                                                                         </ul>
                                                                     </td>
@@ -191,6 +174,6 @@
             </div>
         </div>
     </div>
-
     @include('admin.admission.admission_modal');
 @endsection
+

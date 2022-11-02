@@ -27,10 +27,21 @@
                                         <div class="filter-btnwrap justify-content-between">
                                             <div class="d-flex">
                                                 <div class="input-group">
-                                                <span>
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </span>
-                                                    <input type="text" class="form-control" placeholder="Search by Name" name="name" onchange="filterList()"/>
+                                                    <span>
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    </span>
+                                                        <input type="text" class="form-control" placeholder="Search by Name" name="name" onchange="filterList()"/>
+                                                </div>
+                                                <div class="filter-group mx-4">
+                                                        <span>
+                                                            <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                        </span>
+                                                        <a href="">Filter</a> 
+                                                </div>
+                                                <div class="refresh-group mx-2">
+                                                    <a href="">
+                                                        <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -44,10 +55,10 @@
                                     <div class="d-flex flex-column">
                                         <h3>Fiscal Year Table</h3>
                                     </div>
-                                    <div class="add-button">
-                                        <a class="nav-link" href="{{url('fiscal-years/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Fiscal Year
-                                        </a>
-                                    </div>
+{{--                                    <div class="add-button">--}}
+{{--                                        <a class="nav-link" href="{{url('fiscal-years/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Fiscal Year--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
                                 </div>
                                 <div class="row px-4">
                                     <div class="col-md-12">
@@ -82,7 +93,7 @@
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">
                                                                         <li>
-                                                                            <a class="dropdown-item" href="{{url('fiscal-years/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                            <a class="dropdown-item" href="{{url('fiscal-years/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
                                                                         </li>
                                                                     </ul>
                                                                 </td>

@@ -11,17 +11,17 @@
                 {{--end loader--}}
                 <div class="col-sm-12 col-md-12 stretch-card">
                     <div class="row">
-                        <form id="search">
+                        {!! Form::open(['url' => 'attendance','method' => 'GET']) !!}
                             <div class="filter-btnwrap mt-4">
                                 <div class="col-md-10">
                                     <div class="row align-items-center">
                                         <div class="col-md-4">
                                             <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                <i class="bi bi-grid"></i>
                                             </span>
-                                                <select class="form-select" aria-label="Default select example" name="batch_id"  onchange="filterList()">
-                                                    <option selected disabled value="">Search by Batch</option>
+                                                <select class="form-select" aria-label="Default select example" name="batch_id">
+                                                    <option selected disabled value="" id="batch-reset">Search by Batch</option>
                                                     @foreach($batches as $bat)
                                                         <option value="{{$bat->id}}">{{$bat->name}}</option>
                                                     @endforeach
@@ -29,6 +29,19 @@
                                                 <span>
                                                 <i class="fa-solid fa-caret-down"></i>
                                             </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 d-flex">
+                                            <div class="filter-group mx-2">
+                                                <span>
+                                                    <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                </span>
+                                                <button class="fltr-btn" type="submit">Filter</button>
+                                            </div>
+                                            <div class="refresh-group mx-2">
+                                                <a onclick="getReset('{{Request::segment(1)}}')">
+                                                    <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -40,7 +53,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                         @if(isset($batch))
                             <div class="col-sm-12 col-md-12 stretch-card mt-4">
                                 <div class="card-wrap form-block p-0 pt-4">
@@ -390,20 +403,15 @@
             }
 
             function getStudentSearch() {
-                debugger;
                 var student_name = $('#student_name_id').val();
                 var attendance_date = $('#fromDateToDate').val();
                 var batch_id = '<?php echo $batch->id; ?>';
                 if(student_name.trim().length > 0){
                     start_loader();
-                    debugger;
                 }
-                debugger;
             }
         @endif
 
 {{--        for searching student --}}
-
-
     </script>
 @endsection

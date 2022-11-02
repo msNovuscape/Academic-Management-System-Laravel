@@ -154,6 +154,7 @@ li {
     background: #f1f7ff;
     color: #555555;
     padding: 20px;
+    cursor: pointer;
 }
 
 .ctmtable-striped>tbody>tr:nth-of-type(2n+1) {
@@ -2197,7 +2198,27 @@ table tr:first-child td:last-child {
     padding: 40px !important;
     margin-left: 20px;
 }
-
+.filter-group, .refresh-group{
+    background: #CBD9FF !important;
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+    margin: auto;
+    line-height: normal;
+}
+.filter-group img{
+    color: #e5e5e5;
+    margin-right: 10px;
+}
+.filter-group a{
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
 .label-inst {
     white-space: nowrap
 }
@@ -2210,7 +2231,7 @@ table tr:first-child td:last-child {
 
 .select-table {
     color: #848484 !important;
-    
+
 }
 
 .select-table::placeholder {
@@ -2308,4 +2329,9 @@ table tr:first-child td:last-child {
 
 .checkbox-table {
     margin-left: 5px;
+}
+/* filter btn css*/
+.fltr-btn{
+    border: none;
+    background: none;
 }

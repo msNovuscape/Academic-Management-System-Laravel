@@ -117,7 +117,14 @@ class FinanceService {
             $key = \request('batch_id');
             $settings = $settings->where('batch_id',$key);
         }
-        return $settings->with('finances')->paginate(config('custom.per_page'));
+
+        if (request('per_page')) {
+            $per_page = request('per_page');
+            $settings = $settings->paginate($per_page);
+        } else {
+            $settings = $settings->paginate(config('custom.per_page'));
+        }
+        return $settings;
     }
 
     public function unPaidSearch()

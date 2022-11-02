@@ -20,7 +20,7 @@
                                 <li>Batch Course Lists</li>
                             </ul>
                         </div>
-                        <form id="search">
+                        {!! Form::open(['url' => 'batch-course-materials', 'method' => 'GET']) !!}
                             <div class="filter-btnwrap mt-4">
                                 <div class="col-md-10">
                                     <div class="row align-items-center">
@@ -29,13 +29,26 @@
                                                 <span>
                                                     <i class="fa-solid fa-magnifying-glass"></i>
                                                 </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Batch name or Course name" name="name" onchange="filterList()"/>
+                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Batch name or Course name" name="name"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 d-flex">
+                                            <div class="filter-group mx-2">
+                                                <span>
+                                                    <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                </span>
+                                                <button class="fltr-btn" type="submit">Filter</button>
+                                            </div>
+                                            <div class="refresh-group mx-2">
+                                                <a onclick="getReset('{{Request::segment(1)}}')">
+                                                    <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                         <div>
                             @include('success.success')
                             @include('errors.error')
@@ -73,10 +86,10 @@
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">
                                                                         <li>
-                                                                            <a class="dropdown-item"  href="{{url('batch-course-materials/show/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
+                                                                            <a class="dropdown-item"  href="{{url('batch-course-materials/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
                                                                         </li>
                                                                         <li>
-                                                                            <a class="dropdown-item"  href="{{url('batch-course-materials/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                            <a class="dropdown-item"  href="{{url('batch-course-materials/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
                                                                         </li>
                                                                     </ul>
                                                                 </td>

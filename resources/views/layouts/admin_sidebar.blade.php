@@ -1,6 +1,6 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link" href="{{url('/')}}" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" href="{{url('admissions')}}" aria-expanded="false" aria-controls="ui-basic">
             <div class="sidebar-icon">
                 <i class="bi bi-speedometer"></i>
                 <span class="menu-title">Dashboard</span>
@@ -85,7 +85,7 @@
         <div class="collapse" id="myCollapseBatch">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('batches')}}">List of Batch</a>
+                    <a class="nav-link" href="{{url('batches')}}"><i class="fa-solid fa-list"></i> List of Batch</a>
                 </li>
             </ul>
         </div>

@@ -108,8 +108,26 @@ class QuizBatchService{
             $batchQuizResult->save();
             return $batchQuizResult;
         }
+    }
 
-
+    public function quizBatchResultStudent($studentQuizBatch)
+    {
+        $setting = StudentQuizBatch::findOrFail($studentQuizBatch->id);
+        if (!$setting->batch_quiz_result) {
+            $count = 0;
+            foreach ($setting->student_quiz_question_batches_list as $sqqi) {
+                $my_result = self::ans_right_or_wrong($sqqi->id);
+                if ($my_result == 'Correct') {
+                    $count = $count +1;
+                }
+            }
+            $batchQuizResult = new BatchQuizResult();
+            $batchQuizResult->student_quiz_batch_id  = $setting->id;
+            $batchQuizResult->total_question_attempted  = $setting->student_quiz_question_batches_list->count();
+            $batchQuizResult->score  = $count;
+            $batchQuizResult->save();
+            return $batchQuizResult;
+        }
     }
 
     public static  function ans_right_or_wrong($student_quiz_question_individual_id)

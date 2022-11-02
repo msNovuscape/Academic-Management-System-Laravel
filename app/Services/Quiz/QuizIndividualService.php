@@ -109,6 +109,25 @@ class QuizIndividualService{
             return $individual_quiz_result;
         }
     }
+    public function quizIndividualResultStudent($studentQuizIndividual)
+    {
+        $setting = StudentQuizIndividual::findOrFail($studentQuizIndividual->id);
+        if (!$setting->individual_quiz_result) {
+            $count = 0;
+            foreach ($setting->student_quiz_question_individuals_list as $sqqi) {
+                $my_result = self::ans_right_or_wrong($sqqi->id);
+                if ($my_result == 'Correct') {
+                    $count = $count +1;
+                }
+            }
+            $individual_quiz_result = new IndividualQuizResult();
+            $individual_quiz_result->s_q_individual_id  = $setting->id;
+            $individual_quiz_result->total_question_attempted  = $setting->student_quiz_question_individuals_list->count();
+            $individual_quiz_result->score  = $count;
+            $individual_quiz_result->save();
+            return $individual_quiz_result;
+        }
+    }
 
     public static  function ans_right_or_wrong($student_quiz_question_individual_id)
     {
