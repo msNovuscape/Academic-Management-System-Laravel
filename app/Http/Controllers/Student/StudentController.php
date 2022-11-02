@@ -12,7 +12,9 @@ use App\Models\CourseMaterial;
 use App\Models\Student;
 use App\Models\Student as Model;
 use App\Models\StudentQuizBatch;
+use App\Models\StudentQuizIndividual;
 use App\Services\Quiz\QuizBatchService;
+use App\Services\Quiz\QuizIndividualService;
 use App\Services\Student\EnrollmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,22 +41,20 @@ class StudentController extends Controller
         if (Auth::user()->student) {
             $setting = Auth::user()->student;
             $countries = Country::all();
-//            $studentQuizBatches = Auth::user()->admission->student_quiz_batches;
-//            $studentQuizBatches = $studentQuizBatches->join('batch_quiz_results', 'student_quiz_batches.id', '!=', 'batch_quiz_results.student_quiz_batch_id');
-////            dd(print_r($studentQuizBatches));
-//            $tests = DB::table('student_quiz_batches')
-//                ->join('batch_quiz_results', 'student_quiz_batches.id', '!=', 'batch_quiz_results.student_quiz_batch_id')
-//                ->select('student_quiz_batches.*')
-//                ->get();
-//            dd($tests);
-//            if ($studentQuizBatches->count() > 0) {
-//                foreach ($studentQuizBatches as $studentQuizBatch) {
-//                    if (!$studentQuizBatch->batch_quiz_result) {
-//                        $quizBatchService = new QuizBatchService();
-//                        $quizBatchService->quizBatchResult($studentQuizBatch);
-//                    }
-//                }
-//            }
+            $studentQuizBatches = StudentQuizBatch::doesntHave('batch_quiz_result')->where('admission_id', Auth::user()->admission->id)->get();
+            $studentQuizIndividuals = StudentQuizIndividual::doesntHave('individual_quiz_result')->where('admission_id', Auth::user()->admission->id)->get();
+            if ($studentQuizBatches->count() > 0) {
+                foreach ($studentQuizBatches as $studentQuizBatch) {
+                    $quizBatchService = new QuizIndividualService();
+                    $quizBatchService->quizIndividualResultStudent($studentQuizBatch);
+                }
+            }
+            if ($studentQuizIndividuals->count() > 0) {
+                foreach ($studentQuizIndividuals as $studentQuizIndividual) {
+                    $studentQuizIndividual = new QuizIndividualService();
+                    $studentQuizIndividual->quizIndividualResultStudent($studentQuizIndividual);
+                }
+            }
             return view($this->view.'index', compact('setting', 'countries'));
         } else {
             return redirect('');

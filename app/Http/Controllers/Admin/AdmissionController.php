@@ -67,7 +67,7 @@ class AdmissionController extends Controller
         $admission = $this->admissionService->storeData($validatedData);
         Mail::to(request('email'))->send(new AdmissionEmail($admission));
         $this->admissionService->storeAdmissionEmailInfo($admission);
-        Session::flash('success','Student  has been created!');
+        Session::flash('success', 'Student  has been created!');
         return redirect($this->redirect);
     }
 

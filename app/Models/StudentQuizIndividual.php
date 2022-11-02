@@ -26,6 +26,6 @@ class StudentQuizIndividual extends Model
 
     public function individual_quiz_result()
     {
-       return $this->hasOne(IndividualQuizResult::class,'s_q_individual_id');
+       return $this->hasOne(IndividualQuizResult::class, 's_q_individual_id');
     }
 }
