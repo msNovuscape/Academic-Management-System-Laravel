@@ -16,23 +16,35 @@
                                 </p>
                             </div>
                         </div>
-                        <form id="search">
+                        {!! Form::open(['url' => 'quiz/question_show/'.$quiz->id, 'method' => 'GET']) !!}
                             <div class="filter-btnwrap mt-4">
                                 <div class="col-md-12">
                                     <div class="row align-items-center">
                                         <div class="col-md-4">
                                             <div class="input-group">
-                                                <span>
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by Question" name="name" onchange="filterList()"/>
+                                                    <span>
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    </span>
+                                                <input type="text" class="form-control" id="inputText" placeholder="Search by questions" name="name"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 d-flex">
+                                            <div class="filter-group mx-2">
+                                                    <span>
+                                                        <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                    </span>
+                                                <button class="fltr-btn" type="submit">Filter</button>
+                                            </div>
+                                            <div class="refresh-group mx-2">
+                                                <a onclick="getResetLink('{{Request::segment(1)}}','{{Request::segment(2)}}',{{$quiz->id}})">
+                                                    <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </form>
+                        {!! Form::close() !!}
 
                         <div>
                             @include('success.success')
@@ -42,10 +54,10 @@
                             <div class="card-wrap form-block p-0">
                                 <div class="block-header bg-header d-flex justify-content-between p-4">
                                     <div class="d-flex flex-column">
-                                        <h3>Course Material Table</h3>
+                                        <h3>Question of  {{$quiz->name}}</h3>
                                     </div>
                                     <div class="add-button">
-                                        <a class="nav-link" href="{{url('quiz/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add quiz</a>
+                                        <a class="nav-link" href="{{url('quiz')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp Back</a>
                                     </div>
                                 </div>
                                 <div class="row">

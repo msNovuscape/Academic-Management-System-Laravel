@@ -140,6 +140,15 @@
     }
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    function getReset(url) {
+        var url1 = Laravel.url+'/'+url;
+        location.replace(url1)
+    }
+    function getResetLink(url,url2,id) {
+        var url1 = Laravel.url+'/'+url+'/'+url2+'/'+id;
+        location.replace(url1)
+    }
 </script>
 @include('layouts.sidebar_js')
 

@@ -16,7 +16,7 @@
                             <a class="nav-link" href="{{url('batches/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbspAdd Batch</a>
                         </div>
                     </div>
-                    <form id="search">
+                    {!! Form::open(['url' => 'batches', 'method' => 'GET']) !!}
                         <div class="filter-btnwrap mt-4">
                             <div class="col-md-10">
                                 <div class="row align-items-center">
@@ -25,7 +25,7 @@
                                                 <span>
                                                     <i class="fa-solid fa-magnifying-glass"></i>
                                                 </span>
-                                            <input type="text" class="form-control"  placeholder="Search By Batch Name" name="name" onchange="filterList()"/>
+                                            <input type="text" class="form-control"  placeholder="Search By Batch Name" name="name"/>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -33,7 +33,7 @@
                                             <span>
                                                 <i class="fa-solid fa-book-open"></i>
                                             </span>
-                                            <select class="form-select" aria-label="Default select example" name="course_id"  onchange="filterList()">
+                                            <select class="form-select" aria-label="Default select example" name="course_id" >
                                                 <option selected disabled value="">Search by Course</option>
                                                 @foreach($courses as $course)
                                                     <option value="{{$course->id}}">{{$course->name}}</option>
@@ -49,10 +49,10 @@
                                             <span>
                                                 <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
                                             </span>
-                                            <a href="">Filter</a> 
+                                            <button class="fltr-btn" type="submit">Filter</button>
                                         </div>
                                         <div class="refresh-group mx-2">
-                                            <a href="">
+                                            <a onclick="getReset('{{Request::segment(1)}}')">
                                                 <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
                                             </a>
                                         </div>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                     <div class="mt-1">
                         @include('success.success')
                         @include('errors.error')

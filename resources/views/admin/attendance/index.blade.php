@@ -39,7 +39,7 @@
                                                 <button class="fltr-btn" type="submit">Filter</button>
                                             </div>
                                             <div class="refresh-group mx-2">
-                                                <a onclick="getReset()">
+                                                <a onclick="getReset('{{Request::segment(1)}}')">
                                                     <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
                                                 </a>
                                             </div>
@@ -413,13 +413,5 @@
         @endif
 
 {{--        for searching student --}}
-
-{{--        for reset --}}
-        function getReset() {
-            debugger;
-            $('#batch-reset').prop('selected', true);
-        }
-
-
     </script>
 @endsection

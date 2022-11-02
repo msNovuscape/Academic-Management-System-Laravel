@@ -20,7 +20,7 @@
                                 <li>Material Lists</li>
                             </ul>
                         </div>
-                        <form id="search">
+                        {!! Form::open(['url' => 'course-materials', 'method' => 'GET']) !!}
                             <div class="filter-btnwrap mt-4">
                                 <div class="col-md-12">
                                     <div class="row align-items-center">
@@ -29,7 +29,7 @@
                                                 <span>
                                                     <i class="fa-solid fa-magnifying-glass"></i>
                                                 </span>
-                                                <input type="text" class="form-control" id="inputText" placeholder="Search by material name or course name" name="name" onchange="filterList()"/>
+                                                <input type="text" class="form-control" id="inputText" placeholder="Search by material name or course name" name="name"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6 d-flex">
@@ -37,10 +37,10 @@
                                                 <span>
                                                     <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
                                                 </span>
-                                                <a href="">Filter</a> 
+                                                <button class="fltr-btn" type="submit">Filter</button>
                                             </div>
                                             <div class="refresh-group mx-2">
-                                                <a href="">
+                                                <a onclick="getReset('{{Request::segment(1)}}')">
                                                     <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
                                                 </a>
                                             </div>
@@ -48,8 +48,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                        </form>
+                        {!! Form::close() !!}
 
                         <div class="mt-1">
                             @include('success.success')
