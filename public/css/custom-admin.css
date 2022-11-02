@@ -2231,7 +2231,7 @@ table tr:first-child td:last-child {
 
 .select-table {
     color: #848484 !important;
-    
+
 }
 
 .select-table::placeholder {
@@ -2329,4 +2329,9 @@ table tr:first-child td:last-child {
 
 .checkbox-table {
     margin-left: 5px;
+}
+/* filter btn css*/
+.fltr-btn{
+    border: none;
+    background: none;
 }
