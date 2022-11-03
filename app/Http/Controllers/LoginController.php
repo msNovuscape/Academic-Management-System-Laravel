@@ -37,7 +37,7 @@ class LoginController extends Controller
                     return redirect('login')->withErrors(['Your login is restricted.Please contact to admin!']);
                 }
             }
-            return redirect('');
+            return redirect('admissions');
         }
         return redirect('login')->withErrors(['Invalid Credentials!']);
     }
