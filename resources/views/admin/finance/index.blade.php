@@ -23,16 +23,16 @@
                         @include('success.success')
                         @include('errors.error')
                     </div>
-                    <form id="search2">
+                    {!! Form::open(['url' => 'finances', 'method' => 'GET']) !!}
                         <div class="filter-btnwrap my-2">
                             <div class="col-md-12">
                                 <div class="row align-items-center">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
                                                 <i class="fa-solid fa-book-open"></i>
                                             </span>
-                                            <select class="form-select" aria-label="Default select example" name="course_id" onchange="filterList2()">
+                                            <select class="form-select" aria-label="Default select example" name="course_id">
                                                 <option selected disabled >Search by courses</option>
                                                 @foreach($courses as $course)
                                                     <option value="{{$course->id}}">{{$course->name}}</option>
@@ -43,12 +43,12 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
-                                                <i class="fa-solid fa-book-open"></i>
+                                                <i class="bi bi-grid"></i>
                                             </span>
-                                            <select class="form-select" aria-label="Default select example" name="batch_id" onchange="filterList2()">
+                                            <select class="form-select" aria-label="Default select example" name="batch_id">
                                                 <option selected disabled >Search by Batch</option>
                                                 @foreach($batches as $batch)
                                                     <option value="{{$batch->id}}">{{$batch->name}}</option>
@@ -59,10 +59,37 @@
                                             </span>
                                         </div>
                                     </div>
+                                    <div class="col-md-2 d-flex justify-content-end">
+                                        <div class="d-flex align-items-center">
+                                            <p class="m-0">
+                                                Show
+                                            </p>
+                                            <select class="form-select mx-2 show-select reset-class" aria-label="Default select example" name="per_page">
+                                                <option value="20">20</option>
+                                                <option value="30">30</option>
+                                                <option value="40">40</option>
+                                                <option value="50">50</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 d-flex">
+                                        <div class="filter-group mx-2">
+                                            <span>
+                                                <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                            </span>
+                                            <button class="fltr-btn" type="submit">Filter</button>
+                                        </div>
+                                        <div class="refresh-group mx-2">
+                                            <a onclick="getReset('{{Request::segment(1)}}')">
+                                                <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                     <div class="col-sm-12 col-md-12 stretch-card mt-4">
                         <div class="card-wrap form-block p-0">
                             <div class="block-header bg-header d-flex justify-content-between p-4">
@@ -286,11 +313,11 @@
                                                                 <ul class="icon-button d-flex">
                                                                     @if($setting->student)
                                                                         <li>
-                                                                            <a class="dropdown-item" href="{{url('finances/'.$setting->student->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
+                                                                            <a class="dropdown-item" href="{{url('finances/'.$setting->student->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
                                                                         </li>
                                                                     @endif
                                                                     <li>
-                                                                        <a class="dropdown-item" href="{{url('finances/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                        <a class="dropdown-item" href="{{url('finances/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
                                                                     </li>
                                                                 </ul>
                                                             </td>

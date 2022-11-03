@@ -21,12 +21,12 @@
                                     $sn = 0;
                                 @endphp
                                 @foreach($setting->admission->batch->quiz_batches->where('status',1) as $quiz_batch)
-                                    @if($quiz_batch->student_quiz_batches->count() <= $quiz_batch->no_of_attempt)
+                                    @if($quiz_batch->student_quiz_batches->count() < $quiz_batch->no_of_attempt)
                                         @php
                                             $sn = $sn + $loop->iteration;
                                         @endphp
                                         <tr>
-                                            <td>{{$sn}}</td>
+                                            <td>{{$sn}} {{$quiz_batch->no_of_attempt}}</td>
                                             <td>
                                                 {{$quiz_batch->quiz->name}}
                                                 @if($quiz_batch->student_quiz_batches_list->count() > 0)

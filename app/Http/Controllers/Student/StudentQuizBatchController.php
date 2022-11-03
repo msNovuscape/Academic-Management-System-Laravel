@@ -36,7 +36,7 @@ class StudentQuizBatchController extends Controller
             Session::forget('student_quiz_individual_id');
         }
        $check_student_quiz_batches = StudentQuizBatch::where('quiz_batch_id',request('quiz_batch_id'))->where('admission_id',request('admission_id'))->orderBy('id','desc')->get();
-//       return response()->json(['check_student_quiz_batch' => $check_student_quiz_batch,'data' =>request()->all(),'count' => $check_student_quiz_batch->count()]);
+//       return response()->json(['check_student_quiz_batch' => $check_student_quiz_batches,'data' =>request()->all(),'count' => $check_student_quiz_batches->count()]);
        if($check_student_quiz_batches->count() > 0){
 //           return response()->json(['check_student_quiz_batch' => $check_student_quiz_batch],200);
            //student has given the quiz but not finished or due to some technical error not quiz has not finished
@@ -67,7 +67,7 @@ class StudentQuizBatchController extends Controller
            //if student has given quiz and finished
            if($check_student_quiz_batch->status == '1'){
                //checking no. of attempt
-               if($check_student_quiz_batch->count() > $check_student_quiz_batch->quiz_batch->no_of_attempt){
+               if($check_student_quiz_batch->count() < $check_student_quiz_batch->quiz_batch->no_of_attempt){
                    Session::flash('success','Dear student your quiz no. of attempt has been exceeded!');
                    return response()->json(['status' => 'No'],200);
                }else{

@@ -190,7 +190,7 @@ class AdmissionService
 
     public function search()
     {
-        $settings = Admission::orderBy('id','desc');
+        $settings = Admission:: orderBy('id','desc');
 
         if(request('date')){
             $key = \request('date');
@@ -212,7 +212,13 @@ class AdmissionService
             $key = \request('batch_id');
             $settings = $settings->where('batch_id',$key);
         }
-        return $settings->paginate(config('custom.per_page'));
+        if (request('per_page')) {
+            $per_page = request('per_page');
+            $settings = $settings->paginate($per_page);
+        } else {
+            $settings = $settings->paginate(config('custom.per_page'));
+        }
+        return $settings;
     }
 
 }

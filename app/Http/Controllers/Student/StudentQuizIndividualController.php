@@ -70,7 +70,7 @@ class StudentQuizIndividualController extends Controller
             if($check_student_quiz_individual->status == '1'){
                 //checking no. of attempt
 //                if($check_student_quiz_individual->count() > $check_student_quiz_individual->quiz_individual->no_of_attempt){
-                if($check_student_quiz_individual->count() > 2){
+                if($check_student_quiz_individual->count() < $check_student_quiz_individual->quiz_individual->no_of_attempt){
                     Session::flash('success','Dear student your quiz no. of attempt has been exceeded!');
                     return response()->json(['status' => 'No'],200);
                 }else{
