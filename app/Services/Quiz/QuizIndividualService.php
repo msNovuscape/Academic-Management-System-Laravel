@@ -112,7 +112,7 @@ class QuizIndividualService{
     public function quizIndividualResultStudent($studentQuizIndividual)
     {
         $setting = StudentQuizIndividual::findOrFail($studentQuizIndividual->id);
-        if (!$setting->individual_quiz_result) {
+        if (!$setting->individual_quiz_result && $setting->end_time <= date('Y-m-d h:i:s')) {
             $count = 0;
             foreach ($setting->student_quiz_question_individuals_list as $sqqi) {
                 $my_result = self::ans_right_or_wrong($sqqi->id);
@@ -125,6 +125,8 @@ class QuizIndividualService{
             $individual_quiz_result->total_question_attempted  = $setting->student_quiz_question_individuals_list->count();
             $individual_quiz_result->score  = $count;
             $individual_quiz_result->save();
+            $setting->status = '1';
+            $setting->save();
             return $individual_quiz_result;
         }
     }

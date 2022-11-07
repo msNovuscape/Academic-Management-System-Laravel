@@ -113,7 +113,7 @@ class QuizBatchService{
     public function quizBatchResultStudent($studentQuizBatch)
     {
         $setting = StudentQuizBatch::findOrFail($studentQuizBatch->id);
-        if (!$setting->batch_quiz_result) {
+        if (!$setting->batch_quiz_result && $setting->end_time <= date('Y-m-d h:i:s')) {
             $count = 0;
             foreach ($setting->student_quiz_question_batches_list as $sqqi) {
                 $my_result = self::ans_right_or_wrong($sqqi->id);
@@ -126,6 +126,8 @@ class QuizBatchService{
             $batchQuizResult->total_question_attempted  = $setting->student_quiz_question_batches_list->count();
             $batchQuizResult->score  = $count;
             $batchQuizResult->save();
+            $setting->status = '1';
+            $setting->save();
             return $batchQuizResult;
         }
     }

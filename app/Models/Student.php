@@ -25,6 +25,11 @@ class Student extends Model
         return $this->hasMany(Attendance::class);
     }
 
+    public function attendancesOrderByDate()
+    {
+        return $this->hasMany(Attendance::class)->orderBy('date', 'desc');
+    }
+
 //    public function current_attendance($attendance_date)
 //    {
 //        return $this->hasMany(Attendance::class)->where('date',$attendance_date);

@@ -41,7 +41,7 @@
                                         </tr>
                                         </thead>
                                             <tbody id="student_list">
-                                                @foreach($setting->attendances as $attendance)
+                                                @foreach($setting->attendancesOrderByDate as $attendance)
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$attendance->date}}</td>

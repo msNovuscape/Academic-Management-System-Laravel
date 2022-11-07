@@ -21,7 +21,7 @@
                                     $sn = 0;
                                 @endphp
                                 @foreach($setting->admission->batch->quiz_batches->where('status',1) as $quiz_batch)
-                                    @if($quiz_batch->student_quiz_batches->count() < $quiz_batch->no_of_attempt)
+                                    @if($quiz_batch->student_quiz_batches->count() < $quiz_batch->no_of_attempt || $quiz_batch->student_quiz_batches_list->first()->end_time > date('Y-m-d h:i:s') && $quiz_batch->student_quiz_batches_list->first()->status != '1')
                                         @php
                                             $sn = $sn + $loop->iteration;
                                         @endphp
@@ -49,7 +49,7 @@
                                     @php
                                         $sn = count($setting->admission->batch->quiz_batches->where('status',1)) + $loop->iteration;
                                     @endphp
-                                    @if($quiz_individual->student_quiz_individuals->count() <= $quiz_individual->no_of_attempt)
+                                    @if($quiz_individual->student_quiz_individuals->count() < $quiz_individual->no_of_attempt)
                                         <tr>
                                             <td>{{$sn}}</td>
                                             <td>
