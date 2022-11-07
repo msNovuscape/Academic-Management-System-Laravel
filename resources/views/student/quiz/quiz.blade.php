@@ -26,7 +26,7 @@
                                             $sn = $sn + $loop->iteration;
                                         @endphp
                                         <tr>
-                                            <td>{{$sn}} {{$quiz_batch->no_of_attempt}}</td>
+                                            <td>{{$sn}}</td>
                                             <td>
                                                 {{$quiz_batch->quiz->name}}
                                                 @if($quiz_batch->student_quiz_batches_list->count() > 0)
