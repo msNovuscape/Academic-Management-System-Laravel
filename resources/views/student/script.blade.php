@@ -344,7 +344,6 @@
                     /* remind that 'data' is the response of the AjaxController */
                     success: function (data) {
                         end_loader();
-                        debugger;
                         if(data['status'] == 'Ok'){
                             window.location.href =  Laravel.url+'/student/quiz_exam';
                         }
