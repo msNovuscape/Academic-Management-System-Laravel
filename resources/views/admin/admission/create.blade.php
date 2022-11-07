@@ -127,7 +127,7 @@
                                                                     </div>
                                                                     <div class="col-md-9">
                                                                         <div class="input-group">
-                                                                            <input type="number" name="discount" min="0.0"  value="{{old('discount')}}" class="form-control" id="discount" required/>
+                                                                            <input type="number" name="discount" min="0.0"  value="0.0" class="form-control" id="discount" required/>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -160,7 +160,7 @@
                                                                     <div class="col-md-9">
                                                                         <div class="input-group">
                                                                             <select name="bank_status" id="bank_status" class="form-control" required>
-                                                                                <option value="" selected disabled class="option">Please Select the Bank Status</option>
+                                                                                <option value="" selected disabled class="option" >Please Select the Bank Status</option>
                                                                                 @foreach(config('custom.bank_status') as $in => $val)
                                                                                     <option value="{{$in}}" @if(old('bank_status') == $in) selected @endif>{{$val}}</option>
                                                                                 @endforeach
@@ -290,7 +290,6 @@
                 contentType: false,
                 success:function (data){
                     end_loader();
-                    debugger;
                     $("#amount").attr('value', data['firstInstallmentAmount']);
                    batch_amount = parseFloat(data['batch']['fee']);
                 },
