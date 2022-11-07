@@ -125,6 +125,7 @@ class QuizIndividualService{
             $individual_quiz_result->total_question_attempted  = $setting->student_quiz_question_individuals_list->count();
             $individual_quiz_result->score  = $count;
             $individual_quiz_result->save();
+            $setting->status = 1;
             return $individual_quiz_result;
         }
     }

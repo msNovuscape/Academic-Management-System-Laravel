@@ -34,7 +34,7 @@ class LoginController extends Controller
                     }
                 }else{
                     Auth::logout();
-                    return redirect('login')->withErrors(['Your login is restricted.Please contact to admin!']);
+                    return redirect('login')->withErrors(['Your login is temporary restricted.Please contact to admin!']);
                 }
             }
             return redirect('admissions');

@@ -126,6 +126,7 @@ class QuizBatchService{
             $batchQuizResult->total_question_attempted  = $setting->student_quiz_question_batches_list->count();
             $batchQuizResult->score  = $count;
             $batchQuizResult->save();
+            $setting->status = 1;
             return $batchQuizResult;
         }
     }

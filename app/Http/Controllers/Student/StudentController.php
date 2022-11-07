@@ -41,12 +41,12 @@ class StudentController extends Controller
         if (Auth::user()->student) {
             $setting = Auth::user()->student;
             $countries = Country::all();
-            $studentQuizBatches = StudentQuizBatch::doesntHave('batch_quiz_result')->where('admission_id', Auth::user()->admission->id)->where('status','1')->get();
-            $studentQuizIndividuals = StudentQuizIndividual::doesntHave('individual_quiz_result')->where('admission_id', Auth::user()->admission->id)->where('status','1')->get();
+            $studentQuizBatches = StudentQuizBatch::doesntHave('batch_quiz_result')->where('admission_id', Auth::user()->admission->id)->get();
+            $studentQuizIndividuals = StudentQuizIndividual::doesntHave('individual_quiz_result')->where('admission_id', Auth::user()->admission->id)->get();
             if ($studentQuizBatches->count() > 0) {
                 foreach ($studentQuizBatches as $studentQuizBatch) {
-                    $quizBatchService = new QuizIndividualService();
-                    $quizBatchService->quizIndividualResultStudent($studentQuizBatch);
+                    $quizBatchService = new QuizBatchService();
+                    $quizBatchService->quizBatchResultStudent($studentQuizBatch);
                 }
             }
             if ($studentQuizIndividuals->count() > 0) {
