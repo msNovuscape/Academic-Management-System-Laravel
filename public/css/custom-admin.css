@@ -705,7 +705,12 @@ li {
 .radio-wrap div {
     margin: 10px;
 }
-
+.career-section .radio-wrap div {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
 .check-wrapper,
 .radio-wrap {
     display: flex;
@@ -1513,7 +1518,126 @@ label {
 .nav-tabs {
     border-bottom: 1px solid #ebedf2;
 }
-
+/* attendence student nav tab */
+.attendence-nav-tabs .nav-tabs .nav-link.active{
+    border-color: #F4F7FF #F4F7FF #e62395 !important;
+    color: #e62395 !important;
+}
+.attendence-nav-tabs .nav-tabs .nav-link:hover {
+    border-color: #F4F7FF #F4F7FF #e62395 !important;
+}
+.attendence-nav-tabs .nav-tabs{
+    gap: 2rem;
+}
+.attendence-nav-tabs .nav-tabs .nav-link {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+.border-block {
+    border: 1px solid #edf3fb;
+    border-radius: 4px;
+}
+.block-header {
+    background: #edf3fb;
+    display: flex;
+    align-items: center;
+    /* padding: 10px 20px; */
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    /* margin-bottom: 25px; */
+}
+.sd-progress-block {
+    padding: 20px 30px;
+    background: #f9fbff;
+}
+.block-header h4, .block-header h5 {
+    padding: 10px 20px;
+}
+.sd-progress {
+height: 20px;
+}
+.progress {
+    border-radius: 3px;
+}
+.arrow {
+    display: flex;
+}
+.arrow-block {
+    width: 20%;
+    text-align: center;
+}
+.arrow-block .block {
+    margin: 0 auto;
+    background: #485859;
+    height: 15px;
+    width: 2px;
+    margin-top: 5px;
+}
+.block-body {
+    background: #fff;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 15px 15px;
+}
+.at-date {
+    padding: 8px;
+    border: 1px solid #ced4da !important;
+    border-radius: 0.25rem;
+    margin-bottom: 10px;
+}
+.radio-wrap {
+    display: flex;
+}
+.radio-wrap div {
+    margin: 10px;
+}
+.present {
+    color: rgb(35, 182, 121);
+    font-size: 14px;
+}
+.btn-wrap {
+    /* text-align: right; */
+    margin-top: 25px;
+}
+.absent {
+    color: rgb(201, 25, 25);
+    font-size: 14px;
+}
+.btn-ctm-save{
+    background: #2367c7;
+    border: 1px solid #2367c7 ;
+    border-radius: 0.1875rem;
+    padding: 10px 40px !important;
+}
+.career-section .form-group label{
+    font-size: 16px;
+    font-weight: 500px;
+}
+.career-section .form-check {
+    position: relative;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.career-section .ui-checkbox .block-body .form-group .form-check .btn-sm {
+    float: right;
+    color: white;
+}
+.career-section .btn-sm {
+    background: #2367c7  !important;
+    border: 1px solid #2367c7  !important;
+    border-radius: 0.1875rem;
+    padding: 8px !important;
+    font-size: 12px !important;
+}
+.sp-button-five{
+    padding: 8px !important;
+}
+#sp-comment-one, #sp-comment-two, #sp-comment-three, #sp-comment-four, #sp-comment-five {
+    display: none;
+}
+/* attendence student nav tab */
 .nav-tabs .nav-link.active {
     border-color: #F4F7FF #F4F7FF #2367c7 !important;
     border-width: 2px;

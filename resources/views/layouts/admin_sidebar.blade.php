@@ -172,12 +172,22 @@
         </div>
     </li>
     <li class="nav-item @if(Request::segment(1) == 'attendance') active @endif">
-        <a class="nav-link" href="{{url('attendance')}}">
-            <div class="sidebar-icon  @if(Request::segment(1) == 'attendance') active @endif w-100" >
+        <a class="nav-link" href="#">
+            <div class="sidebar-icon w-100" id="myBtnAttendance">
                 <i class="bi bi-card-checklist"></i>
-                <span class="menu-title w-100">Attendance</span>
+                <span class="menu-title w-100">Attendance<i class="fa-solid fa-angle-down" id="icon-toggle-quiz"></i></span>
             </div>
         </a>
+        <div class="collapse" id="myCollapseAttendence">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item @if(Request::segment(1) == 'attendance') active @endif">
+                    <a class="nav-link " href="{{url('attendance')}}">List of Attendance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{url('attendance/student')}}">Student</a>
+                </li>
+            </ul>
+        </div>
     </li>
     <li class="nav-item @if(Request::segment(1) == 'quiz' || Request::segment(1) =='quiz_batch' || Request::segment(1) =='quiz_individual') active @endif">
         <a class="nav-link" href="#">
