@@ -146,7 +146,7 @@ class QuizQuestionController extends Controller
                 DB::beginTransaction();
                     $setting->quiz_question_answers()->delete();
                     $setting->quiz_options()->delete();
-                    if ($setting->questioin_type == 2) {
+                    if ($setting->question_type == 2) {
                         $path = public_path().'/'.$setting->quiz_question_image->image;
                         if (is_file($path) && file_exists($path)) {
                             unlink($path);
