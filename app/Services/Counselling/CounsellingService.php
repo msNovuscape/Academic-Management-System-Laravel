@@ -18,6 +18,7 @@ class CounsellingService
                 $setting->status = 2;
                 $setting->created_by = Auth::user()->id;
                 $setting->save();
+                $setting->studentCounsellingStatuses()->delete();
                 foreach (request('status') as $index => $value) {
                     $counsellingStatus = SCounsellingStatus::firstOrNew(['s_counselling_id'=>$setting->id, 'status'=>$value]);
                     $counsellingStatus->comment = request('comment')[$value];
@@ -25,6 +26,7 @@ class CounsellingService
                 }
                 if ($setting->studentCounsellingStatuses->count() == 5) {
                     $setting->status = 1;
+                    $setting->save();
                 }
             DB::commit();
             return $setting;

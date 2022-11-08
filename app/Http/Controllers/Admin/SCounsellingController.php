@@ -35,6 +35,24 @@ class SCounsellingController extends Controller
         return view($this->viewStudent.'index', compact('setting'));
     }
 
+    public function postStatus(CounsellingRequest $request, $admissionId)
+    {
+        $admission = Admission::findOrFail($admissionId);
+        $request->validated();
+        $this->counsellingService->storeData($admission);
+        Session::flash('success', 'Status  has been created!');
+        return redirect($this->redirect.'/'.$admissionId);
+    }
+
+    public function postAttendance(CounsellingAttendanceRequest $request, $admissionId)
+    {
+        $admission = Admission::findOrFail($admissionId);
+        $request->validated();
+        $this->counsellingService->attendance();
+        Session::flash('success', 'Student  has been created!');
+        return redirect($this->redirect);
+    }
+
     public function counselling_test()
     {
        dd(\request('comment')[1]);

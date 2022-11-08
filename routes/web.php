@@ -237,6 +237,8 @@ Route::group(['middleware'=>['myAdmin']], function () {
     //routes for carrier counselling
     Route::get('counselling', [SCounsellingController::class,'index']);
     Route::get('counselling/{admissionId}', [SCounsellingController::class,'getCounselling']);
+    Route::post('counselling/status/{admissionId}', [SCounsellingController::class,'postStatus']);
+    Route::post('counselling/attendance/{admissionId}', [SCounsellingController::class,'postAttendance']);
     Route::get('counselling_test', [SCounsellingController::class,'counselling_test']);
 });
 
