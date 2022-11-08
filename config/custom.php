@@ -69,6 +69,13 @@ return [
         '4' => '4 days',
         '5' => '5 days',
     ],
+    'counselling_statuses' => [
+        '1' => 'Enroll',
+        '2' => 'In Progress',
+        '3' => 'Interview',
+        '4' => 'Reference Check',
+        '5' => 'Get A Job',
+    ],
 
 ]
 

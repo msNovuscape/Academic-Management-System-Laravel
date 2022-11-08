@@ -48,7 +48,7 @@ class BatchController extends Controller
     {
         $validatedData = $request->validated();
         $this->batchService->storeData($validatedData);
-        Session::flash('success','Batch has been created!');
+        Session::flash('success', 'Batch has been created!');
         return redirect($this->redirect);
     }
 

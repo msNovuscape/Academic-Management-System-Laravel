@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('s_counsellings', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('created_by')->unsigned();
+            $table->foreign('created_by')->references('id')->on('users');
             $table->bigInteger('admission_id')->unsigned();
             $table->foreign('admission_id')->references('id')->on('admissions');
             $table->date('date');

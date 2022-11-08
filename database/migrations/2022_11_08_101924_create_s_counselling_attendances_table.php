@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('s_counselling_attendances', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('created_by')->unsigned();
+            $table->foreign('created_by')->references('id')->on('users');
             $table->bigInteger('s_counselling_id')->unsigned();
             $table->foreign('s_counselling_id')->references('id')->on('s_counsellings');
             $table->enum('status', ['1','2']);

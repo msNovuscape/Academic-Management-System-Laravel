@@ -28,6 +28,7 @@ use App\Http\Controllers\Student\StudentQuizIndividualController;
 use App\Http\Controllers\Report\AttendanceReportController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\Admin\SCounsellingController;
 
 
 
@@ -226,10 +227,14 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::post('reports/attendance', [AttendanceReportController::class,'report']);
     Route::get('reports/attendance/batch/{course_id}', [AttendanceReportController::class,'getBatch']);
     Route::get('reports/attendance/student/{batch_id}', [AttendanceReportController::class,'getStudent']);
+
+    //routes for carrier counselling
+    Route::get('counselling', [SCounsellingController::class,'index']);
+    Route::get('counselling_test', [SCounsellingController::class,'counselling_test']);
 });
 
 //    Routes for students
-Route::group(['middleware'=>'student','prefix'=>'student'],function (){
+Route::group(['middleware'=>'student','prefix'=>'student'], function () {
     Route::get('', [StudentController::class,'index']);
     Route::get('new-password', [StudentController::class,'getNewPassword']);
     Route::post('new-password', [StudentController::class,'postNewPassword']);
