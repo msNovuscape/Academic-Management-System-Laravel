@@ -105,7 +105,7 @@ class QuizController extends Controller
             $setting->delete();
             $message = 'Quiz  has been deleted!';
         }
-        Session::flash('success',$message);
+        Session::flash('success', $message);
         return redirect($this->redirect);
     }
 

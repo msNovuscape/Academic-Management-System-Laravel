@@ -137,6 +137,7 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::get('quiz/quiz_question_show/{id}', [QuizQuestionController::class,'getShow']); //show the individual question
     Route::get('quiz/quiz_question_edit/{id}', [QuizQuestionController::class,'edit']); //show the individual question
     Route::post('quiz/quiz_question_edit/{id}', [QuizQuestionController::class,'update']); //show the individual question
+    Route::get('quiz/quiz_question_delete/{id}', [QuizQuestionController::class,'delete']); //show the individual question
     Route::get('quiz_question_dom_update/{dom_id}/{question_type}', [QuizQuestionController::class,'quizQuestionDomUpdate']);//api call for quiz question type
 
     //routes for quiz assign to batch

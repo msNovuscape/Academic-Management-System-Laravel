@@ -144,7 +144,6 @@
 @section('script')
     <script>
         function getConfirm() {
-            debugger;
             if (confirm('Do you sure want to delete quiz?')) {
 
             } else {

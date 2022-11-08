@@ -9,6 +9,7 @@ use App\Models\QuizOption;
 use App\Models\QuizQuestion;
 use App\Services\QuizQuestionService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class QuizQuestionController extends Controller
@@ -132,5 +133,35 @@ class QuizQuestionController extends Controller
             $returnHtml = view($this->view.'design.question_image_dom_update',['id' => $dom_id])->render();
             return response()->json(array('success' =>true, 'question_type' => 2,'html' => $returnHtml));
         }
+    }
+
+    public function delete($id)
+    {
+        $setting = QuizQuestion::findOrFail($id);
+        if ($setting->studentQuizQuestionBatches->count() > 0 || $setting->studentQuizQuestionIndividuals->count() > 0 ) {
+            $message = 'You can not delete quiz questions, Student has already given exam to this question!';
+            Session::flash('custom_error', $message);
+        } else {
+            try {
+                DB::beginTransaction();
+                    $setting->quiz_question_answers()->delete();
+                    $setting->quiz_options()->delete();
+                    if ($setting->questioin_type == 2) {
+                        $path = public_path().'/'.$setting->quiz_question_image->image;
+                        if (is_file($path) && file_exists($path)) {
+                            unlink($path);
+                        }
+                        $setting->quiz_question_image->delete();
+                    }
+                    $setting->delete();
+                DB::commit();
+                $message = 'Quiz Question has been deleted!';
+                Session::flash('success', $message);
+            } catch (\Exception $e) {
+                DB::rollback();
+                throw $e;
+            }
+        }
+        return redirect()->back();
     }
 }

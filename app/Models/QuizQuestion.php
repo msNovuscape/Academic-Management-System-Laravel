@@ -29,4 +29,13 @@ class QuizQuestion extends Model
         return $this->hasMany(QuizQuestionAnswer::class);
     }
 
+    public function studentQuizQuestionBatches()
+    {
+        return $this->hasMany(StudentQuizQuestionBatch::class);
+    }
+    public function studentQuizQuestionIndividuals()
+    {
+        return $this->hasMany(StudentQuizQuestionIndividual::class);
+    }
+
 }

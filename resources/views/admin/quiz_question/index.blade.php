@@ -46,7 +46,7 @@
                             </div>
                         {!! Form::close() !!}
 
-                        <div>
+                        <div class="mt-2">
                             @include('success.success')
                             @include('errors.error')
                         </div>
@@ -98,6 +98,9 @@
                                                                             <li>
                                                                                 <a class="dropdown-item"  href="{{url('quiz/quiz_question_edit/'.$setting->id)}}" role="button"><i class="fa-solid fa-pen"></i></a>
                                                                             </li>
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('quiz/quiz_question_delete/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="delete" onclick="getConfirm()"><i class="fa-solid fa-trash"></i></a>
+                                                                            </li>
                                                                         </ul>
                                                                     </td>
                                                                 </tr>
@@ -121,4 +124,16 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        function getConfirm() {
+            if (confirm('Do you sure want to delete quiz?')) {
+
+            } else {
+                event.preventDefault();
+                location.reload();
+            }
+        }
+    </script>
 @endsection
