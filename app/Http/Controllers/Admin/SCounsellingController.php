@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Counselling\CounsellingAttendanceRequest;
 use App\Http\Requests\Counselling\CounsellingRequest;
+use App\Models\Admission;
 use App\Models\SCounselling;
 use App\Services\Counselling\CounsellingService;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 class SCounsellingController extends Controller
 {
     protected $view = 'admin.counselling.';
+    protected $viewStudent = 'admin.counselling.student.';
     protected $redirect = 'counselling';
     private $counsellingService;
 
@@ -25,6 +27,12 @@ class SCounsellingController extends Controller
     {
         $setting = SCounselling::findOrFail($admissionId);
         return view('admin.counselling.index', compact('setting'));
+    }
+
+    public function getCounselling($admissionId)
+    {
+        $setting = Admission::findOrFail($admissionId);
+        return view($this->viewStudent.'index', compact('setting'));
     }
 
     public function counselling_test()
