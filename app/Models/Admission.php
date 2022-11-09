@@ -63,4 +63,9 @@ class Admission extends Model
         return $this->hasMany(StudentQuizIndividual::class);
     }
 
+    public function sCounselling()
+    {
+        return $this->hasOne(SCounselling::class);
+    }
+
 }

@@ -124,6 +124,7 @@
                                                                 <th data-bs-toggle="tooltip" data-bs-title="Discount">Disc</th>
                                                                 <th data-bs-toggle="tooltip" data-bs-title="First Installment">1st Inst</th>
                                                                 <th>Action</th>
+                                                                <th>Counselling</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="student_list">
@@ -152,6 +153,9 @@
                                                                                 <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
                                                                             </li>
                                                                         </ul>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-plus" data-bs-toggle="tooltip" data-bs-title="Carrier Counselling"></i></a>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

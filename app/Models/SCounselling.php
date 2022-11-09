@@ -15,4 +15,9 @@ class SCounselling extends Model
     {
         return $this->hasMany(SCounsellingStatus::class);
     }
+
+    public function admission()
+    {
+        return $this->belongsTo(Admission::class);
+    }
 }

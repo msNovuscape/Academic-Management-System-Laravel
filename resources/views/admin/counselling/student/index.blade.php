@@ -81,17 +81,74 @@
 @section('script')
     <script>
         function showCommentBox(id) {
-            debugger;
             if($('#my-status-'+id).is(':checked')){
-                debugger;
-                $('#sp-comment-'+id).show();
+                if($('#sp-comment-'+id).css('display') == 'none')
+                {
+                    $('#sp-comment-'+id).show();
+                } else {
+                    $('#sp-comment-'+id).hide();
+                }
+            } else {
+                $('#sp-comment-'+id).hide();
             }
-            debugger;
+        }
+        var counsellingStatus = true;
+        function getVerify(id){
+            var status = true;
+            for(i = 1; i <=5; i++){
+                if (i == 1) {
+                    if(!$('#my-status-'+i).is(':checked')){
+                        for(j=2; j <=5; j++){
+                            if($('#my-status-'+j).is(':checked')){
+                                status = false;
+                                errorDisplay('Please check the status serially!');
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    if(status == false){
+                        counsellingStatus = false;
+                        // $('#my-status-'+i).prop('checked', false); // Unchecks it
+                        break;
+                    } else {
+                        if($('#my-status-'+i).is(':checked')) {
+                            for(k = 1; k < i ; k++){
+                                if(!$('#my-status-'+k).is(':checked')){
+                                    status = false;
+                                    errorDisplay('Please check the status serially!');
+                                    break;
+                                }
+                            }
+                        } else {
+                            for(s = i+1; s <= 5 ; s++){
+                                if($('#my-status-'+s).is(':checked')){
+                                    status = false;
+                                    errorDisplay('Please check the status serially!');
+                                    break;
+                                }
+                            }
+                        }
+                        if(status == false){
+                            counsellingStatus = false;
+                            break;
+                        }else {
+                            counsellingStatus = true;
+                        }
+                    }
+                }
+            }
+            counsellingStatus = status ;
         }
 
-        function getVerify(id){
-            debugger;
-            $(".check-enable").removeAttr('disabled');
+        function validateForm(){
+            if(counsellingStatus){
+                return true;
+            }else {
+                errorDisplay('Please check the status serially!');
+                return false;
+            }
         }
+
     </script>
 @endsection

@@ -42,6 +42,11 @@
                 var x = document.getElementById('icon-toggle-attendance');
                 x.classList.toggle("fa-angle-right");
             });
+            $("#myBtnCounselling").click(function(){
+                $("#myCollapseCounselling").collapse("toggle");
+                var x = document.getElementById('icon-toggle-attendance');
+                x.classList.toggle("fa-angle-right");
+            });
             $("#myBtnQuiz").click(function(){
                 $("#myCollapseQuiz").collapse("toggle");
                 var x = document.getElementById('icon-toggle-quiz');

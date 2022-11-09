@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Counselling\CounsellingAttendanceRequest;
 use App\Http\Requests\Counselling\CounsellingRequest;
 use App\Models\Admission;
+use App\Models\Batch;
+use App\Models\Course;
 use App\Models\SCounselling;
 use App\Services\Counselling\CounsellingService;
 use Illuminate\Http\Request;
@@ -23,15 +25,18 @@ class SCounsellingController extends Controller
         $this->counsellingService = $service;
     }
 
-    public function index($admissionId)
+    public function index()
     {
-        $setting = SCounselling::findOrFail($admissionId);
-        return view('admin.counselling.index', compact('setting'));
+        $courses = Course::all();
+        $batches = Batch::all();
+        $settings = $this->counsellingService->search();
+        return view('admin.counselling.index', compact('settings', 'courses', 'batches'));
     }
 
     public function getCounselling($admissionId)
     {
         $setting = Admission::findOrFail($admissionId);
+//        dd($setting->sCounselling->studentCounsellingStatuses->where('status',1));
         return view($this->viewStudent.'index', compact('setting'));
     }
 
@@ -48,9 +53,9 @@ class SCounsellingController extends Controller
     {
         $admission = Admission::findOrFail($admissionId);
         $request->validated();
-        $this->counsellingService->attendance();
-        Session::flash('success', 'Student  has been created!');
-        return redirect($this->redirect);
+        $this->counsellingService->attendance($admission->sCounselling);
+        Session::flash('success', 'Counselling status  has been created!');
+        return redirect($this->redirect.'/'.$admissionId);
     }
 
     public function counselling_test()
