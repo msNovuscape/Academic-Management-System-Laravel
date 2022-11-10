@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="card-heading d-flex justify-content-between">
                             <div>
-                                <h4>Carrier Counselling  Lists</h4>
+                                <h4>Carrier Counselling  Lists [ {{$settings->count()}} ]</h4>
                                 <p>
                                     You can search the student by <a href="#" class="card-heading-link">name or student id, course, batch, date</a> and can view all available admission records.
                                 </p>

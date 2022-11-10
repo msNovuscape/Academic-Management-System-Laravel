@@ -79,4 +79,13 @@ class SCounsellingController extends Controller
         return redirect($this->redirect);
     }
 
+    public function getGroupAttendance()
+    {
+        $settings = SCounselling::orderBy('id', 'asc');
+        $date = date('Y-m-d');
+        $settings = $settings->whereHas('');
+        $batches = Batch::all();
+        return view($this->view.'attendance.index', compact('settings','batches'));
+    }
+
 }

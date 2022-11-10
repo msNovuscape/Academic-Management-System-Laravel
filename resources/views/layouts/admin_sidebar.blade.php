@@ -198,11 +198,11 @@
         </a>
         <div class="collapse" id="myCollapseCounselling">
             <ul class="nav flex-column sub-menu">
-                <li class="nav-item @if(Request::segment(1) == 'counselling') active @endif">
+                <li class="nav-item @if(Request::segment(1) == 'counselling' || Request::segment(1) == 'counsellings') active @endif">
                     <a class="nav-link " href="{{url('counselling')}}">List of Carrier Counselling</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="{{url('counselling/attendances')}}">Attendance</a>
+                    <a class="nav-link"  href="{{url('counsellings/group-attendance')}}">Attendance</a>
                 </li>
             </ul>
         </div>
