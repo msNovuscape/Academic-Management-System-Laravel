@@ -934,3 +934,11 @@ h2 {
         padding: 10px 5px;
     }
 }
+/* career counselling */
+.sd-firstrow {
+    display: flex;
+    justify-content: space-between;
+}
+.sd-blocks .block-body {
+    background: #f3f7fe;
+}

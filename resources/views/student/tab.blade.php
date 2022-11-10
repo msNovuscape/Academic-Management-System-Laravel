@@ -45,10 +45,10 @@
                 <a href="" class="nav-link col general-section" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-performance" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                     <div class="general-section">
                         <div>
-                            <i class="fa-solid fa-bolt"></i>
+                            <i class="fa-solid fa-briefcase"></i>
                         </div>
                         <div>
-                            <h1>Performance</h1>
+                            <h1>Career Counselling</h1>
                         </div>
                     </div>
                 </a>
@@ -81,7 +81,9 @@
             <div class="tab-pane fade " id="nav-finance" role="tabpanel" aria-labelledby="nav-home-tab">
                 @include('student.finance.index')
             </div>
-            <div class="tab-pane fade" id="nav-performance" role="tabpanel" aria-labelledby="nav-profile-tab">Performance</div>
+            <div class="tab-pane fade" id="nav-performance" role="tabpanel" aria-labelledby="nav-profile-tab">
+                @include('student.career_counselling.index')
+            </div>
             <div class="tab-pane fade" id="nav-exam" role="tabpanel" aria-labelledby="nav-contact-tab">Book Exam</div>
         </div>
     </div>
