@@ -47,10 +47,11 @@
                                     </div>
                                     <div class="block-body sd-progress-block">
                                         <div class="progress sd-progress mt-3">
-{{--                                            <div class="progress-bar bg-success pb" id='my-progressbar' role="progressbar" style="width: 40%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>--}}
-                                            <div class="progress-bar bg-success pb" id='my-progressbar' role="progressbar"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-{{--                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--                                            <div class="progress-bar progress-nc" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>--}}
+                                            @if($setting->sCounselling)
+                                                <div class="progress-bar bg-success pb" style="width: {{$setting->sCounselling->studentCounsellingStatuses->count() * 20}}% " id='my-progressbar' role="progressbar"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @else
+                                                <div class="progress-bar bg-success pb" id='my-progressbar' role="progressbar"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @endif
                                         </div>
                                         <div class="arrow">
                                             @foreach(config('custom.counselling_statuses') as $index => $value)
@@ -71,6 +72,43 @@
                                     <!-- second column -->
                                     @include('admin.counselling.student.status')
                                 </div>
+                            </div>
+                            <div class="col-12 career-table table-responsive grid-margin mt-2x">
+                                <div class="block-header">
+                                    <h3>Attendance</h3>
+                                </div>
+                                <table class="table mt-2">
+                                    <thead class="tbl-light-head">
+                                    <tr>
+                                        <th>S.N.</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @if($setting->sCounselling->s_counselling_attendances->count() > 0)
+                                        @foreach($setting->sCounselling->s_counselling_attendances_orderByDate as $s_counselling_attendance)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$s_counselling_attendance->date}}</td>
+                                                <td>
+                                                    @if($s_counselling_attendance->status == 2)
+                                                        <div class="td-pblock" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Absent">
+                                                            <label class="form-check-label" for="flexRadioDefault1">Absent</label>
+                                                            <i class="fa-solid fa-user-check absent"></i>
+                                                        </div>
+                                                    @else
+                                                        <div class="td-pblock" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Present">
+                                                            <label class="form-check-label" for="flexRadioDefault1">Present</label>
+                                                            <i class="fa-solid fa-user-check present"></i>
+                                                        </div>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -152,6 +190,18 @@
                 return false;
             }
         }
+        @if(isset($sMinDate))
+            $("#sDate").flatpickr({
+                minDate : "<?php echo $sMinDate; ?>",
+                maxDate : "<?php echo date('Y-m-d');?>",
+                dateFormat: "Y-m-d",
+            });
+        @else
+            $("#sDate").flatpickr({
+                maxDate : "<?php echo date('Y-m-d');?>",
+                dateFormat: "Y-m-d",
+            });
+        @endif
 
     </script>
 @endsection

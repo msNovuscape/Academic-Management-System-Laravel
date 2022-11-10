@@ -37,8 +37,12 @@ class SCounsellingController extends Controller
     public function getCounselling($admissionId)
     {
         $setting = Admission::findOrFail($admissionId);
-//        dd($setting->sCounselling->studentCounsellingStatuses->where('status',1));
-        return view($this->viewStudent.'index', compact('setting'));
+        if ($setting->sCounselling) {
+            $sMinDate = $setting->sCounselling->date;
+            return view($this->viewStudent.'index', compact('setting', 'sMinDate'));
+        } else {
+            return view($this->viewStudent.'index', compact('setting'));
+        }
     }
 
     public function postStatus(CounsellingRequest $request, $admissionId)
