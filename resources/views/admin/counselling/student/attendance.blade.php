@@ -6,7 +6,7 @@
                 <h4>Attendance</h4>
             </div>
             <div class="block-body">
-                <div class="col-md-6 form-group">
+                <div class="col-md-6 mb-3 form-group">
                     <label class="form-label">Date</label>
                     <input type="text" class="form-control currentDate" name="date" required>
                 </div>

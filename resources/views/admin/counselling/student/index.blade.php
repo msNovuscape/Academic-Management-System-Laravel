@@ -47,9 +47,10 @@
                                     </div>
                                     <div class="block-body sd-progress-block">
                                         <div class="progress sd-progress mt-3">
-                                            <div class="progress-bar bg-success pb" role="progressbar" style="width: 20%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                            <div class="progress-bar progress-nc" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                            <div class="progress-bar progress-nc" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-success pb" id="my-progressbar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                            @php
+                                                
+                                            @endphp
                                         </div>
                                         <div class="arrow">
                                             @foreach(config('custom.counselling_statuses') as $index => $value)
@@ -95,6 +96,8 @@
         var counsellingStatus = true;
         function getVerify(id){
             var status = true;
+            var percentange = parseInt(id * 20)+'%';
+            $("#my-progressbar").css( "width", percentange);
             for(i = 1; i <=5; i++){
                 if (i == 1) {
                     if(!$('#my-status-'+i).is(':checked')){
@@ -140,7 +143,6 @@
             }
             counsellingStatus = status ;
         }
-
         function validateForm(){
             if(counsellingStatus){
                 return true;
