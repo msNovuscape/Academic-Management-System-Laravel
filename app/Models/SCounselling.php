@@ -9,8 +9,20 @@ class SCounselling extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['created_by','admission_id','date','status'];
+
     public function studentCounsellingStatuses()
     {
         return $this->hasMany(SCounsellingStatus::class);
+    }
+
+    public function admission()
+    {
+        return $this->belongsTo(Admission::class);
+    }
+
+    public function s_counselling_attendances()
+    {
+        return $this->hasMany(SCounsellingAttendance::class);
     }
 }

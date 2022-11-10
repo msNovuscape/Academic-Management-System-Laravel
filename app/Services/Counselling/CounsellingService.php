@@ -18,6 +18,7 @@ class CounsellingService
                 $setting->status = 2;
                 $setting->created_by = Auth::user()->id;
                 $setting->save();
+                $setting->studentCounsellingStatuses()->delete();
                 foreach (request('status') as $index => $value) {
                     $counsellingStatus = SCounsellingStatus::firstOrNew(['s_counselling_id'=>$setting->id, 'status'=>$value]);
                     $counsellingStatus->comment = request('comment')[$value];
@@ -25,6 +26,7 @@ class CounsellingService
                 }
                 if ($setting->studentCounsellingStatuses->count() == 5) {
                     $setting->status = 1;
+                    $setting->save();
                 }
             DB::commit();
             return $setting;
@@ -36,6 +38,7 @@ class CounsellingService
 
     public function attendance($studentCounselling)
     {
+//        dd($studentCounselling);
         $setting =  SCounsellingAttendance::firstOrNew(['s_counselling_id'=>$studentCounselling->id, 'date'=>request('date')]);
         $setting->status = request('status');
         if (request('status') == 1) {
@@ -47,4 +50,42 @@ class CounsellingService
         return $setting->save();
 
     }
+
+    public function search()
+    {
+        $settings = SCounselling:: orderBy('id', 'desc');
+
+        if (request('date')) {
+            $key = \request('date');
+            $settings = $settings->where('date', $key);
+        }
+        if (request('name')) {
+            $key = \request('name');
+            $settings = $settings->whereHas('admission', function ($a) use ($key) {
+                $a->whereHas('user', function ($u) use ($key) {
+                   $u->where('name', 'like', '%'.$key.'%');
+                })->orWhere('student_id', 'like', '%'.$key.'%');
+            });
+        }
+        if (request('course_id')) {
+            $key = \request('course_id');
+            $settings = $settings->whereHas('admission.batch.time_slot', function ($q) use ($key){
+                $q->where('course_id', $key);
+            });
+        }
+        if (request('batch_id')) {
+            $key = \request('batch_id');
+            $settings = $settings->whereHas('admission', function ($a) use ($key){
+                $a->where('batch_id', $key);
+            });
+        }
+        if (request('per_page')) {
+            $perPage = request('per_page');
+            $settings = $settings->paginate($perPage);
+        } else {
+            $settings = $settings->paginate(config('custom.per_page'));
+        }
+        return $settings;
+    }
+
 }

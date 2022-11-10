@@ -138,5 +138,25 @@ class AttendanceController extends Controller
     {
 
     }
-
+    public function studentIndex()
+    {
+        return view($this->view.'student');
+    }
+    public function financeIndex()
+    {
+        return view($this->view.'finance');
+    }
+    public function quizIndex()
+    {
+        return view($this->view.'quiz');
+    }
+    public function careerIndex()
+    {
+        return view($this->view.'career');
+    }
+    public function technicalIndex()
+    {
+        return view($this->view.'technical');
+    }
+    
 }

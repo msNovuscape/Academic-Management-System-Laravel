@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SCounsellingAttendance extends Model
 {
     use HasFactory;
+    protected $fillable = ['s_counselling_id','status','symbol','date'];
+
 }

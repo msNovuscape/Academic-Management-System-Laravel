@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('s_counselling_id')->references('id')->on('s_counsellings');
             $table->enum('status', ['1','2']);
             $table->string('symbol'); // P or A
-            $table->date('date'); // P or A
+            $table->date('date');
             $table->timestamps();
         });
     }

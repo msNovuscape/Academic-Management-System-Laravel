@@ -193,7 +193,12 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::post('attendance_by_date', [AttendanceController::class,'attendanceByDate']); //ajax call for update single attendance
     Route::post('attendance_by_name', [AttendanceController::class,'getStudentSearch']); //ajax call for search student by name
 
-
+// routes for student in attendence  for test
+    Route::get('attendance/student', [AttendanceController::class,'studentIndex']);
+    Route::get('attendance/finance', [AttendanceController::class,'financeIndex']);
+    Route::get('attendance/quiz', [AttendanceController::class,'quizIndex']);
+    Route::get('attendance/career', [AttendanceController::class,'careerIndex']);
+    Route::get('attendance/technical', [AttendanceController::class,'technicalIndex']);
 
     //routes for student finance
     Route::get('finances', [FinanceController::class,'index']);
@@ -231,6 +236,10 @@ Route::group(['middleware'=>['myAdmin']], function () {
 
     //routes for carrier counselling
     Route::get('counselling', [SCounsellingController::class,'index']);
+    Route::get('counselling/{admissionId}', [SCounsellingController::class,'getCounselling']);
+    Route::post('counselling/status/{admissionId}', [SCounsellingController::class,'postStatus']);
+    Route::post('counselling/attendance/{admissionId}', [SCounsellingController::class,'postAttendance']);
+    Route::get('counsellings/group-attendance', [SCounsellingController::class,'getGroupAttendance']);
     Route::get('counselling_test', [SCounsellingController::class,'counselling_test']);
 });
 

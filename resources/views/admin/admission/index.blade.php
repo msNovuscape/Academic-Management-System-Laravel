@@ -66,10 +66,9 @@
                                                                 Show
                                                             </p>
                                                             <select class="form-select mx-2 show-select reset-class" aria-label="Default select example" name="per_page">
-                                                                <option value="20">20</option>
-                                                                <option value="30">30</option>
-                                                                <option value="40">40</option>
-                                                                <option value="50">50</option>
+                                                                @foreach(config('custom.pagination') as $in1 => $val1)
+                                                                    <option value="{{$val1}}" @if(request('per_page') == $val1) selected @endif>{{$val1}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -124,6 +123,7 @@
                                                                 <th data-bs-toggle="tooltip" data-bs-title="Discount">Disc</th>
                                                                 <th data-bs-toggle="tooltip" data-bs-title="First Installment">1st Inst</th>
                                                                 <th>Action</th>
+                                                                <th>Counselling</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="student_list">
@@ -152,6 +152,9 @@
                                                                                 <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
                                                                             </li>
                                                                         </ul>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-plus" data-bs-toggle="tooltip" data-bs-title="Carrier Counselling"></i></a>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

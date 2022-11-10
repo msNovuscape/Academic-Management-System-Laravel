@@ -38,7 +38,12 @@
                 x.classList.toggle("fa-angle-right");
             });
             $("#myBtnAttendance").click(function(){
-                $("#myCollapseAttendance").collapse("toggle");
+                $("#myCollapseAttendence").collapse("toggle");
+                var x = document.getElementById('icon-toggle-attendance');
+                x.classList.toggle("fa-angle-right");
+            });
+            $("#myBtnCounselling").click(function(){
+                $("#myCollapseCounselling").collapse("toggle");
                 var x = document.getElementById('icon-toggle-attendance');
                 x.classList.toggle("fa-angle-right");
             });

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class SCounsellingStatus extends Model
 {
     use HasFactory;
+    protected $fillable = ['s_counselling_id','status','comment'];
 }
