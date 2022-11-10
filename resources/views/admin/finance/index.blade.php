@@ -64,11 +64,7 @@
                                             <p class="m-0">
                                                 Show
                                             </p>
-                                            <select class="form-select mx-2 show-select reset-class" aria-label="Default select example" name="per_page">
-                                                @foreach(config('custom.pagination') as $in1 => $val1)
-                                                    <option value="{{$val1}}" @if(request('per_page') == $val1) selected @endif>{{$val1}}</option>
-                                                @endforeach
-                                            </select>
+                                            i
                                         </div>
                                     </div>
 
@@ -331,6 +327,7 @@
                             </div>
                             <div class="row">
                                 <div class="pagination-section">
+                                    {{$settings->links()}}
                                 </div>
                             </div>
                         </div>
