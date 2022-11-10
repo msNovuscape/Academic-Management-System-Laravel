@@ -10,4 +10,9 @@ class SCounsellingAttendance extends Model
     use HasFactory;
     protected $fillable = ['s_counselling_id','status','symbol','date'];
 
+    public function s_counselling()
+    {
+        return $this->belongsTo(SCounselling::class);
+    }
+
 }

@@ -1,9 +1,11 @@
 <?php
 namespace App\Services\Counselling;
 
+use App\Models\Attendance;
 use App\Models\SCounselling;
 use App\Models\SCounsellingAttendance;
 use App\Models\SCounsellingStatus;
+use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +18,7 @@ class CounsellingService
                 $setting =  SCounselling::firstOrNew(['admission_id' => $admission->id]);
                 $setting->date = date('Y-m-d');
                 $setting->status = 2;
+                $setting->attendance_status = 2;
                 $setting->created_by = Auth::user()->id;
                 $setting->save();
                 $setting->studentCounsellingStatuses()->delete();
@@ -26,6 +29,10 @@ class CounsellingService
                 }
                 if ($setting->studentCounsellingStatuses->count() == 5) {
                     $setting->status = 1;
+                    $setting->save();
+                }
+                if ($setting->s_counselling_attendances->count() == 7) {
+                    $setting->attendance_status = 1;
                     $setting->save();
                 }
             DB::commit();
@@ -39,6 +46,7 @@ class CounsellingService
     public function attendance($studentCounselling)
     {
 //        dd($studentCounselling);
+
         $setting =  SCounsellingAttendance::firstOrNew(['s_counselling_id'=>$studentCounselling->id, 'date'=>request('date')]);
         $setting->status = request('status');
         if (request('status') == 1) {
@@ -47,7 +55,12 @@ class CounsellingService
             $setting->symbol = 'Absent';
         }
         $setting->created_by = Auth::user()->id;
-        return $setting->save();
+        $setting->save();
+        if ($studentCounselling->s_counselling_attendances->count() > 8) {
+            $studentCounselling->attendance_status = 1;
+            $studentCounselling->save();
+        }
+        return $setting;
 
     }
 
@@ -86,6 +99,36 @@ class CounsellingService
             $settings = $settings->paginate(config('custom.per_page'));
         }
         return $settings;
+    }
+
+    public function storeAttendance($attendance_data,$attendance_date)
+    {
+        if(count($attendance_data) > 0){
+            //start if condition for the attendance date must in between batch start and batch end date and attendance date is not greater than current date
+                foreach ($attendance_data as $req_att){
+                    $student = SCounselling::findOrFail($req_att->student_id);
+                    $setting =  SCounsellingAttendance::firstOrNew(['s_counselling_id'=>$student->id, 'date'=>$attendance_date]);
+                    $setting->created_by = Auth::user()->id;
+                    $setting->status = $req_att->status;
+                    $setting->symbol = $req_att->symbol;
+                    $setting->save();
+                    if ($student->s_counselling_attendances->count() >8 ) {
+                        $student->attendance_status = 1;
+                        $student->save();
+                    }
+                }
+                return $attendance_data;
+        }
+    }
+
+    public function singleAttendance($id, $status, $symbol)
+    {
+        $attendance = SCounsellingAttendance::findOrFail($id);
+        $attendance->status = $status;
+        $attendance->symbol = $symbol;
+        $attendance->save();
+        return $attendance;
+
     }
 
 }

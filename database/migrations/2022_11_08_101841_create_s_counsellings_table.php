@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('admission_id')->references('id')->on('admissions');
             $table->date('date');
             $table->enum('status', ['1','2']); //1 for completed carrier counselling, 2 for not
+            $table->enum('attendance_status', ['1','2']); //1 for completed carrier counselling, 2 for not
             $table->timestamps();
         });
     }

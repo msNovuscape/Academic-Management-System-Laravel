@@ -9,7 +9,7 @@ class SCounselling extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['created_by','admission_id','date','status'];
+    protected $fillable = ['created_by','admission_id','date','status', 'attendance_status'];
 
     public function studentCounsellingStatuses()
     {

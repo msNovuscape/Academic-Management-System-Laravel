@@ -240,6 +240,9 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::post('counselling/status/{admissionId}', [SCounsellingController::class,'postStatus']);
     Route::post('counselling/attendance/{admissionId}', [SCounsellingController::class,'postAttendance']);
     Route::get('counsellings/group-attendance', [SCounsellingController::class,'getGroupAttendance']);
+    Route::post('counsellings/group-attendance', [SCounsellingController::class,'postGroupAttendance']);
+    Route::post('counsellings/group-attendance/{s_counselling_attendance_id}', [SCounsellingController::class,'singleAttendance']);
+    Route::post('counsellings-attendance-by-date', [SCounsellingController::class,'counsellingsAttendanceByDate']);
     Route::get('counselling_test', [SCounsellingController::class,'counselling_test']);
 });
 

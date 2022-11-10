@@ -82,7 +82,7 @@
                                                             <img src="{{url('images/calender-icon.png')}}" alt="calender-icon"/>
                                                         </div>
                                                     </div>
-                                                    <input name="date" type="text" class="form-control default-carrier-date"   placeholder="" required onchange="getDatewiseBatchAttendance()"/>
+                                                    <input name="date" type="text" id="fromDateToDate" class="form-control default-carrier-date"   placeholder="" required onchange="getDatewiseBatchAttendance()"/>
                                                     <span>
                                                         <i class="fa-solid fa-caret-down"></i>
                                                     </span>
@@ -162,14 +162,14 @@
             if(att_status === 1){
                 var checked_status = 1;
                 var unchecked_status = 2;
-                var checked_symbol = 'P';
-                var unchecked_symbol = 'A';
+                var checked_symbol = 'Present';
+                var unchecked_symbol = 'Absent';
             }
             if(att_status === 2){
                 var checked_status = 2;
                 var unchecked_status = 1;
-                var checked_symbol = 'A';
-                var unchecked_symbol = 'P';
+                var checked_symbol = 'Absent';
+                var unchecked_symbol = 'Present';
             }
 
             for (var i = 0; i < checkboxes.length; i++) {
@@ -208,7 +208,7 @@
                                 $.ajax({
                                     /* the route pointing to the post function */
                                     type: 'POST',
-                                    url: Laravel.url +"/attendance",
+                                    url: Laravel.url +"/counsellings/group-attendance",
                                     dataType: 'json',
                                     data: formData,
                                     processData: false,  // tell jQuery not to process the data
@@ -259,12 +259,12 @@
                             if(status == 1){
                                 //if present(1) then make absent(2)
                                 var new_status = 2;
-                                var symbol = 'A';
+                                var symbol = 'Absent';
                             }
                             if(status == 2){
                                 //if absent(2) then make present(1)
                                 var new_status = 1;
-                                var symbol = 'P';
+                                var symbol = 'Present';
                             }
                             start_loader();
                             var formData = new FormData();
@@ -274,7 +274,7 @@
                             $.ajax({
                                 /* the route pointing to the post function */
                                 type: 'POST',
-                                url: Laravel.url +"/attendance/"+attendance_id,
+                                url: Laravel.url +"/counsellings/group-attendance/"+attendance_id,
                                 dataType: 'json',
                                 data: formData,
                                 processData: false,  // tell jQuery not to process the data
@@ -302,7 +302,61 @@
             //end confirmation for  single attendance
         }
 
+        function getDatewiseBatchAttendance() {
+            var attendance_date = $('#fromDateToDate').val();
+            start_loader();
+            var formData = new FormData();
+            formData.append('attendance_date', attendance_date);
+            //start ajax call
+            $.ajax({
+                /* the route pointing to the post function */
+                type: 'POST',
+                url: Laravel.url +"/counsellings-attendance-by-date",
+                dataType: 'json',
+                data: formData,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,
+                /* remind that 'data' is the response of the AjaxController */
+                success: function (data) {
+                    end_loader();
+                    $('#attendance_table').remove();
+                    $('#mytable').append(data['html']);
+                    mySelectAllInitiate();
+                },
+                error: function(error) {
+                    end_loader();
+                    errorDisplay('Something went wrong !');
+                }
+            });
+        }
 
-        {{--        for searching student --}}
+
+
+        function mySelectAllInitiate() {
+            var select_all = document.getElementById("select_all"); //select all checkbox
+            var checkboxes = document.getElementsByClassName("checkbox"); //checkbox items
+
+            //select all checkboxes
+            select_all.addEventListener("change", function(e){
+                for (i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = select_all.checked;
+                }
+            });
+
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].addEventListener('change', function(e){ //".checkbox" change
+                    //uncheck "select all", if one of the listed checkbox item is unchecked
+                    if(this.checked == false){
+                        select_all.checked = false;
+                    }
+                    //check "select all" if all checkbox items are checked
+                    if(document.querySelectorAll('.checkbox:checked').length == checkboxes.length){
+                        select_all.checked = true;
+                    }
+                });
+            }
+        }
+
     </script>
 @endsection

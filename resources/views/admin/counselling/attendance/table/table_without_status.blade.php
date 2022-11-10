@@ -39,15 +39,19 @@
                 </div>
             </td>
             <td>{{$setting->admission->user->email}}</td>
-            @if($setting->s_counselling_attendances->count() > 0 )
-                <td id="td_status{{$setting->id}}"><button class="active-button" type="button" onclick="singleAttendance({{$setting->id}},{{$setting->status}})" id="att_btn{{$setting->id}}">Present</button></td>
+            @if($setting->s_counselling_attendances->where('date', $date)->count() > 0 )
+                @if($setting->s_counselling_attendances->where('date', $date)->first()->status == 1)
+                    <td id="td_status{{$setting->s_counselling_attendances->where('date', $date)->first()->id}}"><button class="active-button" type="button" onclick="singleAttendance({{$setting->s_counselling_attendances->where('date', $date)->first()->id}},{{$setting->s_counselling_attendances->where('date', $date)->first()->status}})" id="att_btn{{$setting->s_counselling_attendances->where('date', $date)->first()->id}}">Present</button></td>
+                @else
+                    <td id="td_status{{$setting->s_counselling_attendances->where('date', $date)->first()->id}}"><button class="deactive-button" type="button" onclick="singleAttendance({{$setting->s_counselling_attendances->where('date', $date)->first()->id}},{{$setting->s_counselling_attendances->where('date', $date)->first()->status}})" id="att_btn{{$setting->s_counselling_attendances->where('date', $date)->first()->id}}">Absent</button></td>
+                @endif
             @else
-                <td id="td_status{{$setting->id}}"><button class="deactive-button" type="button" onclick="singleAttendance({{$setting->id}},{{$setting->status}})" id="att_btn{{$setting->id}}">-</button></td>
+                <td id="td_status{{$setting->id}}">-</td>
             @endif
             <td class="action-icons">
                 <ul class="icon-button d-flex">
                     <li>
-                        <a class="dropdown-item"   href="{{url('admin/students/attendance/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
+                        <a class="dropdown-item"   href="{{url('counselling/'.$setting->admission->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
                     </li>
                 </ul>
             </td>

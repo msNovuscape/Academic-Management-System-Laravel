@@ -11,6 +11,7 @@ use App\Models\Course;
 use App\Models\SCounselling;
 use App\Services\Counselling\CounsellingService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class SCounsellingController extends Controller
@@ -83,11 +84,53 @@ class SCounsellingController extends Controller
     {
         $settings = SCounselling::orderBy('id', 'asc');
         $date = date('Y-m-d');
-        $settings = $settings->whereHas('s_counselling_attendances', function ($q) use($date) {
-            $q->where('date', $date);
-        })->where('date', '<=',)->get();
+        $settings = $settings->where('date', '<=', $date)->where('attendance_status', '2')->get();
         $batches = Batch::all();
-        return view($this->view.'attendance.index', compact('settings','batches'));
+        return view($this->view.'attendance.index', compact('settings', 'batches', 'date'));
+    }
+
+    public function postGroupAttendance()
+    {
+        $this->validate(\request(),[
+            'attendance_date' => 'required|date'
+        ]);
+        $attendance_data = json_decode(\request('attendance'));
+        $attendance_date = \request('attendance_date');
+        $this->counsellingService->storeAttendance($attendance_data, $attendance_date);
+
+        $settings = SCounselling::orderBy('id', 'asc');
+        $date = date('Y-m-d');
+        $settings = $settings->where('date', '<=', $date)->where('attendance_status', '2')->get();
+        if(count($settings) > 0){
+            $returnHTML = view($this->view.'attendance.result.attendance_table_dom',['settings'=> $settings,'attendance_date' => $attendance_date, 'date' => $date])->render();// or method that you prefere to return data + RENDER is the key here
+            return response()->json( array('success' => true,'message' => 'Attendance has been done !', 'html'=>$returnHTML) );
+        }else{
+            return response()->json( array('success' => false,'message' => 'Please select date in between batch start and end date!') );
+        }
+    }
+
+    public function singleAttendance(Request $request, $id)
+    {
+        $this->validate(\request(),[
+            'status' => 'required|numeric',
+            'symbol' => 'required|string',
+        ]);
+        $status = $request->status;
+        $symbol = $request->symbol;
+        $setting = $this->counsellingService->singleAttendance($id,$status,$symbol);
+        $returnHTML = view($this->view.'attendance.result.status_button',['setting'=> $setting])->render();// or method that you prefere to return data + RENDER is the key here
+        return response()->json( array('success' => true,'data' => $setting,'message' => 'Attendance has been updated ! !', 'html'=>$returnHTML) );
+    }
+
+    public function counsellingsAttendanceByDate()
+    {
+        $settings = SCounselling::orderBy('id', 'asc');
+        $date = \request('attendance_date');
+        $settings = $settings->where('date', '<=', $date)->where('attendance_status', '2')->get();
+        $batches = Batch::all();
+        $returnHTML = view($this->view.'attendance.result.attendance_table_dom',['settings'=> $settings,'attendance_date' => $date, 'date' => $date])->render();// or method that you prefere to return data + RENDER is the key here
+        return response()->json( array('success' => true,'message' => 'Attendance has been done !', 'html'=>$returnHTML) );
+
     }
 
 }
