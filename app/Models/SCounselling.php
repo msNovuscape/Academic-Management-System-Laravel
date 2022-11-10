@@ -20,4 +20,9 @@ class SCounselling extends Model
     {
         return $this->belongsTo(Admission::class);
     }
+
+    public function s_counselling_attendances()
+    {
+        return $this->hasMany(SCounsellingAttendance::class);
+    }
 }
