@@ -147,7 +147,7 @@ h2 {
     color: #000000;
 }
 
-.student-nav-tabs .nav-link.active .fa-solid {
+.student-nav-tabs .nav-link.active .fa-solid, .student-nav-tabs .nav-link.active h1 {
     color: #e72fa7;
 }
 
@@ -919,6 +919,11 @@ h2 {
     .navbar .navbar-menu-wrapper{
         width: calc(100% - 300px);
     }
+    .sd-firstrow {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px){
     .attendance-tab .student-nav-tabs{
@@ -933,4 +938,23 @@ h2 {
         margin: 10px 5px;
         padding: 10px 5px;
     }
+}
+/* career counselling */
+.sd-firstrow {
+    display: flex;
+    justify-content: space-between;
+}
+.sd-blocks .block-body {
+    background: #f3f7fe;
+}
+.block-header h3 {
+    font-size: 22px;
+    padding: 10px 20px;
+    margin: 0;
+}
+.career-table table tr:first-child th:first-child {
+    border-top-left-radius: 0;
+}
+.career-table .table td {
+    padding: 10px 16px;
 }
