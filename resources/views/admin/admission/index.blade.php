@@ -74,7 +74,7 @@
                                                     </div>
 
                                                     <div class="filter-group mx-2">
-                                                        <span>
+                                                     <span>
                                                             <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
                                                         </span>
                                                         <button class="fltr-btn" type="submit">Filter</button>
