@@ -83,7 +83,9 @@ class SCounsellingController extends Controller
     {
         $settings = SCounselling::orderBy('id', 'asc');
         $date = date('Y-m-d');
-        $settings = $settings->whereHas('');
+        $settings = $settings->whereHas('s_counselling_attendances', function ($q) use($date) {
+            $q->where('date', $date);
+        })->where('date', '<=',)->get();
         $batches = Batch::all();
         return view($this->view.'attendance.index', compact('settings','batches'));
     }
