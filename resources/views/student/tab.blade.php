@@ -48,7 +48,7 @@
                             <i class="fa-solid fa-briefcase"></i>
                         </div>
                         <div>
-                            <h1>Career Counselling</h1>
+                            <h1>Career</h1>
                         </div>
                     </div>
                 </a>
