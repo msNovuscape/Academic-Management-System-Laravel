@@ -22,7 +22,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-11">
-                                <form id="search">
+                                {!! Form::open(['url' => 'fiscal-years', 'method' => 'GET']) !!}
                                     <div class="row">
                                         <div class="filter-btnwrap justify-content-between">
                                             <div class="d-flex">
@@ -30,23 +30,23 @@
                                                     <span>
                                                         <i class="fa-solid fa-magnifying-glass"></i>
                                                     </span>
-                                                        <input type="text" class="form-control" placeholder="Search by Name" name="name" onchange="filterList()"/>
+                                                        <input type="text" class="form-control" placeholder="Search by Name" name="name"/>
                                                 </div>
                                                 <div class="filter-group mx-4">
                                                         <span>
                                                             <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
                                                         </span>
-                                                        <a href="">Filter</a> 
+                                                    <button class="fltr-btn" type="submit">Filter</button>
                                                 </div>
                                                 <div class="refresh-group mx-2">
-                                                    <a href="">
+                                                    <a onclick="getReset('{{Request::segment(1)}}')">
                                                         <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-12 stretch-card mt-4">
