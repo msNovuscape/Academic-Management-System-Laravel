@@ -64,7 +64,6 @@
                                             <p class="m-0">
                                                 Show
                                             </p>
-                                            i
                                         </div>
                                     </div>
 
