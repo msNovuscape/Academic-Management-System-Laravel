@@ -202,7 +202,7 @@
                     <a class="nav-link " href="{{url('counselling')}}"><i class="fa-solid fa-list-check"></i>List of Carrier Counselling</a>
                 </li>
                 <li class="nav-item @if(Request::segment(1) == 'counselling-completed' || Request::segment(1) == 'counsellings') active @endif">
-                    <a class="nav-link " href="{{url('counselling-completed')}}"><i class="fa-solid fa-list-check"></i>List of Completed Carrier Counselling</a>
+                    <a class="nav-link " href="{{url('counselling-completed')}}"><i class="fa-solid fa-list-check"></i>Completed Counselling</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"  href="{{url('counsellings/group-attendance')}}"><i class="bi bi-card-checklist"></i> Attendance</a>
