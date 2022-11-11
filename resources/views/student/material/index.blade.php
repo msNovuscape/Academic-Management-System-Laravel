@@ -18,7 +18,7 @@
 
                         </div>
                         <form id="search">
-                            <div class="filter-btnwrap mt-4">
+                            <div class="filter-btnwrap student-material-search mt-4">
                                 <div class="col-md-10">
                                     <div class="row align-items-center">
                                         <div class="col-md-6">

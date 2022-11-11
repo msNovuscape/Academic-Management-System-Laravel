@@ -1081,7 +1081,7 @@ ul.admin-breadcrumb li{
 .status-table {
     background: #1aac4c;
     color: #fff;
-    padding: 8px 18px;
+    padding: 3px 15px;
     border-radius: 4px;
     text-decoration: none;
 }
@@ -2485,4 +2485,10 @@ table tr:first-child td:last-child {
 }
 .career-table{
     background:  #ffffff;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .student-material-search .col-md-10{
+        width: 100% !important;
+    }
 }

@@ -1,11 +1,14 @@
 <ul class="nav">
-    <li class="nav-item">
+    <li class="nav-item @if(Request::segment(1) == 'student' && Request::segment(2) == null) active @endif">
         <a class="nav-link" href="{{url('')}}" aria-expanded="false" aria-controls="ui-basic">
             <div class="sidebar-icon">
                 <img src="{{url('images/dashboard-icon.png')}}" alt="sidebar-icon"/>
                 <span class="menu-title">Dashboard</span>
             </div>
         </a>
+    </li>
+    {{-- {{dd(Request::segment(2))}} --}}
+    <li class="nav-item @if(Request::segment(2) == 'materials') active @endif">
         <a class="nav-link"  href="{{url('student/materials')}}" aria-expanded="false" aria-controls="ui-basic">
             <div class="sidebar-icon">
                 <img src="{{url('images/course-icon.png')}}" alt="sidebar-icon"/>

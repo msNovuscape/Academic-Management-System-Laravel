@@ -36,9 +36,9 @@
                         </div>
                         <div class="nav-profile-text">
                             <p class="mb-1">{{Auth::user()->name}}</p>
-                            <!-- @if(Auth::user()->user_type == array_search('Student',config('custom.user_types')))
+                            @if(Auth::user()->user_type == array_search('Student',config('custom.user_types')))
                                 <p class="mb-1">{{Auth::user()->admission->student_id}}</p>
-                            @endif -->
+                            @endif 
                         </div>
                         <div class="">
                             <button>
