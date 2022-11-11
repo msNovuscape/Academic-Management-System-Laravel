@@ -8,7 +8,7 @@
         .email-template-sapphire{
             display: flex;
             justify-content: center;
-            width:60%;
+            width:100%;
             height:100%;
             padding: 50px 0px;
             margin:0 auto;

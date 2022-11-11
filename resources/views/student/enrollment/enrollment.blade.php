@@ -113,8 +113,8 @@
                             <div class="form-group">
                                 <label>Country of Birth</label>
                                 <select name="country_of_birth" class="form-select selectpicker" id="cob" onchange="validatecob()">
-                                    @foreach($countries as $country)
-                                        <option hidden class='course-placeholder' value="" >Select you country of birth</option>
+                                <option hidden class='course-placeholder' value="" >Select you country of birth</option>
+                                @foreach($countries as $country)
                                         <option value="{{$country->id}}" @if(old('country_id') === $country->id) selected @endif>{{$country->name}}</option>
                                     @endforeach
                                 </select>
