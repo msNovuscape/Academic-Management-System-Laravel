@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="card-heading d-flex justify-content-between">
                             <div>
-                                <h4>Carrier Counselling  Lists [ {{$settings->count()}} ]</h4>
+                                <h4>Carrier Counselling  Lists</h4>
                                 <p>
                                     You can search the student by <a href="#" class="card-heading-link">name or student id, course, batch, date</a> and can view all available admission records.
                                 </p>
@@ -99,10 +99,9 @@
                             <div class="card-wrap form-block p-0">
                                 <div class="block-header bg-header d-flex justify-content-between p-4">
                                     <div class="d-flex flex-column">
-                                        <h3>List of Carrier Counselling Students </h3>
+                                        <h3>List of Carrier Counselling Students <span class="badge bg-secondary">{{$settings->count()}}</span></h3>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
                                         <div class="card-wrap form-block p-4 card-wrap-bs-none pt-0">
