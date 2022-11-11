@@ -371,7 +371,7 @@
                         </ol>
                         <p class='declare-text'>I declare that the information provided is, to the best of my understanding and knowledge, complete and correct. I understand that Extratech Pty. Ltd may perform random checks on the information I have provided, and I may be asked to provide evidence to verify the information in this form. I am aware that there are severe penalties for providing false or misleading information. I understand and acknowledge that there may be a need for the company to share my information with a third party, such as agencies, social medias, government bodies etc. I give my permission for the company to supply any relevant official records and my personal information when it is required for the delivery of services by Extratech Pty. Ltd.</p>
                         <div class='row'>
-                            <div class="col" onclick="validateprivacy()">
+                            <div class="col-md-6 col-sm-12" onclick="validateprivacy()">
                                 <div class='form-check'>
                                     <input class="form-check-input" type="checkbox" id="agree" name="privacy" value="1"  @if(old('privacy') == 2) checked @endif/>
                                     <label class="form-check-label">
@@ -382,7 +382,7 @@
 
                                 </div>
                             </div>
-                            <div class='col signature'>
+                            <div class='col-md-6 col-sm-12 signature'>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Signature</span>
                                     <input type="text" class="form-control" placeholder="Enter your Full Name as Signature" name="signature" value="{{old('signature')}}" id="signature" onkeyup="validatesignature()" />

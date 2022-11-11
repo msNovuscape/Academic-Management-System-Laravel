@@ -14,7 +14,7 @@
                 <div class="col-md-6 profile-col">
                     <div class='profile-general'>
                         <div class="profile-img">
-                            <img class="img-fluid" src="{{url($setting->image)}}" alt="profile">
+                            <img src="{{url($setting->image)}}" class="img-fluid" alt="profile">
                         </div>
                         <div class='profile-desc'>
                             <h1>{{$setting->admission->user->name}}</h1>

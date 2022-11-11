@@ -53,6 +53,7 @@
                         </div>
                     @endforeach
                 @endif
+
             @endif
         </div>
         <div class="col-12 career-table table-responsive grid-margin mt-2x">

@@ -760,7 +760,7 @@ li {
 }
 
 .block-header p {
-    margin-bottom: 0px;
+    margin-bottom: 15px;
 }
 
 .grid-mar .batch-form {
@@ -1081,7 +1081,7 @@ ul.admin-breadcrumb li{
 .status-table {
     background: #1aac4c;
     color: #fff;
-    padding: 8px 18px;
+    padding: 3px 15px;
     border-radius: 4px;
     text-decoration: none;
 }
@@ -1542,10 +1542,10 @@ label {
     background: #edf3fb;
     display: flex;
     align-items: center;
-    /* padding: 10px 20px; */
+    padding: 10px 20px;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
-    /* margin-bottom: 25px; */
+    margin-bottom: 25px;
 }
 .sd-progress-block {
     padding: 20px 30px;
@@ -1910,6 +1910,7 @@ height: 20px;
     border-radius: 6px;
     border-spacing: 0;
     border-collapse: separate;
+    margin-bottom: 0;
 }
 
 .table-details .table thead th {
@@ -2472,8 +2473,8 @@ table tr:first-child td:last-child {
     background: #f3f7fe;
 }
 .block-header h3 {
-    font-size: 22px;
-    padding: 10px 20px;
+    font-size: 16px;
+    padding: 10px 0;
     margin: 0;
 }
 .career-table table tr:first-child th:first-child {
@@ -2484,4 +2485,10 @@ table tr:first-child td:last-child {
 }
 .career-table{
     background:  #ffffff;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .student-material-search .col-md-10{
+        width: 100% !important;
+    }
 }

@@ -20,76 +20,76 @@
                                 <li>Carrier Counselling</li>
                             </ul>
                         </div>
-                        {!! Form::open(['url' => 'counselling', 'method' => 'GET']) !!}
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <div class="row">
-                                        <div class="filter-btnwrap justify-content-between">
-                                            <div class="d-flex">
-                                                <div class="input-group">
+                        {!! Form::open(['url' => 'counselling-completed', 'method' => 'GET']) !!}
+                        <div class="row">
+                            <div class="col-md-11">
+                                <div class="row">
+                                    <div class="filter-btnwrap justify-content-between">
+                                        <div class="d-flex">
+                                            <div class="input-group">
                                                             <span>
                                                                 <i class="fa-solid fa-calendar-days"></i>
                                                             </span>
-                                                    <input type="text" class="form-control currentDate reset-class"  placeholder="Search by Enroll Date" name="date" value="{{old('date')}}"/>
-                                                </div>
-                                                <div class="input-group mx-4">
+                                                <input type="text" class="form-control currentDate reset-class"  placeholder="Search by Enroll Date" name="date" value="{{old('date')}}"/>
+                                            </div>
+                                            <div class="input-group mx-4">
                                                             <span>
                                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                                             </span>
-                                                    <input type="text" class="form-control reset-class"  placeholder="Search by Name or Id" name="name" value="{{old('name')}}"/>
-                                                </div>
-                                                <div class="input-group mx-4">
+                                                <input type="text" class="form-control reset-class"  placeholder="Search by Name or Id" name="name" value="{{old('name')}}"/>
+                                            </div>
+                                            <div class="input-group mx-4">
                                                             <span>
                                                                 <i class="fa-solid fa-book-open"></i>
                                                             </span>
-                                                    <select name="course_id" class="form-control reset-class">
-                                                        <option value="" selected disabled>Search by Course </option>
-                                                        @foreach($courses as $course)
-                                                            <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="input-group mx-4">
+                                                <select name="course_id" class="form-control reset-class">
+                                                    <option value="" selected disabled>Search by Course </option>
+                                                    @foreach($courses as $course)
+                                                        <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="input-group mx-4">
                                                             <span>
                                                                 <i class="bi bi-grid"></i>
                                                             </span>
-                                                    <select name="batch_id" class="form-control reset-class">
-                                                        <option value="" selected disabled>Search by Batch </option>
-                                                        @foreach($batches as $batch)
-                                                            <option value="{{$batch->id}}" @if(old('batch_id') == $batch->id) selected @endif>{{$batch->name}}</option>
-                                                        @endforeach
+                                                <select name="batch_id" class="form-control reset-class">
+                                                    <option value="" selected disabled>Search by Batch </option>
+                                                    @foreach($batches as $batch)
+                                                        <option value="{{$batch->id}}" @if(old('batch_id') == $batch->id) selected @endif>{{$batch->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 d-flex justify-content-end">
+                                                <div class="d-flex align-items-center">
+                                                    <p class="m-0">
+                                                        Show
+                                                    </p>
+                                                    <select class="form-select mx-2 show-select reset-class" aria-label="Default select example" name="per_page">
+                                                        <option value="20">20</option>
+                                                        <option value="30">30</option>
+                                                        <option value="40">40</option>
+                                                        <option value="50">50</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-2 d-flex justify-content-end">
-                                                    <div class="d-flex align-items-center">
-                                                        <p class="m-0">
-                                                            Show
-                                                        </p>
-                                                        <select class="form-select mx-2 show-select reset-class" aria-label="Default select example" name="per_page">
-                                                            <option value="20">20</option>
-                                                            <option value="30">30</option>
-                                                            <option value="40">40</option>
-                                                            <option value="50">50</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                            </div>
 
-                                                <div class="filter-group mx-2">
+                                            <div class="filter-group mx-2">
                                                             <span>
                                                                 <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
                                                             </span>
-                                                    <button class="fltr-btn" type="submit">Filter</button>
-                                                </div>
-                                                <div class="refresh-group mx-2">
-                                                    <a onclick="getReset('{{Request::segment(1)}}')">
-                                                        <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
-                                                    </a>
-                                                </div>
+                                                <button class="fltr-btn" type="submit">Filter</button>
+                                            </div>
+                                            <div class="refresh-group mx-2">
+                                                <a onclick="getReset('{{Request::segment(1)}}')">
+                                                    <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         {!! Form::close() !!}
                         <div>
                             @include('success.success')
@@ -99,7 +99,7 @@
                             <div class="card-wrap form-block p-0">
                                 <div class="block-header bg-header d-flex justify-content-between p-4">
                                     <div class="d-flex flex-column">
-                                        <h3>List of Carrier Counselling Students <span class="badge bg-secondary">{{$settings->count()}}</span></h3>
+                                        <h3>List of Carrier Counselling Completed Students <span class="badge bg-secondary">{{$settings->count()}}</span></h3>
                                     </div>
                                 </div>
                                 <div class="row">

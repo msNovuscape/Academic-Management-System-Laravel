@@ -1328,7 +1328,8 @@ nav {
 }
 
 .nav-profile .nav-profile-img {
-    width: 40px;
+    width: 34px;
+    height:34px;
     margin-right: 10px;
 }
 
@@ -1345,7 +1346,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #2367c7;
     padding: 3px;
     border-radius: 20px;
 }
@@ -1363,7 +1363,7 @@ nav {
 .nav-profile-text p:nth-child(1) {
     font-size: 14px;
     font-weight: 500;
-    color: #ffffff;
+    color: #000000;
     margin-bottom: 0px !important;
 }
 

@@ -85,7 +85,7 @@
         <div class="collapse" id="myCollapseBatch">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('batches')}}"><i class="fa-solid fa-list"></i> List of Batch</a>
+                    <a class="nav-link" href="{{url('batches')}}"><i class="fa-solid fa-list fa-sm"></i> List of Batch</a>
                 </li>
             </ul>
         </div>
@@ -101,12 +101,12 @@
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item" >
                     <a class="nav-link" href="{{url('admissions')}}">
-                        <i class="bi bi-file-earmark-text"></i>Admission List
+                        <i class="fa-solid fa-list-check fa-sm"></i>Admission List
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('admissions/create')}}">
-                        <i class="bi bi-file-earmark-text"></i>Add Admission
+                        <i class="fa-solid fa-user-plus fa-sm"></i>Add Admission
                     </a>
                 </li>
             </ul>
@@ -123,7 +123,7 @@
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item" >
                     <a class="nav-link" href="{{url('finances')}}">
-                        <i class="bi bi-file-earmark-text"></i>Finance
+                        <i class="fa-solid fa-coins"></i>Finance
                     </a>
                 </li>
                 <li class="nav-item">
@@ -133,7 +133,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('reports/due_finance')}}">
-                        <i class="bi bi-file-earmark-text"></i>Due List
+                        <i class="fa-solid fa-bell-slash"></i>Due List
                     </a>
                 </li>
             </ul>
@@ -181,10 +181,10 @@
         <div class="collapse" id="myCollapseAttendence">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item @if(Request::segment(1) == 'attendance') active @endif">
-                    <a class="nav-link " href="{{url('attendance')}}">List of Attendance</a>
+                    <a class="nav-link " href="{{url('attendance')}}"><i class="fa-solid fa-clipboard-user"></i>List of Attendance</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="{{url('attendance/student')}}">Student</a>
+                    <a class="nav-link"  href="{{url('attendance/student')}}"><i class="fa-solid fa-user-tie"></i>Student</a>
                 </li>
             </ul>
         </div>
@@ -199,10 +199,13 @@
         <div class="collapse" id="myCollapseCounselling">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item @if(Request::segment(1) == 'counselling' || Request::segment(1) == 'counsellings') active @endif">
-                    <a class="nav-link " href="{{url('counselling')}}">List of Carrier Counselling</a>
+                    <a class="nav-link " href="{{url('counselling')}}"><i class="fa-solid fa-list-check"></i>List of Carrier Counselling</a>
+                </li>
+                <li class="nav-item @if(Request::segment(1) == 'counselling-completed' || Request::segment(1) == 'counsellings') active @endif">
+                    <a class="nav-link " href="{{url('counselling-completed')}}"><i class="fa-solid fa-list-check"></i>List of Completed Carrier Counselling</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="{{url('counsellings/group-attendance')}}">Attendance</a>
+                    <a class="nav-link"  href="{{url('counsellings/group-attendance')}}"><i class="bi bi-card-checklist"></i> Attendance</a>
                 </li>
             </ul>
         </div>
@@ -217,13 +220,13 @@
         <div class="collapse" id="myCollapseQuiz">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item @if(Request::segment(1) == 'quiz') active @endif">
-                    <a class="nav-link " href="{{url('quiz')}}">List of Quiz</a>
+                    <a class="nav-link " href="{{url('quiz')}}"><i class="bi bi-card-checklist"></i> List of Quiz</a>
                 </li>
                 <li class="nav-item  @if(Request::segment(1) == 'quiz_batch') active @endif">
-                    <a class="nav-link"  href="{{url('quiz_batch')}}">Quiz To Group</a>
+                    <a class="nav-link"  href="{{url('quiz_batch')}}"><i class="fa-solid fa-users-line"></i> Quiz To Group</a>
                 </li>
                 <li class="nav-item @if(Request::segment(1) == 'quiz_individual') active @endif">
-                    <a class="nav-link"  href="{{url('quiz_individual')}}">Quiz To Individual</a>
+                    <a class="nav-link"  href="{{url('quiz_individual')}}"><i class="fa-solid fa-user-pen"></i> Quiz To Individual</a>
                 </li>
             </ul>
         </div>
@@ -239,17 +242,17 @@
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item" >
                     <a class="nav-link" href="{{url('reports/finance')}}">
-                        <i class="bi bi-file-earmark-text"></i>Finance
+                        <i class="fa-solid fa-coins"></i> Finance
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('reports/due_finance')}}">
-                        <i class="bi bi-file-earmark-text"></i>Due List
+                        <i class="fa-solid fa-bell-slash"></i> Due List
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('reports/attendance')}}">
-                        <i class="bi bi-file-earmark-text"></i>Attendance
+                        <i class="bi bi-card-checklist"></i> Attendance
                     </a>
                 </li>
             </ul>

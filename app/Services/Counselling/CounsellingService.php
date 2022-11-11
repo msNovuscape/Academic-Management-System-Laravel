@@ -101,6 +101,43 @@ class CounsellingService
         return $settings;
     }
 
+    public function searchCompleted()
+    {
+        $settings = SCounselling::where('attendance_status', '1')->orderBy('id', 'desc');
+
+        if (request('date')) {
+            $key = \request('date');
+            $settings = $settings->where('date', $key);
+        }
+        if (request('name')) {
+            $key = \request('name');
+            $settings = $settings->whereHas('admission', function ($a) use ($key) {
+                $a->whereHas('user', function ($u) use ($key) {
+                   $u->where('name', 'like', '%'.$key.'%');
+                })->orWhere('student_id', 'like', '%'.$key.'%');
+            });
+        }
+        if (request('course_id')) {
+            $key = \request('course_id');
+            $settings = $settings->whereHas('admission.batch.time_slot', function ($q) use ($key){
+                $q->where('course_id', $key);
+            });
+        }
+        if (request('batch_id')) {
+            $key = \request('batch_id');
+            $settings = $settings->whereHas('admission', function ($a) use ($key){
+                $a->where('batch_id', $key);
+            });
+        }
+        if (request('per_page')) {
+            $perPage = request('per_page');
+            $settings = $settings->paginate($perPage);
+        } else {
+            $settings = $settings->paginate(config('custom.per_page'));
+        }
+        return $settings;
+    }
+
     public function storeAttendance($attendance_data,$attendance_date)
     {
         if(count($attendance_data) > 0){

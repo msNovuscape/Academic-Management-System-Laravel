@@ -34,6 +34,14 @@ class SCounsellingController extends Controller
         return view('admin.counselling.index', compact('settings', 'courses', 'batches'));
     }
 
+    public function getCompleted()
+    {
+        $courses = Course::all();
+        $batches = Batch::all();
+        $settings = $this->counsellingService->searchCompleted();
+        return view('admin.counselling.completed.index', compact('settings', 'courses', 'batches'));
+    }
+
     public function getCounselling($admissionId)
     {
         $setting = Admission::findOrFail($admissionId);
