@@ -24,7 +24,7 @@ class FiscalYearController extends Controller
         $settings = Model::orderBy('id', 'asc');
         if (request('name')) {
             $key = \request('name');
-            $settings = $settings->where('name', 'like', '%'.$key.'%');
+            $settings = $settings->where('name', 'LIKE', '%'.$key.'%');
         }
         $settings = $settings->paginate(config('custom.per_page'));
         return view($this->view.'index', compact('settings'));
