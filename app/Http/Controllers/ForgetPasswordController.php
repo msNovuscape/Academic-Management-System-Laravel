@@ -34,7 +34,7 @@ class ForgetPasswordController extends Controller
     public function reset()
     {
         $token = \Illuminate\Support\Facades\Request::segment(2);
-        return view($this->view.'reset-password',compact('token'));
+        return view($this->view.'reset-password', compact('token'));
     }
 
     public function postReset(Request $request)
