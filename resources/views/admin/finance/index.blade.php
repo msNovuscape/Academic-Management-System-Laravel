@@ -238,7 +238,7 @@
                                                                 @if($setting->finances[0]->status == 2)
                                                                     <a  onclick="sendEmail({{$setting->finances[0]->id}})" class="d-flex align-items-center unpaid-email">
                                                                         <p class="deactive-button">UnPaid</p>
-                                                                        <i class="fa-solid fa-envelope ms-2"></i>
+                                                                        <i class="fa-solid fa-envelope ms-2" role="button" data-bs-toggle="tooltip" data-bs-title="send mail"></i>
                                                                     </a>
                                                                 @endif
                                                             </td>
@@ -263,7 +263,7 @@
                                                                 @if($setting->finances[1]->status == 2)
                                                                     <a onclick="sendEmail({{$setting->finances[1]->id}})" class="d-flex align-items-center unpaid-email">
                                                                         <p class="deactive-button">UnPaid</p>
-                                                                        <i class="fa-solid fa-envelope ms-2"></i>
+                                                                        <i class="fa-solid fa-envelope ms-2" role="button" data-bs-toggle="tooltip" data-bs-title="send mail"></i>
                                                                     </a>
                                                                 @endif
                                                             </td>
@@ -288,7 +288,7 @@
                                                                 @if($setting->finances[2]->status == 2)
                                                                     <a onclick="sendEmail({{$setting->finances[2]->id}})" class="d-flex align-items-center unpaid-email">
                                                                         <p class="deactive-button">UnPaid</p>
-                                                                        <i class="fa-solid fa-envelope ms-2"></i>
+                                                                        <i class="fa-solid fa-envelope ms-2" role="button" data-bs-toggle="tooltip" data-bs-title="send mail"></i>
                                                                     </a>
                                                                 @endif
                                                             </td>

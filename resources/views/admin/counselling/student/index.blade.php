@@ -181,7 +181,6 @@
             }
             counsellingStatus = status ;
         }
-
         function validateForm(){
             if(counsellingStatus){
                 return true;

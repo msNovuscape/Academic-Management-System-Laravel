@@ -153,7 +153,7 @@ li {
     font-size: 16px;
     background: #f1f7ff;
     color: #555555;
-    padding: 20px;
+    padding: 8px;
     cursor: pointer;
 }
 
@@ -1580,6 +1580,9 @@ height: 20px;
     border-bottom-left-radius: 4px;
     padding: 15px 15px;
 }
+.sd-progress .progress-nc {
+    background: none;
+}
 .at-date {
     padding: 8px;
     border: 1px solid #ced4da !important;
@@ -1950,7 +1953,7 @@ table tr:first-child td:last-child {
 }
 
 .table-details table tbody td {
-    padding: 10px;
+    padding: 6px;
     vertical-align: top;
     color: #030e1e;
     font-weight: 500;
@@ -2056,7 +2059,7 @@ table tr:first-child td:last-child {
     background: #1AAC4C;
     color: #ffffff;
     border-radius: 4px;
-    padding: 8px 18px;
+    padding: 3px 18px;
     width: fit-content;
     margin-bottom: 0;
 }
@@ -2066,7 +2069,7 @@ table tr:first-child td:last-child {
     background: #de1212;
     color: #fff;
     border-radius: 4px;
-    padding: 8px 18px;
+    padding: 3px 8px;;
     width: fit-content;
     margin-bottom: 0;
 }
