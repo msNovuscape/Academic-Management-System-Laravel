@@ -154,7 +154,11 @@
                                                                         </ul>
                                                                     </td>
                                                                     <td>
-                                                                        <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-plus" data-bs-toggle="tooltip" data-bs-title="Carrier Counselling"></i></a>
+                                                                        @if($setting->sCounselling)
+                                                                            <a class="dropdown-item"  href="{{url('counselling/'.$setting->sCounselling->id)}}" role="button"><i class="fa-solid fa-eye" data-bs-toggle="tooltip" data-bs-title="Show Carrier Counselling"></i></a>
+                                                                        @else
+                                                                            <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-plus" data-bs-toggle="tooltip" data-bs-title="Carrier Counselling"></i></a>
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

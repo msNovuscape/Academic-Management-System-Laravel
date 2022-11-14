@@ -86,27 +86,29 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if($setting->sCounselling->s_counselling_attendances->count() > 0)
-                                        @foreach($setting->sCounselling->s_counselling_attendances_orderByDate as $s_counselling_attendance)
-                                            <tr>
-                                                <td>{{$loop->iteration}}</td>
-                                                <td>{{$s_counselling_attendance->date}}</td>
-                                                <td>
-                                                    @if($s_counselling_attendance->status == 2)
-                                                        <div class="td-pblock" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Absent">
-                                                            <label class="form-check-label" for="flexRadioDefault1">Absent</label>
-                                                            <i class="fa-solid fa-user-check absent"></i>
-                                                        </div>
-                                                    @else
-                                                        <div class="td-pblock" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Present">
-                                                            <label class="form-check-label" for="flexRadioDefault1">Present</label>
-                                                            <i class="fa-solid fa-user-check present"></i>
-                                                        </div>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
+                                        @if($setting->sCounselling)
+                                            @if($setting->sCounselling->s_counselling_attendances->count() > 0)
+                                                @foreach($setting->sCounselling->s_counselling_attendances_orderByDate as $s_counselling_attendance)
+                                                    <tr>
+                                                        <td>{{$loop->iteration}}</td>
+                                                        <td>{{$s_counselling_attendance->date}}</td>
+                                                        <td>
+                                                            @if($s_counselling_attendance->status == 2)
+                                                                <div class="td-pblock" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Absent">
+                                                                    <label class="form-check-label" for="flexRadioDefault1">Absent</label>
+                                                                    <i class="fa-solid fa-user-check absent"></i>
+                                                                </div>
+                                                            @else
+                                                                <div class="td-pblock" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Present">
+                                                                    <label class="form-check-label" for="flexRadioDefault1">Present</label>
+                                                                    <i class="fa-solid fa-user-check present"></i>
+                                                                </div>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
