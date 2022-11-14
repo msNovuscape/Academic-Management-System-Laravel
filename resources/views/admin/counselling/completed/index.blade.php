@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    <title>Carrier Counselling</title>
+    <title>Career Counselling</title>
 @endsection
 @section('main-panel')
     <div class="main-panel">
@@ -10,14 +10,14 @@
                     <div class="row">
                         <div class="card-heading d-flex justify-content-between">
                             <div>
-                                <h4>Carrier Counselling  Lists</h4>
+                                <h4>Career Counselling  Lists</h4>
                                 <p>
                                     You can search the student by <a href="#" class="card-heading-link">name or student id, course, batch, date</a> and can view all available admission records.
                                 </p>
                             </div>
                             <ul class="admin-breadcrumb">
                                 <li><a href="{{url('')}}" class="card-heading-link">Home</a></li>
-                                <li>Carrier Counselling</li>
+                                <li>Career Counselling</li>
                             </ul>
                         </div>
                         {!! Form::open(['url' => 'counselling-completed', 'method' => 'GET']) !!}
@@ -99,7 +99,7 @@
                             <div class="card-wrap form-block p-0">
                                 <div class="block-header bg-header d-flex justify-content-between p-4">
                                     <div class="d-flex flex-column">
-                                        <h3>List of Carrier Counselling Completed Students <span class="badge bg-secondary">{{$settings->count()}}</span></h3>
+                                        <h3>List of Career Counselling Completed Students <span class="badge bg-secondary">{{$settings->count()}}</span></h3>
                                     </div>
                                 </div>
                                 <div class="row">

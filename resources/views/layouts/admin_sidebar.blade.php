@@ -198,13 +198,13 @@
         <a class="nav-link">
             <div class="sidebar-icon w-100" id="myBtnCounselling">
                 <i class="bi bi-card-checklist"></i>
-                <span class="menu-title w-100">Carrier Counselling<i class="fa-solid fa-angle-down" id="icon-toggle-quiz"></i></span>
+                <span class="menu-title w-100">Career Counselling<i class="fa-solid fa-angle-down" id="icon-toggle-quiz"></i></span>
             </div>
         </a>
         <div class="collapse" id="myCollapseCounselling">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item @if(Request::segment(1) == 'counselling' || Request::segment(1) == 'counsellings') active @endif">
-                    <a class="nav-link " href="{{url('counselling')}}"><i class="fa-solid fa-list-check"></i>List of Carrier Counselling</a>
+                    <a class="nav-link " href="{{url('counselling')}}"><i class="fa-solid fa-list-check"></i>List of Career Counselling</a>
                 </li>
                 <li class="nav-item @if(Request::segment(1) == 'counselling-completed' || Request::segment(1) == 'counsellings') active @endif">
                     <a class="nav-link " href="{{url('counselling-completed')}}"><i class="fa-solid fa-list-check"></i>Completed Counselling</a>

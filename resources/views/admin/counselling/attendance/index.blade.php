@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    <title>Carrier Counselling Attendance</title>
+    <title>Career Counselling Attendance</title>
 @endsection
 @section('main-panel')
     <div class="main-panel">
@@ -59,7 +59,7 @@
                                     <div class="block-header bg-header d-flex justify-content-between p-4 py-0">
                                         <div class="col-md-11 d-flex justify-content-between align-items-center">
                                             <div class="d-flex flex-column">
-                                                <h3>Carrier Counselling Attendance</h3>
+                                                <h3>Career Counselling Attendance</h3>
                                             </div>
                                             <div class="d-flex attendance-toggle">
                                                 <div class="form-check">
