@@ -29,6 +29,7 @@ use App\Http\Controllers\Report\AttendanceReportController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Admin\SCounsellingController;
+use App\Http\Controllers\Admin\ZoomLinkController;
 
 
 
@@ -244,7 +245,14 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::post('counsellings/group-attendance', [SCounsellingController::class,'postGroupAttendance']);
     Route::post('counsellings/group-attendance/{s_counselling_attendance_id}', [SCounsellingController::class,'singleAttendance']);
     Route::post('counsellings-attendance-by-date', [SCounsellingController::class,'counsellingsAttendanceByDate']);
-    Route::get('counselling_test', [SCounsellingController::class,'counselling_test']);
+
+    //routes for zoom link
+    Route::get('zoom-links', [ZoomLinkController::class,'index']);
+    Route::get('zoom-links/create', [ZoomLinkController::class,'create']);
+    Route::post('zoom-links', [ZoomLinkController::class,'store']);
+    Route::get('zoom-links/{id}/edit', [ZoomLinkController::class,'edit']);
+    Route::post('zoom-links/{id}', [ZoomLinkController::class,'update']);
+
 });
 
 //    Routes for students
@@ -257,6 +265,7 @@ Route::group(['middleware'=>'student','prefix'=>'student'], function () {
     Route::post('update/{id}', [StudentController::class,'update']);
 
     Route::get('materials', [StudentController::class,'getMaterial']);
+    Route::get('zoom-links', [ZoomLinkController::class,'studentZoomLink']);
 
     //routes for quiz for batch students
     Route::post('student_quiz_batch', [StudentQuizBatchController::class,'postQuiz']); //ajax call to initiate quiz
@@ -271,6 +280,7 @@ Route::group(['middleware'=>'student','prefix'=>'student'], function () {
     Route::post('student_quiz_individual_next_question', [StudentQuizIndividualController::class,'getNextQuestion']);
     Route::post('student_quiz_individual_time_out', [StudentQuizIndividualController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
     Route::get('quiz_individual/{id}', [StudentQuizIndividualController::class,'quizIndividualResult']);
+
 
 
 });

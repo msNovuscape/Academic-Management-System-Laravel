@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('time_slots', function (Blueprint $table) {
+        Schema::create('zoom_links', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('course_id')->unsigned();
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->bigInteger('time_table_id')->unsigned();
-            $table->foreign('time_table_id')->references('id')->on('time_tables');
-            $table->bigInteger('branch_id')->unsigned();
-            $table->foreign('branch_id')->references('id')->on('branches');
-            $table->enum('status', [1,2]);
+            $table->string('name');
+            $table->longText('link');
+            $table->enum('status', ['1', '2']);
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('time_slots');
+        Schema::dropIfExists('zoom_links');
     }
 };

@@ -7,12 +7,19 @@
             </div>
         </a>
     </li>
-    {{-- {{dd(Request::segment(2))}} --}}
     <li class="nav-item @if(Request::segment(2) == 'materials') active @endif">
         <a class="nav-link"  href="{{url('student/materials')}}" aria-expanded="false" aria-controls="ui-basic">
             <div class="sidebar-icon">
                 <img src="{{url('images/course-icon.png')}}" alt="sidebar-icon"/>
                 <span class="menu-title">Materials</span>
+            </div>
+        </a>
+    </li>
+    <li class="nav-item @if(Request::segment(2) == 'zoom-links') active @endif">
+        <a class="nav-link"  href="{{url('student/zoom-links')}}" aria-expanded="false" aria-controls="ui-basic">
+            <div class="sidebar-icon">
+                <img src="{{url('images/course-icon.png')}}" alt="sidebar-icon"/>
+                <span class="menu-title">Zoom Links</span>
             </div>
         </a>
     </li>

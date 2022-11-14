@@ -158,6 +158,11 @@
                         <i class="bi bi-calendar4"></i>Batch Materials
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('zoom-links')}}">
+                        <i class="bi bi-file-earmark-text"></i>Zoom Link
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="collapse" id="myCollapseMaterials">
