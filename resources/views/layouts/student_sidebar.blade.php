@@ -23,4 +23,12 @@
             </div>
         </a>
     </li>
+    <li class="nav-item students-logout">
+        <a class="nav-link" href="{{url('logout')}}" aria-expanded="false" aria-controls="ui-basic">
+            <div class="sidebar-icon">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="menu-title">Logout</span>
+            </div>
+        </a>
+    </li>
 </ul>

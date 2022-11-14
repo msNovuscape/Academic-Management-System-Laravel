@@ -1411,3 +1411,18 @@ nav {
 .sidebar-icon span {
     color: #cadcf5 !important;
 }
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+    .sidebar .nav .students-logout{
+        display: none;
+    }
+}
+@media screen and (min-width: 1600px){
+    .sidebar .nav .students-logout{
+        display: none;
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .sidebar .nav .students-logout{
+        display: none;
+    }
+}
