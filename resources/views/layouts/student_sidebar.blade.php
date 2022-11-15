@@ -18,7 +18,7 @@
     <li class="nav-item @if(Request::segment(2) == 'zoom-links') active @endif">
         <a class="nav-link"  href="{{url('student/zoom-links')}}" aria-expanded="false" aria-controls="ui-basic">
             <div class="sidebar-icon">
-                <img src="{{url('images/course-icon.png')}}" alt="sidebar-icon"/>
+                <i class="fa-solid fa-video fa-xl"></i>
                 <span class="menu-title">Zoom Links</span>
             </div>
         </a>
