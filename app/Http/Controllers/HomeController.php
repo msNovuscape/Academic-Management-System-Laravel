@@ -12,11 +12,9 @@ class HomeController extends Controller
 
     public function index()
     {
-//        $user = Auth::user()->toArray();
-//        dd(session()->all()['login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d']);
         if(Auth::user()){
             //redirect for student
-            if(Auth::user()->user_type == array_search('Student',config('custom.user_types'))){
+            if(Auth::user()->user_type == array_search('Student', config('custom.user_types'))){
                 if(Auth::user()->student){
                     return redirect('student');
                 }else{

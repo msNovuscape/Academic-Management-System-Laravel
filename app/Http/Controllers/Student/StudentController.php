@@ -51,8 +51,8 @@ class StudentController extends Controller
             }
             if ($studentQuizIndividuals->count() > 0) {
                 foreach ($studentQuizIndividuals as $studentQuizIndividual) {
-		    $studentQuizIndividual = new QuizIndividualService();
-                    $studentQuizIndividual->quizIndividualResultStudent($studentQuizIndividual);
+                    $studentQuizIndividualService = new QuizIndividualService();
+                    $studentQuizIndividualService->quizIndividualResultStudent($studentQuizIndividual);
                 }
             }
             return view($this->view.'index', compact('setting', 'countries'));
