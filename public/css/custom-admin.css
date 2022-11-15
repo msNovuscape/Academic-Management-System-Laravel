@@ -760,7 +760,7 @@ li {
 }
 
 .block-header p {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .grid-mar .batch-form {
@@ -1542,17 +1542,31 @@ label {
     background: #edf3fb;
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px !important;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
     margin-bottom: 25px;
+}
+.career-section .block-header{
+    background: #edf3fb;
+    display: flex;
+    align-items: center;
+    padding: 0 10px !important;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    margin-bottom: 0;
 }
 .sd-progress-block {
     padding: 20px 30px;
     background: #f9fbff;
 }
-.block-header h4, .block-header h5 {
-    padding: 10px 20px;
+.career-section .block-header h4, .career-section .block-header h5 {
+    padding: 10px 0;
+}
+.career-section .block-header h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
 }
 .sd-progress {
 height: 20px;
@@ -2473,8 +2487,9 @@ table tr:first-child td:last-child {
     background: #f3f7fe;
 }
 .block-header h3 {
+    font-weight: 600;
     font-size: 16px;
-    padding: 10px 0;
+    padding: 6px 0;
     margin: 0;
 }
 .career-table table tr:first-child th:first-child {

@@ -61,7 +61,7 @@
                                         <div class="col-md-11 d-flex justify-content-between align-items-center">
                                             <div class="d-flex flex-column">
                                                 <h3>{{$batch->time_slot->course->name}} [{{$batch->name}}]</h3>
-                                                <p class="mt-2 sub-header">{{$batch->time_slot->time_table->day}} [{{$batch->time_slot->time_table->start_time}} - {{$batch->time_slot->time_table->end_time}}]</p>
+                                                <p class="mt-1 sub-header">{{$batch->time_slot->time_table->day}} [{{$batch->time_slot->time_table->start_time}} - {{$batch->time_slot->time_table->end_time}}]</p>
                                             </div>
                                             <div class="d-flex attendance-toggle">
                                             <div class="form-check">

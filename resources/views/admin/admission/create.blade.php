@@ -12,8 +12,10 @@
                 <div class="col-sm-12 col-md-12 stretch-card">
                     <div class="card-wrap form-block p-0">
                         <div class="block-header p-4">
-                            <h3>Admit Student</h3>
-                            <p class="ms-4">Fill the following fields to admit a new student</p>
+                            <div class="d-flex flex-column">
+                                <h3>Admit Student</h3>
+                                <p class="mt-2 sub-header">Fill the following fields to admit a new student</p>
+                            </div>
                             <div class="tbl-buttons">
                                 <ul>
                                     <li>
