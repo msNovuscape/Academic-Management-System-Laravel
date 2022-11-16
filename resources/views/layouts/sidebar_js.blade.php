@@ -91,6 +91,11 @@
                 var x = document.getElementById('icon-toggle-admission');
                 x.classList.toggle("fa-angle-right");
             });
+            $("#myRoleBtn").click(function(){
+                $("#myRole").collapse("toggle");
+                var x = document.getElementById('icon-toggle-admission');
+                x.classList.toggle("fa-angle-right");
+            });
         });
     </script>
 

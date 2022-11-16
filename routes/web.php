@@ -30,6 +30,7 @@ use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Admin\SCounsellingController;
 use App\Http\Controllers\Admin\ZoomLinkController;
+use App\Http\Controllers\Admin\RolesController;
 
 
 
@@ -252,6 +253,9 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::post('zoom-links', [ZoomLinkController::class,'store']);
     Route::get('zoom-links/{id}/edit', [ZoomLinkController::class,'edit']);
     Route::post('zoom-links/{id}', [ZoomLinkController::class,'update']);
+
+    // routes for roles
+    Route::get('roles', [RolesController::class,'index']);
 
 });
 

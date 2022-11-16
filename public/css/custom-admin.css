@@ -2510,3 +2510,36 @@ table tr:first-child td:last-child {
         width: 100% !important;
     }
 }
+/* roles css */
+.role-form{
+    display: flex;
+    align-items: center;
+    background: #e9ecef;
+    margin: auto;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+.role-form .form-label{
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 0;
+}
+.role-form .form-control{
+    background-color: #ffffff;
+    line-height: 2;
+}
+.role-form .form-control:focus, .role-form .form-select:focus{
+    box-shadow: none;
+    border-color: #ced4da;
+}
+.role-form .form-select{
+    font-size: 14px;
+    line-height: 2;
+}
+.role-form .form-check-label{
+    font-size: 14px;
+}
+.role-table .table tbody td{
+    padding: 8px;
+}
