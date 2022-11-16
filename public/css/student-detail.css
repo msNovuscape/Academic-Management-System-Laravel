@@ -865,7 +865,18 @@ h2 {
     display: flex;
     justify-content: space-between;
 }
-
+/* student genral css*/
+.general-view{
+    display: flex;
+    gap: 10px;
+}
+.general-view p{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #030E1E;
+    margin-bottom: 0;
+}
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     .profile-general {
         display: flex;
@@ -918,7 +929,8 @@ h2 {
         padding: 20px;
     }
     .navbar .navbar-menu-wrapper{
-        width: calc(100% - 300px);
+        width: auto;
+        padding: 0;
     }
     .sd-firstrow {
         display: flex;

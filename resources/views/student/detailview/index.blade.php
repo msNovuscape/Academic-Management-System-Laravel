@@ -19,14 +19,22 @@
                         </div>
                         <div class='mt-3'>
                             <div class="form-group row mb-2 student-details">
-                                <label class="col-sm-5 col-form-label"><i class="fa-solid fa-circle-user text-center"></i>&nbsp; First Name</label>
+                                <label class="col-sm-5 col-form-label">
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-circle-user text-center"></i>
+                                        <p>First Name </p>
+                                    </div>
+                                </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->admission->user->name}}</h1>
                                 </div>
                             </div>
                             <div class='form-group row mb-2 student-details'>
                                 <label class='col-sm-5 col-form-label'>
-                                    <i class="fa-solid fa-user"></i>&nbsp; Gender
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-user"></i>
+                                        <p>Gender</p>
+                                    </div>
                                 </label>
                                 <div class="col-sm-7 "  >
                                     <h1>{{config('custom.genders')[$setting->gender]}}</h1>
@@ -34,7 +42,10 @@
                             </div>
                             <div class="form-group row mb-2 student-details">
                                 <label class="col-sm-5 col-form-label">
-                                    <i class="fa-solid fa-phone"></i>&nbsp; Phone
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-phone"></i>
+                                        <p>Phone</p>
+                                    </div>
                                 </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->mobile_no}}</h1>
@@ -42,7 +53,10 @@
                             </div>
                             <div class="form-group row mb-2 student-details">
                                 <label class="col-sm-5 col-form-label">
-                                    <i class="fa-solid fa-envelope"></i>&nbsp; Email
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-envelope"></i>
+                                        <p>Email</p>
+                                    </div>
                                 </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->admission->user->email}}</h1>
@@ -50,7 +64,10 @@
                             </div>
                             <div class="form-group row mb-2 student-details">
                                 <label class="col-sm-5 col-form-label">
-                                    <i class="fa-solid fa-calendar-days"></i>&nbsp; Date of Birth
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                        <p>Date of Birth</p>
+                                    </div>
                                 </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->dob}}</h1>
@@ -58,7 +75,10 @@
                             </div>
                             <div class="form-group row mb-2 student-details">
                                 <label class="col-sm-5 col-form-label">
-                                    <i class="fa-solid fa-envelope-circle-check"></i>&nbsp; Postal Code
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-envelope-circle-check"></i>
+                                        <p>Postal Code</p>
+                                    </div>
                                 </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->post_code}}</h1>
@@ -66,14 +86,22 @@
                             </div>
                             <div class="form-group row mb-2 student-details">
                                 <label class="col-sm-5 col-form-label">
-                                    <i class="fa-solid fa-location-dot"></i>&nbsp; Residental Address
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <p>Residental Address</p>
+                                    </div>
                                  </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->residential_address}}</h1>
                                 </div>
                             </div>
                             <div class="form-group row mb-2 student-details">
-                                <label class="col-sm-5 col-form-label">State</label>
+                                <label class="col-sm-5 col-form-label">
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-landmark"></i>
+                                        <p>State</p>
+                                    </div>
+                                </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->state}}</h1>
                                 </div>
@@ -140,7 +168,10 @@
                             </div>
                             <div class="form-group row mb-2 student-details">
                                 <label class="col-sm-5 col-form-label">
-                                    <i class="fa-solid fa-font-awesome"></i>&nbsp; Currently Living Country
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-font-awesome"></i>
+                                        <p>Currently Living Country</p>
+                                    </div>
                                 </label>
                                 <div class="col-sm-7">
                                       <h1>{{$setting->country->name}}</h1>
@@ -148,7 +179,10 @@
                             </div>
                             <div class="form-group row mb-2 student-details">
                                 <label  class="col-sm-5 col-form-label">
-                                    <i class="fa-solid fa-book-bookmark"></i>&nbsp; Visa Type
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-book-bookmark"></i>
+                                        <p>Visa Type</p>
+                                    </div>
                                 </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->visa_type}}</h1>
@@ -156,14 +190,22 @@
                             </div>
                             <div class="form-group row mb-2 student-details">
                                 <label class="col-sm-5 col-form-label">
-                                    <i class="fa-solid fa-passport"></i>&nbsp; Passport Number
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-passport"></i>
+                                        <p>Passport Number</p>
+                                    </div>
                                 </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->passport_number}}</h1>
                                 </div>
                             </div>
                             <div class="form-group row mb-2 student-details">
-                                <label class="col-sm-5 col-form-label">Passport Expiry Date</label>
+                                <label class="col-sm-5 col-form-label">
+                                    <div class="general-view">
+                                        <i class="fa-solid fa-passport"></i>
+                                        <p>Passport Expiry Date</p>
+                                    </div>
+                                </label>
                                 <div class="col-sm-7">
                                     <h1>{{$setting->passport_expiry_date}}</h1>
                                 </div>
