@@ -70,11 +70,11 @@ return [
         '5' => '5 days',
     ],
     'counselling_statuses' => [
-        '1' => 'Enroll',
-        '2' => 'In Progress',
+        '1' => 'Enrolled',
+        '2' => 'Resume',
         '3' => 'Interview',
         '4' => 'Reference Check',
-        '5' => 'Get A Job',
+        '5' => 'Job Finalised',
     ],
     'pagination' => [
         '1' => '20',

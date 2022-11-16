@@ -155,7 +155,7 @@
                                                                     </td>
                                                                     <td>
                                                                         @if($setting->sCounselling)
-                                                                            <a class="dropdown-item"  href="{{url('counselling/'.$setting->sCounselling->id)}}" role="button"><i class="fa-solid fa-eye counselling-icons" data-bs-toggle="tooltip" data-bs-title="Show Carrier Counselling"></i></a>
+                                                                            <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye counselling-icons" data-bs-toggle="tooltip" data-bs-title="Show Carrier Counselling"></i></a>
                                                                         @else
                                                                             <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-plus counselling-icons" data-bs-toggle="tooltip" data-bs-title="Carrier Counselling"></i></a>
                                                                         @endif

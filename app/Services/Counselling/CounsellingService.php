@@ -103,7 +103,7 @@ class CounsellingService
 
     public function searchCompleted()
     {
-        $settings = SCounselling::where('attendance_status', '1')->orderBy('id', 'desc');
+        $settings = SCounselling::where('status', '1')->orderBy('id', 'desc');
 
         if (request('date')) {
             $key = \request('date');
