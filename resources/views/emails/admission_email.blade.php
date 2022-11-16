@@ -74,7 +74,7 @@
             <p> <strong>Your AMS Login Details</strong> </p>
             <p> <strong>Username :</strong> {{$admission->user->email}}</p>
             <p> <strong>Password :</strong> {{$admission->user->student_password->password}}</p>
-            <a href="https://ams.extratechweb.com/" target="_blank"><strong>Link for ET AMS</strong></a>
+            <a href="https://student.extratechweb.com/" target="_blank"><strong>Link for ET AMS</strong></a>
         </div>
         <div class="data">
             <p>Please let us know if you have any issues or if we could provide you with any assistance.</p>
