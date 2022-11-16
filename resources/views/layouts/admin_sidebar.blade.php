@@ -268,6 +268,23 @@
             </ul>
         </div>
     </li>
+    <li class="nav-item @if(Request::segment(1) == 'role') active @endif ">
+        <a class="nav-link" href="{{url('roles')}}">
+            <div class="sidebar-icon w-100" id="myRoleBtn">
+                <i class="fa-solid fa-user-gear"></i>
+                <span class="menu-title w-100">Roles</span>
+            </div>
+        </a>
+        {{-- <div class="collapse" id="myRole">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item" >
+                    <a class="nav-link" href="{{url('roles/role')}}">
+                        <i class="fa-solid fa-user-pen"></i> Role
+                    </a>
+                </li>
+            </ul>
+        </div> --}}
+    </li>
 </ul>
 
 

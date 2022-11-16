@@ -14,9 +14,8 @@
                         <th>Installment</th>
                         <th>Amount</th>
                         <th>Status</th>
-                        <th>Bank Status</th>
+                        {{-- <th>Bank Status</th> --}}
                         <th>Due Date</th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody id="student_list">
@@ -25,12 +24,14 @@
                             <td id="td_count_1">{{$loop->iteration}}</td>
                             <td class="table-date">
                                 <div class="input-group">
-                                    <input type="text" class="form-control"  value="{{config('custom.installment_types')[$finance->batch_installment->installment_type]}}" readonly>
+                                    <p>{{config('custom.installment_types')[$finance->batch_installment->installment_type]}}</p>
+                                    {{-- <input type="text" class="form-control"  value="{{config('custom.installment_types')[$finance->batch_installment->installment_type]}}" readonly> --}}
                                 </div>
                             </td>
                             <td class="table-date">
                                 <div class="input-group">
-                                    <input type="number" name="amount[]" min="1" class="form-control amount" id="amount1" required readonly value="{{$finance->amount}}">
+                                    <p>{{$finance->amount}}</p>
+                                    {{-- <input type="number" name="amount[]" min="1" class="form-control amount" id="amount1" required readonly value="{{$finance->amount}}"> --}}
                                 </div>
                             </td>
                             <td>
@@ -45,7 +46,7 @@
                                     </a>
                                 @endif
                             </td>
-                            <td>
+                            {{-- <td>
                                 @if($finance->bank_status == 1)
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddCourse">
                                         <p class="active-button">Verified</p>
@@ -56,7 +57,7 @@
                                         <p class="deactive-button">Unverified</p>
                                     </a>
                                 @endif
-                            </td>
+                            </td> --}}
                             <td>
                                 {{$finance->batch_installment->due_date}}
                             </td>

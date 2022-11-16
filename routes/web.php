@@ -31,6 +31,8 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Admin\SCounsellingController;
 use App\Http\Controllers\Admin\ZoomLinkController;
 use App\Http\Controllers\Admin\ZoomLinkBatchController;
+use App\Http\Controllers\Admin\RolesController;
+
 
 
 
@@ -264,6 +266,8 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::post('zoom-links-batch/{id}', [ZoomLinkBatchController::class,'update']);
     Route::get('zoom_links_batch/delete/{id}', [ZoomLinkBatchController::class,'delete']);
 
+    // routes for roles
+    Route::get('roles', [RolesController::class,'index']);
 
 });
 
