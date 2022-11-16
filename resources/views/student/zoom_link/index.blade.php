@@ -18,27 +18,29 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="row">
-                                        @foreach($settings as $setting)
+{{--                                        @foreach($settings as $setting)--}}
+                                        @if($zoomBatchLink != null)
                                             <div class="col-md-6">
-                                                <a href="{{url($setting->link)}}" target="_blank">
+                                                <a href="{{url($zoomBatchLink->zoomLink->link)}}" target="_blank">
                                                     <div class="p-3 quiz-section-card d-flex mt-4">
                                                         <div class="icon">
                                                             <img src="{{url('images/quiz-card-icon.png')}}" alt="" />
                                                         </div>
                                                         <div class="para">
-                                                            <h4>{{$setting->name}}</h4>
+                                                            <h4>{{$zoomBatchLink->zoomLink->name}}</h4>
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
-                                        @endforeach
+                                        @endif
+{{--                                        @endforeach--}}
 
                                     </div>
                                 </div>
                                 @if(isset($counsellingLink))
                                     <div class="col-md-4">
                                         <div class="video-section p-3 mt-4">
-                                                <a href="{{$counsellingLink->link}}">
+                                                <a href="{{$counsellingLink->link}}" target="_blank">
                                                     <div class="p-3 quiz-section-card d-flex mt-4">
                                                         <div class="icon">
                                                             <img src="{{url('images/quiz-video-icon.png')}}" alt="" />

@@ -7,7 +7,8 @@ class ZoomLinkService
 {
     public function storeData($validateData)
     {
-        $setting = ZoomLink::firstOrNew(['course_id' => $validateData['course_id']]);
+        $setting = new ZoomLink();
+        $setting->course_id = $validateData['course_id'];
         $setting->link = $validateData['link'];
         $setting->name = $validateData['name'];
         $setting->status = $validateData['status'];

@@ -160,7 +160,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('zoom-links')}}">
-                        <i class="bi bi-file-earmark-text"></i>Zoom Link
+                        <i class="fa-solid fa-video"></i>Zoom Link
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('zoom-links-batch')}}">
+                        <i class="fa-solid fa-video"></i>Assign Zoom Link
                     </a>
                 </li>
             </ul>

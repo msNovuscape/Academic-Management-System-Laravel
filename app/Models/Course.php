@@ -24,8 +24,13 @@ class Course extends Model
         return $this->hasMany(CourseMaterial::class,'course_id');
     }
 
-    public function quizzes(){
+    public function quizzes() {
         return $this->hasMany(Quiz::class);
+    }
+
+    public function zoomLinks()
+    {
+        return $this->hasMany(ZoomLink::class);
     }
 
 

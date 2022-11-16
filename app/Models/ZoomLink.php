@@ -15,4 +15,6 @@ class ZoomLink extends Model
         return $this->belongsTo(Course::class);
     }
 
+
+
 }

@@ -61,10 +61,11 @@ class ZoomLinkController extends Controller
     {
         $batch = Auth::user()->admission->batch;
         if ($batch->start_date <= date('Y-m-d') && $batch->end_date >= date('Y-m-d')) {
-            $settings = ZoomLink::where('course_id', Auth::user()->admission->batch->time_slot->course_id)
-                                ->orderBy('id', 'desc')->get();
+//            $settings = ZoomLink::where('course_id', Auth::user()->admission->batch->time_slot->course_id)
+//                                ->orderBy('id', 'desc')->get();
+            $zoomBatchLink = $batch->zoomLinkBatch;
         } else {
-            $settings = [];
+            $zoomBatchLink = null;
         }
         if (Auth::user()->admission->sCounselling) {
             $counsellingLink = ZoomLink::whereHas('course', function ($q) {
@@ -72,10 +73,10 @@ class ZoomLinkController extends Controller
             })->get();
             if ($counsellingLink->count() > 0) {
                 $counsellingLink = $counsellingLink->first();
-                return view('student.zoom_link.index', compact('settings', 'counsellingLink'));
+                return view('student.zoom_link.index', compact('zoomBatchLink', 'counsellingLink'));
             }
         }
-        return view('student.zoom_link.index', compact('settings'));
+        return view('student.zoom_link.index', compact('zoomBatchLink'));
     }
 
 }

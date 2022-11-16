@@ -43,4 +43,10 @@ class Batch extends Model
     {
         return $this->hasMany(QuizBatch::class);
     }
+
+    public function zoomLinkBatch()
+    {
+        return $this->hasOne(ZoomLinkBatch::class);
+    }
+
 }

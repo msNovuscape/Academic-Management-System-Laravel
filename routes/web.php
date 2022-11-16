@@ -30,6 +30,7 @@ use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Admin\SCounsellingController;
 use App\Http\Controllers\Admin\ZoomLinkController;
+use App\Http\Controllers\Admin\ZoomLinkBatchController;
 
 
 
@@ -252,6 +253,17 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::post('zoom-links', [ZoomLinkController::class,'store']);
     Route::get('zoom-links/{id}/edit', [ZoomLinkController::class,'edit']);
     Route::post('zoom-links/{id}', [ZoomLinkController::class,'update']);
+    //routes for assign zoom link to batch
+//    Route::get('zoom-links-batch/delete/id', [ZoomLinkBatchController::class,'delete']);
+    Route::get('zoom-links-batch', [ZoomLinkBatchController::class,'index']);
+    Route::get('zoom-links-batch/create', [ZoomLinkBatchController::class,'create']);
+    Route::post('zoom-links-batch', [ZoomLinkBatchController::class,'store']);
+    Route::get('zoom-links-batch/get_batches/{course_id}', [ZoomLinkBatchController::class,'getBatch']);
+    Route::get('zoom-links-batch/show/{id}', [ZoomLinkBatchController::class,'show']);
+    Route::get('zoom-links-batch/{id}/edit', [ZoomLinkBatchController::class,'edit']);
+    Route::post('zoom-links-batch/{id}', [ZoomLinkBatchController::class,'update']);
+    Route::get('zoom_links_batch/delete/{id}', [ZoomLinkBatchController::class,'delete']);
+
 
 });
 
