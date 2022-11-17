@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\LoginService;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -22,6 +24,12 @@ class LoginController extends Controller
             'email'=>'required|email',
             'password'=>'required',
         ]);
+//        dd(\request()->all());
+//        $aa = User::findOrFail(52);
+//        $pp = \request('password');
+////        dd($pp);
+////        dd($aa->password);
+//        dd(Hash::check($pp,$aa->password));
         if (Auth::attempt(['email'=>request('email'),'password'=>request('password'),'status'=>1],request()->has('remember'))){
             //saving in log table
             $log = LoginService::log();

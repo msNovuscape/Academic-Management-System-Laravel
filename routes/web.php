@@ -255,8 +255,8 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::post('zoom-links', [ZoomLinkController::class,'store']);
     Route::get('zoom-links/{id}/edit', [ZoomLinkController::class,'edit']);
     Route::post('zoom-links/{id}', [ZoomLinkController::class,'update']);
+
     //routes for assign zoom link to batch
-//    Route::get('zoom-links-batch/delete/id', [ZoomLinkBatchController::class,'delete']);
     Route::get('zoom-links-batch', [ZoomLinkBatchController::class,'index']);
     Route::get('zoom-links-batch/create', [ZoomLinkBatchController::class,'create']);
     Route::post('zoom-links-batch', [ZoomLinkBatchController::class,'store']);
