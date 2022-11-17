@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\SCounsellingController;
 use App\Http\Controllers\Admin\ZoomLinkController;
 use App\Http\Controllers\Admin\ZoomLinkBatchController;
 use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\UserController;
 
 
 
@@ -273,6 +274,15 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::get('roles/{id}', [RolesController::class,'show']);
     Route::get('roles/{id}/edit', [RolesController::class,'edit']);
     Route::post('roles/{id}', [RolesController::class,'update']);
+
+    //routes for user creation
+    Route::get('users', [UserController::class,'index']);
+    Route::get('users/create', [UserController::class,'create']);
+    Route::post('users', [UserController::class,'store']);
+    Route::get('users/{id}', [UserController::class,'show']);
+    Route::get('users/{id}/edit', [UserController::class,'edit']);
+    Route::post('users/{id}', [UserController::class,'update']);
+
 
 });
 
