@@ -1,0 +1,117 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class PermissionOldTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('permissions')->insert([
+            ['table_name'=>'fiscal_years','common_name'=>'Fiscal Year','slug'=>'create_fiscal_year'],
+            ['table_name'=>'fiscal_years','common_name'=>'Fiscal Year','slug'=>'show_fiscal_year'],
+            ['table_name'=>'fiscal_years','common_name'=>'Fiscal Year','slug'=>'update_fiscal_year'],
+            ['table_name'=>'fiscal_years','common_name'=>'Fiscal Year','slug'=>'report_fiscal_year'],
+            ['table_name'=>'fiscal_years','common_name'=>'Fiscal Year','slug'=>'delete_fiscal_year'],
+            ['table_name'=>'courses','common_name'=>'Course','slug'=>'create_course'],
+            ['table_name'=>'courses','common_name'=>'Course','slug'=>'show_course'],
+            ['table_name'=>'courses','common_name'=>'Course','slug'=>'update_course'],
+            ['table_name'=>'courses','common_name'=>'Course','slug'=>'report_course'],
+            ['table_name'=>'courses','common_name'=>'Course','slug'=>'delete_course'],
+            ['table_name'=>'time_tables','common_name'=>'Time Tables','slug'=>'create_time_table'],
+            ['table_name'=>'time_tables','common_name'=>'Time Tables','slug'=>'show_time_table'],
+            ['table_name'=>'time_tables','common_name'=>'Time Tables','slug'=>'update_time_table'],
+            ['table_name'=>'time_tables','common_name'=>'Time Tables','slug'=>'report_time_table'],
+            ['table_name'=>'time_tables','common_name'=>'Time Tables','slug'=>'delete_time_table'],
+            ['table_name'=>'time_slots','common_name'=>'Time Slot','slug'=>'create_time_slot'],
+            ['table_name'=>'time_slots','common_name'=>'Time Slot','slug'=>'show_time_slot'],
+            ['table_name'=>'time_slots','common_name'=>'Time Slot','slug'=>'update_time_slot'],
+            ['table_name'=>'time_slots','common_name'=>'Time Slot','slug'=>'report_time_slot'],
+            ['table_name'=>'time_slots','common_name'=>'Time Slot','slug'=>'delete_time_slot'],
+            ['table_name'=>'batches','common_name'=>'Batch','slug'=>'create_batch'],
+            ['table_name'=>'batches','common_name'=>'Batch','slug'=>'show_batch'],
+            ['table_name'=>'batches','common_name'=>'Batch','slug'=>'update_batch'],
+            ['table_name'=>'batches','common_name'=>'Batch','slug'=>'report_batch'],
+            ['table_name'=>'batches','common_name'=>'Batch','slug'=>'delete_batch'],
+            ['table_name'=>'admissions','common_name'=>'Admissions','slug'=>'create_admission'],
+            ['table_name'=>'admissions','common_name'=>'Admissions','slug'=>'show_admission'],
+            ['table_name'=>'admissions','common_name'=>'Admissions','slug'=>'update_admission'],
+            ['table_name'=>'admissions','common_name'=>'Admissions','slug'=>'report_admission'],
+            ['table_name'=>'admissions','common_name'=>'Admissions','slug'=>'delete_admission'],
+            ['table_name'=>'finances','common_name'=>'Finance','slug'=>'create_finance'],
+            ['table_name'=>'finances','common_name'=>'Finance','slug'=>'show_finance'],
+            ['table_name'=>'finances','common_name'=>'Finance','slug'=>'update_finance'],
+            ['table_name'=>'finances','common_name'=>'Finance','slug'=>'report_finance'],
+            ['table_name'=>'finances','common_name'=>'Finance','slug'=>'delete_finance'],
+            ['table_name'=>'course_materials','common_name'=>'Course Material','slug'=>'create_course_material'],
+            ['table_name'=>'course_materials','common_name'=>'Course Material','slug'=>'show_course_material'],
+            ['table_name'=>'course_materials','common_name'=>'Course Material','slug'=>'update_course_material'],
+            ['table_name'=>'course_materials','common_name'=>'Course Material','slug'=>'report_course_material'],
+            ['table_name'=>'course_materials','common_name'=>'Course Material','slug'=>'delete_course_material'],
+            ['table_name'=>'batch_course_materials','common_name'=>'Assign Course Material','slug'=>'create_batch_course_material'],
+            ['table_name'=>'batch_course_materials','common_name'=>'Assign Course Material','slug'=>'show_batch_course_material'],
+            ['table_name'=>'batch_course_materials','common_name'=>'Assign Course Material','slug'=>'update_batch_course_material'],
+            ['table_name'=>'batch_course_materials','common_name'=>'Assign Course Material','slug'=>'report_batch_course_material'],
+            ['table_name'=>'batch_course_materials','common_name'=>'Assign Course Material','slug'=>'delete_batch_course_material'],
+            ['table_name'=>'zoom_links','common_name'=>'Zoom Links','slug'=>'create_zoom_link'],
+            ['table_name'=>'zoom_links','common_name'=>'Zoom Links','slug'=>'show_zoom_link'],
+            ['table_name'=>'zoom_links','common_name'=>'Zoom Links','slug'=>'update_zoom_link'],
+            ['table_name'=>'zoom_links','common_name'=>'Zoom Links','slug'=>'report_zoom_link'],
+            ['table_name'=>'zoom_links','common_name'=>'Zoom Links','slug'=>'delete_zoom_link'],
+            ['table_name'=>'zoom_link_batches','common_name'=>'Assign Zoom Link','slug'=>'create_zoom_link_batch'],
+            ['table_name'=>'zoom_link_batches','common_name'=>'Assign Zoom Link','slug'=>'show_zoom_link_batch'],
+            ['table_name'=>'zoom_link_batches','common_name'=>'Assign Zoom Link','slug'=>'update_zoom_link_batch'],
+            ['table_name'=>'zoom_link_batches','common_name'=>'Assign Zoom Link','slug'=>'report_zoom_link_batch'],
+            ['table_name'=>'zoom_link_batches','common_name'=>'Assign Zoom Link','slug'=>'delete_zoom_link_batch'],
+            ['table_name'=>'attendances','common_name'=>'Attendance','slug'=>'create_attendance'],
+            ['table_name'=>'attendances','common_name'=>'Attendance','slug'=>'show_attendance'],
+            ['table_name'=>'attendances','common_name'=>'Attendance','slug'=>'update_attendance'],
+            ['table_name'=>'attendances','common_name'=>'Attendance','slug'=>'report_attendance'],
+            ['table_name'=>'attendances','common_name'=>'Attendance','slug'=>'delete_attendance'],
+            ['table_name'=>'s_counsellings','common_name'=>'Career counselling','slug'=>'create_s_counselling'],
+            ['table_name'=>'s_counsellings','common_name'=>'Career counselling','slug'=>'show_s_counselling'],
+            ['table_name'=>'s_counsellings','common_name'=>'Career counselling','slug'=>'update_s_counselling'],
+            ['table_name'=>'s_counsellings','common_name'=>'Career counselling','slug'=>'report_s_counselling'],
+            ['table_name'=>'s_counsellings','common_name'=>'Career counselling','slug'=>'delete_s_counselling'],
+            ['table_name'=>'s_counselling_attendances','common_name'=>'Counselling Attendance','slug'=>'create_s_counselling_attendances'],
+            ['table_name'=>'s_counselling_attendances','common_name'=>'Counselling Attendance','slug'=>'show_s_counselling_attendances'],
+            ['table_name'=>'s_counselling_attendances','common_name'=>'Counselling Attendance','slug'=>'update_s_counselling_attendances'],
+            ['table_name'=>'s_counselling_attendances','common_name'=>'Counselling Attendance','slug'=>'report_s_counselling_attendances'],
+            ['table_name'=>'s_counselling_attendances','common_name'=>'Counselling Attendance','slug'=>'delete_s_counselling_attendances'],
+            ['table_name'=>'quizzes','common_name'=>'Quiz','slug'=>'create_quizzes'],
+            ['table_name'=>'quizzes','common_name'=>'Quiz','slug'=>'show_quizzes'],
+            ['table_name'=>'quizzes','common_name'=>'Quiz','slug'=>'update_quizzes'],
+            ['table_name'=>'quizzes','common_name'=>'Quiz','slug'=>'report_quizzes'],
+            ['table_name'=>'quizzes','common_name'=>'Quiz','slug'=>'delete_quizzes'],
+            ['table_name'=>'student_quiz_batches','common_name'=>'Assign Quiz To Group','slug'=>'create_student_quiz_batch'],
+            ['table_name'=>'student_quiz_batches','common_name'=>'Assign Quiz To Group','slug'=>'show_student_quiz_batch'],
+            ['table_name'=>'student_quiz_batches','common_name'=>'Assign Quiz To Group','slug'=>'update_student_quiz_batch'],
+            ['table_name'=>'student_quiz_batches','common_name'=>'Assign Quiz To Group','slug'=>'report_student_quiz_batch'],
+            ['table_name'=>'student_quiz_batches','common_name'=>'Assign Quiz To Group','slug'=>'delete_student_quiz_batch'],
+            ['table_name'=>'student_quiz_individual','common_name'=>'Assign Quiz To Individual','slug'=>'create_student_quiz_individual'],
+            ['table_name'=>'student_quiz_individual','common_name'=>'Assign Quiz To Individual','slug'=>'show_student_quiz_individual'],
+            ['table_name'=>'student_quiz_individual','common_name'=>'Assign Quiz To Individual','slug'=>'update_student_quiz_individual'],
+            ['table_name'=>'student_quiz_individual','common_name'=>'Assign Quiz To Individual','slug'=>'report_student_quiz_individual'],
+            ['table_name'=>'student_quiz_individual','common_name'=>'Assign Quiz To Individual','slug'=>'delete_student_quiz_individual'],
+            ['table_name'=>'users','common_name'=>'User','slug'=>'create_user'],
+            ['table_name'=>'users','common_name'=>'User','slug'=>'show_user'],
+            ['table_name'=>'users','common_name'=>'User','slug'=>'update_user'],
+            ['table_name'=>'users','common_name'=>'User','slug'=>'report_user'],
+            ['table_name'=>'users','common_name'=>'User','slug'=>'delete_user'],
+            ['table_name'=>'roles','common_name'=>'Role','slug'=>'create_role'],
+            ['table_name'=>'roles','common_name'=>'Role','slug'=>'show_role'],
+            ['table_name'=>'roles','common_name'=>'Role','slug'=>'update_role'],
+            ['table_name'=>'roles','common_name'=>'Role','slug'=>'report_role'],
+            ['table_name'=>'roles','common_name'=>'Role','slug'=>'delete_role'],
+        ]);
+
+    }
+}

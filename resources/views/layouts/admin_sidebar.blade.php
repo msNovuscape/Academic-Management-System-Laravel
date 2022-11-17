@@ -139,7 +139,7 @@
             </ul>
         </div>
     </li>
-    <li class="nav-item @if(Request::segment(1) == 'course-materials' || Request::segment(1) == 'batch-course-materials') active @endif">
+    <li class="nav-item @if(Request::segment(1) == 'course-materials' || Request::segment(1) == 'batch-course-materials' || Request::segment(1) == 'zoom-links' || Request::segment(1) == 'zoom-links-batch') active @endif">
         <a class="nav-link">
             <div class="sidebar-icon  w-100" id="myMaterialsBtn">
                 <i class="fa-solid fa-book"></i>
@@ -268,23 +268,50 @@
             </ul>
         </div>
     </li>
-    <li class="nav-item @if(Request::segment(1) == 'role') active @endif ">
-        <a class="nav-link" href="{{url('roles')}}">
+    <li class="nav-item @if(Request::segment(1) == 'roles') active @endif ">
+        <a class="nav-link">
             <div class="sidebar-icon w-100" id="myRoleBtn">
                 <i class="fa-solid fa-user-gear"></i>
-                <span class="menu-title w-100">Roles</span>
+                <span class="menu-title w-100">User Permissions<i class="fa-solid fa-angle-down" id="icon-toggle-report"></i></span>
             </div>
         </a>
-        {{-- <div class="collapse" id="myRole">
+        <div class="collapse" id="myRole">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item" >
-                    <a class="nav-link" href="{{url('roles/role')}}">
-                        <i class="fa-solid fa-user-pen"></i> Role
+                    <a class="nav-link" href="{{url('users')}}">
+                        <i class="fa-solid fa-coins"></i> User
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('roles')}}">
+                        <i class="fa-solid fa-bell-slash"></i>Role
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('')}}">
+                        <i class="bi bi-card-checklist"></i> Assign Role
                     </a>
                 </li>
             </ul>
-        </div> --}}
+        </div>
     </li>
+{{--    <li class="nav-item @if(Request::segment(1) == 'role') active @endif ">--}}
+{{--        <a class="nav-link" href="{{url('roles')}}">--}}
+{{--            <div class="sidebar-icon w-100" id="myRoleBtn">--}}
+{{--                <i class="fa-solid fa-user-gear"></i>--}}
+{{--                <span class="menu-title w-100">Roles</span>--}}
+{{--            </div>--}}
+{{--        </a>--}}
+{{--        --}}{{-- <div class="collapse" id="myRole">--}}
+{{--            <ul class="nav flex-column sub-menu">--}}
+{{--                <li class="nav-item" >--}}
+{{--                    <a class="nav-link" href="{{url('roles/role')}}">--}}
+{{--                        <i class="fa-solid fa-user-pen"></i> Role--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--        </div> --}}
+{{--    </li>--}}
 </ul>
 
 

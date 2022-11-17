@@ -268,6 +268,11 @@ Route::group(['middleware'=>['myAdmin']], function () {
 
     // routes for roles
     Route::get('roles', [RolesController::class,'index']);
+    Route::get('roles/create', [RolesController::class,'create']);
+    Route::post('roles', [RolesController::class,'store']);
+    Route::get('roles/{id}', [RolesController::class,'show']);
+    Route::get('roles/{id}/edit', [RolesController::class,'edit']);
+    Route::post('roles/{id}', [RolesController::class,'update']);
 
 });
 
