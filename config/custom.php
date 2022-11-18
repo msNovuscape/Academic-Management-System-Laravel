@@ -9,12 +9,14 @@ return [
         '1' => 'Admin',
         '2' => 'Teacher',
         '3' => 'Student',
+        '4' => 'Other'
     ],
     'image_folders' => [
         '1' => 'student',
         '2' => 'course_material',
         '3'=>'DOCX',
         '4'=>'quiz_image',
+        '5'=>'other_user',
     ],
     'genders' =>[
         '1' => 'Male',

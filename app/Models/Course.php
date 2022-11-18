@@ -33,5 +33,10 @@ class Course extends Model
         return $this->hasMany(ZoomLink::class);
     }
 
+    public function userTeachers()
+    {
+        return $this->hasMany(UserTeacher::class);
+    }
+
 
 }

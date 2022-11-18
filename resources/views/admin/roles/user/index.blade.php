@@ -12,7 +12,7 @@
                             <div>
                                 <h4>Users List</h4>
                                 <p>
-                                    You can search the user by <a href="#" class="card-heading-link">name, email, address, mobile no and status</a> and can view all available user records.
+                                    You can search the user by <a href="#" class="card-heading-link">name, course</a> and can view all available user records.
                                 </p>
                             </div>
                             <ul class="admin-breadcrumb">
@@ -30,7 +30,7 @@
                                                         <span>
                                                             <i class="fa-solid fa-magnifying-glass"></i>
                                                         </span>
-                                                <input type="text" class="form-control reset-class"  placeholder="Search by Name or Id" name="name" value="{{old('name')}}"/>
+                                                <input type="text" class="form-control reset-class"  placeholder="Search by Name" name="name" value="{{old('name')}}"/>
                                             </div>
                                             <div class="input-group mx-4">
                                                         <span>
@@ -98,55 +98,70 @@
                                                         <tr>
                                                             <th>S.N.</th>
                                                             <th>Name</th>
-                                                            <th>Course</th>
+                                                            <th>Tutor</th>
+                                                            <th>Courses</th>
                                                             <th>Email</th>
                                                             <th>Mobile No.</th>
                                                             <th>Emp Id.</th>
-                                                            <th>Tutor</th>
+                                                            <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody id="student_list">
-{{--                                                        @foreach($settings as $setting)--}}
-{{--                                                            <tr>--}}
-{{--                                                                <td>{{$settings->firstItem() + $loop->index}}</td>--}}
-{{--                                                                <td class="d-flex">--}}
-{{--                                                                    <div class="d-flex flex-column name-table">--}}
-{{--                                                                        <p>{{$setting->name}}</p>--}}
-{{--                                                                        <p>{{$setting->student_id}}</p>--}}
-{{--                                                                    </div>--}}
-{{--                                                                </td>--}}
-{{--                                                                <td>{{$setting->batch->time_slot->course->name}}</td>--}}
-{{--                                                                <td>{{$setting->batch->name}}</td>--}}
-{{--                                                                <td>{{$setting->batch->time_slot->time_table->day}} [{{$setting->batch->time_slot->time_table->start_time}}-{{$setting->batch->time_slot->time_table->end_time}}]</td>--}}
-{{--                                                                <td>{{$setting->date}}</td>--}}
-{{--                                                                <td>{{$setting->payable_amount}}</td>--}}
-{{--                                                                <td>{{$setting->discount->amount}}</td>--}}
-{{--                                                                <td>{{$setting->finances->first()->amount}}</td>--}}
-{{--                                                                <td class="action-icons">--}}
-{{--                                                                    <ul class="icon-button d-flex">--}}
-{{--                                                                        <li>--}}
-{{--                                                                            <a class="dropdown-item"  href="{{url('admissions/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>--}}
-{{--                                                                        </li>--}}
-{{--                                                                        <li>--}}
-{{--                                                                            <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>--}}
-{{--                                                                        </li>--}}
-{{--                                                                    </ul>--}}
-{{--                                                                </td>--}}
-{{--                                                                <td>--}}
-{{--                                                                    @if($setting->sCounselling)--}}
-{{--                                                                        <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye counselling-icons" data-bs-toggle="tooltip" data-bs-title="Show Carrier Counselling"></i></a>--}}
-{{--                                                                    @else--}}
-{{--                                                                        <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-plus counselling-icons" data-bs-toggle="tooltip" data-bs-title="Carrier Counselling"></i></a>--}}
-{{--                                                                    @endif--}}
-{{--                                                                </td>--}}
-{{--                                                            </tr>--}}
-{{--                                                        @endforeach--}}
+                                                        @foreach($settings as $setting)
+                                                            <tr>
+                                                                <td>{{$settings->firstItem() + $loop->index}}</td>
+                                                                <td class="">
+                                                                    <div class="d-flex">
+                                                                        <div class="table-image">
+                                                                            @if($setting->userInfo)
+                                                                                <img src="{{url($setting->userInfo->image)}}" alt=""/>
+                                                                            @else
+                                                                                <img src="{{url('images/no_images.png')}}" alt=""/>
+                                                                            @endif
+                                                                        </div>
+                                                                        <div class="d-flex flex-column name-table">
+                                                                            <p>{{$setting->name}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    @if($setting->userTeachersWithActiveCourse->count() > 0)
+                                                                        Yes
+                                                                    @else
+                                                                        No
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @if($setting->userTeachersWithActiveCourse->count() > 0)
+                                                                        @foreach($setting->userTeachers as $userTeacher)
+                                                                            <li>{{$userTeacher->course->name}}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                      -
+                                                                    @endif
+                                                                </td>
+                                                                <td>{{$setting->email}}</td>
+                                                                <td>{{$setting->userInfo->mobile_no}}</td>
+                                                                <td>{{$setting->userInfo->emp_id}}</td>
+                                                                <td>{{config('custom.status')[$setting->status]}}</td>
+                                                                <td class="action-icons">
+                                                                    <ul class="icon-button d-flex">
+                                                                        <li>
+                                                                            <a class="dropdown-item"  href="{{url('users/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class="dropdown-item"  href="{{url('users/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                         </tbody>
                                                     </table>
                                                     <div class="row">
                                                         <div class="pagination-section">
-{{--                                                            {{$settings->links()}}--}}
+                                                            {{$settings->links()}}
                                                         </div>
                                                     </div>
                                                 </div>

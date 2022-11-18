@@ -28,7 +28,7 @@
                         @include('errors.error')
                         <div class="row p-4">
                             <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
-                                {!! Form::open(['url' => 'users','method' => 'POST','onsubmit' => 'return validateForm()']) !!}
+                                {!! Form::open(['url' => 'users','method' => 'POST','onsubmit' => 'return validateForm()', 'files' => true]) !!}
                                     <div class="row">
                                         <div class="col-12 table-responsive">
                                             <div class="row">
@@ -195,46 +195,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card" style="display: none" id="tutor-course">
-                                            <div class="card-wrap card-wrap-bs-none form-block p-4 pt-0">
-                                                <div class="row">
-                                                    <div class="col-12 table-responsive table-details">
-                                                        <table class="table" id="">
-                                                            <thead>
-                                                            <tr>
-                                                                <th>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" value="" id="select_all">
-                                                                        <label class="form-check-label" for="selectAll">
-                                                                            Select All
-                                                                        </label>
-                                                                    </div>
-                                                                </th>
-                                                                <th>S.N.</th>
-                                                                <th>Course Name</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody id="student_list">
-                                                            @foreach($courses as $course)
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check ms-1">
-                                                                            <input class="form-check-input checkbox" type="checkbox" value="{{$course->id}}"  name="course_id[]">
-                                                                            <label class="form-check-label" for="flexCheckDefault">
-                                                                            </label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>{{$loop->iteration}}</td>
-                                                                    <td>{{$course->name}}</td>
-                                                                </tr>
-                                                            @endforeach
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        @include('admin.roles.user.table.course')
                                         <div class="row mt-4">
                                             <div class="button-section d-flex justify-content-end mt-2 mb-4">
                                                 <div class="row">
@@ -296,59 +257,16 @@
                         $("#tutor-course").hide();
                     }
                 }
-                function getBatch() {
-                    var course_id = $('#course_id').val();
-                    start_loader();
-                    $.ajax({
-                        type:'GET',
-                        url:Laravel.url+'/admissions/get_batches/'+course_id,
-                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        processData: false,  // tell jQuery not to process the data
-                        contentType: false,
-                        success:function (data){
-                            end_loader();
-                            $('.option').remove();
-                            $('#batch_id').append(data['html'])
-                        },
-                        error: function (error){
-                            end_loader()
-                            errorDisplay('Something went worng !');
-                        }
-                    });
-                }
-
-                var batch_amount = 0;
-                function getBatchInfo() {
-                    var batch_id = $('#batch_id').val();
-                    start_loader()
-                    $.ajax({
-                        type:'GET',
-                        url:Laravel.url+'/admissions/get_batch_info/'+batch_id,
-                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        processData: false,  // tell jQuery not to process the data
-                        contentType: false,
-                        success:function (data){
-                            end_loader();
-                            $("#amount").attr('value', data['firstInstallmentAmount']);
-                            batch_amount = parseFloat(data['batch']['fee']);
-                        },
-                        error: function (error){
-                            end_loader();
-                            errorDisplay('Something went worng !');
-                        }
-                    });
-                }
-
                 function validateForm() {
-                    var amount = parseFloat($('#amount').val());
-                    var discount = parseFloat($('#discount').val());
-                    var payable_amount = batch_amount - discount;
-
-                    if(amount > payable_amount){
-                        errorDisplay('Installment amount is greater than amount to pay!');
-                        return false;
-                    }else {
-                        return  true;
+                    if($('#yes').is(':checked')){
+                        if(document.querySelectorAll('.checkbox:checked').length > 0){
+                            return true;
+                        } else {
+                            errorDisplay('Please select at least one course!');
+                            return false;
+                        }
+                    } else {
+                        return true;
                     }
                 }
             </script>

@@ -56,4 +56,18 @@ class User extends Authenticatable
     {
        return $this->hasOne(StudentPassword::class);
     }
+
+    public function userInfo()
+    {
+        return $this->hasOne(UserInfo::class);
+    }
+
+    public function userTeachers()
+    {
+        return $this->hasMany(UserTeacher::class);
+    }
+    public function userTeachersWithActiveCourse()
+    {
+        return $this->hasMany(UserTeacher::class)->where('status', '1');
+    }
 }
