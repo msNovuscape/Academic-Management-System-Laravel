@@ -3,6 +3,7 @@ namespace App\Services\Role;
 
 use App\Models\StudentPassword;
 use App\Models\User;
+use App\Models\UserEmailInfo;
 use App\Models\UserInfo;
 use App\Models\UserTeacher;
 use App\Services\SettingService;
@@ -157,6 +158,16 @@ class UserService
             DB::rollback();
             throw $e;
         }
+    }
+
+    //save the admission email information
+    public function storeEmailInfo($setting)
+    {
+        $admission_email = new UserEmailInfo();
+        $admission_email->user_id = $setting->id;
+        $admission_email->content = '<p>Thank You for making the enrollment payment. We are excited to have you onboard and wish you have an amazing learning experience in <strong>&nbsp;Extratech</strong>.</p> <p>We would like to kindly request you to change your temporary password to complete the enrollment form. Then download Skype and send a message to Binod Kunwar at Skype ID: binod.kunwar56 to be added in the learning group.</p> <p> <strong>Your AMS Login Details</strong> </p><p> <strong>Username :</strong> '.$setting->email.'</p><p> <strong>Password :</strong>'.$setting->student_password.'</p>';
+        $admission_email->save();
+        return $admission_email;
     }
 
     //to generate random password

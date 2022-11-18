@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Role\UserRequest;
 use App\Http\Requests\Role\UserUpdateRequest;
+use App\Mail\UserEmail;
 use App\Models\Course;
 use App\Models\User;
 use App\Services\Role\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -39,7 +41,9 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $validateData = $request->validated();
-        $this->userService->storeData($validateData);
+        $setting = $this->userService->storeData($validateData);
+        Mail::to(request('email'))->send(new UserEmail($setting));
+        $this->userService->storeEmailInfo($setting);
         Session::flash('success', 'User is created!');
         return redirect($this->redirect);
     }
