@@ -24,7 +24,7 @@
                                                 <span>
                                                     <i class="fa-solid fa-magnifying-glass"></i>
                                                 </span>
-                                            <input type="text" class="form-control" id="inputText" placeholder="Search by Course Name or Code" name="name" />
+                                            <input type="text" class="form-control" id="inputText" placeholder="Search by day or start or end time" name="name" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 d-flex">

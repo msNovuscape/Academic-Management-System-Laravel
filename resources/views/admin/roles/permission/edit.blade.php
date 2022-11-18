@@ -20,10 +20,6 @@
                                 <li>Roles</li>
                             </ul>
                         </div>
-                        <div>
-                            @include('success.success')
-                            @include('errors.error')
-                        </div>
                         <div class="col-sm-12 col-md-12 stretch-card mt-4">
                             {!! Form::open(['url' => 'roles/'.$role->id, 'method' => 'POST' ,'onsubmit' => 'return validateForm()']) !!}
                             <div class="card-wrap form-block p-0">

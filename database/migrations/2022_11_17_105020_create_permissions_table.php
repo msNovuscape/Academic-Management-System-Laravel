@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('table_name');
             $table->string('common_name');
             $table->string('slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

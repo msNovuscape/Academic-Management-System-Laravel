@@ -268,7 +268,7 @@
             </ul>
         </div>
     </li>
-    <li class="nav-item @if(Request::segment(1) == 'roles') active @endif ">
+    <li class="nav-item @if(Request::segment(1) == 'roles' || Request::segment(1) == 'permissions') active @endif ">
         <a class="nav-link">
             <div class="sidebar-icon w-100" id="myRoleBtn">
                 <i class="fa-solid fa-user-gear"></i>
@@ -288,7 +288,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('')}}">
+                    <a class="nav-link" href="{{url('permissions')}}">
                         <i class="bi bi-card-checklist"></i> Assign Role
                     </a>
                 </li>

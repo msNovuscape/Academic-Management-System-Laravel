@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\ZoomLinkController;
 use App\Http\Controllers\Admin\ZoomLinkBatchController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserRoleController;
 
 
 
@@ -283,7 +284,13 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::get('users/{id}/edit', [UserController::class,'edit']);
     Route::post('users/{id}', [UserController::class,'update']);
 
-
+    //routes for user assign permission
+    Route::get('permissions', [UserRoleController::class,'index']);
+    Route::get('permissions/create', [UserRoleController::class,'create']);
+    Route::post('permissions', [UserRoleController::class,'store']);
+    Route::get('permissions/{id}', [UserRoleController::class,'show']);
+    Route::get('permissions/{id}/edit', [UserRoleController::class,'edit']);
+    Route::post('permissions/{id}', [UserRoleController::class,'update']);
 });
 
 //    Routes for students
