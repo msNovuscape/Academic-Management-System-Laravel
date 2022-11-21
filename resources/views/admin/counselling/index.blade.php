@@ -60,6 +60,17 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                <div class="input-group mx-4">
+                                                            <span>
+                                                                <i class="bi bi-grid"></i>
+                                                            </span>
+                                                    <select name="counselling_status" class="form-control reset-class">
+                                                        <option value="" selected disabled>Search by Status </option>
+                                                        @foreach(config('custom.counselling_statuses') as $index => $value)
+                                                            <option value="{{$index}}" @if(old('counselling_status') == $index) selected @endif>{{$value}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                                 <div class="col-md-2 d-flex justify-content-end">
                                                     <div class="d-flex align-items-center">
                                                         <p class="m-0">
@@ -99,7 +110,7 @@
                             <div class="card-wrap form-block p-0">
                                 <div class="block-header bg-header d-flex justify-content-between p-4">
                                     <div class="d-flex flex-column">
-                                        <h3>List of Career Counselling Students <span class="badge bg-secondary">{{$settings->count()}}</span></h3>
+                                        <h3>List of Career Counselling Students <span class="badge bg-secondary">{{$settings->total()}}</span></h3>
                                     </div>
                                 </div>
                                 <div class="row">

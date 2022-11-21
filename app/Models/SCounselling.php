@@ -27,6 +27,6 @@ class SCounselling extends Model
     }
     public function s_counselling_attendances_orderByDate()
     {
-        return $this->hasMany(SCounsellingAttendance::class)->orderBy('date','desc');
+        return $this->hasMany(SCounsellingAttendance::class)->orderBy('date', 'desc');
     }
 }

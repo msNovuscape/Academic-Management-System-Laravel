@@ -67,7 +67,6 @@ class CounsellingService
     public function search()
     {
         $settings = SCounselling:: orderBy('id', 'desc');
-
         if (request('date')) {
             $key = \request('date');
             $settings = $settings->where('date', $key);
@@ -90,6 +89,12 @@ class CounsellingService
             $key = \request('batch_id');
             $settings = $settings->whereHas('admission', function ($a) use ($key){
                 $a->where('batch_id', $key);
+            });
+        }
+        if (request('counselling_status')) {
+            $key = \request('counselling_status');
+            $settings = $settings->whereHas('studentCounsellingStatuses', function ($a) use ($key) {
+                $a->where('status', $key);
             });
         }
         if (request('per_page')) {
