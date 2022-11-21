@@ -1,7 +1,22 @@
 <script>
-
+    $( document ).ready(function() {
+        if(document.querySelectorAll('.checkbox-create:checked').length == checkboxes_create.length){
+            select_all_create.checked = true;
+        }
+        if(document.querySelectorAll('.checkbox-show:checked').length == checkboxes_show.length){
+            select_all_show.checked = true;
+        }
+        if(document.querySelectorAll('.checkbox-update:checked').length == checkboxes_update.length){
+            select_all_update.checked = true;
+        }
+        if(document.querySelectorAll('.checkbox-delete:checked').length == checkboxes_delete.length){
+            select_all_delete.checked = true;
+        }
+        if(document.querySelectorAll('.checkbox-report:checked').length == checkboxes_report.length){
+            select_all_report.checked = true;
+        }
+    });
     function getPermission(){
-        debugger;
         if($('#yes').is(':checked')){
             $("#personal-permission").show();
         }

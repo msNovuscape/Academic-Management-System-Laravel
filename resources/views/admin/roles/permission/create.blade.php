@@ -42,7 +42,7 @@
                                         <div class="col-md-4">
                                             <div class="role-select">
                                                 <label for="" class="form-label">Role </label>
-                                                <select class="form-select" aria-label="Default select example" name="role_id" id="role_id">
+                                                <select class="form-select" aria-label="Default select example" name="role_id" id="role_id" required>
                                                     <option value="" disabled selected>Please select Role</option>
                                                     @foreach($roles as $role)
                                                         <option value="{{$role->id}}" @if(old('role_id') == $role->id) selected @endif>{{$role->name}}</option>

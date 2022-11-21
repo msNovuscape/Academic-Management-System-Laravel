@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserTeacher::class)->where('status', '1');
     }
+
+    public function userPermissions()
+    {
+        return $this->hasMany(UserPermission::class);
+    }
 }

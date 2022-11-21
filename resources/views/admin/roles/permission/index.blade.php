@@ -74,27 +74,36 @@
                                                         <tr>
                                                             <th>S.N.</th>
                                                             <th>Name</th>
+                                                            <th>Role</th>
                                                             <th>Permission</th>
                                                             <th>Action</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody id="student_list">
-{{--                                                            @foreach($settings as $setting)--}}
-{{--                                                                <tr>--}}
-{{--                                                                    <td>{{$settings->firstItem() + $loop->index}}</td>--}}
-{{--                                                                    <td>{{$setting->name}}</td>--}}
-{{--                                                                    <td class="action-icons">--}}
-{{--                                                                        <ul class="icon-button d-flex">--}}
-{{--                                                                            <li>--}}
-{{--                                                                                <a class="dropdown-item"  href="{{url('roles/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>--}}
-{{--                                                                            </li>--}}
-{{--                                                                            <li>--}}
-{{--                                                                                <a class="dropdown-item"  href="{{url('roles/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>--}}
-{{--                                                                            </li>--}}
-{{--                                                                        </ul>--}}
-{{--                                                                    </td>--}}
-{{--                                                                </tr>--}}
-{{--                                                            @endforeach--}}
+                                                            @foreach($settings as $setting)
+                                                                <tr>
+                                                                    <td>{{$settings->firstItem() + $loop->index}}</td>
+                                                                    <td>{{$setting->user->name}}</td>
+                                                                    <td>{{$setting->role->name}}</td>
+                                                                    <td>
+                                                                        @if($setting->user->userPermissions->count() > 0)
+                                                                            <p>Yes</p>
+                                                                        @else
+                                                                            <p>No</p>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td class="action-icons">
+                                                                        <ul class="icon-button d-flex">
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('permissions/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('permissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                     <div class="row">
