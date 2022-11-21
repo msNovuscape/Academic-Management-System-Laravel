@@ -49,4 +49,9 @@ class Batch extends Model
         return $this->hasOne(ZoomLinkBatch::class);
     }
 
+    public function activeUserTeachersBatch()
+    {
+        return $this->hasMany(UserTeacherBatch::class)->where('status', '1');
+    }
+
 }

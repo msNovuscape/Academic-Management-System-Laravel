@@ -38,5 +38,10 @@ class Course extends Model
         return $this->hasMany(UserTeacher::class);
     }
 
+    public function activeUserTeachers()
+    {
+        return $this->hasMany(UserTeacher::class)->where('status', '1');
+    }
+
 
 }

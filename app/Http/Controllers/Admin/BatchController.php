@@ -35,13 +35,18 @@ class BatchController extends Controller
     }
 
     public function get_courses($course_id){
-        //dd($course_id);
         $course = Course::findorfail($course_id);
         $settings = $course->time_slots->where('course_id',$course->id)->where('status',array_search('Active',config('custom.status')));
-        //dd($settings[0]);
-        //dd($settings);
-        $returnHtml = view($this->view.'courses_dom',['settings' => $settings])->render();
-        return response()->json(array('success' =>true, 'html' => $returnHtml));
+        $tutors = $course->activeUserTeachers;
+        $returnHtml = view($this->view.'courses_dom', ['settings' => $settings])->render();
+        if($tutors->count() > 0){
+            $returnHtmlTutor = view($this->view.'tutor_dom', ['tutors' => $tutors])->render();
+        }else {
+            $returnHtmlTutor = '';
+        }
+
+
+        return response()->json(array('success' =>true, 'html' => $returnHtml, 'tutor' => $returnHtmlTutor));
     }
 
     public function store(BatchRequest $request)

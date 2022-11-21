@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class UserTeacherBatch extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['user_teacher_id', 'batch_id'];
 }

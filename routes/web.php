@@ -107,7 +107,7 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::get('batches', [BatchController::class,'index']);
     Route::get('batches/create', [BatchController::class,'create']);
     Route::post('batches', [BatchController::class,'store']);
-    Route::get('batches/get_courses/{courses_id}', [BatchController::class,'get_courses']);
+    Route::get('batches/get_courses/{courses_id}', [BatchController::class,'get_courses']); //ajax call for get course tutor
     Route::get('batches/{id}', [BatchController::class,'show']);
     Route::get('batches/{id}/edit', [BatchController::class,'edit']);
     Route::post('batches/{id}', [BatchController::class,'update']);
