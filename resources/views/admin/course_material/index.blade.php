@@ -60,9 +60,11 @@
                                     <div class="d-flex flex-column">
                                         <h3>Course Material Table</h3>
                                     </div>
-                                    <div class="add-button">
-                                        <a class="nav-link" href="{{url('course-materials/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Materials</a>
-                                    </div>
+                                    @if(Auth::user()->customMenuPermission('create_course_materials'))
+                                        <div class="add-button">
+                                            <a class="nav-link" href="{{url('course-materials/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Materials</a>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
@@ -92,15 +94,21 @@
                                                                 <td>{{config('custom.status')[$setting->status]}}</td>
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">
-                                                                        <li>
-                                                                            <a class="dropdown-item" data-bs-target="#modalAddCourse{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-eye"></i></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a class="dropdown-item"  href="{{url('course-materials/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a class="dropdown-item"  onclick="myConfirm({{$setting->id}})" role="button" data-bs-toggle="tooltip" data-bs-title="Delete"><i class="fa-solid fa-trash"></i></a>
-                                                                        </li>
+                                                                        @if(Auth::user()->customMenuPermission('show_course_materials'))
+                                                                            <li>
+                                                                                <a class="dropdown-item" data-bs-target="#modalAddCourse{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-eye"></i></a>
+                                                                            </li>
+                                                                        @endif
+                                                                        @if(Auth::user()->customMenuPermission('update_course_materials'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('course-materials/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
+                                                                            </li>
+                                                                        @endif
+                                                                        @if(Auth::user()->customMenuPermission('delete_course_materials'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"  onclick="myConfirm({{$setting->id}})" role="button" data-bs-toggle="tooltip" data-bs-title="Delete"><i class="fa-solid fa-trash"></i></a>
+                                                                            </li>
+                                                                        @endif
                                                                     </ul>
                                                                 </td>
                                                             </tr>

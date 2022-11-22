@@ -61,20 +61,22 @@
                                             <div class="d-flex flex-column">
                                                 <h3>Career Counselling Attendance</h3>
                                             </div>
-                                            <div class="d-flex attendance-toggle">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" onclick="getAttendance(1)">
-                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                        Present
-                                                    </label>
+                                            @if(Auth::user()->customMenuPermission('create_s_counselling_attendances'))
+                                                <div class="d-flex attendance-toggle">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" onclick="getAttendance(1)">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            Present
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mx-4">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2" onclick="getAttendance(2)">
+                                                        <label class="form-check-label" for="flexRadioDefault2">
+                                                            Absent
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                <div class="form-check mx-4">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2" onclick="getAttendance(2)">
-                                                    <label class="form-check-label" for="flexRadioDefault2">
-                                                        Absent
-                                                    </label>
-                                                </div>
-                                            </div>
+                                            @endif
                                             <div class="attendance-calender mx-4">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">

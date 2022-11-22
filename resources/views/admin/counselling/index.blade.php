@@ -153,9 +153,11 @@
                                                                 <td>{{$setting->date}}</td>
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">
-                                                                        <li>
-                                                                            <a class="dropdown-item"  href="{{url('counselling/'.$setting->admission->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
-                                                                        </li>
+                                                                        @if(Auth::user()->customMenuPermission('show_s_counsellings') || Auth::user()->customMenuPermission('create_s_counsellings') || Auth::user()->customMenuPermission('update_s_counsellings'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('counselling/'.$setting->admission->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
+                                                                            </li>
+                                                                        @endif
                                                                     </ul>
                                                                 </td>
                                                             </tr>

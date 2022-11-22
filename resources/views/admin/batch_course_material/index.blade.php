@@ -59,9 +59,11 @@
                                     <div class="d-flex flex-column">
                                         <h3>Batch Course Table</h3>
                                     </div>
-                                    <div class="add-button">
-                                        <a class="nav-link" href="{{url('batch-course-materials/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Batch Materials</a>
-                                    </div>
+                                    @if(Auth::user()->customMenuPermission('create_batch_course_materials'))
+                                        <div class="add-button">
+                                            <a class="nav-link" href="{{url('batch-course-materials/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Batch Materials</a>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
@@ -85,12 +87,16 @@
                                                                 <td>{{$setting->time_slot->course->name}}</td>
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">
-                                                                        <li>
-                                                                            <a class="dropdown-item"  href="{{url('batch-course-materials/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a class="dropdown-item"  href="{{url('batch-course-materials/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
-                                                                        </li>
+                                                                        @if(Auth::user()->customMenuPermission('show_batch_course_materials'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('batch-course-materials/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
+                                                                            </li>
+                                                                        @endif
+                                                                        @if(Auth::user()->customMenuPermission('update_batch_course_materials'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('batch-course-materials/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
+                                                                            </li>
+                                                                        @endif
                                                                     </ul>
                                                                 </td>
                                                             </tr>
@@ -114,5 +120,4 @@
             </div>
         </div>
     </div>
-
 @endsection

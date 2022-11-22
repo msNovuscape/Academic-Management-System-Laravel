@@ -153,7 +153,7 @@ class User extends Authenticatable
     {
         $check_routes = ['create_'.$route,'show_'.$route,'update_'.$route,'delete_'.$route,'report_'.$route];
         if (Auth::user()) {
-            foreach ($check_routes as $check_route){
+            foreach ($check_routes as $check_route) {
                 $hasRole = self::getUserRolesPermissions($check_route);
                 if ($hasRole > 0) {
                     return $hasRole;
@@ -164,6 +164,18 @@ class User extends Authenticatable
                 }
             }
 
+        }
+    }
+
+    public function customMenuPermission($route)
+    {
+        $hasRole = self::getUserRolesPermissions($route);
+        if ($hasRole > 0) {
+            return $hasRole;
+        }
+        $hasPermission = self::getUserRolesPermissions($route);
+        if ($hasPermission > 0) {
+            return $hasPermission;
         }
     }
 

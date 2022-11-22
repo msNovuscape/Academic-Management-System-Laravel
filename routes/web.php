@@ -61,122 +61,121 @@ Route::post('forgot-password', [ForgetPasswordController::class,'sendLink'])->mi
 Route::get('reset-password/{token}', [ForgetPasswordController::class,'reset'])->middleware('guest')->name('password.reset');
 Route::post('reset-password', [ForgetPasswordController::class,'postReset'])->middleware('guest');
 
-Route::group(['middleware'=>['auth']], function () {
-    //routes for change password
-    Route::get('change-password', [ChangePasswordController::class,'index']);
-    Route::post('change-password', [ChangePasswordController::class,'changePassword']);
-
-    Route::get('logout', [LoginController::class,'logout']);
-});
-
-//routes for admin
-Route::group(['middleware'=>['myAdmin']], function () {
+//Route::group(['middleware'=>['auth']], function () {
 //    //routes for change password
 //    Route::get('change-password', [ChangePasswordController::class,'index']);
 //    Route::post('change-password', [ChangePasswordController::class,'changePassword']);
-//
 //    Route::get('logout', [LoginController::class,'logout']);
-    Route::get('courses', [CourseController::class,'index']);
-    Route::get('courses/create', [CourseController::class,'create']);
-    Route::post('courses', [CourseController::class,'store']);
-    Route::get('courses/{id}/edit', [CourseController::class,'edit']);
-    Route::post('courses/{id}', [CourseController::class,'update']);
-    Route::get('courses/delete/{id}', [CourseController::class,'delete']);
+//});
 
-    Route::get('timeslots', [TimeSlotController::class,'index']);
-    Route::get('timeslots/create', [TimeSlotController::class,'create']);
-    Route::post('timeslots', [TimeSlotController::class,'store']);
-    Route::get('timeslots/{id}/edit', [TimeSlotController::class,'edit']);
-    Route::post('timeslots/{id}', [TimeSlotController::class,'update']);
-    Route::get('timeslots/delete/{id}', [TimeSlotController::class,'delete']);
+//routes for admin
+Route::group(['middleware'=>['auth']], function () {
+//    //routes for change password
+    Route::get('change-password', [ChangePasswordController::class,'index']);
+    Route::post('change-password', [ChangePasswordController::class,'changePassword']);
+    Route::get('logout', [LoginController::class,'logout']);
 
-    Route::get('timetables', [TimeTableController::class,'index']);
-    Route::get('timetables/create', [TimeTableController::class,'create']);
-    Route::post('timetables', [TimeTableController::class,'store']);
-    Route::get('timetables/{id}/edit', [TimeTableController::class,'edit']);
-    Route::post('timetables/{id}', [TimeTableController::class,'update']);
-    Route::get('timetables/delete/{id}', [TimeTableController::class,'delete']);
+    Route::get('courses', [CourseController::class,'index'])->middleware('checkuserpermission:show_courses');
+    Route::get('courses/create', [CourseController::class,'create'])->middleware('checkuserpermission:create_courses');
+    Route::post('courses', [CourseController::class,'store'])->middleware('checkuserpermission:create_courses');
+    Route::get('courses/{id}/edit', [CourseController::class,'edit'])->middleware('checkuserpermission:update_courses');
+    Route::post('courses/{id}', [CourseController::class,'update'])->middleware('checkuserpermission:update_courses');
+    Route::get('courses/delete/{id}', [CourseController::class,'delete'])->middleware('checkuserpermission:delete_courses');
 
-    Route::get('fiscal-years/', [FiscalYearController::class,'index']);
-    Route::get('fiscal-years/create', [FiscalYearController::class,'create']);
-    Route::post('fiscal-years/', [FiscalYearController::class,'store']);
-    Route::get('fiscal-years/{id}/edit', [FiscalYearController::class,'edit']);
-    Route::post('fiscal-years/{id}', [FiscalYearController::class,'update']);
+    Route::get('timeslots', [TimeSlotController::class,'index'])->middleware('checkuserpermission:show_time_slots');
+    Route::get('timeslots/create', [TimeSlotController::class,'create'])->middleware('checkuserpermission:create_time_slots');
+    Route::post('timeslots', [TimeSlotController::class,'store'])->middleware('checkuserpermission:create_time_slots');
+    Route::get('timeslots/{id}/edit', [TimeSlotController::class,'edit'])->middleware('checkuserpermission:update_time_slots');
+    Route::post('timeslots/{id}', [TimeSlotController::class,'update'])->middleware('checkuserpermission:update_time_slots');
+    Route::get('timeslots/delete/{id}', [TimeSlotController::class,'delete'])->middleware('checkuserpermission:delete_time_slots');
+
+    Route::get('timetables', [TimeTableController::class,'index'])->middleware('checkuserpermission:show_time_tables');
+    Route::get('timetables/create', [TimeTableController::class,'create'])->middleware('checkuserpermission:create_time_tables');
+    Route::post('timetables', [TimeTableController::class,'store'])->middleware('checkuserpermission:create_time_tables');
+    Route::get('timetables/{id}/edit', [TimeTableController::class,'edit'])->middleware('checkuserpermission:update_time_tables');
+    Route::post('timetables/{id}', [TimeTableController::class,'update'])->middleware('checkuserpermission:update_time_tables');
+    Route::get('timetables/delete/{id}', [TimeTableController::class,'delete'])->middleware('checkuserpermission:delete_time_tables');
+
+    Route::get('fiscal-years/', [FiscalYearController::class,'index'])->middleware('checkuserpermission:show_fiscal_years');
+    Route::get('fiscal-years/create', [FiscalYearController::class,'create'])->middleware('checkuserpermission:create_fiscal_years');
+    Route::post('fiscal-years/', [FiscalYearController::class,'store'])->middleware('checkuserpermission:create_fiscal_years');
+    Route::get('fiscal-years/{id}/edit', [FiscalYearController::class,'edit'])->middleware('checkuserpermission:update_fiscal_years');
+    Route::post('fiscal-years/{id}', [FiscalYearController::class,'update'])->middleware('checkuserpermission:update_fiscal_years');
 
 
-    Route::get('batches', [BatchController::class,'index']);
-    Route::get('batches/create', [BatchController::class,'create']);
-    Route::post('batches', [BatchController::class,'store']);
+    Route::get('batches', [BatchController::class,'index'])->middleware('checkuserpermission:show_batches');
+    Route::get('batches/create', [BatchController::class,'create'])->middleware('checkuserpermission:create_batches');
+    Route::post('batches', [BatchController::class,'store'])->middleware('checkuserpermission:create_batches');
     Route::get('batches/get_courses/{courses_id}', [BatchController::class,'get_courses']); //ajax call for get course tutor
-    Route::get('batches/{id}', [BatchController::class,'show']);
-    Route::get('batches/{id}/edit', [BatchController::class,'edit']);
-    Route::post('batches/{id}', [BatchController::class,'update']);
-    Route::get('batches/delete/{id}', [BatchController::class,'delete']);
+    Route::get('batches/{id}', [BatchController::class,'show'])->middleware('checkuserpermission:show_batches');
+    Route::get('batches/{id}/edit', [BatchController::class,'edit'])->middleware('checkuserpermission:update_batches');
+    Route::post('batches/{id}', [BatchController::class,'update'])->middleware('checkuserpermission:update_batches');
+    Route::get('batches/delete/{id}', [BatchController::class,'delete'])->middleware('checkuserpermission:delete_batches');
 
-    Route::get('admissions', [AdmissionController::class,'index']);
-    Route::get('admissions/create', [AdmissionController::class,'create']);
+    Route::get('admissions', [AdmissionController::class,'index'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/create', [AdmissionController::class,'create'])->middleware('checkuserpermission:create_admissions');
     Route::get('admissions/get_batches/{course_id}', [AdmissionController::class,'getBatch']);
     Route::get('admissions/get_batch_info/{batch_id}', [AdmissionController::class,'getBatchInfo']);
     Route::get('admissions/get_batch_calender/{batch_id}', [AdmissionController::class,'getBatchCalender']);
-    Route::post('admissions', [AdmissionController::class,'store']);
-    Route::get('admissions/show/{id}', [AdmissionController::class,'show']);
-    Route::get('admissions/{id}/edit', [AdmissionController::class,'edit']);
-    Route::post('admissions/{id}', [AdmissionController::class,'update']);
+    Route::post('admissions', [AdmissionController::class,'store'])->middleware('checkuserpermission:create_admissions');
+    Route::get('admissions/show/{id}', [AdmissionController::class,'show'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/{id}/edit', [AdmissionController::class,'edit'])->middleware('checkuserpermission:update_admissions');
+    Route::post('admissions/{id}', [AdmissionController::class,'update'])->middleware('checkuserpermission:update_admissions');
 
 
 
     //routes for quiz create
-    Route::get('quiz', [QuizController::class,'index']);
-    Route::get('quiz/create', [QuizController::class,'create']);
-    Route::post('quiz', [QuizController::class,'store']);
-    Route::get('quiz/{id}/edit', [QuizController::class,'edit']);
-    Route::post('quiz/{id}', [QuizController::class,'update']);
-    Route::get('quiz/delete/{id}', [QuizController::class,'delete']);
-    Route::get('quiz/show_all_questions/{id}', [QuizController::class,'showAll']);
+    Route::get('quiz', [QuizController::class,'index'])->middleware('checkuserpermission:show_quizzes');
+    Route::get('quiz/create', [QuizController::class,'create'])->middleware('checkuserpermission:create_quizzes');
+    Route::post('quiz', [QuizController::class,'store'])->middleware('checkuserpermission:create_quizzes');
+    Route::get('quiz/{id}/edit', [QuizController::class,'edit'])->middleware('checkuserpermission:update_quizzes');
+    Route::post('quiz/{id}', [QuizController::class,'update'])->middleware('checkuserpermission:update_quizzes');
+    Route::get('quiz/delete/{id}', [QuizController::class,'delete'])->middleware('checkuserpermission:delete_quizzes');
+    Route::get('quiz/show_all_questions/{id}', [QuizController::class,'showAll'])->middleware('checkuserpermission:show_quizzes');
     //routes for creating quiz questions
-    Route::get('quiz/question_create/{quiz_id}', [QuizQuestionController::class,'create']);
+    Route::get('quiz/question_create/{quiz_id}', [QuizQuestionController::class,'create'])->middleware('checkuserpermission:create_quizzes');
     Route::get('quiz_option/{dom_id}/{no_of_option}', [QuizQuestionController::class,'quizOptionDom']);//api call for quiz option
     Route::get('quiz_question_dom/{dom_id}/{question_type}', [QuizQuestionController::class,'quizQuestionDom']);//api call for quiz question type
     Route::get('quiz_question/{dom_id}', [QuizQuestionController::class,'quizQuestion']);//api call for quiz question type
-    Route::post('quiz/question_create/{quiz_id}', [QuizQuestionController::class,'store']);
-    Route::get('quiz/question_show/{quiz_id}', [QuizQuestionController::class,'show']); //show the list of quiz question
-    Route::get('quiz/quiz_question_show/{id}', [QuizQuestionController::class,'getShow']); //show the individual question
-    Route::get('quiz/quiz_question_edit/{id}', [QuizQuestionController::class,'edit']); //show the individual question
-    Route::post('quiz/quiz_question_edit/{id}', [QuizQuestionController::class,'update']); //show the individual question
-    Route::get('quiz/quiz_question_delete/{id}', [QuizQuestionController::class,'delete']); //show the individual question
-    Route::get('quiz_question_dom_update/{dom_id}/{question_type}', [QuizQuestionController::class,'quizQuestionDomUpdate']);//api call for quiz question type
+    Route::post('quiz/question_create/{quiz_id}', [QuizQuestionController::class,'store'])->middleware('checkuserpermission:create_quizzes');
+    Route::get('quiz/question_show/{quiz_id}', [QuizQuestionController::class,'show'])->middleware('checkuserpermission:show_quizzes'); //show the list of quiz question
+    Route::get('quiz/quiz_question_show/{id}', [QuizQuestionController::class,'getShow'])->middleware('checkuserpermission:show_quizzes'); //show the individual question
+    Route::get('quiz/quiz_question_edit/{id}', [QuizQuestionController::class,'edit'])->middleware('checkuserpermission:update_quizzes'); //show the individual question
+    Route::post('quiz/quiz_question_edit/{id}', [QuizQuestionController::class,'update'])->middleware('checkuserpermission:update_quizzes'); //show the individual question
+    Route::get('quiz/quiz_question_delete/{id}', [QuizQuestionController::class,'delete'])->middleware('checkuserpermission:delete_quizzes'); //show the individual question
+    Route::get('quiz_question_dom_update/{dom_id}/{question_type}', [QuizQuestionController::class,'quizQuestionDomUpdate'])->middleware('checkuserpermission:update_quizzes');//api call for quiz question type
 
     //routes for quiz assign to batch
-    Route::get('quiz_batch', [QuizBatchController::class,'index']);
-    Route::get('quiz_batch_create', [QuizBatchController::class,'create']);
+    Route::get('quiz_batch', [QuizBatchController::class,'index'])->middleware('checkuserpermission:show_student_quiz_batches');
+    Route::get('quiz_batch_create', [QuizBatchController::class,'create'])->middleware('checkuserpermission:create_student_quiz_batches');
     Route::get('quiz_batch_dom/{course_id}', [QuizBatchController::class,'getBatch']); //ajax call
-    Route::post('quiz_batch_create', [QuizBatchController::class,'store']);
-    Route::get('quiz_batch_edit/{id}', [QuizBatchController::class,'edit']);
-    Route::post('quiz_batch_update/{id}', [QuizBatchController::class,'update']);
+    Route::post('quiz_batch_create', [QuizBatchController::class,'store'])->middleware('checkuserpermission:create_student_quiz_batches');
+    Route::get('quiz_batch_edit/{id}', [QuizBatchController::class,'edit'])->middleware('checkuserpermission:update_student_quiz_batches');
+    Route::post('quiz_batch_update/{id}', [QuizBatchController::class,'update'])->middleware('checkuserpermission:update_student_quiz_batches');
 
     //routes for quiz assign to individual
-    Route::get('quiz_individual', [QuizIndiviualController::class,'index']);
-    Route::get('quiz_individual_create/{admission_id}', [QuizIndiviualController::class,'create']);
-    Route::post('quiz_individual_create', [QuizIndiviualController::class,'store']);
-    Route::get('quiz_individual_edit/{id}', [QuizIndiviualController::class,'edit']);
-    Route::post('quiz_individual/{id}', [QuizIndiviualController::class,'update']);
+    Route::get('quiz_individual', [QuizIndiviualController::class,'index'])->middleware('checkuserpermission:show_student_quiz_individuals');
+    Route::get('quiz_individual_create/{admission_id}', [QuizIndiviualController::class,'create'])->middleware('checkuserpermission:create_student_quiz_individuals');
+    Route::post('quiz_individual_create', [QuizIndiviualController::class,'store'])->middleware('checkuserpermission:create_student_quiz_individuals');
+    Route::get('quiz_individual_edit/{id}', [QuizIndiviualController::class,'edit'])->middleware('checkuserpermission:update_student_quiz_individuals');
+    Route::post('quiz_individual/{id}', [QuizIndiviualController::class,'update'])->middleware('checkuserpermission:update_student_quiz_individuals');
 
-    Route::get('course-materials', [CourseMaterialController::class,'index']);
-    Route::get('course-materials/create', [CourseMaterialController::class,'create']);
-    Route::post('course-materials', [CourseMaterialController::class,'store']);
-    Route::get('course-materials/show/{id}', [CourseMaterialController::class,'show']);
-    Route::get('course-materials/{id}/edit', [CourseMaterialController::class,'edit']);
-    Route::post('course-materials/{id}', [CourseMaterialController::class,'update']);
-    Route::get('course-materials/delete/{id}', [CourseMaterialController::class,'delete']);
+    Route::get('course-materials', [CourseMaterialController::class,'index'])->middleware('checkuserpermission:show_course_materials');
+    Route::get('course-materials/create', [CourseMaterialController::class,'create'])->middleware('checkuserpermission:create_course_materials');
+    Route::post('course-materials', [CourseMaterialController::class,'store'])->middleware('checkuserpermission:create_course_materials');
+    Route::get('course-materials/show/{id}', [CourseMaterialController::class,'show'])->middleware('checkuserpermission:show_course_materials');
+    Route::get('course-materials/{id}/edit', [CourseMaterialController::class,'edit'])->middleware('checkuserpermission:update_course_materials');
+    Route::post('course-materials/{id}', [CourseMaterialController::class,'update'])->middleware('checkuserpermission:update_course_materials');
+    Route::get('course-materials/delete/{id}', [CourseMaterialController::class,'delete'])->middleware('checkuserpermission:delete_course_materials');
 
 
-    Route::get('batch-course-materials', [BatchCourseMaterialController::class,'index']);
-    Route::get('batch-course-materials/create', [BatchCourseMaterialController::class,'create']);
-    Route::post('batch-course-materials', [BatchCourseMaterialController::class,'store']);
+    Route::get('batch-course-materials', [BatchCourseMaterialController::class,'index'])->middleware('checkuserpermission:show_batch_course_materials');
+    Route::get('batch-course-materials/create', [BatchCourseMaterialController::class,'create'])->middleware('checkuserpermission:create_batch_course_materials');
+    Route::post('batch-course-materials', [BatchCourseMaterialController::class,'store'])->middleware('checkuserpermission:create_batch_course_materials');
     Route::get('batch-course-materials/get_batches/{course_id}', [BatchCourseMaterialController::class,'getBatch']);
-    Route::get('batch-course-materials/show/{batch_id}', [BatchCourseMaterialController::class,'show']);
-    Route::get('batch-course-materials/{batch_id}/edit', [BatchCourseMaterialController::class,'edit']);
-    Route::post('batch-course-materials/{batch_id}', [BatchCourseMaterialController::class,'update']);
+    Route::get('batch-course-materials/show/{batch_id}', [BatchCourseMaterialController::class,'show'])->middleware('checkuserpermission:show_batch_course_materials');
+    Route::get('batch-course-materials/{batch_id}/edit', [BatchCourseMaterialController::class,'edit'])->middleware('checkuserpermission:update_batch_course_materials');
+    Route::post('batch-course-materials/{batch_id}', [BatchCourseMaterialController::class,'update'])->middleware('checkuserpermission:update_batch_course_materials');
 
 //route access to admin for students
     Route::get('tests', [StudentController::class,'getTests']);
@@ -193,11 +192,11 @@ Route::group(['middleware'=>['myAdmin']], function () {
     });
 
 //    routes for attendance
-    Route::get('attendance', [AttendanceController::class,'index']);
-    Route::post('attendance', [AttendanceController::class,'store']); //ajax call for make batch attendance
-    Route::post('attendance/{id}', [AttendanceController::class,'update']); //ajax call for update single attendance
-    Route::post('attendance_by_date', [AttendanceController::class,'attendanceByDate']); //ajax call for update single attendance
-    Route::post('attendance_by_name', [AttendanceController::class,'getStudentSearch']); //ajax call for search student by name
+    Route::get('attendance', [AttendanceController::class,'index'])->middleware('checkuserpermission:show_attendances');
+    Route::post('attendance', [AttendanceController::class,'store'])->middleware('checkuserpermission:create_attendances'); //ajax call for make batch attendance
+    Route::post('attendance/{id}', [AttendanceController::class,'update'])->middleware('checkuserpermission:update_attendances'); //ajax call for update single attendance
+    Route::post('attendance_by_date', [AttendanceController::class,'attendanceByDate'])->middleware('checkuserpermission:show_attendances'); //ajax call for update single attendance
+    Route::post('attendance_by_name', [AttendanceController::class,'getStudentSearch'])->middleware('checkuserpermission:show_attendances'); //ajax call for search student by name
 
 // routes for student in attendence  for test
     Route::get('attendance/student', [AttendanceController::class,'studentIndex']);
@@ -207,90 +206,90 @@ Route::group(['middleware'=>['myAdmin']], function () {
     Route::get('attendance/technical', [AttendanceController::class,'technicalIndex']);
 
     //routes for student finance
-    Route::get('finances', [FinanceController::class,'index']);
-    Route::get('finances/unpaid', [FinanceController::class,'unpaid']);
-    Route::get('finances/{student_id}', [FinanceController::class,'getFinance']);
-    Route::post('finances/{student_id}', [FinanceController::class,'postFinance']);
+    Route::get('finances', [FinanceController::class,'index'])->middleware('checkuserpermission:show_finances');
+    Route::get('finances/unpaid', [FinanceController::class,'unpaid'])->middleware('checkuserpermission:show_finances');
+    Route::get('finances/{student_id}', [FinanceController::class,'getFinance'])->middleware('checkuserpermission:show_finances');
+    Route::post('finances/{student_id}', [FinanceController::class,'postFinance'])->middleware('checkuserpermission:update_finances');
 //    Route::get('finances/{finance_id}/edit', [FinanceController::class,'editFinance']);
 //    Route::post('finances/update/{finance_id}', [FinanceController::class,'updateFinance']);
 
 //    Route::get('finances/edit/{admission_id}', [FinanceController::class,'edit']);
-    Route::get('finances/{finance_id}/edit', [FinanceController::class,'edit']);
-    Route::post('extend_date', [FinanceController::class,'extend_date']);
-    Route::post('finances/update/{finance_id}', [FinanceController::class,'update']);
+    Route::get('finances/{finance_id}/edit', [FinanceController::class,'edit'])->middleware('checkuserpermission:update_finances');
+    Route::post('extend_date', [FinanceController::class,'extend_date'])->middleware('checkuserpermission:update_finances');
+    Route::post('finances/update/{finance_id}', [FinanceController::class,'update'])->middleware('checkuserpermission:update_finances');
 
-    Route::get('email', [EmailController::class,'index']);
+//    Route::get('email', [EmailController::class,'index']);
 
-    Route::get('pdf', [PdfController::class,'index']);
+//    Route::get('pdf', [PdfController::class,'index']);
 
 //routes for report
     //route for finance report
-    Route::get('reports/finance', [FinanceReportController::class,'index']);
-    Route::get('reports/finance/batch/{course_id}', [FinanceReportController::class,'getBatch']);
-    Route::get('reports/finance/student/{batch_id}', [FinanceReportController::class,'getStudent']);
-    Route::post('reports/finance', [FinanceReportController::class,'report']);
+    Route::get('reports/finance', [FinanceReportController::class,'index'])->middleware('checkuserpermission:report_finances');
+    Route::get('reports/finance/batch/{course_id}', [FinanceReportController::class,'getBatch'])->middleware('checkuserpermission:report_finances');
+    Route::get('reports/finance/student/{batch_id}', [FinanceReportController::class,'getStudent'])->middleware('checkuserpermission:report_finances');
+    Route::post('reports/finance', [FinanceReportController::class,'report'])->middleware('checkuserpermission:report_finances');
     Route::post('send_due_email', [FinanceReportController::class,'sendEmail']);
     //routes for due email
-    Route::get('reports/due_finance', [FinanceReportController::class,'dueFinance']);
-    Route::post('reports/due_finance', [FinanceReportController::class,'postDueFinance']);
-    Route::get('reports/financetest', [FinanceReportController::class,'financetest']);
+    Route::get('reports/due_finance', [FinanceReportController::class,'dueFinance'])->middleware('checkuserpermission:report_finances');
+    Route::post('reports/due_finance', [FinanceReportController::class,'postDueFinance'])->middleware('checkuserpermission:report_finances');
+//    Route::get('reports/financetest', [FinanceReportController::class,'financetest']);
     //routes for attendance
-    Route::get('reports/attendance', [AttendanceReportController::class,'index']);
-    Route::post('reports/attendance', [AttendanceReportController::class,'report']);
-    Route::get('reports/attendance/batch/{course_id}', [AttendanceReportController::class,'getBatch']);
-    Route::get('reports/attendance/student/{batch_id}', [AttendanceReportController::class,'getStudent']);
+    Route::get('reports/attendance', [AttendanceReportController::class,'index'])->middleware('checkuserpermission:report_attendances');
+    Route::post('reports/attendance', [AttendanceReportController::class,'report'])->middleware('checkuserpermission:report_attendances');
+    Route::get('reports/attendance/batch/{course_id}', [AttendanceReportController::class,'getBatch'])->middleware('checkuserpermission:report_attendances');
+    Route::get('reports/attendance/student/{batch_id}', [AttendanceReportController::class,'getStudent'])->middleware('checkuserpermission:report_attendances');
 
     //routes for carrier counselling
-    Route::get('counselling', [SCounsellingController::class,'index']);
-    Route::get('counselling-completed', [SCounsellingController::class,'getCompleted']);
-    Route::get('counselling/{admissionId}', [SCounsellingController::class,'getCounselling']);
-    Route::post('counselling/status/{admissionId}', [SCounsellingController::class,'postStatus']);
-    Route::post('counselling/attendance/{admissionId}', [SCounsellingController::class,'postAttendance']);
-    Route::get('counsellings/group-attendance', [SCounsellingController::class,'getGroupAttendance']);
-    Route::post('counsellings/group-attendance', [SCounsellingController::class,'postGroupAttendance']);
-    Route::post('counsellings/group-attendance/{s_counselling_attendance_id}', [SCounsellingController::class,'singleAttendance']);
-    Route::post('counsellings-attendance-by-date', [SCounsellingController::class,'counsellingsAttendanceByDate']);
+    Route::get('counselling', [SCounsellingController::class,'index'])->middleware('checkuserpermission:show_s_counsellings');
+    Route::get('counselling-completed', [SCounsellingController::class,'getCompleted'])->middleware('checkuserpermission:show_s_counsellings');
+    Route::get('counselling/{admissionId}', [SCounsellingController::class,'getCounselling'])->middleware('checkuserpermission:show_s_counsellings');
+    Route::post('counselling/status/{admissionId}', [SCounsellingController::class,'postStatus'])->middleware('checkuserpermission:create_s_counsellings');
+    Route::post('counselling/attendance/{admissionId}', [SCounsellingController::class,'postAttendance'])->middleware('checkuserpermission:create_s_counselling_attendances');
+    Route::get('counsellings/group-attendance', [SCounsellingController::class,'getGroupAttendance'])->middleware('checkuserpermission:show_s_counselling_attendances');
+    Route::post('counsellings/group-attendance', [SCounsellingController::class,'postGroupAttendance'])->middleware('checkuserpermission:create_s_counselling_attendances');
+    Route::post('counsellings/group-attendance/{s_counselling_attendance_id}', [SCounsellingController::class,'singleAttendance'])->middleware('checkuserpermission:create_s_counselling_attendances');
+    Route::post('counsellings-attendance-by-date', [SCounsellingController::class,'counsellingsAttendanceByDate'])->middleware('checkuserpermission:create_s_counselling_attendances');
 
     //routes for zoom link
-    Route::get('zoom-links', [ZoomLinkController::class,'index']);
-    Route::get('zoom-links/create', [ZoomLinkController::class,'create']);
-    Route::post('zoom-links', [ZoomLinkController::class,'store']);
-    Route::get('zoom-links/{id}/edit', [ZoomLinkController::class,'edit']);
-    Route::post('zoom-links/{id}', [ZoomLinkController::class,'update']);
+    Route::get('zoom-links', [ZoomLinkController::class,'index'])->middleware('checkuserpermission:show_zoom_links');
+    Route::get('zoom-links/create', [ZoomLinkController::class,'create'])->middleware('checkuserpermission:create_zoom_links');
+    Route::post('zoom-links', [ZoomLinkController::class,'store'])->middleware('checkuserpermission:create_zoom_links');
+    Route::get('zoom-links/{id}/edit', [ZoomLinkController::class,'edit'])->middleware('checkuserpermission:update_zoom_links');
+    Route::post('zoom-links/{id}', [ZoomLinkController::class,'update'])->middleware('checkuserpermission:update_zoom_links');
 
     //routes for assign zoom link to batch
-    Route::get('zoom-links-batch', [ZoomLinkBatchController::class,'index']);
-    Route::get('zoom-links-batch/create', [ZoomLinkBatchController::class,'create']);
-    Route::post('zoom-links-batch', [ZoomLinkBatchController::class,'store']);
+    Route::get('zoom-links-batch', [ZoomLinkBatchController::class,'index'])->middleware('checkuserpermission:show_zoom_link_batches');
+    Route::get('zoom-links-batch/create', [ZoomLinkBatchController::class,'create'])->middleware('checkuserpermission:create_zoom_link_batches');
+    Route::post('zoom-links-batch', [ZoomLinkBatchController::class,'store'])->middleware('checkuserpermission:create_zoom_link_batches');
     Route::get('zoom-links-batch/get_batches/{course_id}', [ZoomLinkBatchController::class,'getBatch']);
-    Route::get('zoom-links-batch/show/{id}', [ZoomLinkBatchController::class,'show']);
-    Route::get('zoom-links-batch/{id}/edit', [ZoomLinkBatchController::class,'edit']);
-    Route::post('zoom-links-batch/{id}', [ZoomLinkBatchController::class,'update']);
-    Route::get('zoom_links_batch/delete/{id}', [ZoomLinkBatchController::class,'delete']);
+    Route::get('zoom-links-batch/show/{id}', [ZoomLinkBatchController::class,'show'])->middleware('checkuserpermission:show_zoom_link_batches');
+    Route::get('zoom-links-batch/{id}/edit', [ZoomLinkBatchController::class,'edit'])->middleware('checkuserpermission:update_zoom_link_batches');
+    Route::post('zoom-links-batch/{id}', [ZoomLinkBatchController::class,'update'])->middleware('checkuserpermission:update_zoom_link_batches');
+    Route::get('zoom_links_batch/delete/{id}', [ZoomLinkBatchController::class,'delete'])->middleware('checkuserpermission:delete_zoom_link_batches');
 
     // routes for roles
-    Route::get('roles', [RolesController::class,'index']);
-    Route::get('roles/create', [RolesController::class,'create']);
-    Route::post('roles', [RolesController::class,'store']);
-    Route::get('roles/{id}', [RolesController::class,'show']);
-    Route::get('roles/{id}/edit', [RolesController::class,'edit']);
-    Route::post('roles/{id}', [RolesController::class,'update']);
+    Route::get('roles', [RolesController::class,'index'])->middleware('checkuserpermission:show_roles');
+    Route::get('roles/create', [RolesController::class,'create'])->middleware('checkuserpermission:create_roles');
+    Route::post('roles', [RolesController::class,'store'])->middleware('checkuserpermission:create_roles');
+    Route::get('roles/{id}', [RolesController::class,'show'])->middleware('checkuserpermission:show_roles');
+    Route::get('roles/{id}/edit', [RolesController::class,'edit'])->middleware('checkuserpermission:update_roles');
+    Route::post('roles/{id}', [RolesController::class,'update'])->middleware('checkuserpermission:update_roles');
 
     //routes for user creation
-    Route::get('users', [UserController::class,'index']);
-    Route::get('users/create', [UserController::class,'create']);
-    Route::post('users', [UserController::class,'store']);
-    Route::get('users/{id}', [UserController::class,'show']);
-    Route::get('users/{id}/edit', [UserController::class,'edit']);
-    Route::post('users/{id}', [UserController::class,'update']);
+    Route::get('users', [UserController::class,'index'])->middleware('checkuserpermission:show_users');
+    Route::get('users/create', [UserController::class,'create'])->middleware('checkuserpermission:create_users');
+    Route::post('users', [UserController::class,'store'])->middleware('checkuserpermission:create_users');
+    Route::get('users/{id}', [UserController::class,'show'])->middleware('checkuserpermission:show_users');
+    Route::get('users/{id}/edit', [UserController::class,'edit'])->middleware('checkuserpermission:update_users');
+    Route::post('users/{id}', [UserController::class,'update'])->middleware('checkuserpermission:update_users');
 
     //routes for user assign permission
-    Route::get('permissions', [UserRoleController::class,'index']);
-    Route::get('permissions/create', [UserRoleController::class,'create']);
-    Route::post('permissions', [UserRoleController::class,'store']);
-    Route::get('permissions/{id}', [UserRoleController::class,'show']);
-    Route::get('permissions/{id}/edit', [UserRoleController::class,'edit']);
-    Route::post('permissions/{id}', [UserRoleController::class,'update']);
+    Route::get('permissions', [UserRoleController::class,'index'])->middleware('checkuserpermission:show_roles');
+    Route::get('permissions/create', [UserRoleController::class,'create'])->middleware('checkuserpermission:create_roles');
+    Route::post('permissions', [UserRoleController::class,'store'])->middleware('checkuserpermission:create_roles');
+    Route::get('permissions/{id}', [UserRoleController::class,'show'])->middleware('checkuserpermission:show_roles');
+    Route::get('permissions/{id}/edit', [UserRoleController::class,'edit'])->middleware('checkuserpermission:update_roles');
+    Route::post('permissions/{id}', [UserRoleController::class,'update'])->middleware('checkuserpermission:update_roles');
 });
 
 //    Routes for students
@@ -318,7 +317,4 @@ Route::group(['middleware'=>'student','prefix'=>'student'], function () {
     Route::post('student_quiz_individual_next_question', [StudentQuizIndividualController::class,'getNextQuestion']);
     Route::post('student_quiz_individual_time_out', [StudentQuizIndividualController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
     Route::get('quiz_individual/{id}', [StudentQuizIndividualController::class,'quizIndividualResult']);
-
-
-
 });

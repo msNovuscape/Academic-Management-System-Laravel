@@ -59,9 +59,11 @@
                                     <div class="d-flex flex-column">
                                         <h3>Assigned Zoom Links Table</h3>
                                     </div>
-                                    <div class="add-button">
-                                        <a class="nav-link" href="{{url('zoom-links-batch/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;Assign Zoom Link</a>
-                                    </div>
+                                    @if(Auth::user()->customMenuPermission('create_zoom_link_batches'))
+                                        <div class="add-button">
+                                            <a class="nav-link" href="{{url('zoom-links-batch/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;Assign Zoom Link</a>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
@@ -87,16 +89,22 @@
                                                                 <td><a href="{{url($setting->zoomLink->link)}}" target="_blank" role="button" data-bs-toggle="tooltip" data-bs-title="view zoom link">{{$setting->zoomLink->name}}</a></td>
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">
-                                                                        <li>
-                                                                            <a class="dropdown-item"  href="{{url('zoom-links-batch/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a class="dropdown-item"  href="{{url('zoom-links-batch/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a class="dropdown-item"   role="button" onclick="myConfirm({{$setting->id}})" data-bs-toggle="tooltip" data-bs-title="delete"><i class="fa-solid fa-trash"></i></a>
-{{--                                                                            <a class="dropdown-item"  href="{{url('zoom-links-batch/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>--}}
-                                                                        </li>
+                                                                        @if(Auth::user()->customMenuPermission('show_zoom_link_batches'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('zoom-links-batch/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
+                                                                            </li>
+                                                                        @endif
+                                                                        @if(Auth::user()->customMenuPermission('update_zoom_link_batches'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('zoom-links-batch/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
+                                                                            </li>
+                                                                        @endif
+                                                                        @if(Auth::user()->customMenuPermission('delete_zoom_link_batches'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"   role="button" onclick="myConfirm({{$setting->id}})" data-bs-toggle="tooltip" data-bs-title="delete"><i class="fa-solid fa-trash"></i></a>
+    {{--                                                                            <a class="dropdown-item"  href="{{url('zoom-links-batch/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>--}}
+                                                                            </li>
+                                                                        @endif
                                                                     </ul>
                                                                 </td>
                                                             </tr>

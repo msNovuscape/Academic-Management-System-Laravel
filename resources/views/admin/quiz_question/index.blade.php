@@ -92,15 +92,21 @@
                                                                     <td>{{config('custom.status')[$setting->status]}}</td>
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
-                                                                            <li>
-                                                                                <a class="dropdown-item"   href="{{url('quiz/quiz_question_show/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item"  href="{{url('quiz/quiz_question_edit/'.$setting->id)}}" role="button"><i class="fa-solid fa-pen"></i></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item"  href="{{url('quiz/quiz_question_delete/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="delete" onclick="getConfirm()"><i class="fa-solid fa-trash"></i></a>
-                                                                            </li>
+                                                                            @if(Auth::user()->customMenuPermission('show_quizzes'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"   href="{{url('quiz/quiz_question_show/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye"></i></a>
+                                                                                </li>
+                                                                            @endif
+                                                                            @if(Auth::user()->customMenuPermission('update_quizzes'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"  href="{{url('quiz/quiz_question_edit/'.$setting->id)}}" role="button"><i class="fa-solid fa-pen"></i></a>
+                                                                                </li>
+                                                                            @endif
+                                                                            @if(Auth::user()->customMenuPermission('delete_quizzes'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"  href="{{url('quiz/quiz_question_delete/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="delete" onclick="getConfirm()"><i class="fa-solid fa-trash"></i></a>
+                                                                                </li>
+                                                                            @endif
                                                                         </ul>
                                                                     </td>
                                                                 </tr>

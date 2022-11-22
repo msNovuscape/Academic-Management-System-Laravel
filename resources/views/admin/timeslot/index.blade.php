@@ -11,9 +11,11 @@
                         <div>
                             <h4>Time Slots</h4>
                         </div>
-                        <div class="add-button">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalAddTimeSlot"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add TimeSlot</a>
-                        </div>
+                        @if(Auth::user()->crudPermission('create_time_slots'))
+                            <div class="add-button">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalAddTimeSlot"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add TimeSlot</a>
+                            </div>
+                        @endif
                     </div>
                     {!! Form::open(['url' => 'timeslots', 'method' => 'GET']) !!}
                         <div class="filter-btnwrap mt-4">
@@ -105,12 +107,16 @@
                                                                     <i class="fa-solid fa-ellipsis-vertical"></i>
                                                                 </a>
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                                    <li>
-                                                                        <a class="dropdown-item" data-bs-target="#editTimeSlotModal{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button"><i class="fa-solid fa-pen"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="dropdown-item"   role="button" onclick="myConfirm({{$setting->id}})"><i class="fa-solid fa-trash"></i>Delete</a>
-                                                                    </li>
+                                                                    @if(Auth::user()->crudPermission('update_time_slots'))
+                                                                        <li>
+                                                                            <a class="dropdown-item" data-bs-target="#editTimeSlotModal{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button"><i class="fa-solid fa-pen"></i>Edit</a>
+                                                                        </li>
+                                                                    @endif
+                                                                    @if(Auth::user()->crudPermission('delete_time_slots'))
+                                                                        <li>
+                                                                            <a class="dropdown-item"   role="button" onclick="myConfirm({{$setting->id}})"><i class="fa-solid fa-trash"></i>Delete</a>
+                                                                        </li>
+                                                                    @endif
                                                                 </ul>
                                                             </div>
                                                         </div>

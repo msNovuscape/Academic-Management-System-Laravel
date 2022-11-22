@@ -59,9 +59,11 @@
                                     <div class="d-flex flex-column">
                                         <h3>User Roles Table</h3>
                                     </div>
-                                    <div class="add-button">
-                                        <a class="nav-link" href="{{url('permissions/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Assign Role</a>
-                                    </div>
+                                    @if(Auth::user()->customMenuPermission('create_roles'))
+                                        <div class="add-button">
+                                            <a class="nav-link" href="{{url('permissions/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Assign Role</a>
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="row">
@@ -94,12 +96,16 @@
                                                                     </td>
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
-                                                                            <li>
-                                                                                <a class="dropdown-item"  href="{{url('permissions/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item"  href="{{url('permissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
-                                                                            </li>
+                                                                            @if(Auth::user()->customMenuPermission('show_roles'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"  href="{{url('permissions/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
+                                                                                </li>
+                                                                            @endif
+                                                                            @if(Auth::user()->customMenuPermission('update_roles'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"  href="{{url('permissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
+                                                                                </li>
+                                                                            @endif
                                                                         </ul>
                                                                     </td>
                                                                 </tr>

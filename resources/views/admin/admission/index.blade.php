@@ -100,9 +100,11 @@
                                     <div class="d-flex flex-column">
                                         <h3>New Student Table</h3>
                                     </div>
-                                    <div class="add-button">
-                                        <a class="nav-link" href="{{url('admissions/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Admission</a>
-                                    </div>
+                                    @if(Auth::user()->crudPermission('create_admissions'))
+                                        <div class="add-button">
+                                            <a class="nav-link" href="{{url('admissions/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Admission</a>
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="row">
@@ -123,7 +125,9 @@
                                                                 <th data-bs-toggle="tooltip" data-bs-title="Discount">Disc</th>
                                                                 <th data-bs-toggle="tooltip" data-bs-title="First Installment">1st Inst</th>
                                                                 <th>Action</th>
-                                                                <th>Counselling</th>
+                                                                @if(Auth::user()->customMenuPermission('show_s_counsellings'))
+                                                                    <th>Counselling</th>
+                                                                @endif
                                                             </tr>
                                                         </thead>
                                                         <tbody id="student_list">
@@ -145,19 +149,25 @@
                                                                     <td>{{$setting->finances->first()->amount}}</td>
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
-                                                                            <li>
-                                                                                <a class="dropdown-item"  href="{{url('admissions/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
-                                                                            </li>
+                                                                            @if(Auth::user()->crudPermission('show_admissions'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"  href="{{url('admissions/show/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
+                                                                                </li>
+                                                                            @endif
+                                                                            @if(Auth::user()->crudPermission('update_admissions'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
+                                                                                </li>
+                                                                            @endif
                                                                         </ul>
                                                                     </td>
                                                                     <td>
-                                                                        @if($setting->sCounselling)
-                                                                            <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye counselling-icons" data-bs-toggle="tooltip" data-bs-title="Show Carrier Counselling"></i></a>
-                                                                        @else
-                                                                            <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-plus counselling-icons" data-bs-toggle="tooltip" data-bs-title="Carrier Counselling"></i></a>
+                                                                        @if(Auth::user()->customMenuPermission('create_s_counsellings'))
+                                                                            @if($setting->sCounselling)
+                                                                                <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-eye counselling-icons" data-bs-toggle="tooltip" data-bs-title="Show Carrier Counselling"></i></a>
+                                                                            @else
+                                                                                <a class="dropdown-item"  href="{{url('counselling/'.$setting->id)}}" role="button"><i class="fa-solid fa-plus counselling-icons" data-bs-toggle="tooltip" data-bs-title="Carrier Counselling"></i></a>
+                                                                            @endif
                                                                         @endif
                                                                     </td>
                                                                 </tr>

@@ -26,9 +26,11 @@
                             </div>
                         @endif
                     @endforeach
-                    <div class="col-md-3 btn-wrap btn-w-100">
-                        <button type="submit"  class="btn btn-ctm-save">Save</button>
-                    </div>
+                    @if(Auth::user()->customMenuPermission('create_s_counsellings'))
+                        <div class="col-md-3 btn-wrap btn-w-100">
+                            <button type="submit"  class="btn btn-ctm-save">Save</button>
+                        </div>
+                    @endif
                 </div>
             </div>
             {!! Form::close() !!}
@@ -53,9 +55,11 @@
                             <textarea name="comment[{{$in}}]"  class="form-control" placeholder="Comment your remarks" rows="3" autocomplete="off"></textarea>
                         </div>
                     @endforeach
-                    <div class="col-md-3 btn-wrap btn-w-100">
-                        <button type="submit"  class="btn btn-ctm-save">Save</button>
-                    </div>
+                    @if(Auth::user()->customMenuPermission('create_s_counsellings'))
+                        <div class="col-md-3 btn-wrap btn-w-100">
+                            <button type="submit"  class="btn btn-ctm-save">Save</button>
+                        </div>
+                    @endif
                 </div>
             </div>
             {!! Form::close() !!}

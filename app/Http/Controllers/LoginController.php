@@ -24,12 +24,7 @@ class LoginController extends Controller
             'email'=>'required|email',
             'password'=>'required',
         ]);
-//        dd(\request()->all());
-//        $aa = User::findOrFail(52);
-//        $pp = \request('password');
-////        dd($pp);
-////        dd($aa->password);
-//        dd(Hash::check($pp,$aa->password));
+
         if (Auth::attempt(['email'=>request('email'),'password'=>request('password'),'status'=>1],request()->has('remember'))){
             //saving in log table
             $log = LoginService::log();
@@ -45,7 +40,7 @@ class LoginController extends Controller
                     return redirect('login')->withErrors(['Your login is temporary restricted.Please contact to admin!']);
                 }
             }
-            return redirect('admissions');
+            return redirect('');
         }
         return redirect('login')->withErrors(['Invalid Credentials!']);
     }

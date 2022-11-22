@@ -83,9 +83,11 @@
                                     <div class="d-flex flex-column">
                                         <h3> Users Table</h3>
                                     </div>
-                                    <div class="add-button">
-                                        <a class="nav-link" href="{{url('users/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add User</a>
-                                    </div>
+                                    @if(Auth::user()->customMenuPermission('create_users'))
+                                        <div class="add-button">
+                                            <a class="nav-link" href="{{url('users/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add User</a>
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="row">
@@ -147,12 +149,16 @@
                                                                 <td>{{config('custom.status')[$setting->status]}}</td>
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">
-                                                                        <li>
-                                                                            <a class="dropdown-item"  href="{{url('users/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a class="dropdown-item"  href="{{url('users/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
-                                                                        </li>
+                                                                        @if(Auth::user()->customMenuPermission('show_users'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('users/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
+                                                                            </li>
+                                                                        @endif
+                                                                        @if(Auth::user()->customMenuPermission('update_users'))
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('users/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
+                                                                            </li>
+                                                                        @endif
                                                                     </ul>
                                                                 </td>
                                                             </tr>

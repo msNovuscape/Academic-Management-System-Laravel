@@ -74,9 +74,11 @@
                                     <div class="d-flex flex-column">
                                         <h3>Quiz Table</h3>
                                     </div>
-                                    <div class="add-button">
-                                        <a class="nav-link" href="{{url('quiz/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add quiz</a>
-                                    </div>
+                                    @if(Auth::user()->customMenuPermission('create_quizzes'))
+                                        <div class="add-button">
+                                            <a class="nav-link" href="{{url('quiz/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add quiz</a>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
@@ -102,21 +104,31 @@
                                                                     <td>{{config('custom.status')[$setting->status]}}</td>
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
-                                                                            <li>
-                                                                                <a class="dropdown-item"   href="{{url('quiz/question_create/'.$setting->id)}}" data-bs-toggle="tooltip" data-bs-title="add"><i class="fa-solid fa-plus"></i></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item"   href="{{url('quiz/question_show/'.$setting->id)}}" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item"   href="{{url('quiz/show_all_questions/'.$setting->id)}}" data-bs-toggle="tooltip" data-bs-title="lists"><i class="fa-solid fa-list-ul"></i></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item"  href="{{url('quiz/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a class="dropdown-item"  href="{{url('quiz/delete/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="delete" onclick="getConfirm()"><i class="fa-solid fa-trash"></i></a>
-                                                                            </li>
+                                                                            @if(Auth::user()->customMenuPermission('create_quizzes'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"   href="{{url('quiz/question_create/'.$setting->id)}}" data-bs-toggle="tooltip" data-bs-title="add"><i class="fa-solid fa-plus"></i></a>
+                                                                                </li>
+                                                                            @endif
+                                                                            @if(Auth::user()->customMenuPermission('show_quizzes'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"   href="{{url('quiz/question_show/'.$setting->id)}}" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
+                                                                                </li>
+                                                                            @endif
+                                                                            @if(Auth::user()->customMenuPermission('show_quizzes'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"   href="{{url('quiz/show_all_questions/'.$setting->id)}}" data-bs-toggle="tooltip" data-bs-title="lists"><i class="fa-solid fa-list-ul"></i></a>
+                                                                                </li>
+                                                                            @endif
+                                                                            @if(Auth::user()->customMenuPermission('update_quizzes'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"  href="{{url('quiz/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
+                                                                                </li>
+                                                                            @endif
+                                                                            @if(Auth::user()->customMenuPermission('delete_quizzes'))
+                                                                                <li>
+                                                                                    <a class="dropdown-item"  href="{{url('quiz/delete/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="delete" onclick="getConfirm()"><i class="fa-solid fa-trash"></i></a>
+                                                                                </li>
+                                                                            @endif
                                                                         </ul>
                                                                     </td>
                                                                 </tr>

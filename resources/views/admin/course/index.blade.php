@@ -11,9 +11,11 @@
                         <div>
                             <h4>Course</h4>
                         </div>
-                        <div class="add-button">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalAddCourse"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Course</a>
-                        </div>
+                        @if(Auth::user()->crudPermission('create_courses'))
+                            <div class="add-button">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalAddCourse"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Course</a>
+                            </div>
+                        @endif
                     </div>
                     {!! Form::open(['url' => 'courses', 'method' => 'GET']) !!}
                         <div class="filter-btnwrap mt-4">
@@ -73,13 +75,17 @@
                                                                     <i class="fa-solid fa-ellipsis-vertical"></i>
                                                                 </a>
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                                    <li>
-                                                                        <a class="dropdown-item" data-bs-target="#modalAddCourse{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button"><i class="fa-solid fa-pen"></i>Edit</a>
-                                                                    </li>
-                                                                    <li>
-{{--                                                                        <a class="dropdown-item"  href="{{url('courses/delete',$setting->id)}}" role="button" onclick="myConfirm()"><i class="fa-solid fa-trash"></i>Delete</a>--}}
-                                                                        <a class="dropdown-item"  role="button" onclick="myConfirm({{$setting->id}})"><i class="fa-solid fa-trash"></i>Delete</a>
-                                                                    </li>
+                                                                    @if(Auth::user()->crudPermission('update_courses'))
+                                                                        <li>
+                                                                            <a class="dropdown-item" data-bs-target="#modalAddCourse{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button"><i class="fa-solid fa-pen"></i>Edit</a>
+                                                                        </li>
+                                                                    @endif
+                                                                    @if(Auth::user()->crudPermission('delete_courses'))
+                                                                        <li>
+    {{--                                                                        <a class="dropdown-item"  href="{{url('courses/delete',$setting->id)}}" role="button" onclick="myConfirm()"><i class="fa-solid fa-trash"></i>Delete</a>--}}
+                                                                            <a class="dropdown-item"  role="button" onclick="myConfirm({{$setting->id}})"><i class="fa-solid fa-trash"></i>Delete</a>
+                                                                        </li>
+                                                                    @endif
                                                                 </ul>
                                                             </div>
                                                         </div>

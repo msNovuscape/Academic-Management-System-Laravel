@@ -306,13 +306,17 @@
                                                             <td class="action-icons">
                                                                 <ul class="icon-button d-flex">
                                                                     @if($setting->student)
+                                                                        @if(Auth::user()->customMenuPermission('show_finances'))
+                                                                            <li>
+                                                                                <a class="dropdown-item" href="{{url('finances/'.$setting->student->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
+                                                                            </li>
+                                                                        @endif
+                                                                    @endif
+                                                                    @if(Auth::user()->customMenuPermission('update_finances'))
                                                                         <li>
-                                                                            <a class="dropdown-item" href="{{url('finances/'.$setting->student->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
+                                                                            <a class="dropdown-item" href="{{url('finances/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
                                                                         </li>
                                                                     @endif
-                                                                    <li>
-                                                                        <a class="dropdown-item" href="{{url('finances/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
-                                                                    </li>
                                                                 </ul>
                                                             </td>
                                                         </tr>

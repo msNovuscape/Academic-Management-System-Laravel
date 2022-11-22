@@ -24,9 +24,11 @@
                             <i class="fa-solid fa-user-check absent"></i>
                         </div>
                     </div>
-                    <div class="col-md-2 btn-wrap">
-                        <button type="submit" name="catsave" class="btn btn-ctm-save">Save</button>
-                    </div>
+                    @if(Auth::user()->customMenuPermission('create_s_counselling_attendances'))
+                        <div class="col-md-2 btn-wrap">
+                            <button type="submit" name="catsave" class="btn btn-ctm-save">Save</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

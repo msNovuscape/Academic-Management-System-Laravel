@@ -11,9 +11,11 @@
                         <div>
                             <h4>Time Tables</h4>
                         </div>
-                        <div class="add-button">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalAddCourse"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add TimeTable</a>
-                        </div>
+                        @if(Auth::user()->crudPermission('create_time_tables'))
+                            <div class="add-button">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalAddCourse"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add TimeTable</a>
+                            </div>
+                        @endif
                     </div>
                     {!! Form::open(['url' => 'timetables', 'method' => 'GET']) !!}
                         <div class="filter-btnwrap mt-4">
@@ -73,8 +75,12 @@
                                                                     <i class="fa-solid fa-ellipsis-vertical"></i>
                                                                 </a>
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                                    <li><a class="dropdown-item" data-bs-target="#editTimeTableModal{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button"><i class="fa-solid fa-pen"></i>Edit</a></li>
-                                                                    <li><a class="dropdown-item" role="button" onclick="myConfirm({{$setting->id}})"><i class="fa-solid fa-trash"></i>Delete</a></li>
+                                                                    @if(Auth::user()->crudPermission('update_time_tables'))
+                                                                        <li><a class="dropdown-item" data-bs-target="#editTimeTableModal{{$setting->id}}" data-bs-toggle="modal"  href="#" role="button"><i class="fa-solid fa-pen"></i>Edit</a></li>
+                                                                    @endif
+                                                                    @if(Auth::user()->crudPermission('delete_time_tables'))
+                                                                        <li><a class="dropdown-item" role="button" onclick="myConfirm({{$setting->id}})"><i class="fa-solid fa-trash"></i>Delete</a></li>
+                                                                    @endif
                                                                 </ul>
                                                             </div>
                                                         </div>

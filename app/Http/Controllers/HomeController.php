@@ -22,8 +22,8 @@ class HomeController extends Controller
                 }
             }
             //redirect to admin
-//            return view('welcome');
-            return redirect('admissions');
+            return view('welcome');
+//            return redirect('admissions');
         }
         return view('auth.login');
     }
