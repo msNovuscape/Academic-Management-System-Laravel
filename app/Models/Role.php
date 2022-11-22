@@ -14,4 +14,9 @@ class Role extends Model
     {
         return $this->hasMany(RolePermission::class);
     }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'role_permissions')->whereNull('role_permissions.deleted_at');
+    }
 }
