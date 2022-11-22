@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Student\NewPassword;
+use App\Services\Student\EnrollmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -24,6 +25,19 @@ class ChangePasswordController extends Controller
         $user->save();
         Auth::logout();
         Session::flash('success', 'Your Password has been changed!');
+        return redirect('');
+    }
+
+    public function getNewPassword()
+    {
+        return view('auth.other.change_password');
+    }
+
+    public function postNewPassword(NewPassword $request)
+    {
+        $validatedData = $request->validated();
+        $enrollmentService = new EnrollmentService();
+        $enrollmentService->newPassword($validatedData);
         return redirect('');
     }
 }

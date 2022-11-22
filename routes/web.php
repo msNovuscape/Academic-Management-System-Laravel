@@ -75,6 +75,10 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('change-password', [ChangePasswordController::class,'changePassword']);
     Route::get('logout', [LoginController::class,'logout']);
 
+    //forcely make other users to change password
+    Route::get('other/new-password', [ChangePasswordController::class,'getNewPassword']);
+    Route::post('other/new-password', [ChangePasswordController::class,'postNewPassword']);
+
     Route::get('courses', [CourseController::class,'index'])->middleware('checkuserpermission:show_courses');
     Route::get('courses/create', [CourseController::class,'create'])->middleware('checkuserpermission:create_courses');
     Route::post('courses', [CourseController::class,'store'])->middleware('checkuserpermission:create_courses');

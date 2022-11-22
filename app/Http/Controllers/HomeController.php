@@ -22,8 +22,13 @@ class HomeController extends Controller
                 }
             }
             //redirect to admin
-            return view('welcome');
+            if (Auth::user()->updated_at == null) {
+                return redirect('other/new-password');
+            } else {
+                return view('welcome');
 //            return redirect('admissions');
+            }
+
         }
         return view('auth.login');
     }

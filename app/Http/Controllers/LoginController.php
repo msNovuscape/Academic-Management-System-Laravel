@@ -40,6 +40,9 @@ class LoginController extends Controller
                     return redirect('login')->withErrors(['Your login is temporary restricted.Please contact to admin!']);
                 }
             }
+            if (Auth::user()->updated_at == null) {
+                return redirect('other/new-password');
+            }
             return redirect('');
         }
         return redirect('login')->withErrors(['Invalid Credentials!']);
