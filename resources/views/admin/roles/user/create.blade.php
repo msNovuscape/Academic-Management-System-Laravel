@@ -173,13 +173,13 @@
                                                                     <div class="role-radios">
                                                                         <label for="" class="form-label">Is  Tutor?</label>
                                                                         <div class="d-flex gap-2">
-                                                                            <div class="form-check">
+                                                                            <div class="form-check role-user-istutor">
                                                                                 <input class="form-check-input"  type="radio" name="tutor" id="yes" value="1" onclick="getCourses()">
                                                                                 <label class="form-check-label" for="flexRadioDefault1">
                                                                                     Yes
                                                                                 </label>
                                                                             </div>
-                                                                            <div class="form-check">
+                                                                            <div class="form-check role-user-istutor">
                                                                                 <input class="form-check-input" type="radio" name="tutor" id="no" value="2" onclick="getCourses()">
                                                                                 <label class="form-check-label" for="flexRadioDefault2">
                                                                                     No

@@ -1539,7 +1539,7 @@ label {
     border-radius: 4px;
 }
 .block-header {
-    background: #edf3fb;
+    background: #f1f7ff;
     display: flex;
     align-items: center;
     padding: 10px 20px !important;
@@ -2514,9 +2514,9 @@ table tr:first-child td:last-child {
 .role-form{
     display: flex;
     align-items: center;
-    background: #e9ecef;
+    background: #f1f7ff;
     margin: auto;
-    padding: 15px 0;
+    padding: 10px 20px;
     margin-bottom: 20px;
 }
 .role-form .form-label{
@@ -2542,4 +2542,21 @@ table tr:first-child td:last-child {
 }
 .role-table .table tbody td{
     padding: 8px;
+}
+/* roles arrow css */
+/* .roles-back-arrow{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+    color: #E62395;
+}
+.roles-back-arrow p{
+    margin-bottom: 0;
+} */
+.role-user-istutor{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
