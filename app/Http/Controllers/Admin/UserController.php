@@ -44,6 +44,8 @@ class UserController extends Controller
         $setting = $this->userService->storeData($validateData);
         Mail::to(request('email'))->send(new UserEmail($setting));
         $this->userService->storeEmailInfo($setting);
+        $setting->updated_at = null;
+        $setting->save();
         Session::flash('success', 'User is created!');
         return redirect($this->redirect);
     }
