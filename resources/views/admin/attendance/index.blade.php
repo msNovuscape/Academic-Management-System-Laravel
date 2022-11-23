@@ -63,20 +63,22 @@
                                                 <h3>{{$batch->time_slot->course->name}} [{{$batch->name}}]</h3>
                                                 <p class="mt-1 sub-header">{{$batch->time_slot->time_table->day}} [{{$batch->time_slot->time_table->start_time}} - {{$batch->time_slot->time_table->end_time}}]</p>
                                             </div>
-                                            <div class="d-flex attendance-toggle">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" onclick="getAttendance(1)">
-                                                <label class="form-check-label" for="flexRadioDefault1">
-                                                    Present
-                                                </label>
+                                            @if(Auth::user()->crudPermission('create_attendances') || Auth::user()->crudPermission('update_attendances'))
+                                                <div class="d-flex attendance-toggle">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" onclick="getAttendance(1)">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            Present
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check mx-4">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2" onclick="getAttendance(2)">
+                                                        <label class="form-check-label" for="flexRadioDefault2">
+                                                            Absent
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                <div class="form-check mx-4">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2" onclick="getAttendance(2)">
-                                                <label class="form-check-label" for="flexRadioDefault2">
-                                                    Absent
-                                                </label>
-                                                </div>
-                                            </div>
+                                            @endif
 {{--                                            <form id="search">--}}
 {{--                                                <div class="attendance-calender mx-4">--}}
 {{--                                                    <div class="input-group">--}}
@@ -87,19 +89,21 @@
 {{--                                                    </div>--}}
 {{--                                                </div>--}}
 {{--                                            </form>--}}
-                                            <div class="attendance-calender mx-4">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text igt-calender">
-                                                        <img src="{{url('images/calender-icon.png')}}" alt="calender-icon"/>
+                                            @if(Auth::user()->crudPermission('create_attendances') || Auth::user()->crudPermission('update_attendances') || Auth::user()->crudPermission('show_attendances'))
+                                                <div class="attendance-calender mx-4">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text igt-calender">
+                                                            <img src="{{url('images/calender-icon.png')}}" alt="calender-icon"/>
+                                                            </div>
                                                         </div>
+                                                        <input name="date" type="text" class="form-control" id="fromDateToDate"  placeholder="" required onchange="getDatewiseBatchAttendance()"/>
+                                                        <span>
+                                                            <i class="fa-solid fa-caret-down"></i>
+                                                        </span>
                                                     </div>
-                                                    <input name="date" type="text" class="form-control" id="fromDateToDate"  placeholder="" required onchange="getDatewiseBatchAttendance()"/>
-                                                    <span>
-                                                        <i class="fa-solid fa-caret-down"></i>
-                                                    </span>
                                                 </div>
-                                            </div>
+                                            @endif
 
                                         </div>
                                     </div>

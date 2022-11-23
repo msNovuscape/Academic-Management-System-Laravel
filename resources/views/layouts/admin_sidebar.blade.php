@@ -170,16 +170,18 @@
                     <span class="menu-title w-100">Attendance<i class="fa-solid fa-angle-down" id="icon-toggle-quiz"></i></span>
                 </div>
             </a>
-{{--            <div class="collapse" id="myCollapseAttendence">--}}
-{{--                <ul class="nav flex-column sub-menu">--}}
-{{--                    <li class="nav-item @if(Request::segment(1) == 'attendance') active @endif">--}}
-{{--                        <a class="nav-link " href="{{url('attendance')}}"><i class="fa-solid fa-clipboard-user"></i>List of Attendance</a>--}}
-{{--                    </li>--}}
+            <div class="collapse" id="myCollapseAttendence">
+                <ul class="nav flex-column sub-menu">
+                    @if(Auth::user()->crudPermission('create_attendances') > 0 || Auth::user()->crudPermission('show_attendances') > 0 || Auth::user()->crudPermission('update_attendances') > 0)
+                        <li class="nav-item @if(Request::segment(1) == 'attendance') active @endif">
+                            <a class="nav-link " href="{{url('attendance')}}"><i class="fa-solid fa-clipboard-user"></i>List of Attendance</a>
+                        </li>
+                    @endif
 {{--                    <li class="nav-item">--}}
 {{--                        <a class="nav-link"  href="{{url('attendance/student')}}"><i class="fa-solid fa-user-tie"></i>Student</a>--}}
 {{--                    </li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
+                </ul>
+            </div>
         </li>
     @endif
 

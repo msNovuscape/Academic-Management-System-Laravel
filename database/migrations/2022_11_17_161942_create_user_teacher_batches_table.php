@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_teacher_batches', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('user_teacher_id')->unsigned();
             $table->foreign('user_teacher_id')->references('id')->on('user_teachers');
             $table->bigInteger('created_by')->unsigned();

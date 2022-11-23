@@ -54,4 +54,10 @@ class Batch extends Model
         return $this->hasMany(UserTeacherBatch::class)->where('status', '1');
     }
 
+    public function activeUserTeacher()
+    {
+        return $this->belongsToMany(UserTeacher::class, 'user_teacher_batches', 'batch_id', 'user_teacher_id');
+    }
+
+
 }

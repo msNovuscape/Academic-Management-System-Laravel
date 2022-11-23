@@ -86,12 +86,12 @@
                                                                 <td>{{$setting->name}}</td>
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">
-                                                                        @if(Auth::user()->customMenuPermission('show_quizzes'))
+                                                                        @if(Auth::user()->customMenuPermission('show_roles'))
                                                                             <li>
                                                                                 <a class="dropdown-item"  href="{{url('roles/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
                                                                             </li>
                                                                         @endif
-                                                                        @if(Auth::user()->customMenuPermission('create_edit'))
+                                                                        @if(Auth::user()->customMenuPermission('update_roles'))
                                                                             <li>
                                                                                 <a class="dropdown-item"  href="{{url('roles/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
                                                                             </li>

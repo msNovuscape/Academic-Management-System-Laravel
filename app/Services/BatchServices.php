@@ -8,6 +8,7 @@ use App\Models\BatchCount;
 use App\Models\BatchInstallment;
 use App\Models\FiscalYear;
 use App\Models\TimeSlot;
+use App\Models\UserTeacher;
 use App\Models\UserTeacherBatch;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -56,8 +57,10 @@ class BatchServices
                 }
                 if (request('user_teacher_id')) {
                     foreach (request('user_teacher_id') as $requestUserTeacher) {
+                        $userTeacher = UserTeacher::findOrFail($requestUserTeacher);
                         $userTeacherBatch = UserTeacherBatch::firstOrNew(['user_teacher_id' => $requestUserTeacher, 'batch_id' => $setting->id]);
                         $userTeacherBatch->created_by =  Auth::user()->id;
+                        $userTeacherBatch->user_id =  $userTeacher->user->id;
                         $userTeacherBatch->status =  1;
                         $userTeacherBatch->save();
                     }
@@ -123,8 +126,10 @@ class BatchServices
                     }
                     //making batch teacher status 1 which are in request_all array
                     foreach (request('user_teacher_id') as $requestUserTeacher) {
+                        $userTeacher = UserTeacher::findOrFail($requestUserTeacher);
                         $userTeacherBatch = UserTeacherBatch::firstOrNew(['user_teacher_id' => $requestUserTeacher, 'batch_id' => $setting->id]);
                         $userTeacherBatch->created_by =  Auth::user()->id;
+                        $userTeacherBatch->user_id =  $userTeacher->user_id;
                         $userTeacherBatch->status =  1;
                         $userTeacherBatch->save();
                     }

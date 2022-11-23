@@ -30,8 +30,25 @@ class AttendanceController extends Controller
     public function index()
     {
         $batch = $this->attendanceService->getBatch();
-        $courses = Course::where('status',1)->get();
-        $batches = Batch::where('status',1)->get();
+        $courses = Course::where('status', 1)->get();
+        if (Auth::user()->user_type == 4) {
+            //for tutor
+            $batches = Batch::whereHas('activeUserTeachersBatch', function ($q) {
+                            $q->where('user_id', Auth::user()->id);
+                         })->where('status', '1')->get();
+            if(\request('batch_id')) {
+                $my_batches = Batch::whereHas('activeUserTeachersBatch', function ($q) {
+                                    $q->where('user_id', Auth::user()->id);
+                                })->where('status', '1')->get();
+                $batch = $my_batches->where('id', \request('batch_id'))->first();
+            } else {
+                $batch = $batches->first();
+            }
+
+        } else {
+            $batches = Batch::where('status', 1)->get();
+        }
+
         //start if for batch
         if($batch) {
             $attendance_date = date('Y-m-d');
@@ -68,7 +85,7 @@ class AttendanceController extends Controller
             }
             //endif
         }else{
-            return view($this->view.'index',compact('courses','batches'));
+            return view($this->view.'index', compact('courses','batches'));
         }
         //end if for batch
     }
@@ -158,5 +175,5 @@ class AttendanceController extends Controller
     {
         return view($this->view.'technical');
     }
-    
+
 }
