@@ -10,6 +10,7 @@ use App\Models\Course;
 use App\Models\CourseMaterial;
 use App\Services\AdmissionService;
 use App\Services\BatchCourseMaterial;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use PhpParser\Node\Expr\AssignOp\Mod;
 
@@ -33,7 +34,14 @@ class BatchCourseMaterialController extends Controller
 
     public function create()
     {
-        $courses = Course::where('status',1)->get();
+        if (Auth::user()->user_type == 4) {
+            //for tutor
+            $courses = Course::whereHas('activeUserTeachers', function ($q) {
+                $q->where('user_id', Auth::user()->id);
+            })->where('status', 1)->get();
+        } else {
+            $courses = Course::where('status', 1)->get();
+        }
         $course_materials = CourseMaterial::all();
         return view($this->view.'create',compact('courses','course_materials'));
     }
@@ -59,7 +67,14 @@ class BatchCourseMaterialController extends Controller
     public function edit($batch_id)
     {
         $setting = Batch::findOrFail($batch_id);
-        $courses = Course::where('status',1)->get();
+        if (Auth::user()->user_type == 4) {
+            //for tutor
+            $courses = Course::whereHas('activeUserTeachers', function ($q) {
+                $q->where('user_id', Auth::user()->id);
+            })->where('status', 1)->get();
+        } else {
+            $courses = Course::where('status', 1)->get();
+        }
         $course_materials = $setting->time_slot->course->course_materials->where('status',array_search('Active',config('custom.status')));
         $batches = Batch::where('status',1)->get();
         $batch_course_materials = $setting->batch_course_materials;

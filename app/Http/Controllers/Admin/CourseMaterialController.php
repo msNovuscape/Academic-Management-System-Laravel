@@ -27,7 +27,14 @@ class CourseMaterialController extends Controller
 
     public function index()
     {
-        $settings = Model::orderBy('id','desc');
+        if (Auth::user()->user_type == 4) {
+            $settings = Model::whereHas('course.activeUserTeachers', function ($t) {
+                $t->where('user_id', Auth::user()->id);
+            });
+        } else {
+            $settings = Model::orderBy('id', 'desc');
+        }
+
         if(\request('name')){
             $key = \request('name');
             $settings = $settings->whereHas('course',function ($q) use($key){
@@ -40,7 +47,15 @@ class CourseMaterialController extends Controller
 
     public function create()
     {
-        $courses = Course::where('status',1)->get();
+        if (Auth::user()->user_type == 4) {
+            //for tutor
+            $courses = Course::whereHas('activeUserTeachers', function ($q) {
+                                $q->where('user_id', Auth::user()->id);
+                        })->where('status', 1)->get();
+        } else {
+            $courses = Course::where('status', 1)->get();
+        }
+
         return view($this->view.'create',compact('courses'));
     }
 
@@ -67,7 +82,14 @@ class CourseMaterialController extends Controller
     }
     public function edit($id)
     {
-        $courses = Course::where('status',1)->get();
+        if (Auth::user()->user_type == 4) {
+            //for tutor
+            $courses = Course::whereHas('activeUserTeachers', function ($q) {
+                $q->where('user_id', Auth::user()->id);
+            })->where('status', 1)->get();
+        } else {
+            $courses = Course::where('status', 1)->get();
+        }
         $setting = Model::findorfail($id);
         return view($this->view.'edit',compact('setting','courses'));
     }

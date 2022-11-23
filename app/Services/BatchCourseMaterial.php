@@ -13,7 +13,14 @@ class BatchCourseMaterial
 
     public function search()
     {
-        $settings = Batch::orderBy('id','desc');
+        if (Auth::user()->user_type == 4) {
+            $settings = Batch::whereHas('activeUserTeachersBatch', function ($q) {
+                $q->where('user_id', Auth::user()->id);
+            })->where('status', '1')->orderBy('id','desc');
+        } else {
+            $settings = Batch::orderBy('id','desc');
+        }
+
         if(request('name')){
             $key = \request('name');
             $settings = $settings->whereHas('batch_course_materials',function ($q) use ($key){
