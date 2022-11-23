@@ -27,11 +27,20 @@
                         <div class="col-sm-12 col-md-12 stretch-card mt-4">
                             {!! Form::open(['url' => 'roles', 'method' => 'POST' ,'onsubmit' => 'return validateForm()']) !!}
                                 <div class="card-wrap form-block p-0">
-                                    <div class="row role-form">
-                                        <div class="col-md-4">
-                                            <div class="role-name-input">
-                                                <label for="" class="form-label">Role Name</label>
-                                                <input type="text" name="name" class="form-control"  value="{{old('name')}}" required>
+                                    <div class="row">
+                                        <div class="role-form">
+                                            <div class="col-md-4">
+                                                <div class="role-name-input">
+                                                    <label for="" class="form-label">Role Name</label>
+                                                    <input type="text" name="name" class="form-control"  value="{{old('name')}}" required>
+                                                </div>
+                                            </div>
+                                            <div class="tbl-buttons">
+                                                <ul>
+                                                    <li>
+                                                        <a href="{{url('users')}}"><img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/></a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>

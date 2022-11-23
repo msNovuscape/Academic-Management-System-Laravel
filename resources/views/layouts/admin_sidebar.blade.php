@@ -288,19 +288,19 @@
                     @if(Auth::user()->menuPermission('users') > 0)
                         <li class="nav-item" >
                             <a class="nav-link" href="{{url('users')}}">
-                                <i class="fa-solid fa-coins"></i> User
+                                <i class="fa-solid fa-user"></i>User
                             </a>
                         </li>
                     @endif
                     @if(Auth::user()->menuPermission('roles') > 0)
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('roles')}}">
-                                <i class="fa-solid fa-bell-slash"></i>Role
+                                <i class="fa-solid fa-user-gear"></i>Role
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('permissions')}}">
-                                <i class="bi bi-card-checklist"></i> Assign Role
+                                <i class="fa-solid fa-user-pen"></i> Assign Role
                             </a>
                         </li>
                     @endif
