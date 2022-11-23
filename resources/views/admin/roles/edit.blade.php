@@ -28,10 +28,19 @@
                             {!! Form::open(['url' => 'roles/'.$role->id, 'method' => 'POST' ,'onsubmit' => 'return validateForm()']) !!}
                             <div class="card-wrap form-block p-0">
                                 <div class="row role-form">
-                                    <div class="col-md-4">
-                                        <div class="role-name-input">
-                                            <label for="" class="form-label">Role Name</label>
-                                            <input type="text" name="name" class="form-control"  value="{{$role->name}}" required>
+                                    <div class="role-form">
+                                        <div class="col-md-4">
+                                            <div class="role-name-input">
+                                                <label for="" class="form-label">Role Name</label>
+                                                <input type="text" name="name" class="form-control"  value="{{$role->name}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="tbl-buttons">
+                                            <ul>
+                                                <li>
+                                                    <a href="{{url('roles')}}"><img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/></a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

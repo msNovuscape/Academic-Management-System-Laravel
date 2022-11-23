@@ -51,7 +51,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="role-radios">
                                             <label for="" class="form-label">Personal Permission</label>
                                             <div class="d-flex gap-2">
@@ -68,6 +68,15 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="tbl-buttons">
+                                            <ul>
+                                                <li>
+                                                    <a href="{{url('permissions')}}"><img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/></a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

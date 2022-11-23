@@ -38,7 +38,7 @@
                                             <div class="tbl-buttons">
                                                 <ul>
                                                     <li>
-                                                        <a href="{{url('users')}}"><img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/></a>
+                                                        <a href="{{url('roles')}}"><img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/></a>
                                                     </li>
                                                 </ul>
                                             </div>
