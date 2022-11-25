@@ -50,7 +50,7 @@
             margin-top: 20px;
         }
         .disclaimer{
-            margin-top: 100px !important;
+            margin-top: 160px !important;
         }
         .disclaimer p{
             font-style: italic;
@@ -60,7 +60,7 @@
         .disclaimer p:nth-child(2){
             margin-top:5px;
         }
-        @media only screen and (min-width:769px) {
+        @media only screen and (min-width: 320px) and (max-width: 480px)  {
             .template-cover{
                 padding:30px !important;
             }
@@ -71,6 +71,7 @@
     </style>
 </head>
 <body>
+<span style="opacity: 0"> {{ \Illuminate\Support\Facades\Date::now() }} </span>
 <div class="email-template-sapphire">
     <div class="template-cover">
         <h4>Extratech</h4>
@@ -107,5 +108,6 @@
         </div>
     </div>
 </div>
+<span style="opacity: 0"> {{ \Illuminate\Support\Facades\Date::now() }} </span>
 </body>
 </html>
