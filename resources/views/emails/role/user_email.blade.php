@@ -60,7 +60,7 @@
         .disclaimer p:nth-child(2){
             margin-top:5px;
         }
-        @media only screen and (min-width:769px) {
+        @media only screen and (min-width: 320px) and (max-width: 480px)  {
             .template-cover{
                 padding:30px !important;
             }
