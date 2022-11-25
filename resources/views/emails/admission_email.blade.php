@@ -85,7 +85,7 @@
             <p>Administrative Services Officer</p>
         </div>
         <div class="logo">
-            <img src="{{url('images/logo-extratech.jpg')}}" alt="extratech">
+            <img src="{{url('images/logo-extratech.jpg')}}" class="img-fluid" alt="extratech">
         </div>
         <div class="disclaimer data">
             <p>
