@@ -50,7 +50,7 @@
             margin-top: 20px;
         }
         .disclaimer{
-            margin-top: 100px !important;
+            margin-top: 160px !important;
         }
         .disclaimer p{
             font-style: italic;
@@ -71,6 +71,8 @@
     </style>
 </head>
 <body>
+<!-- this ensures Gmail doesn't trim the email -->
+<span style="opacity: 0"> {{ \Illuminate\Support\Facades\Date::now() }} </span>
 <div class="email-template-sapphire">
     <div class="template-cover">
         <h4>Extratech</h4>
@@ -79,11 +81,17 @@
         </div>
         <div class="data">
             <p>Please, find your Academic Management System's (AMS) Temporary Credentials. We request you to set your new password and complete the form to access the portal..</p>
+        </div>
+        <div class="data">
             <p> <strong>Your AMS Login Details</strong> </p>
             <p> <strong>Username :</strong> {{$setting->email}}</p>
             <p> <strong>Password :</strong> {{$setting->student_password->password}}</p>
             <a href="https://student.extratechweb.com/" target="_blank"><strong>Link for ET AMS</strong></a>
+        </div>
+        <div class="data">
             <p>If you have any questions, please feel free to share with us.</p>
+        </div>
+        <div class="data">
             <p> <strong>Best Regards,</strong> </p>
             <p>Extratech</p>
         </div>
@@ -100,5 +108,7 @@
         </div>
     </div>
 </div>
+<!-- this ensures Gmail doesn't trim the email -->
+<span style="opacity: 0"> {{ \Illuminate\Support\Facades\Date::now() }} </span>
 </body>
 </html>
