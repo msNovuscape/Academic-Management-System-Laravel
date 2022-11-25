@@ -41,11 +41,16 @@
             margin-top: 15px;
         }
         .logo{
+            height: 100% !important;
+            width:100% !important;
             margin:0 auto;
         }
         .logo img{
-            width:100%;
+            width:100% !important;
             margin-top: 20px;
+        }
+        .disclaimer{
+            margin-top: 160px !important;
         }
         .disclaimer p{
             font-style: italic;
@@ -55,9 +60,18 @@
         .disclaimer p:nth-child(2){
             margin-top:5px;
         }
+        @media only screen and (min-width: 320px) and (max-width: 480px)  {
+            .template-cover{
+                padding:30px !important;
+            }
+            .disclaimer{
+                margin-top: 30px !important;
+            }
+        }
     </style>
 </head>
 <body>
+<span style="opacity: 0"> {{ \Illuminate\Support\Facades\Date::now() }} </span>
 <div class="email-template-sapphire">
     <div class="template-cover">
         <h4>Extratech</h4>
@@ -85,7 +99,7 @@
             <p>Administrative Services Officer</p>
         </div>
         <div class="logo">
-            <img src="{{url('images/logo-extratech.jpg')}}" alt="extratech">
+            <img src="{{url('images/logo-extratech.jpg')}}" class="img-fluid" alt="extratech">
         </div>
         <div class="disclaimer data">
             <p>
@@ -97,5 +111,6 @@
         </div>
     </div>
 </div>
+<span style="opacity: 0"> {{ \Illuminate\Support\Facades\Date::now() }} </span>
 </body>
 </html>
