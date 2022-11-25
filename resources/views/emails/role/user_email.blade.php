@@ -41,10 +41,13 @@
             margin-top: 15px;
         }
         .logo{
-            margin:0 auto;
-        }
+	    margin:0 auto;
+	    width: 100% !important;
+	    height: 100% !important;
+	}
+
         .logo img{
-            width:100%;
+            width:100% !important;
             margin-top: 20px;
         }
         .disclaimer p{
