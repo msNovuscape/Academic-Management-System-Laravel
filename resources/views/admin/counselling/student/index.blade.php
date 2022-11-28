@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    <title>Attendance</title>
+    <title>Career Counselling</title>
 @endsection
 @section('main-panel')
     <div class="main-panel">
@@ -32,7 +32,7 @@
                                     <a class="nav-link active" id="counselling-tab" data-toggle="tab" href="{{url('counselling/'.$setting->id)}}" role="tab" aria-controls="settings" aria-selected="false">Career Counselling</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="tech-tab" data-toggle="tab" href="#" role="tab" aria-controls="settings" aria-selected="false">Technical Exam</a>
+                                    <a class="nav-link" id="tech-tab" data-toggle="tab" role="tab" href="{{url('technical_exam')}}" aria-controls="settings" aria-selected="false">Technical Exam</a>
                                 </li>
                             </ul>
                         </div>
