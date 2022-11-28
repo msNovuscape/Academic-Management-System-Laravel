@@ -19,7 +19,7 @@ class QuizController extends Controller
 
     public function index()
     {
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             $settings = Quiz::whereHas('course.activeUserTeachers', function ($t) {
                 $t->where('user_id', Auth::user()->id);
             });
@@ -42,7 +42,7 @@ class QuizController extends Controller
 
     public function create()
     {
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             //for tutor
             $courses = Course::whereHas('activeUserTeachers', function ($q) {
                 $q->where('user_id', Auth::user()->id);
@@ -66,7 +66,7 @@ class QuizController extends Controller
     public function edit($id)
     {
         $setting = Quiz::findOrFail($id);
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             //for tutor
             $courses = Course::whereHas('activeUserTeachers', function ($q) {
                 $q->where('user_id', Auth::user()->id);

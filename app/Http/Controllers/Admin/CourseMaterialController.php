@@ -27,7 +27,7 @@ class CourseMaterialController extends Controller
 
     public function index()
     {
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             $settings = Model::whereHas('course.activeUserTeachers', function ($t) {
                 $t->where('user_id', Auth::user()->id);
             });
@@ -47,7 +47,7 @@ class CourseMaterialController extends Controller
 
     public function create()
     {
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             //for tutor
             $courses = Course::whereHas('activeUserTeachers', function ($q) {
                                 $q->where('user_id', Auth::user()->id);
@@ -82,7 +82,7 @@ class CourseMaterialController extends Controller
     }
     public function edit($id)
     {
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             //for tutor
             $courses = Course::whereHas('activeUserTeachers', function ($q) {
                 $q->where('user_id', Auth::user()->id);

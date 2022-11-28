@@ -31,7 +31,7 @@ class AttendanceController extends Controller
     {
         $batch = $this->attendanceService->getBatch();
         $courses = Course::where('status', 1)->get();
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             //for tutor
             $batches = Batch::whereHas('activeUserTeachersBatch', function ($q) {
                             $q->where('user_id', Auth::user()->id);

@@ -111,6 +111,11 @@ class PermissionTableSeeder extends Seeder
             ['table_name'=>'roles','common_name'=>'Role','slug'=>'update_roles'],
             ['table_name'=>'roles','common_name'=>'Role','slug'=>'report_roles'],
             ['table_name'=>'roles','common_name'=>'Role','slug'=>'delete_roles'],
+            ['table_name'=>'technical_exams','common_name'=>'Technical Exam','slug'=>'create_technical_exams'],
+            ['table_name'=>'technical_exams','common_name'=>'Technical Exam','slug'=>'show_technical_exams'],
+            ['table_name'=>'technical_exams','common_name'=>'Technical Exam','slug'=>'update_technical_exams'],
+            ['table_name'=>'technical_exams','common_name'=>'Technical Exam','slug'=>'report_technical_exams'],
+            ['table_name'=>'technical_exams','common_name'=>'Technical Exam','slug'=>'delete_technical_exams'],
         ]);
     }
 }

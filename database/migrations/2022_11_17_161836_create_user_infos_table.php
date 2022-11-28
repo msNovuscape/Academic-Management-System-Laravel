@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('mobile_no');
             $table->string('address');
             $table->string('image');
+            $table->enum('tutor_status', ['1', '2'])->default(2); // 1 for tutor , 2 for other users
             $table->string('emp_id')->nullable();
             $table->string('remark')->nullable();
             $table->timestamps();

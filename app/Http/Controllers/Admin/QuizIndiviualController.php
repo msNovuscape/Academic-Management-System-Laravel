@@ -86,7 +86,7 @@ class QuizIndiviualController extends Controller
         $setting = QuizIndiviual::findOrFail($id);
         $check = QuizBatch::where('quiz_id',\request('quiz_id'))->where('batch_id',$setting->admission->batch_id)->get();
         if(count($check) > 0){
-            Session::flash('custom_success','Quiz has been already assigned to respective '.$admission->user->name.' in Batch');
+            Session::flash('custom_success','Quiz has been already assigned to respective '.$setting->admission->user->name.' in Batch');
         }else {
             $setting->quiz_id = \request('quiz_id');
             $setting->status = \request('status');

@@ -275,6 +275,16 @@
             </div>
         </li>
     @endif
+    @if(Auth::user()->menuPermission('technical_exams') > 0)
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('technical_exam')}}" aria-expanded="false" aria-controls="ui-basic">
+                <div class="sidebar-icon">
+                    <i class="bi bi-speedometer"></i>
+                    <span class="menu-title">Technical Exam</span>
+                </div>
+            </a>
+        </li>
+    @endif
     @if(Auth::user()->menuPermission('roles') > 0 || Auth::user()->menuPermission('users') > 0)
         <li class="nav-item @if(Request::segment(1) == 'roles' || Request::segment(1) == 'permissions') active @endif ">
             <a class="nav-link">

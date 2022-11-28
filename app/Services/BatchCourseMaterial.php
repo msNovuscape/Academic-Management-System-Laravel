@@ -13,7 +13,7 @@ class BatchCourseMaterial
 
     public function search()
     {
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             $settings = Batch::whereHas('activeUserTeachersBatch', function ($q) {
                 $q->where('user_id', Auth::user()->id);
             })->where('status', '1')->orderBy('id','desc');

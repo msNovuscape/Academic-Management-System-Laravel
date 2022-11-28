@@ -19,7 +19,18 @@ class QuizBatchController extends Controller
 
     public function index()
     {
-        $settings = QuizBatch::orderBy('id','DESC');
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
+            $settings = QuizBatch::whereHas('batch.time_slot.course.activeUserTeachers', function ($t) {
+                $t->where('user_id', Auth::user()->id);
+            });
+            $batches = Batch::whereHas('activeUserTeachersBatch', function ($q) {
+                $q->where('user_id', Auth::user()->id);
+            })->where('status', '1')->get();
+        } else {
+            $settings = QuizBatch::orderBy('id', 'desc');
+            $batches = Batch::whereHas('quiz_batches')->get();
+        }
+
         if(\request('name')){
             $key = \request('name');
             $settings = $settings->whereHas('quiz',function ($q) use($key){
@@ -31,13 +42,19 @@ class QuizBatchController extends Controller
             $settings = $settings->where('batch_id',$key);
         }
         $settings = $settings->paginate(config('custom.per_page'));
-        $batches = Batch::whereHas('quiz_batches')->get();
        return view($this->view.'index',compact('settings','batches'));
     }
 
     public function create()
     {
-        $courses = Course::where('status',1)->get();
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
+            //for tutor
+            $courses = Course::whereHas('activeUserTeachers', function ($q) {
+                $q->where('user_id', Auth::user()->id);
+            })->where('status', 1)->get();
+        } else {
+            $courses = Course::where('status', 1)->get();
+        }
         return view($this->view.'create',compact('courses'));
     }
 

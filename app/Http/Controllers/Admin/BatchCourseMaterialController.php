@@ -34,7 +34,7 @@ class BatchCourseMaterialController extends Controller
 
     public function create()
     {
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             //for tutor
             $courses = Course::whereHas('activeUserTeachers', function ($q) {
                 $q->where('user_id', Auth::user()->id);
@@ -67,7 +67,7 @@ class BatchCourseMaterialController extends Controller
     public function edit($batch_id)
     {
         $setting = Batch::findOrFail($batch_id);
-        if (Auth::user()->user_type == 4) {
+        if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             //for tutor
             $courses = Course::whereHas('activeUserTeachers', function ($q) {
                 $q->where('user_id', Auth::user()->id);

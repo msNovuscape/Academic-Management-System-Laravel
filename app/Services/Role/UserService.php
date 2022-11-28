@@ -70,6 +70,7 @@ class UserService
                 $requestAll['image']->move($directory, $file_name);
                 $userInfo->image = $path;
             }
+            $userInfo->tutor_status = $requestAll['tutor'];
             $userInfo->save();
             if ($requestAll['tutor'] == 1) {
                 foreach (request('course_id') as $reqCourse) {
@@ -112,6 +113,7 @@ class UserService
                 $requestAll['image']->move($directory, $file_name);
                 $userInfo->image = $path;
             }
+            $userInfo->tutor_status = $requestAll['tutor'];
             $userInfo->save();
             if ($requestAll['tutor'] == 1) {
                 if (request('course_id')) {
