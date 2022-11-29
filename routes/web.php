@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\ZoomLinkBatchController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserRoleController;
+use App\Http\Controllers\Admin\TechnicalExamController;
 
 
 
@@ -253,6 +254,10 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('counsellings/group-attendance', [SCounsellingController::class,'postGroupAttendance'])->middleware('checkuserpermission:create_s_counselling_attendances');
     Route::post('counsellings/group-attendance/{s_counselling_attendance_id}', [SCounsellingController::class,'singleAttendance'])->middleware('checkuserpermission:create_s_counselling_attendances');
     Route::post('counsellings-attendance-by-date', [SCounsellingController::class,'counsellingsAttendanceByDate'])->middleware('checkuserpermission:create_s_counselling_attendances');
+    
+    //routes for technical exam
+     Route::get('technical_exam', [TechnicalExamController::class, 'index']);
+
 
     //routes for zoom link
     Route::get('zoom-links', [ZoomLinkController::class,'index'])->middleware('checkuserpermission:show_zoom_links');

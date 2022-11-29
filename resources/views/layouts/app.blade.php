@@ -40,6 +40,8 @@
     {!! Html::style('/css/css-loader.css') !!}
     {{--    for dispalying confirmation--}}
     {!! Html::style('confirm/jquery-confirm.min.css') !!}
+    {{-- zabuto calender --}}
+    {!! Html::style('calendar/zabuto_calendar.min.css') !!}
     @yield('style')
 </head>
 <body>
@@ -61,6 +63,9 @@
 {!! Html::script('plugins/flatpickr/dist/flatpickr.js') !!}
 {!! Html::style('plugins/vanilla-calendar-main/vanilla-calendar.min.js') !!}
 {!! Html::script('confirm/jquery-confirm.min.js') !!}
+
+{{-- zabuto calender --}}
+{!! Html::script('calendar/zabuto_calendar.js') !!}
 
 <script>
     Laravel = {
