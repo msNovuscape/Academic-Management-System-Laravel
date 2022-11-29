@@ -39,11 +39,13 @@
                         </div>
                     </div>
                 </div>
+                <div id="my-calendar"></div>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Launch demo modal
                 </button>
-                
+                	
+                <div class="calendar-container"></div>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -81,6 +83,22 @@
 @endsection
 @section('script')
 <script>
-    
+    $(function() {
+        getCLick();
+    });
+
+    function getCLick(){
+        console.log("test")
+    }
+    var eventData = [
+        {"date":"2022-11-26","badge":false,"title":"Example 1"},
+        {"date":"2022-11-24","badge":true,"title":"Example 2"}
+    ];
+    $(document).ready(function () {
+        // $("#my-calendar").zabuto_calendar({language: "en"});
+        $("#my-calendar").zabuto_calendar( { 
+            data: eventData
+        } );
+    });
 </script>
 @endsection
