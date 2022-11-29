@@ -17,10 +17,6 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('course_id')->unsigned();
-            $table->foreign('course_id')->references('id')->on('courses');
-            $table->bigInteger('branch_id')->unsigned();
-            $table->foreign('branch_id')->references('id')->on('branches');
             $table->date('date');
             $table->enum('status', ['1', '2'])->default(1);
             $table->softDeletes();

@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('t_exam_time_slots', function (Blueprint $table) {
+        Schema::create('t_exam_details', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('t_exam_detail_id')->unsigned();
-            $table->foreign('t_exam_detail_id')->references('id')->on('t_exam_details');
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->bigInteger('technical_exam_id')->unsigned();
+            $table->foreign('technical_exam_id')->references('id')->on('technical_exams');
+            $table->bigInteger('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->bigInteger('branch_id')->unsigned();
+            $table->foreign('branch_id')->references('id')->on('branches');
             $table->enum('status', ['1', '2'])->default(1);
             $table->softDeletes();
             $table->timestamps();
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_exam_time_slots');
+        Schema::dropIfExists('t_exam_details');
     }
 };
