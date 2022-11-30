@@ -38,6 +38,17 @@ class AdmissionService
             $student_password->user_id = $user->id;
             $student_password->password = $random_password;
             $student_password->save();
+            //checking hashed password
+            if (!Hash::check($student_password->password, $user->password)) {
+                $newPassword = $this->randString(6);
+                $hashedPassword = Hash::make($newPassword);
+                if (Hash::check($newPassword, $hashedPassword)) {
+                    $user->password = $hashedPassword;
+                    $student_password->password = $newPassword;
+                    $user->save();
+                    $student_password->save();
+                }
+            }
             // Create User admission
             $batch = Batch::findOrFail($requestAll['batch_id']);
             $setting = new Model();
@@ -130,6 +141,7 @@ class AdmissionService
         return substr(str_shuffle($chars),0,$length);
     }
 
+
     //save the admission email information
     public function storeAdmissionEmailInfo($admission)
     {
@@ -149,10 +161,20 @@ class AdmissionService
             $user = $setting->user;
             $user->name = $requestAll['name'];
             $user->email = $requestAll['email'];
-            $user->password = Hash::make('password');
             $user->status = array_search('Active', config('custom.status')); //active
             $user->user_type = array_search('Student', config('custom.user_types'));
             $user->save();
+            //checking hashed password
+            if (!Hash::check($user->student_password->password, $user->password)) {
+                $newPassword = $this->randString(6);
+                $hashedPassword = Hash::make($newPassword);
+                if (Hash::check($newPassword, $hashedPassword)) {
+                    $user->password = $hashedPassword;
+                    $user->student_password->password = $newPassword;
+                    $user->save();
+                    $user->student_password->save();
+                }
+            }
             // Create User admission
             $batch = Batch::findOrFail($requestAll['batch_id']);
             $setting->user_id = $user->id;
@@ -199,7 +221,7 @@ class AdmissionService
         if(request('name')){
             $key = \request('name');
             $settings = $settings->whereHas('user',function ($u) use($key){
-                $u->where('name','like','%'.$key.'%');
+                $u->where('name','like','%'.$key.'%')->orWhere('email','like','%'.$key.'%');
             })->orWhere('student_id','like','%'.$key.'%');
         }
         if(request('course_id')){

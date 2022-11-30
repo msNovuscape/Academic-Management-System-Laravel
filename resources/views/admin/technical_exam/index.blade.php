@@ -39,12 +39,14 @@
                         </div>
                     </div>
                 </div>
+
+                <input type="text"  id="myCal" style="display: none">
                 <div id="my-calendar"></div>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Launch demo modal
                 </button>
-                	
+
                 <div class="calendar-container"></div>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,6 +85,34 @@
 @endsection
 @section('script')
 <script>
+    $("#myCal").flatpickr({
+        mode: "multiple",
+        minDate : "<?php echo date('Y-m-d');?>",
+        dateFormat: "Y-m-d",
+        inline: true,
+        defaultDate: ["2022-11-29", "2022-11-30","2022-12-01"],
+        onChange: function(selectedDates, dateStr, instance) {
+                debugger
+            // var aa = new Date(instance.latestSelectedDateObj)
+            var event = new Date(instance.latestSelectedDateObj);
+
+            let date = JSON.stringify(event)
+            date = date.slice(1,11)
+            debugger;
+        },
+    });
+    {{--$("#myCal").flatpickr({--}}
+    {{--    mode: "multiple",--}}
+    {{--    minDate : "<?php echo date('Y-m-d');?>",--}}
+    {{--    dateFormat: "Y-m-d",--}}
+    {{--    inline: true,--}}
+    {{--    defaultDate: ["2022-11-29", "2022-11-30","2022-12-01"],--}}
+    {{--    onChange: function(selectedDates, dateStr, instance1) {--}}
+    {{--        instance1.config.onChange(function () {--}}
+    {{--            debugger;--}}
+    {{--        });--}}
+    {{--    },--}}
+    {{--});--}}
     $(function() {
         getCLick();
     });
@@ -96,7 +126,7 @@
     ];
     $(document).ready(function () {
         // $("#my-calendar").zabuto_calendar({language: "en"});
-        $("#my-calendar").zabuto_calendar( { 
+        $("#my-calendar").zabuto_calendar( {
             data: eventData
         } );
     });

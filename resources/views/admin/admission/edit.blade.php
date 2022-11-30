@@ -223,6 +223,22 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-12 col-md-6 mt-4">
+                                                <div class="form-group batch-form">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label>Password</label>
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group">
+                                                                    <input type="text" name="remark"  value="{{$setting->user->student_password->password}}" class="form-control"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
@@ -239,6 +255,13 @@
                                                         Update & Continue
                                                         <i class="fas fa-angle-double-right"></i>
                                                     </button>
+                                                    <a href="{{url('admission_email/'.$setting->id)}}">
+                                                        <button type="button">
+                                                            Send Email
+                                                            <i class="fa-solid fa-envelope ms-2" role="button" data-bs-toggle="tooltip" data-bs-title="send mail"></i>
+                                                        </button>
+                                                    </a>
+
                                                 </div>
                                             </div>
                                         </div>

@@ -126,6 +126,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('admissions/show/{id}', [AdmissionController::class,'show'])->middleware('checkuserpermission:show_admissions');
     Route::get('admissions/{id}/edit', [AdmissionController::class,'edit'])->middleware('checkuserpermission:update_admissions');
     Route::post('admissions/{id}', [AdmissionController::class,'update'])->middleware('checkuserpermission:update_admissions');
+    Route::get('admission_email/{id}', [AdmissionController::class,'admissionEmail'])->middleware('checkuserpermission:create_admissions');
 
 
 
@@ -254,7 +255,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('counsellings/group-attendance', [SCounsellingController::class,'postGroupAttendance'])->middleware('checkuserpermission:create_s_counselling_attendances');
     Route::post('counsellings/group-attendance/{s_counselling_attendance_id}', [SCounsellingController::class,'singleAttendance'])->middleware('checkuserpermission:create_s_counselling_attendances');
     Route::post('counsellings-attendance-by-date', [SCounsellingController::class,'counsellingsAttendanceByDate'])->middleware('checkuserpermission:create_s_counselling_attendances');
-    
+
     //routes for technical exam
      Route::get('technical_exam', [TechnicalExamController::class, 'index']);
 

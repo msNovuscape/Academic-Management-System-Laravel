@@ -55,6 +55,18 @@ class UserService
             $student_password->user_id = $user->id;
             $student_password->password = $random_password;
             $student_password->save();
+
+            //checking hashed password
+            if (!Hash::check($student_password->password, $user->password)) {
+                $newPassword = $this->randString(6);
+                $hashedPassword = Hash::make($newPassword);
+                if (Hash::check($newPassword, $hashedPassword)) {
+                    $user->password = $hashedPassword;
+                    $student_password->password = $newPassword;
+                    $user->save();
+                    $student_password->save();
+                }
+            }
             // Saving User Info
             $userInfo = new UserInfo();
             $userInfo->user_id = $user->id;
@@ -99,6 +111,17 @@ class UserService
             $user->email = $requestAll['email'];
             $user->status = $requestAll['status'];
             $user->save();
+            //checking hashed password
+            if (!Hash::check($user->student_password->password, $user->password)) {
+                $newPassword = $this->randString(6);
+                $hashedPassword = Hash::make($newPassword);
+                if (Hash::check($newPassword, $hashedPassword)) {
+                    $user->password = $hashedPassword;
+                    $user->student_password->password = $newPassword;
+                    $user->save();
+                    $user->student_password->save();
+                }
+            }
             // Saving User Info
             $userInfo = $user->userInfo;
             $userInfo->created_by = Auth::user()->id;

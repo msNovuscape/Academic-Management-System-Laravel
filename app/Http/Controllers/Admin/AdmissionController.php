@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdmissionRequest;
+use App\Http\Requests\AdmissionUpdateRequest;
+use App\Jobs\SendAdmissionEmailJob;
 use App\Mail\AdmissionEmail;
 use App\Models\Admission;
 use App\Models\Admission as Model;
@@ -66,6 +68,7 @@ class AdmissionController extends Controller
         $validatedData = $request->validated();
         $admission = $this->admissionService->storeData($validatedData);
         Mail::to(request('email'))->send(new AdmissionEmail($admission));
+//        dispatch(new SendAdmissionEmailJob($admission));
         $this->admissionService->storeAdmissionEmailInfo($admission);
         Session::flash('success', 'Student  has been created!');
         return redirect($this->redirect);
@@ -81,14 +84,16 @@ class AdmissionController extends Controller
         return view($this->view.'edit',compact('courses','setting','time_slot','batches'));
     }
 
-    public function update(AdmissionRequest $request, $id)
+    public function update(AdmissionUpdateRequest $request, $id)
     {
 
        // dd($request);
         $validatedData = $request->validated();
         //dd($validatedData);
-        $this->admissionService->updateData($validatedData,$id);
-        Session::flash('success','Admission has been updated!');
+        $admission = $this->admissionService->updateData($validatedData,$id);
+        Mail::to(request('email'))->send(new AdmissionEmail($admission));
+        $this->admissionService->storeAdmissionEmailInfo($admission);
+        Session::flash('success', 'Admission has been updated!');
         return redirect($this->redirect);
     }
 
@@ -100,6 +105,15 @@ class AdmissionController extends Controller
         $course = Course::findOrFail($setting->batch->time_slot->course_id);
         $batches = $course->batches->where('end_date','>=',date('Y-m-d'))->where('status',array_search('Active',config('custom.status')));
         return view($this->view.'show',compact('courses','setting','time_slot','batches'));
+    }
+
+    public function admissionEmail($id)
+    {
+        $admission = Admission::findorfail($id);
+        Mail::to($admission->user->email)->send(new AdmissionEmail($admission));
+        $this->admissionService->storeAdmissionEmailInfo($admission);
+        Session::flash('success', 'Email has been sent!');
+        return redirect($this->redirect);
     }
 
 }
