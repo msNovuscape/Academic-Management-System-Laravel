@@ -35,7 +35,7 @@ class AttendanceController extends Controller
             //for tutor
             $batches = Batch::whereHas('activeUserTeachersBatch', function ($q) {
                             $q->where('user_id', Auth::user()->id);
-                         })->where('status', '1')->get();
+                         })->get();
             if(\request('batch_id')) {
                 $my_batches = Batch::whereHas('activeUserTeachersBatch', function ($q) {
                                     $q->where('user_id', Auth::user()->id);
@@ -46,7 +46,7 @@ class AttendanceController extends Controller
             }
 
         } else {
-            $batches = Batch::where('status', 1)->get();
+            $batches = Batch::all();
         }
 
         //start if for batch

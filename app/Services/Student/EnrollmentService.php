@@ -105,9 +105,42 @@ class EnrollmentService {
 
     public function getMaterials()
     {
-        $settings = CourseMaterial::whereHas('batch_course_materials',function ($q){
-                                 $q->where('batch_id',Auth::user()->admission->batch_id);
+
+        if (Auth::user()->admission->sCounselling) {
+            //for bootcamp2022 batch
+            if (Auth::user()->admission->batch_id == 2) {
+                $settings = CourseMaterial::where(function ($q1) {
+                    $q1->where('course_id', 9); // 9 for Network and System Support
+                    $q1->orwhere('course_id', 8); // 8 for Career Counselling
+                    $q1->orwhere('course_id', 6); // 6 for Boot Camp 2022
+                });
+            } else {
+                $settings = CourseMaterial::where(function ($q1) {
+                    $q1->whereHas('batch_course_materials', function ($q) {
+                        $q->where('batch_id', Auth::user()->admission->batch_id);
                     });
+                    $q1->orwhere('course_id', 8); // 8 for Career Counselling
+                    $q1->orwhere('course_id', 6); // 6 for Boot Camp 2022
+                });
+            }
+
+        } else {
+            //for bootcamp2022 batch
+            if (Auth::user()->admission->batch_id == 2) {
+                $settings = CourseMaterial::where(function ($q1) {
+                    $q1->where('course_id', 9); // 9 for Network and System Support
+                    $q1->orwhere('course_id', 8); // 8 for Career Counselling
+                    $q1->orwhere('course_id', 6); // 6 for Boot Camp 2022
+                });
+            } else {
+                $settings = CourseMaterial::where(function ($q1) {
+                    $q1->whereHas('batch_course_materials', function ($q) {
+                        $q->where('batch_id', Auth::user()->admission->batch_id);
+                    });
+                });
+            }
+        }
+
         if(request('name')){
             $key = \request('name');
             $settings = $settings->where('name','like','%'.$key.'%');
