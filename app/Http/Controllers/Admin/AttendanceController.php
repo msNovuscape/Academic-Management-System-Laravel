@@ -30,7 +30,7 @@ class AttendanceController extends Controller
     public function index()
     {
         $batch = $this->attendanceService->getBatch();
-        $courses = Course::where('status', 1)->get();
+        $courses = Course::all();
         if (Auth::user()->user_type == 4 && Auth::user()->userInfo->tutor_status == 1) {
             //for tutor
             $batches = Batch::whereHas('activeUserTeachersBatch', function ($q) {
