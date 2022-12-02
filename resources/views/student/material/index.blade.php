@@ -59,7 +59,7 @@
                                         <h4>Video Materials</h4>
                                         <p class="card-heading-link">Find your video materials</p>
                                         @foreach($settings->where('type',2) as $setting1)
-                                            <a href="{{$setting1->link}}">
+                                            <a href="{{$setting1->link}}" target="_blank">
                                                 <div class="p-3 quiz-section-card d-flex mt-4">
                                                     <div class="icon">
                                                         <img src="{{url('images/quiz-video-icon.png')}}" alt="" />
