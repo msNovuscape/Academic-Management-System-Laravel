@@ -105,6 +105,18 @@ class EnrollmentService {
 
     public function getMaterials()
     {
+        $settings = CourseMaterial::whereHas('batch_course_materials', function ($q) {
+            $q->where('batch_id', Auth::user()->admission->batch_id);
+        });
+        if (request('name')) {
+            $key = \request('name');
+            $settings = $settings->where('name', 'like', '%'.$key.'%');
+        }
+        return $settings->paginate(config('custom.per_page'));
+    }
+
+    public function getMaterials1()
+    {
 
         if (Auth::user()->admission->sCounselling) {
             //for bootcamp2022 batch
