@@ -21,7 +21,7 @@
                     <div class="test-breadcrum">
                         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{url('student')}}">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Quiz</li>
                             </ol>
                         </nav>
@@ -93,11 +93,6 @@
 
                                 <div class="record-bottom">
                                     <table class="table table-borderless">
-                                        <tr>
-                                            <td>Total Time</td>
-                                            <td>:</td>
-                                            <td>{{gmdate('h:i:s', $time_period)}}</td>
-                                        </tr>
                                         <tr>
                                             <td>Total Questions</td>
                                             <td>:</td>

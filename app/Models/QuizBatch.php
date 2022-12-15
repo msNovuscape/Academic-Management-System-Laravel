@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class QuizBatch extends Model
 {
@@ -23,7 +24,7 @@ class QuizBatch extends Model
 
     public function student_quiz_batches()
     {
-        return $this->hasMany(StudentQuizBatch::class);
+        return $this->hasMany(StudentQuizBatch::class)->where('admission_id', Auth::user()->admission->id);
     }
 
     public function student_quiz_batches_list()

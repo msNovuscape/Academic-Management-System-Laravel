@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class QuizIndiviual extends Model
 {
@@ -23,7 +24,7 @@ class QuizIndiviual extends Model
 
     public function student_quiz_individuals()
     {
-        return $this->hasMany(StudentQuizIndividual::class);
+        return $this->hasMany(StudentQuizIndividual::class)->where('admission_id', Auth::user()->admission->id);
     }
 
     public function student_quiz_individuals_list()

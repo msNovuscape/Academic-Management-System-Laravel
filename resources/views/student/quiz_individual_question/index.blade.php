@@ -94,11 +94,6 @@
                                 <div class="record-bottom">
                                     <table class="table table-borderless">
                                         <tr>
-                                            <td>Total Time</td>
-                                            <td>:</td>
-                                            <td>1:20:00</td>
-                                        </tr>
-                                        <tr>
                                             <td>Total Questions</td>
                                             <td>:</td>
                                             <td>69</td>
