@@ -105,9 +105,20 @@ class EnrollmentService {
 
     public function getMaterials()
     {
-        $settings = CourseMaterial::whereHas('batch_course_materials', function ($q) {
-            $q->where('batch_id', Auth::user()->admission->batch_id);
-        });
+        if (Auth::user()->admission->batch_id == 2 && Auth::user()->admission->sCounselling) {
+            $settings = CourseMaterial::whereHas('batch_course_materials', function ($q) {
+                $q->where('batch_id', Auth::user()->admission->batch_id);
+            })->orWhere('course_id', 8); //for course carrier counselling
+        } elseif (Auth::user()->admission->sCounselling) {
+            $settings = CourseMaterial::whereHas('batch_course_materials', function ($q) {
+                $q->where('batch_id', Auth::user()->admission->batch_id);
+            })->orWhere('course_id', 8); //for course carrier counselling
+        } else {
+            $settings = CourseMaterial::whereHas('batch_course_materials', function ($q) {
+                $q->where('batch_id', Auth::user()->admission->batch_id);
+            });
+        }
+
         if (request('name')) {
             $key = \request('name');
             $settings = $settings->where('name', 'like', '%'.$key.'%');

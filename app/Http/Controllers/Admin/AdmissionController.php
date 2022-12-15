@@ -68,6 +68,7 @@ class AdmissionController extends Controller
         $validatedData = $request->validated();
         $admission = $this->admissionService->storeData($validatedData);
         Mail::to(request('email'))->send(new AdmissionEmail($admission));
+//        Mail::to('swadesh.chaudhary@gmail.com')->send(new AdmissionEmail($admission));
 //        dispatch(new SendAdmissionEmailJob($admission));
         $this->admissionService->storeAdmissionEmailInfo($admission);
         Session::flash('success', 'Student  has been created!');
