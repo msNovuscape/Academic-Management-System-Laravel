@@ -161,7 +161,7 @@
                                                                             @endif
                                                                                 @if(Auth::user()->crudPermission('show_admissions'))
                                                                                     <li>
-                                                                                        <a class="dropdown-item"  href="{{url('admissions/show_detail/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="Detail View"><i class="fa-solid fa-eye"></i></a>
+                                                                                        <a class="dropdown-item"  href="{{url('admissions/show_detail/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="Personal Detail"><i class="fa-solid fa-circle-info"></i></a>
                                                                                     </li>
                                                                                 @endif
                                                                         </ul>
