@@ -29,6 +29,6 @@ class QuizIndiviual extends Model
 
     public function student_quiz_individuals_list()
     {
-        return $this->hasMany(StudentQuizIndividual::class)->orderBy('id','desc');
+        return $this->hasMany(StudentQuizIndividual::class)->orderBy('id', 'desc');
     }
 }
