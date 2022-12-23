@@ -11,6 +11,7 @@ use App\Models\Admission;
 use App\Models\Admission as Model;
 use App\Models\Batch;
 use App\Models\Course;
+use App\Models\StudentQuizBatch;
 use App\Models\TimeSlot;
 use App\Services\AdmissionService;
 use Illuminate\Support\Facades\DB;
@@ -77,7 +78,7 @@ class AdmissionController extends Controller
 
     public function edit($id)
     {
-        $setting = Admission::findorfail($id);
+        $setting = Admission::findOrFail($id);
         $courses = Course::where('status',1)->get();
         $time_slot = TimeSlot::where('status', 1)->get();
         $course = Course::findOrFail($setting->batch->time_slot->course_id);
@@ -100,21 +101,34 @@ class AdmissionController extends Controller
 
     public function show($id)
     {
-        $setting = Admission::findorfail($id);
-        $courses = Course::where('status',1)->get();
+        $setting = Admission::findOrFail($id);
+        $courses = Course::where('status', 1)->get();
         $time_slot = TimeSlot::where('status', 1)->get();
         $course = Course::findOrFail($setting->batch->time_slot->course_id);
         $batches = $course->batches->where('end_date','>=',date('Y-m-d'))->where('status',array_search('Active',config('custom.status')));
-        return view($this->view.'show',compact('courses','setting','time_slot','batches'));
+        return view($this->view.'show', compact('courses','setting','time_slot','batches'));
     }
 
     public function admissionEmail($id)
     {
-        $admission = Admission::findorfail($id);
+        $admission = Admission::findOrFail($id);
         Mail::to($admission->user->email)->send(new AdmissionEmail($admission));
         $this->admissionService->storeAdmissionEmailInfo($admission);
         Session::flash('success', 'Email has been sent!');
         return redirect($this->redirect);
+    }
+
+    public function getStudentDetail($admissionId)
+    {
+        $setting = Admission::findOrFail($admissionId);
+        $finances = $setting->finances;
+        $attendances = $setting->student->attendances;
+        $presentCount = $attendances->where('status', 1)->count();
+        $absentCount = $attendances->where('status', 2)->count();
+        $quizBatches = $setting->batch->quiz_batches;
+//        dd($setting->batch->quiz_batches[0]->student_quiz_batches);
+        return view('admin.student_detail_view.index', compact('setting',
+            'finances', 'attendances', 'presentCount', 'absentCount', 'quizBatches'));
     }
 
 }

@@ -27,8 +27,18 @@ class QuizBatch extends Model
         return $this->hasMany(StudentQuizBatch::class)->where('admission_id', Auth::user()->admission->id);
     }
 
+    public function list_student_quiz_batches()
+    {
+        return $this->hasMany(StudentQuizBatch::class);
+    }
+
     public function student_quiz_batches_list()
     {
-        return $this->hasMany(StudentQuizBatch::class)->orderBy('id','desc');
+        return $this->hasMany(StudentQuizBatch::class)->orderBy('id', 'desc');
+    }
+
+    public function batchQuizResult()
+    {
+       return  $this->hasOneThrough(BatchQuizResult::class, StudentQuizBatch::class);
     }
 }

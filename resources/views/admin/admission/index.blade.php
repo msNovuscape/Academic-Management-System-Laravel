@@ -159,6 +159,11 @@
                                                                                     <a class="dropdown-item"  href="{{url('admissions/'.$setting->id.'/edit')}}" role="button"><i class="fa-solid fa-pen" data-bs-toggle="tooltip" data-bs-title="Edit"></i></a>
                                                                                 </li>
                                                                             @endif
+                                                                                @if(Auth::user()->crudPermission('show_admissions'))
+                                                                                    <li>
+                                                                                        <a class="dropdown-item"  href="{{url('admissions/show_detail/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="Detail View"><i class="fa-solid fa-eye"></i></a>
+                                                                                    </li>
+                                                                                @endif
                                                                         </ul>
                                                                     </td>
                                                                     <td>

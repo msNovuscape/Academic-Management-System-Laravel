@@ -124,6 +124,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('admissions/get_batch_calender/{batch_id}', [AdmissionController::class,'getBatchCalender']);
     Route::post('admissions', [AdmissionController::class,'store'])->middleware('checkuserpermission:create_admissions');
     Route::get('admissions/show/{id}', [AdmissionController::class,'show'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/show_detail/{admissionId}', [AdmissionController::class,'getStudentDetail'])->middleware('checkuserpermission:show_admissions');
     Route::get('admissions/{id}/edit', [AdmissionController::class,'edit'])->middleware('checkuserpermission:update_admissions');
     Route::post('admissions/{id}', [AdmissionController::class,'update'])->middleware('checkuserpermission:update_admissions');
     Route::get('admission_email/{id}', [AdmissionController::class,'admissionEmail'])->middleware('checkuserpermission:create_admissions');

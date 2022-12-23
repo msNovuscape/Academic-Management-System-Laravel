@@ -11,6 +11,10 @@ class Finance extends Model
 
     protected $fillable = ['admission_id','batch_installment_id','created_by','amount','date','status','transaction_no','bank_status'];
 
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
     public function admission()
     {
         return $this->belongsTo(Admission::class);

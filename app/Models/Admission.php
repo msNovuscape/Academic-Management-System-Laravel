@@ -14,9 +14,10 @@ class Admission extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function created_by()
+
+    public function createdBy()
     {
-        return $this->belongsTo(User::class,'created_by');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function batch()
