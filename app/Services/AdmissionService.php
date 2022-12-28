@@ -185,7 +185,10 @@ class AdmissionService
             $setting->payable_amount = $batch->fee - request('discount');
             $setting->save();
 
-            // Create income from student
+            //keeping log of previous finance
+            $financeLog = new FinanceService();
+            $financeLog->financeLog($setting->finances[0]);
+            // update income from student
             $finance = $setting->finances[0];
             $finance->amount = $requestAll['amount'];
             $finance->date = $requestAll['date'];
@@ -194,7 +197,9 @@ class AdmissionService
             $finance->bank_status = $requestAll['bank_status'];
             $finance->remark = $requestAll['remark'];
             $finance->save();
-            //create discount for student
+            //keeping log of previous discount
+            $financeLog->discountLog($setting->discount);
+            //update discount for student
             $discount = $setting->discount;
             $discount->created_by = Auth::user()->id;
             $discount->admission_id = $setting->id;

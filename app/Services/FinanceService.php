@@ -2,12 +2,15 @@
 namespace App\Services;
 
 use App\Models\Admission;
+use App\Models\DiscountLog;
 use App\Models\ExtendDate;
 use App\Models\Finance;
+use App\Models\FinanceLog;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FinanceService {
 
@@ -26,16 +29,25 @@ class FinanceService {
 
     public function updateData($finance_id,$requestAll)
     {
-        $setting1 = Finance::findOrFail($finance_id);
-        $setting1->created_by   = Auth::user()->id;
-        $setting1->amount   = $requestAll['amount'];
-        $setting1->date   = $requestAll['date'];
-        $setting1->status   = $requestAll['payment_status'];
-        $setting1->bank_status   = $requestAll['bank_status'];
-        $setting1->transaction_no   = $requestAll['transaction_no'];
-        $setting1->remark   = $requestAll['remark'];
-        $setting1->save();
-        return $setting1;
+        try {
+            DB::beginTransaction();
+                $setting1 = Finance::findOrFail($finance_id);
+                //keeping the finance log
+                $this->financeLog($setting1);
+                $setting1->created_by   = Auth::user()->id;
+                $setting1->amount   = $requestAll['amount'];
+                $setting1->date   = $requestAll['date'];
+                $setting1->status   = $requestAll['payment_status'];
+                $setting1->bank_status   = $requestAll['bank_status'];
+                $setting1->transaction_no   = $requestAll['transaction_no'];
+                $setting1->remark   = $requestAll['remark'];
+                $setting1->save();
+            DB::commit();
+            return $setting1;
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
     }
 
     public function extendDate()
@@ -165,6 +177,36 @@ class FinanceService {
     }
 
 
+    public function financeLog($finance)
+    {
+        $setting = new FinanceLog();
+        $setting->finance_id =  $finance->id;
+        $setting->admission_id =  $finance->admission_id;
+        $setting->batch_installment_id =  $finance->batch_installment_id;
+        $setting->created_by =  $finance->created_by;
+        $setting->amount = $finance->amount;
+        $setting->created_date = $finance->date;
+        $setting->updated_date = date('Y-m-d');
+        $setting->status = $finance->status;
+        $setting->transaction_no = $finance->transaction_no;
+        $setting->extend_status = $finance->extend_status;
+        $setting->bank_status = $finance->bank_status;
+        $setting->remark = $finance->remark;
+        $setting->save();
+//        return $setting;
+    }
 
+    public function discountLog($discount)
+    {
+        $setting = new DiscountLog();
+        $setting->discount_id = $discount->id;
+        $setting->created_by =  $discount->created_by;
+        $setting->admission_id = $discount->admission_id;
+        $setting->amount = $discount->amount;
+        $setting->created_date = $discount->date;
+        $setting->updated_date = date('Y-m-d');
+        $setting->save();
+//        return $setting;
+    }
 
 }
