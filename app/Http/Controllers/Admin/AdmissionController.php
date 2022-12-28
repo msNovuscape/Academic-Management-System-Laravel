@@ -83,7 +83,7 @@ class AdmissionController extends Controller
         $time_slot = TimeSlot::where('status', 1)->get();
         $course = Course::findOrFail($setting->batch->time_slot->course_id);
         $batches = $course->batches->where('end_date','>=',date('Y-m-d'))->where('status',array_search('Active',config('custom.status')));
-        return view($this->view.'edit',compact('courses','setting','time_slot','batches'));
+        return view($this->view.'edit', compact('courses','setting','time_slot','batches'));
     }
 
     public function update(AdmissionUpdateRequest $request, $id)
