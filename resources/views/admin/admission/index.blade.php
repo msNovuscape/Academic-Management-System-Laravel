@@ -74,8 +74,8 @@
                                                     </div>
 
                                                     <div class="filter-group mx-2">
-                                                     <span>
-                                                            <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                         <span>
+                                                                <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
                                                         </span>
                                                         <button class="fltr-btn" type="submit">Filter</button>
                                                     </div>
@@ -161,7 +161,7 @@
                                                                             @endif
                                                                                 @if(Auth::user()->crudPermission('show_admissions'))
                                                                                     <li>
-                                                                                        <a class="dropdown-item"  href="{{url('admissions/show_detail/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="Personal Detail"><i class="fa-solid fa-circle-info"></i></a>
+                                                                                        <a class="dropdown-item"  href="{{url('admissions/general/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="Personal Detail"><i class="fa-solid fa-circle-info"></i></a>
                                                                                     </li>
                                                                                 @endif
                                                                         </ul>
