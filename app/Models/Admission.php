@@ -69,4 +69,14 @@ class Admission extends Model
         return $this->hasOne(SCounselling::class);
     }
 
+    public function batch_quiz_results()
+    {
+        return $this->hasManyThrough(BatchQuizResult::class, StudentQuizBatch::class);
+    }
+    public function individual_quiz_results()
+    {
+        return $this->hasManyThrough(IndividualQuizResult::class, StudentQuizIndividual::class,'admission_id', 's_q_individual_id');
+    }
+
+
 }

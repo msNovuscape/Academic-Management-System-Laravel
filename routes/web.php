@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\FiscalYearController;
 use App\Http\Controllers\Admin\TimeSlotController;
 use App\Http\Controllers\Admin\TimeTableController;
 use App\Http\Controllers\Student\StudentController;
-use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Admin\AdmissionController;
 use App\Http\Controllers\Admin\CourseMaterialController;
 use App\Http\Controllers\Admin\BatchCourseMaterialController;
@@ -35,6 +34,8 @@ use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\Admin\TechnicalExamController;
+use App\Http\Controllers\Admin\AdminStudentController;
+
 
 
 
@@ -124,10 +125,18 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('admissions/get_batch_calender/{batch_id}', [AdmissionController::class,'getBatchCalender']);
     Route::post('admissions', [AdmissionController::class,'store'])->middleware('checkuserpermission:create_admissions');
     Route::get('admissions/show/{id}', [AdmissionController::class,'show'])->middleware('checkuserpermission:show_admissions');
-    Route::get('admissions/show_detail/{admissionId}', [AdmissionController::class,'getStudentDetail'])->middleware('checkuserpermission:show_admissions');
+//    Route::get('admissions/show_detail/{admissionId}', [AdmissionController::class,'getStudentDetail'])->middleware('checkuserpermission:show_admissions');
     Route::get('admissions/{id}/edit', [AdmissionController::class,'edit'])->middleware('checkuserpermission:update_admissions');
     Route::post('admissions/{id}', [AdmissionController::class,'update'])->middleware('checkuserpermission:update_admissions');
     Route::get('admission_email/{id}', [AdmissionController::class,'admissionEmail'])->middleware('checkuserpermission:create_admissions');
+
+    //showing student detail view
+    Route::get('admissions/general/{admissionId}', [AdminStudentController::class,'index'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/attendances/{admissionId}', [AdminStudentController::class,'attendance'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/quiz/{admissionId}', [AdminStudentController::class,'quiz'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/finances/{admissionId}', [AdminStudentController::class,'finance'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/counselling/{admissionId}', [AdminStudentController::class,'career'])->middleware('checkuserpermission:show_admissions');
+
 
 
 
@@ -187,16 +196,16 @@ Route::group(['middleware'=>['auth']], function () {
 //route access to admin for students
     Route::get('tests', [StudentController::class,'getTests']);
 
-    Route::group(['prefix' => 'admin'],function (){
-
-        Route::get('score', [StudentController::class,'getScore']);
-
-        Route::get('students', [AdminStudentController::class,'index']);
-        Route::get('students/show/{id}', [AdminStudentController::class,'show']);
-        Route::get('students/{id}/edit', [AdminStudentController::class,'edit']);
-        Route::post('students/{id}', [AdminStudentController::class,'update']);
-        Route::get('students/attendance/{id}', [AdminStudentController::class,'getAttendance']);
-    });
+//    Route::group(['prefix' => 'admin'],function (){
+//
+//        Route::get('score', [StudentController::class,'getScore']);
+//
+//        Route::get('students', [AdminStudentController::class,'index']);
+//        Route::get('students/show/{id}', [AdminStudentController::class,'show']);
+//        Route::get('students/{id}/edit', [AdminStudentController::class,'edit']);
+//        Route::post('students/{id}', [AdminStudentController::class,'update']);
+//        Route::get('students/attendance/{id}', [AdminStudentController::class,'getAttendance']);
+//    });
 
 //    routes for attendance
     Route::get('attendance', [AttendanceController::class,'index'])->middleware('checkuserpermission:show_attendances');
