@@ -16,10 +16,10 @@
                         <div class="profile-img">
                             @if($setting->student)
                                 <a href="{{url($setting->student->image)}}" target="_blank">
-                                    <img src="{{url($setting->student->image)}}" class="img-fluid" alt="profile">
+                                    <img src="{{url($setting->student->image)}}" class="w-100" alt="profile">
                                 </a>
                             @else
-                                <img src="{{url('images/no_images.png')}}" class="img-fluid" alt="profile">
+                                <img src="{{url('images/no_images.png')}}" class="w-100" alt="profile">
                             @endif
                         </div>
                         <div class='profile-desc'>

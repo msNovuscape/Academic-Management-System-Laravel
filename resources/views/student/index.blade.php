@@ -13,8 +13,8 @@
             <div class="row profile-top">
                 <div class="col-md-6 profile-col">
                     <div class='profile-general'>
-                        <div class="profile-img">
-                            <img src="{{url($setting->image)}}" class="img-fluid" alt="profile">
+                        <div class="profile-student-img">
+                            <img src="{{url($setting->image)}}" class="w-100" alt="profile">
                         </div>
                         <div class='profile-desc'>
                             <h1>{{$setting->admission->user->name}}</h1>
