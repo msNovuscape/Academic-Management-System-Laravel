@@ -134,10 +134,19 @@
                                                             @foreach($settings as $setting)
                                                                 <tr>
                                                                     <td>{{$settings->firstItem() + $loop->index}}</td>
-                                                                    <td class="d-flex">
-                                                                        <div class="d-flex flex-column name-table">
-                                                                            <p>{{$setting->user->name}}</p>
-                                                                            <p>{{$setting->student_id}}</p>
+                                                                    <td class="">
+                                                                        <div class="d-flex">
+                                                                            <div class="table-image">
+                                                                                @if($setting->student)
+                                                                                    <img src="{{url($setting->student->image)}}" alt=""/>
+                                                                                @else
+                                                                                    <img src="{{url('images/no_images.png')}}" alt=""/>
+                                                                                @endif
+                                                                            </div>
+                                                                            <div class="d-flex flex-column name-table">
+                                                                                <p>{{$setting->user->name}}</p>
+                                                                                <p>{{$setting->student_id}}</p>
+                                                                            </div>
                                                                         </div>
                                                                     </td>
                                                                     <td>{{$setting->batch->time_slot->course->name}}</td>
