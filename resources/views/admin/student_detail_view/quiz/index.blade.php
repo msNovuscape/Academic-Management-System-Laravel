@@ -15,7 +15,9 @@
                     <div class='profile-general'>
                         <div class="profile-img">
                             @if($setting->student)
-                                <img src="{{url($setting->student->image)}}" class="img-fluid" alt="profile">
+                                <a href="{{url($setting->student->image)}}" target="_blank">
+                                    <img src="{{url($setting->student->image)}}" class="img-fluid" alt="profile">
+                                </a>
                             @else
                                 <img src="{{url('images/no_images.png')}}" class="img-fluid" alt="profile">
                             @endif

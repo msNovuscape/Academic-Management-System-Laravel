@@ -17,11 +17,16 @@ class AdminStudentController extends Controller
     public function attendance($admissionId)
     {
         $setting = Admission::findOrFail($admissionId);
-        if (\request('date')) {
-            $attendances = $setting->student->attendancesOrderByDate->where('date', \request('date'));
+        if($setting->student) {
+            if (\request('date')) {
+                $attendances = $setting->student->attendancesOrderByDate->where('date', \request('date'));
+            } else {
+                $attendances = $setting->student->attendancesOrderByDate;
+            }
         } else {
-            $attendances = $setting->student->attendancesOrderByDate;
+            $attendances = [];
         }
+
 
         return view('admin.student_detail_view.attendance.index', compact('setting', 'attendances'));
     }

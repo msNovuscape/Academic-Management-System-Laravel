@@ -15,7 +15,9 @@
                     <div class='profile-general'>
                         <div class="profile-img">
                             @if($setting->student)
-                                <img src="{{url($setting->student->image)}}" class="img-fluid" alt="profile">
+                                <a href="{{url($setting->student->image)}}" target="_blank">
+                                    <img src="{{url($setting->student->image)}}" class="img-fluid" alt="profile">
+                                </a>
                             @else
                                 <img src="{{url('images/no_images.png')}}" class="img-fluid" alt="profile">
                             @endif
@@ -41,7 +43,9 @@
                     @include('admin.student_detail_view.tab.nav')
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-attendacne" role="tabpanel" aria-labelledby="nav-home-tab">
-                            @include('admin.student_detail_view.general.show')
+                            @if($setting->student)
+                                @include('admin.student_detail_view.general.show')
+                            @endif
                         </div>
                     </div>
                 </div>
