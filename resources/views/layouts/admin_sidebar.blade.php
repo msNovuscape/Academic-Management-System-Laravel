@@ -121,6 +121,13 @@
                 <ul class="nav flex-column sub-menu">
                     @if(Auth::user()->menuPermission('course_materials') > 0)
                         <li class="nav-item">
+                            <a class="nav-link" href="{{url('course-modules')}}">
+                                <i class="bi bi-file-earmark-text"></i>Course Module
+                            </a>
+                        </li>
+                    @endif
+                    @if(Auth::user()->menuPermission('course_materials') > 0)
+                        <li class="nav-item">
                             <a class="nav-link" href="{{url('course-materials')}}">
                                 <i class="bi bi-file-earmark-text"></i>Course Materials
                             </a>

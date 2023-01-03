@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\Admin\TechnicalExamController;
 use App\Http\Controllers\Admin\AdminStudentController;
+use App\Http\Controllers\Admin\CourseModuleController;
 
 
 
@@ -183,6 +184,13 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('course-materials/{id}/edit', [CourseMaterialController::class,'edit'])->middleware('checkuserpermission:update_course_materials');
     Route::post('course-materials/{id}', [CourseMaterialController::class,'update'])->middleware('checkuserpermission:update_course_materials');
     Route::get('course-materials/delete/{id}', [CourseMaterialController::class,'delete'])->middleware('checkuserpermission:delete_course_materials');
+    //routes for course modules
+    Route::get('course-modules', [CourseModuleController::class,'index'])->middleware('checkuserpermission:show_course_materials');
+    Route::get('course-modules/create', [CourseModuleController::class,'create'])->middleware('checkuserpermission:create_course_materials');
+    Route::post('course-modules', [CourseModuleController::class,'store'])->middleware('checkuserpermission:create_course_materials');
+    Route::get('course-modules/{course_id}/edit', [CourseModuleController::class,'edit'])->middleware('checkuserpermission:update_course_materials');
+    Route::post('course-modules-delete', [CourseModuleController::class, 'delete'])->middleware('checkuserpermission:update_course_materials');
+    Route::post('course-modules/update', [CourseModuleController::class, 'update'])->middleware('checkuserpermission:update_course_materials');
 
 
     Route::get('batch-course-materials', [BatchCourseMaterialController::class,'index'])->middleware('checkuserpermission:show_batch_course_materials');
