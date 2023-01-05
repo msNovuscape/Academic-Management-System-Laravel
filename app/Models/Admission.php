@@ -78,5 +78,10 @@ class Admission extends Model
         return $this->hasManyThrough(IndividualQuizResult::class, StudentQuizIndividual::class,'admission_id', 's_q_individual_id');
     }
 
+    public function admissionBatchMaterialsByModule($moduleId)
+    {
+        return $this->hasMany(AdmissionBatchMaterial::class)->where('course_module_id', $moduleId);
+    }
+
 
 }

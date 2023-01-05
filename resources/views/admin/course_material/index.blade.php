@@ -77,6 +77,7 @@
                                                             <th>S.N.</th>
                                                             <th>Material Name</th>
                                                             <th>Course</th>
+                                                            <th>Module</th>
                                                             <th>Type</th>
                                                             <th>Link</th>
                                                             <th>Status</th>
@@ -88,6 +89,8 @@
                                                             <tr>
                                                                 <td>{{$loop->iteration}}</td>
                                                                 <td>{{$setting->name}}</td>
+                                                                <td>{{$setting->course->name}}</td>
+                                                                <td>{{$setting->course_material_module ? $setting->course_material_module->course_module->name : "-"}}</td>
                                                                 <td>{{$setting->course->name}}</td>
                                                                 <td> {{config('custom.setting_types')[$setting->type]}}</td>
                                                                 <td>{{$setting->link}}</td>

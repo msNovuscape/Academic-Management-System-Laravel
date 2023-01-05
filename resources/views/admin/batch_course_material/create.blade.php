@@ -55,7 +55,7 @@
                                                     </div>
                                                     <div class="col-md-9">
                                                         <div class="input-group">
-                                                            <select name="batch_id" id="batch_id" class="form-control" required>
+                                                            <select name="batch_id" id="batch_id" class="form-control" required onchange="getStudents()">
                                                                 <option value=""  selected disabled class="option">Please Select the Batch</option>
 
                                                             </select>
@@ -65,12 +65,19 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {{--    start section for module --}}
+                                        <div id="module_dom">
 
+                                        </div>
 
+                                    {{--    end section for module --}}
 
-                        <div id="material_dom">
+                                    {{--    start section for materil or students --}}
+                                    <div id="material_dom">
 
-                        </div>
+                                    </div>
+                                    {{--    end section for materil or students  --}}
+
 
                         <div class="button-section d-flex justify-content-end mt-4">
                             <a href="{{url('batch-course-materials')}}">
@@ -123,7 +130,7 @@
             }
         }
 
-
+        var submitFunction = true;
         function getBatch(){
             var course_id = $('#course_id').val();
             $.ajax({
@@ -133,15 +140,46 @@
                 processData: false,  // tell jQuery not to process the data
                 contentType: false,
                 success:function (data){
-                    $('.option').remove();
-                    $('#material_select').remove();
-                    $('#batch_id').append(data['html']);
-                    $('#material_dom').append(data['html_material']);
+                    if (data['status'] == 'No') {
+                        $('.option').remove();
+                        $('#material_select').remove();
+                        $('#course-module-dom').remove();
+                        $('#batch_id').append(data['html']);
+                        $('#material_dom').append(data['html_material']);
+                        submitFunction = false;
+                    } else {
+                        $('.option').remove();
+                        $('#material_select').remove();
+                        $('#course-module-dom').remove();
+                        $('#batch_id').append(data['html']);
+                        $('#module_dom').append(data['html_module']);
+                        submitFunction = true;
+                    }
                 },
                 error: function (error){
                    errorDisplay('Something went wrong!');
                 }
             });
+        }
+
+        function getStudents(){
+            var batch_id = $('#batch_id').val();
+            if (submitFunction == true) {
+                $.ajax({
+                    type: 'GET',
+                    url:Laravel.url+'/batch-course-materials/get_students/'+batch_id,
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,
+                    success:function (data){
+                        $('#material_select').remove();
+                        $('#material_dom').append(data['html_material']);
+                    },
+                    error: function (error){
+                        errorDisplay('Something went wrong!');
+                    }
+                });
+            }
         }
 
         function validateForm() {

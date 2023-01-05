@@ -59,5 +59,10 @@ class Batch extends Model
         return $this->belongsToMany(UserTeacher::class, 'user_teacher_batches', 'batch_id', 'user_teacher_id');
     }
 
+    public function admission_batch_materials()
+    {
+        return $this->hasMany(AdmissionBatchMaterial::class);
+    }
+
 
 }

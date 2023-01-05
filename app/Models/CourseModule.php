@@ -13,4 +13,9 @@ class CourseModule extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function admission_batch_materials()
+    {
+        return $this->hasMany(AdmissionBatchMaterial::class);
+    }
 }

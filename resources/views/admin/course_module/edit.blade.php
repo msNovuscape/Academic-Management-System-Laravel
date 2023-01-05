@@ -158,5 +158,37 @@
             }
         }
 
+        function getModule() {
+            var course_id = $('#course_id').val();
+            start_loader();
+            $.ajax({
+                type:'GET',
+                url:Laravel.url+'/course-materials/modules/'+course_id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,
+                success:function (data){
+                    end_loader();
+                    if (data['status'] == 'Yes') {
+                        $('.option-module').remove();
+                        $('#course_module_id').append(data['html']);
+                        $('#course_module_id').attr('required', 'required')
+                        $('#course-module-dom').show();
+                    } else {
+                        $('.option-module').remove();
+                        $('#course_module_id').removeAttr('required');
+                        $('#course-module-dom').hide();
+                    }
+
+                },
+                error: function (error){
+                    end_loader()
+                    errorDisplay('Something went worng !');
+                }
+            });
+
+        }
+
+
     </script>
 @endsection

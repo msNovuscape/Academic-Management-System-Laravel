@@ -59,6 +59,20 @@ class CourseMaterialController extends Controller
         return view($this->view.'create',compact('courses'));
     }
 
+    public function getModule($courseId)
+    {
+        $course = Course::findOrFail($courseId);
+        $settings = $course->course_modules;
+        if ($course->course_modules->count() > 0) {
+            $returnHtml = view($this->view.'module', ['settings' => $settings])->render();
+            $status = 'Yes';
+        } else {
+            $returnHtml = '';
+            $status = 'No';
+        }
+        return response()->json(array('success' =>true, 'html' => $returnHtml, 'status' => $status));
+    }
+
     public function store(CourseMaterialRequest $request)
     {
         $validateData = $request->validated();

@@ -9,8 +9,10 @@
                 <div class="col-sm-12 col-md-12 stretch-card">
                     <div class="card-wrap form-block p-0">
                         <div class="block-header p-4">
-                            <h3>Course Material</h3>
-                            <p class="ms-4">Fill the following fields to add a new course material</p>
+                            <div class="d-flex flex-column">
+                                <h3>Course Material</h3>
+                                <p class="mt-2 sub-header">Fill the following fields to add a new course materials</p>
+                            </div>
                             <div class="tbl-buttons">
                                 <ul>
                                     <li>
@@ -25,7 +27,7 @@
                             <div class="col-12 table-responsive grid-margin">
                                 {!! Form::open(['url' => 'course-materials','method' => 'POST', 'files' => true]) !!}
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-6">
+                                    <div class="col-sm-12 col-md-6 mt-4">
                                         <div class="form-group batch-form">
                                             <div class="col-md-12">
                                                 <div class="row">
@@ -34,7 +36,7 @@
                                                     </div>
                                                     <div class="col-md-9">
                                                         <div class="input-group">
-                                                            <select name="course_id" class="form-control" required>
+                                                            <select name="course_id" id="course_id" class="form-control" required onchange="getModule()">
                                                                 <option value="" selected disabled>Please Select the Course</option>
                                                                 @foreach($courses as $course)
                                                                     <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
@@ -46,7 +48,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-6">
+
+                                    <div class="col-sm-12 col-md-6 mt-4" id="course-module-dom" style="display: none">
+                                        <div class="form-group batch-form">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label>Course Module</label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <select name="course_module_id" id="course_module_id" class="form-control">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6 mt-4">
                                         <div class="form-group batch-form">
                                             <div class="col-md-12">
                                                 <div class="row">
@@ -201,6 +222,37 @@
                             '</div>';
                         $('#value_section').append(html);
                     }
+                }
+
+                function getModule() {
+                    var course_id = $('#course_id').val();
+                    start_loader();
+                    $.ajax({
+                        type:'GET',
+                        url:Laravel.url+'/course-materials/modules/'+course_id,
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,
+                        success:function (data){
+                            end_loader();
+                            if (data['status'] == 'Yes') {
+                                $('.option-module').remove();
+                                $('#course_module_id').append(data['html']);
+                                $('#course_module_id').attr('required', 'required');
+                                $('#course-module-dom').show();
+                            } else {
+                                $('.option-module').remove();
+                                $('#course_module_id').removeAttr('required');
+                                $('#course-module-dom').hide();
+                            }
+
+                        },
+                        error: function (error){
+                            end_loader()
+                            errorDisplay('Something went worng !');
+                        }
+                    });
+
                 }
             </script>
 @endsection

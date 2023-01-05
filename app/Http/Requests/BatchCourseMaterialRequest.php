@@ -25,7 +25,9 @@ class BatchCourseMaterialRequest extends FormRequest
     {
         return [
             'batch_id'=>'required',
-            'course_material_id'=>'required'
+            'course_material_id'=>'nullable',
+            'course_module_id' => 'nullable',
+            'admissionId' => 'nullable|array'
         ];
     }
 
@@ -33,7 +35,6 @@ class BatchCourseMaterialRequest extends FormRequest
     {
         return [
             'batch_id.required'=>'Please Select Your Batch',
-            'course_material_id'=>'Please Select the Course Material'
         ];
     }
 }

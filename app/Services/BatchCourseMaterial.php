@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Http\Controllers\Admin\BatchCourseMaterialController;
+use App\Models\AdmissionBatchMaterial;
 use App\Models\Batch;
+use App\Models\CourseModule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\BatchCourseMaterial as Model;
@@ -31,29 +33,59 @@ class BatchCourseMaterial
                                 });
                         })->orWhere('name','like','%'.$key.'%');
         }
-        return $settings->whereHas('batch_course_materials')->paginate(config('custom.per_page'));
+        return $settings->whereHas('batch_course_materials')->orWhereHas('admission_batch_materials')->paginate(config('custom.per_page'));
     }
     public function storeData($requestAll)
     {
-        if(count($requestAll['course_material_id']) > 0){
-            foreach ($requestAll['course_material_id'] as $value){
+        if (request('course_material_id')) {
+            foreach ($requestAll['course_material_id'] as $value) {
                 $user = Model::firstOrNew(['batch_id' => request('batch_id'),'course_material_id' => $value]);
                 $user->save();
             }
             return $user;
+        } elseif (request('admissionId')) {
+                foreach (request('admissionId') as $admissionId) {
+                    $admissionBatchMaterial = AdmissionBatchMaterial::firstOrNew(['course_module_id' => request('course_module_id'),
+                        'admission_id' => $admissionId]);
+                    $admissionBatchMaterial->batch_id = request('batch_id');
+                    $admissionBatchMaterial->save();
+                }
+                return $admissionBatchMaterial;
         }
     }
 
     public function updateData($requestAll ,$batch_id )
     {
-        if(count($requestAll['course_material_id']) > 0){
+        if (request('course_material_id')) {
             $batch = Batch::findOrFail($batch_id);
             $batch->batch_course_materials()->delete();
-            foreach ($requestAll['course_material_id'] as $value){
+            foreach ($requestAll['course_material_id'] as $value) {
                 $user = Model::firstOrNew(['batch_id' => request('batch_id'),'course_material_id' => $value]);
                 $user->save();
             }
             return $user;
+        } elseif (request('admissionId')) {
+            $courseModule = CourseModule::findOrFail(request('course_module_id'));
+            if ($courseModule->admission_batch_materials->count() > 0) {
+                $courseModule->admission_batch_materials()->delete();
+            }
+            foreach (request('admissionId') as $admissionId) {
+                $admissionBatchMaterial = AdmissionBatchMaterial::firstOrNew(['course_module_id' => request('course_module_id'),
+                    'admission_id' => $admissionId]);
+                $admissionBatchMaterial->batch_id = request('batch_id');
+                $admissionBatchMaterial->save();
+            }
+            return $admissionBatchMaterial;
+        } else {
+            if(request('batch_id') && request('course_module_id')) {
+                $courseModule = CourseModule::findOrFail(request('course_module_id'));
+                if ($courseModule->admission_batch_materials->count() > 0) {
+                    $courseModule->admission_batch_materials()->delete();
+                }
+            } elseif (request('batch_id')) {
+                $batch = Batch::findOrFail($batch_id);
+                $batch->batch_course_materials()->delete();
+            }
         }
     }
 }

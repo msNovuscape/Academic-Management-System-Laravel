@@ -179,6 +179,7 @@ Route::group(['middleware'=>['auth']], function () {
 
     Route::get('course-materials', [CourseMaterialController::class,'index'])->middleware('checkuserpermission:show_course_materials');
     Route::get('course-materials/create', [CourseMaterialController::class,'create'])->middleware('checkuserpermission:create_course_materials');
+    Route::get('course-materials/modules/{course_id}', [CourseMaterialController::class,'getModule'])->middleware('checkuserpermission:create_course_materials');
     Route::post('course-materials', [CourseMaterialController::class,'store'])->middleware('checkuserpermission:create_course_materials');
     Route::get('course-materials/show/{id}', [CourseMaterialController::class,'show'])->middleware('checkuserpermission:show_course_materials');
     Route::get('course-materials/{id}/edit', [CourseMaterialController::class,'edit'])->middleware('checkuserpermission:update_course_materials');
@@ -197,6 +198,9 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('batch-course-materials/create', [BatchCourseMaterialController::class,'create'])->middleware('checkuserpermission:create_batch_course_materials');
     Route::post('batch-course-materials', [BatchCourseMaterialController::class,'store'])->middleware('checkuserpermission:create_batch_course_materials');
     Route::get('batch-course-materials/get_batches/{course_id}', [BatchCourseMaterialController::class,'getBatch']);
+    Route::get('batch-course-materials/get_batches_edit/{course_id}', [BatchCourseMaterialController::class,'getBatchEdit']);
+    Route::get('batch-course-materials/get_students/{batch_id}', [BatchCourseMaterialController::class,'getBatchStudents']);
+    Route::get('batch-course-materials/get_module_students/{batch_id}/{course_module_id}', [BatchCourseMaterialController::class,'getModuleStudents']);
     Route::get('batch-course-materials/show/{batch_id}', [BatchCourseMaterialController::class,'show'])->middleware('checkuserpermission:show_batch_course_materials');
     Route::get('batch-course-materials/{batch_id}/edit', [BatchCourseMaterialController::class,'edit'])->middleware('checkuserpermission:update_batch_course_materials');
     Route::post('batch-course-materials/{batch_id}', [BatchCourseMaterialController::class,'update'])->middleware('checkuserpermission:update_batch_course_materials');

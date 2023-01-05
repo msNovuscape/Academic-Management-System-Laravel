@@ -19,4 +19,10 @@ class CourseMaterial extends Model
         return $this->hasMany(BatchCourseMaterial::class);
     }
 
+    public function course_material_module()
+    {
+       return $this->hasOne(CourseMaterialModule::class);
+    }
+
+
 }

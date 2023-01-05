@@ -30,6 +30,7 @@ class CourseMaterialRequest extends FormRequest
             'status'=>['required','numeric'],
             'link'=>['required'],
             'description'=>['nullable','string'],
+            'course_module_id'=>['nullable','numeric'],
         ];
     }
 

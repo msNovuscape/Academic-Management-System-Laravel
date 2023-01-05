@@ -25,7 +25,7 @@
                             <div class="col-12 table-responsive grid-margin">
                                 {!! Form::open(['url' => 'course-materials/'.$setting->id,'method' => 'POST', 'files' => true]) !!}
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-6">
+                                    <div class="col-sm-12 col-md-6 mt-4">
                                         <div class="form-group batch-form">
                                             <div class="col-md-12">
                                                 <div class="row">
@@ -34,7 +34,7 @@
                                                     </div>
                                                     <div class="col-md-9">
                                                         <div class="input-group">
-                                                            <select name="course_id" class="form-control" required>
+                                                            <select name="course_id" id="course_id" class="form-control"  required onchange="getModule()">
                                                                 <option value="" selected disabled>Please Select the Course</option>
                                                                 @foreach($courses as $course)
                                                                     <option value="{{$course->id}}" @if($setting->course_id == $course->id) selected @endif>{{$course->name}}</option>
@@ -46,7 +46,50 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-6">
+                                    @if($setting->course_material_module->count() > 0)
+                                        <div class="col-sm-12 col-md-6 mt-4" id="course-module-dom">
+                                            <div class="form-group batch-form">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>Course Module</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="input-group">
+                                                                <select name="course_module_id" id="course_module_id" class="form-control" required>
+                                                                    <option value="" selected disabled class="option-module">Please Select the module</option>
+                                                                    @foreach($setting->course->course_modules as $my_course_material_module)
+                                                                        <option value="{{$my_course_material_module->id}}" @if($my_course_material_module->id == $setting->course_material_module->course_module_id) selected @endif class="option-module">
+                                                                            {{$my_course_material_module->name}}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="col-sm-12 col-md-6 mt-4" id="course-module-dom" style="display: none">
+                                            <div class="form-group batch-form">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>Course Module</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="input-group">
+                                                                <select name="course_module_id" id="course_module_id" class="form-control">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <div class="col-sm-12 col-md-6 mt-4">
                                         <div class="form-group batch-form">
                                             <div class="col-md-12">
                                                 <div class="row">
@@ -244,6 +287,36 @@
                             '</div>';
                         $('#value_section').append(html);
                     }
+                }
+                function getModule() {
+                    var course_id = $('#course_id').val();
+                    start_loader();
+                    $.ajax({
+                        type:'GET',
+                        url:Laravel.url+'/course-materials/modules/'+course_id,
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,
+                        success:function (data){
+                            end_loader();
+                            if (data['status'] == 'Yes') {
+                                $('.option-module').remove();
+                                $('#course_module_id').append(data['html']);
+                                $('#course_module_id').attr('required', 'required')
+                                $('#course-module-dom').show();
+                            } else {
+                                $('.option-module').remove();
+                                $('#course_module_id').removeAttr('required');
+                                $('#course-module-dom').hide();
+                            }
+
+                        },
+                        error: function (error){
+                            end_loader()
+                            errorDisplay('Something went worng !');
+                        }
+                    });
+
                 }
             </script>
 @endsection

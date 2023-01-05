@@ -8,6 +8,7 @@ use App\Models\BatchCourseMaterial as Model;
 use App\Models\Batch;
 use App\Models\Course;
 use App\Models\CourseMaterial;
+use App\Models\CourseModule;
 use App\Services\AdmissionService;
 use App\Services\BatchCourseMaterial;
 use Illuminate\Support\Facades\Auth;
@@ -50,18 +51,61 @@ class BatchCourseMaterialController extends Controller
     {
         $validatedData = $request->validated();
         $this->batchCourseMaterial->storeData($validatedData);
-        Session::flash('success','Batch Material  has been created!');
+        Session::flash('success', 'Batch Material  has been created!');
         return redirect($this->redirect);
     }
 
     public function getBatch($course_id)
-{
-    $courses = Course::findorfail($course_id);
-    $settings = $courses->batches->where('status',array_search('Active',config('custom.status')));
-    $course_materials = $courses->course_materials->where('status',array_search('Active',config('custom.status')));
-   $returnHtml = view($this->view.'batch-dom',['settings'=>$settings])->render();
-   $returnHtmlMaterial = view($this->view.'course_material_dom',['course_materials'=>$course_materials])->render();
-    return response()->json(array('success'=>true,'html'=>$returnHtml,'html_material' => $returnHtmlMaterial));
+    {
+        $courses = Course::findorfail($course_id);
+        $settings = $courses->batches->where('status', array_search('Active',config('custom.status')));
+        if ($courses->course_modules->count() > 0) {
+            $status = 'Yes'; // course has course module
+            $returnHtml = view($this->view.'batch-dom', ['settings'=>$settings])->render();
+            $returnHtmlModule = view($this->view.'student.module', ['course_modules'=>$courses->course_modules])->render();
+            return response()->json(array('success'=>true, 'html'=>$returnHtml, 'html_module'=>$returnHtmlModule,'status' => $status));
+        } else {
+            $status = 'No';
+            $course_materials = $courses->course_materials->where('status',array_search('Active',config('custom.status')));
+            $returnHtml = view($this->view.'batch-dom',['settings'=>$settings])->render();
+            $returnHtmlMaterial = view($this->view.'course_material_dom',['course_materials'=>$course_materials])->render();
+            return response()->json(array('success'=>true,'html'=>$returnHtml,'html_material' => $returnHtmlMaterial, 'status' => $status));
+        }
+
+    }
+
+    public function getBatchEdit($course_id)
+    {
+        $courses = Course::findorfail($course_id);
+        $settings = $courses->batches->where('status', array_search('Active',config('custom.status')));
+        if ($courses->course_modules->count() > 0) {
+            $status = 'Yes'; // course has course module
+            $returnHtml = view($this->view.'batch-dom', ['settings'=>$settings])->render();
+            $returnHtmlModule = view($this->view.'student.module_update', ['course_modules'=>$courses->course_modules])->render();
+            return response()->json(array('success'=>true, 'html'=>$returnHtml, 'html_module'=>$returnHtmlModule,'status' => $status));
+        } else {
+            $status = 'No';
+            $course_materials = $courses->course_materials->where('status',array_search('Active',config('custom.status')));
+            $returnHtml = view($this->view.'batch-dom',['settings'=>$settings])->render();
+            $returnHtmlMaterial = view($this->view.'course_material_dom',['course_materials'=>$course_materials])->render();
+            return response()->json(array('success'=>true,'html'=>$returnHtml,'html_material' => $returnHtmlMaterial, 'status' => $status));
+        }
+
+    }
+    public function getBatchStudents($batchId)
+    {
+        $batch = Batch::findorfail($batchId);
+        $returnHtmlMaterial = view($this->view.'student.index', ['batch'=>$batch])->render();
+        return response()->json(array('success'=>true,'html_material' => $returnHtmlMaterial));
+
+    }
+    public function getModuleStudents($batchId, $courseModuleId)
+    {
+        $batch = Batch::findorfail($batchId);
+        $courseModule = CourseModule::findorfail($courseModuleId);
+        $returnHtmlMaterial = view($this->view.'student.index_ajax', ['setting'=>$batch, 'courseModule' => $courseModule])->render();
+        return response()->json(array('success'=>true,'html_material' => $returnHtmlMaterial));
+
     }
 
     public function edit($batch_id)
@@ -76,7 +120,7 @@ class BatchCourseMaterialController extends Controller
             $courses = Course::where('status', 1)->get();
         }
         $course_materials = $setting->time_slot->course->course_materials->where('status',array_search('Active',config('custom.status')));
-        $batches = Batch::where('status',1)->get();
+        $batches = $setting->time_slot->course->batches->where('status', 1);
         $batch_course_materials = $setting->batch_course_materials;
         return view($this->view.'edit',compact('courses','setting','course_materials','batches','batch_course_materials'));
     }
