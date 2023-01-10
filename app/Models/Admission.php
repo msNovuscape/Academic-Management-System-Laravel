@@ -83,5 +83,20 @@ class Admission extends Model
         return $this->hasMany(AdmissionBatchMaterial::class)->where('course_module_id', $moduleId);
     }
 
+    public function admissionBatchMaterials()
+    {
+        return $this->hasMany(AdmissionBatchMaterial::class);
+    }
+
+//    public function courseMaterialModules()
+//    {
+//        return $this->belongsToMany(CourseMaterialModule::class, AdmissionBatchMaterial::class, 'admission_id');
+//    }
+
+    public function course_material_not_assigneds()
+    {
+        return $this->hasMany(CourseMaterialNotAssigned::class);
+    }
+
 
 }

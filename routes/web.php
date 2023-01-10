@@ -137,6 +137,9 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('admissions/quiz/{admissionId}', [AdminStudentController::class,'quiz'])->middleware('checkuserpermission:show_admissions');
     Route::get('admissions/finances/{admissionId}', [AdminStudentController::class,'finance'])->middleware('checkuserpermission:show_admissions');
     Route::get('admissions/counselling/{admissionId}', [AdminStudentController::class,'career'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/course_materials/{admissionId}', [AdminStudentController::class,'courseMaterials'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/course_materials_checked/{admissionId}/{courseMaterialId}', [AdminStudentController::class,'updateCourseMaterialChecked'])->middleware('checkuserpermission:show_admissions');
+    Route::get('admissions/course_materials_unchecked/{admissionId}/{courseMaterialId}', [AdminStudentController::class,'updateCourseMaterialUnChecked'])->middleware('checkuserpermission:show_admissions');
 
 
 

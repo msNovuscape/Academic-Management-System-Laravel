@@ -41,6 +41,16 @@
                 </div>
             </div>
         </a>
+        <a href="{{url('admissions/course_materials/'.$setting->id)}}" class="nav-link @if(Request::segment(2) == 'course_materials')  active @endif col"    aria-controls="nav-home" aria-selected="true">
+            <div class="general-section">
+                <div>
+                    <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <div>
+                    <h1>Materials</h1>
+                </div>
+            </div>
+        </a>
         <a href="{{url('admissions/counselling/'.$setting->id)}}" class="nav-link @if(Request::segment(2) == 'counselling')  active @endif col"    aria-controls="nav-home" aria-selected="true">
             <div class="general-section">
                 <div>
