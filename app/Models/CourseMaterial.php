@@ -24,6 +24,11 @@ class CourseMaterial extends Model
        return $this->hasOne(CourseMaterialModule::class);
     }
 
+    public function course_material_not_assigneds()
+    {
+        return $this->hasMany(CourseMaterialNotAssigned::class);
+    }
+
 
 
 }

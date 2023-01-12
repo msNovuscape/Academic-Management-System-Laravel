@@ -91,9 +91,10 @@
                                                                 <td>{{$setting->name}}</td>
                                                                 <td>{{$setting->course->name}}</td>
                                                                 <td>{{$setting->course_material_module ? $setting->course_material_module->course_module->name : "-"}}</td>
-                                                                <td>{{$setting->course->name}}</td>
                                                                 <td> {{config('custom.setting_types')[$setting->type]}}</td>
-                                                                <td>{{$setting->link}}</td>
+                                                                <td>
+                                                                    <a class="dropdown-item"  href="{{$setting->link}}" target="_blank" role="button" data-bs-toggle="tooltip" data-bs-title="view doc"><i class="fa-solid fa-eye"></i></a>
+                                                                </td>
                                                                 <td>{{config('custom.status')[$setting->status]}}</td>
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">

@@ -46,7 +46,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @if($setting->course_material_module->count() > 0)
+                                    @if($setting->course->course_modules->count() > 0)
                                         <div class="col-sm-12 col-md-6 mt-4" id="course-module-dom">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
@@ -58,11 +58,19 @@
                                                             <div class="input-group">
                                                                 <select name="course_module_id" id="course_module_id" class="form-control" required>
                                                                     <option value="" selected disabled class="option-module">Please Select the module</option>
-                                                                    @foreach($setting->course->course_modules as $my_course_material_module)
-                                                                        <option value="{{$my_course_material_module->id}}" @if($my_course_material_module->id == $setting->course_material_module->course_module_id) selected @endif class="option-module">
-                                                                            {{$my_course_material_module->name}}
-                                                                        </option>
-                                                                    @endforeach
+                                                                    @if($setting->course_material_module)
+                                                                        @foreach($setting->course->course_modules as $my_course_material_module)
+                                                                            <option value="{{$my_course_material_module->id}}" @if($my_course_material_module->id == $setting->course_material_module->course_module_id) selected @endif class="option-module">
+                                                                                {{$my_course_material_module->name}}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach($setting->course->course_modules as $my_course_material_module)
+                                                                            <option value="{{$my_course_material_module->id}}" @if($my_course_material_module->id == old('course_module_id')) selected @endif class="option-module">
+                                                                                {{$my_course_material_module->name}}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    @endif
                                                                 </select>
                                                             </div>
                                                         </div>
