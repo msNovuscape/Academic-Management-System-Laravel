@@ -119,6 +119,14 @@ class FinanceService {
                 })->where('bank_status',$key);
             });
         }
+
+        if (request('course_id') && request('batch_id')) {
+            $key = request('course_id');
+            $key2 = request('batch_id');
+            $settings = $settings->whereHas('batch.time_slot',function ($q) use($key){
+                $q->where('course_id',$key);
+            })->where('batch_id', $key2)->whereHas('finances');
+        }
         if(request('course_id')){
             $key = \request('course_id');
             $settings = $settings->whereHas('batch.time_slot',function ($q) use($key){

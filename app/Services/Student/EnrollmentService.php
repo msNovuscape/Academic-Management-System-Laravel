@@ -110,6 +110,40 @@ class EnrollmentService {
                 $q->where('batch_id', Auth::user()->admission->batch_id);
             })->orWhere('course_id', 8); //for course carrier counselling
         } elseif (Auth::user()->admission->sCounselling) {
+            if (Auth::user()->admission->batch->time_slot->course->course_modules->count() > 0) {
+                $settings = CourseMaterial::whereHas('course_material_module.course_module.admission_batch_materials', function ($q) {
+                    $q->where('admission_id', Auth::user()->admission->id);
+                })->orWhere('course_id', 8); //for course carrier counselling
+            } else {
+                $settings = CourseMaterial::whereHas('batch_course_materials', function ($q) {
+                    $q->where('batch_id', Auth::user()->admission->batch_id);
+                })->orWhere('course_id', 8); //for course carrier counselling
+            }
+        } else {
+            if (Auth::user()->admission->batch->time_slot->course->course_modules->count() > 0) {
+                $settings = CourseMaterial::whereHas('course_material_module.course_module.admission_batch_materials', function ($q) {
+                    $q->where('admission_id', Auth::user()->admission->id);
+                });
+            } else {
+                $settings = CourseMaterial::whereHas('batch_course_materials', function ($q) {
+                    $q->where('batch_id', Auth::user()->admission->batch_id);
+                });
+            }
+        }
+
+        if (request('name')) {
+            $key = \request('name');
+            $settings = $settings->where('name', 'like', '%'.$key.'%');
+        }
+        return $settings->paginate(config('custom.per_page'));
+    }
+    public function getMaterialsOld()
+    {
+        if (Auth::user()->admission->batch_id == 2 && Auth::user()->admission->sCounselling) {
+            $settings = CourseMaterial::whereHas('batch_course_materials', function ($q) {
+                $q->where('batch_id', Auth::user()->admission->batch_id);
+            })->orWhere('course_id', 8); //for course carrier counselling
+        } elseif (Auth::user()->admission->sCounselling) {
             $settings = CourseMaterial::whereHas('batch_course_materials', function ($q) {
                 $q->where('batch_id', Auth::user()->admission->batch_id);
             })->orWhere('course_id', 8); //for course carrier counselling
