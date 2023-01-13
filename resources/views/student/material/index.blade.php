@@ -38,19 +38,21 @@
                                 <div class="col-md-8">
                                     <div class="row">
                                         @foreach($settings->where('type',1) as $setting)
-                                            <div class="col-md-6">
-                                                <a href="{{url($setting->link)}}" target="_blank">
-                                                    <div class="p-3 quiz-section-card d-flex mt-4">
-                                                        <div class="icon">
-                                                            <img src="{{url('images/quiz-card-icon.png')}}" alt="" />
+                                            @if(\App\Models\CourseMaterialNotAssigned::where('admission_id', Auth::user()->admission->id)->where('course_material_id', $setting->id)->count() == 0)
+                                                <div class="col-md-6">
+                                                    <a href="{{url($setting->link)}}" target="_blank">
+                                                        <div class="p-3 quiz-section-card d-flex mt-4">
+                                                            <div class="icon">
+                                                                <img src="{{url('images/quiz-card-icon.png')}}" alt="" />
+                                                            </div>
+                                                            <div class="para">
+                                                                <h4>{{$setting->name}}</h4>
+                                                                <p>{{$setting->description}}...</p>
+                                                            </div>
                                                         </div>
-                                                        <div class="para">
-                                                            <h4>{{$setting->name}}</h4>
-                                                            <p>{{$setting->description}}...</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                                    </a>
+                                                </div>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
@@ -59,17 +61,19 @@
                                         <h4>Video Materials</h4>
                                         <p class="card-heading-link">Find your video materials</p>
                                         @foreach($settings->where('type',2) as $setting1)
-                                            <a href="{{$setting1->link}}" target="_blank">
-                                                <div class="p-3 quiz-section-card d-flex mt-4">
-                                                    <div class="icon">
-                                                        <img src="{{url('images/quiz-video-icon.png')}}" alt="" />
+                                            @if(\App\Models\CourseMaterialNotAssigned::where('admission_id', Auth::user()->admission->id)->where('course_material_id', $setting1->id)->count() == 0)
+                                                <a href="{{$setting1->link}}" target="_blank">
+                                                    <div class="p-3 quiz-section-card d-flex mt-4">
+                                                        <div class="icon">
+                                                            <img src="{{url('images/quiz-video-icon.png')}}" alt="" />
+                                                        </div>
+                                                        <div class="para">
+                                                            <h4>{{$setting1->name}}</h4>
+                                                            <p>{{$setting1->description}}</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="para">
-                                                        <h4>{{$setting1->name}}</h4>
-                                                        <p>{{$setting1->description}}</p>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                                </a>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
