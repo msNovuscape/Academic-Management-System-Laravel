@@ -66,7 +66,7 @@ class CounsellingService
 
     public function search()
     {
-        $settings = SCounselling:: orderBy('id', 'desc');
+        $settings = SCounselling::where('status', 2)->orderBy('id', 'asc');
         if (request('date')) {
             $key = \request('date');
             $settings = $settings->where('date', $key);

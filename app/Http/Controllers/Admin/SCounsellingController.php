@@ -34,6 +34,15 @@ class SCounsellingController extends Controller
         return view('admin.counselling.index', compact('settings', 'courses', 'batches'));
     }
 
+    public function remove($s_counselling_id)
+    {
+        $setting = SCounselling::findOrFail($s_counselling_id);
+        $setting->status = 3;
+        $setting->save();
+        Session::flash('success', 'Student has been temporarily removed!');
+        return redirect($this->redirect);
+    }
+
     public function getCompleted()
     {
         $courses = Course::all();
@@ -94,7 +103,7 @@ class SCounsellingController extends Controller
 
     public function getGroupAttendance()
     {
-        $settings = SCounselling::orderBy('id', 'asc');
+        $settings = SCounselling::where('status', '!=', 3)->orderBy('id', 'asc');
         $date = date('Y-m-d');
         $settings = $settings->where('date', '<=', $date)->where('attendance_status', '2')->get();
         $batches = Batch::all();

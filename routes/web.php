@@ -272,6 +272,7 @@ Route::group(['middleware'=>['auth']], function () {
 
     //routes for carrier counselling
     Route::get('counselling', [SCounsellingController::class,'index'])->middleware('checkuserpermission:show_s_counsellings');
+    Route::get('counselling/remove/{s_counselling_id}', [SCounsellingController::class,'remove'])->middleware('checkuserpermission:show_s_counsellings');
     Route::get('counselling-completed', [SCounsellingController::class,'getCompleted'])->middleware('checkuserpermission:show_s_counsellings');
     Route::get('counselling/{admissionId}', [SCounsellingController::class,'getCounselling'])->middleware('checkuserpermission:show_s_counsellings');
     Route::post('counselling/status/{admissionId}', [SCounsellingController::class,'postStatus'])->middleware('checkuserpermission:create_s_counsellings');

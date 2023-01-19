@@ -157,6 +157,9 @@
                                                                             <li>
                                                                                 <a class="dropdown-item"  href="{{url('counselling/'.$setting->admission->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="View"><i class="fa-solid fa-eye"></i></a>
                                                                             </li>
+                                                                            <li>
+                                                                                <a class="dropdown-item"  href="{{url('counselling/remove/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="Remove"><i class="fa-solid fa-minus"></i></a>
+                                                                            </li>
                                                                         @endif
                                                                     </ul>
                                                                 </td>

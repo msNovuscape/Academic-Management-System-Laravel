@@ -88,7 +88,7 @@
                     <td>{{$setting->user->email}}</td>
                 @endif
                 @if(request('mobile_no'))
-                    <td>{{$setting->student->mobile_no}}</td>
+                    <td>{{$setting->student ? $setting->student->mobile_no : '-'}}</td>
                 @endif
 
                 @if(request('installment1'))
