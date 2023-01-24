@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('admission_id')->unsigned();
             $table->foreign('admission_id')->references('id')->on('admissions');
             $table->date('date');
-            $table->enum('status', ['1','2']); //1 for completed carrier counselling, 2 for not
+            $table->enum('status', ['1','2', '3']); //1 for completed carrier counselling, 2 for not and 3 for temproraly removed
             $table->enum('attendance_status', ['1','2']); //1 for completed carrier counselling, 2 for not
             $table->timestamps();
         });
