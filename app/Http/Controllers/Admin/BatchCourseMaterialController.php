@@ -77,7 +77,7 @@ class BatchCourseMaterialController extends Controller
     public function getBatchEdit($course_id)
     {
         $courses = Course::findorfail($course_id);
-        $settings = $courses->batches->where('status', array_search('Active',config('custom.status')));
+        $settings = $courses->batches->where('status', array_search('Active', config('custom.status')));
         if ($courses->course_modules->count() > 0) {
             $status = 'Yes'; // course has course module
             $returnHtml = view($this->view.'batch-dom', ['settings'=>$settings])->render();

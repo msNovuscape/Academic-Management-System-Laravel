@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('remark')->nullable();
             $table->enum('status',[1,2]);
             $table->string('name')->unique();
+            $table->string('name_other')->nullable();
             $table->float('fee');
             $table->timestamps();
         });

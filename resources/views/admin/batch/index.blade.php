@@ -84,7 +84,7 @@
                                                 <div class="card-session">
                                                     <div class="card-session-header d-flex justify-content-between">
                                                         <div class="header-left">
-                                                            <h4>{{$setting->name}}</h4>
+                                                            <h4>{{$setting->name_other}}</h4>
                                                         </div>
                                                         <div class="header-right">
                                                             <div class="dropdown">
@@ -110,6 +110,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <p>Course:</p>
+                                                                <p>Code:</p>
                                                                 <p>Branch:</p>
                                                                 <p>Day:</p>
                                                                 <p>Time Slot:</p>
@@ -123,6 +124,7 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <p>{{$setting->time_slot->course->name}}</p>
+                                                                <p>{{$setting->name}}</p>
                                                                 <p>{{$setting->time_slot->branch->name}}</p>
                                                                 <p>{{$setting->time_slot->time_table->day}}</p>
                                                                 <p>{{$setting->time_slot->time_table->start_time}} - {{$setting->time_slot->time_table->end_time}}</p>

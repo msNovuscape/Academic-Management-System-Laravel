@@ -127,6 +127,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 mt-4">
+                                        <div class="form-group batch-form">
+                                            <div class="col-md-12">
+                                                <div class="row align-items-baseline">
+                                                    <div class="col-md-3">
+                                                        <label for="exampleInputEmail1">Batch Name</label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="name_other" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-6 mt-4" style="display: none">
                                         <div class="form-group batch-form">
                                             <div class="col-md-12">

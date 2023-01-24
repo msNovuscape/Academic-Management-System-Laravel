@@ -59,7 +59,7 @@
                                                                 <option value="" selected disabled class="option">Please Select the Batch</option>
                                                                 @foreach($batches as $batch)
                                                                     <option value="{{$batch->id}}" @if($setting->id == $batch->id) selected @endif class="option">
-                                                                        {{$batch->name}}
+                                                                        {{$batch->name_other}}
                                                                     </option>
                                                                 @endforeach
                                                             </select>

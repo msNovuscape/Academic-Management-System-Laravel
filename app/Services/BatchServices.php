@@ -35,6 +35,7 @@ class BatchServices
                 }
                 $setting = new Model();
                 $setting->name = $course->code.'-'.$batch_count->year.'-'.$batch_count->no_of_batch;
+                $setting->name_other = $requestAll['name_other'];
                 $setting->time_slot_id = $requestAll['time_slot_id'];
                 $setting->fiscal_year_id  = FiscalYear::where('status',1)->orderBy('id','desc')->first()->id;
                 $setting->start_date = $requestAll['start_date'];
@@ -97,6 +98,7 @@ class BatchServices
                 if ($setting->time_slot->course_id == $course->id && $setting->students->count() == 0) {
                     $setting->time_slot_id = $requestAll['time_slot_id'];
                 }
+                $setting->name_other = $requestAll['name_other'];
                 $setting->fiscal_year_id  = FiscalYear::where('status',1)->orderBy('id','desc')->first()->id;
                 $setting->start_date = $requestAll['start_date'];
                 $setting->end_date = $requestAll['end_date'];

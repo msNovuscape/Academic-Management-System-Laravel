@@ -34,6 +34,7 @@ class BatchRequest extends FormRequest
             'installment_type' => ['required','array'],
             'due_date' => ['required','array'],
             'amount' => ['required','array'],
+            'name_other' => ['required','string'],
         ];
     }
 
@@ -48,6 +49,7 @@ class BatchRequest extends FormRequest
             'installment_type.required' => 'Installment is required for a Course',
             'due_date.required' => 'Due date for installment is required',
             'amount.required' => 'Amount for installment is required',
+            'name_other.required' => 'Batch Name is required',
         ];
     }
 }
