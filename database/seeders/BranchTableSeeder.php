@@ -18,7 +18,7 @@ class BranchTableSeeder extends Seeder
         DB::table('branches')->insert([
             ['name' => 'Sydney Branch',
             'address' => 'Sydney,Australia',
-            'phone_no' => '9813890246',
+            'phone_no' => '61291717742',
             'status' => 1],
             ['name' => 'Canberra',
                 'address' => 'Canberra,Australia',
