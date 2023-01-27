@@ -108,6 +108,12 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('fiscal-years/', [FiscalYearController::class,'store'])->middleware('checkuserpermission:create_fiscal_years');
     Route::get('fiscal-years/{id}/edit', [FiscalYearController::class,'edit'])->middleware('checkuserpermission:update_fiscal_years');
     Route::post('fiscal-years/{id}', [FiscalYearController::class,'update'])->middleware('checkuserpermission:update_fiscal_years');
+    //routes for branches
+    Route::get('branches/', [BranchController::class,'index'])->middleware('checkuserpermission:show_fiscal_years');
+    Route::get('branches/create', [BranchController::class,'create'])->middleware('checkuserpermission:create_fiscal_years');
+    Route::post('branches/', [BranchController::class,'store'])->middleware('checkuserpermission:create_fiscal_years');
+    Route::get('branches/{id}/edit', [BranchController::class,'edit'])->middleware('checkuserpermission:update_fiscal_years');
+    Route::post('branches/{id}', [BranchController::class,'update'])->middleware('checkuserpermission:update_fiscal_years');
 
 
     Route::get('batches', [BatchController::class,'index'])->middleware('checkuserpermission:show_batches');

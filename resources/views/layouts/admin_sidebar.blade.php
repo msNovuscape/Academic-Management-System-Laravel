@@ -9,7 +9,7 @@
     </li>
     @if(Auth::user()->menuPermission('fiscal_years') > 0 || Auth::user()->menuPermission('courses') > 0
         || Auth::user()->menuPermission('time_tables') > 0 || Auth::user()->menuPermission('time_slots') > 0)
-        <li class="nav-item @if(Request::segment(1) == 'fiscal-years' || Request::segment(1) == 'courses' || Request::segment(1) == 'timetables' || Request::segment(1) == 'timeslots' ) active @endif ">
+        <li class="nav-item @if(Request::segment(1) == 'fiscal-years' || Request::segment(1) == 'branches' || Request::segment(1) == 'courses' || Request::segment(1) == 'timetables' || Request::segment(1) == 'timeslots' ) active @endif ">
             <a class="nav-link">
                 <div class="sidebar-icon w-100" id="mySettingsBtn">
                     <i class="bi bi-gear"></i>
@@ -21,6 +21,9 @@
                     @if(Auth::user()->menuPermission('fiscal_years') > 0)
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('fiscal-years')}}"><i class="bi bi-calendar4-week"></i>Fiscal Year</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('branches')}}"><i class="bi bi-calendar4-week"></i>Branch</a>
                         </li>
                     @endif
                     @if(Auth::user()->menuPermission('courses') > 0)
