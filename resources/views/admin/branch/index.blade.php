@@ -57,7 +57,7 @@
                                     </div>
                                     @if(Auth::user()->crudPermission('create_fiscal_years'))
                                         <div class="add-button">
-                                            <a class="nav-link" href="{{url('branches/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Fiscal Year
+                                            <a class="nav-link" href="{{url('branches/create')}}"><i class="fa-solid fa-book-open"></i>&nbsp;&nbsp;Add Branch
                                             </a>
                                         </div>
                                     @endif
