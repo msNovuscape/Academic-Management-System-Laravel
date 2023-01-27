@@ -77,6 +77,11 @@ class User extends Authenticatable
         return $this->hasMany(UserPermission::class);
     }
 
+    public function userBranches()
+    {
+        return $this->hasMany(UserBranch::class);
+    }
+
     //functions for  user roles and permissions
     public function roles()
     {

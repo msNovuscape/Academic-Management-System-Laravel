@@ -3,6 +3,7 @@ namespace App\Services\Role;
 
 use App\Models\StudentPassword;
 use App\Models\User;
+use App\Models\UserBranch;
 use App\Models\UserEmailInfo;
 use App\Models\UserInfo;
 use App\Models\UserTeacher;
@@ -93,6 +94,13 @@ class UserService
                     $userTeacher->save();
                 }
             }
+            //assigning branch to user
+            foreach ($requestAll['branch_id'] as $myBranchId) {
+                $userBranch = new UserBranch();
+                $userBranch->user_id = $user->id;
+                $userBranch->branch_id = $myBranchId;
+                $userBranch->save();
+            }
             DB::commit();
             return $user;
         } catch (\Exception $e) {
@@ -175,6 +183,24 @@ class UserService
                         $previousTeacher->status = 2; //no longer to be subject teacher
                         $previousTeacher->save();
                     }
+                }
+            }
+
+            //assigning branch to user
+            if ($user->userBranches->count() > 0) {
+                $user->userBranches()->delete();
+                foreach ($requestAll['branch_id'] as $myBranchId) {
+                    $userBranch = new UserBranch();
+                    $userBranch->user_id = $user->id;
+                    $userBranch->branch_id = $myBranchId;
+                    $userBranch->save();
+                }
+            } else {
+                foreach ($requestAll['branch_id'] as $myBranchId) {
+                    $userBranch = new UserBranch();
+                    $userBranch->user_id = $user->id;
+                    $userBranch->branch_id = $myBranchId;
+                    $userBranch->save();
                 }
             }
             DB::commit();

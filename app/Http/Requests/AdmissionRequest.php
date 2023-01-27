@@ -33,7 +33,8 @@ class AdmissionRequest extends FormRequest
             'payment_status' => ['required','numeric'],
             'bank_status' => ['required','numeric'],
             'transaction_no' => ['nullable','string'],
-            'remark' => ['nullable','string']
+            'remark' => ['nullable','string'],
+            'branch_id' => ['required', 'numeric']
         ];
     }
 
@@ -47,6 +48,7 @@ class AdmissionRequest extends FormRequest
             'discount.required' => 'Discount is required',
             'payment_status.required' => 'Payment Status is required',
             'bank_status.required' => 'Bank Status  is required',
+            'branch_id.required' => 'Branch is required',
         ];
     }
 }

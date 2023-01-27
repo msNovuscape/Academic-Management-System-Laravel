@@ -129,11 +129,17 @@ class FinanceController extends Controller
     public function edit($admission_id)
     {
         $setting = Admission::findOrFail($admission_id);
-        $paid_amount = $setting->finances->sum('amount');
-        $start_date = $setting->batch->start_date;
-        $end_date = $setting->batch->end_date;
+        if ($setting->admissionBranch->branch->userBranches->count() > 0) {
+            $paid_amount = $setting->finances->sum('amount');
+            $start_date = $setting->batch->start_date;
+            $end_date = $setting->batch->end_date;
 //        dd($setting->extend_dates);
-        return view($this->view.'edit',compact('setting','paid_amount','start_date','end_date'));
+            return view($this->view.'edit', compact('setting','paid_amount','start_date','end_date'));
+        } else {
+            Session::flash('custom_error', 'You are not allowed!');
+            return redirect('finances');
+        }
+
     }
 
     public function extend_date(ExtendDateRequest $request)

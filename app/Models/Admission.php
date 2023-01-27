@@ -99,4 +99,10 @@ class Admission extends Model
     }
 
 
+    public function admissionBranch()
+    {
+        return $this->hasOne(AdmissionBranch::class);
+    }
+
+
 }

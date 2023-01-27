@@ -120,6 +120,7 @@
                                                                 <th>Course</th>
                                                                 <th>Batch</th>
                                                                 <th>Time Slot</th>
+                                                                <th>Branch</th>
                                                                 <th>Date</th>
                                                                 <th data-bs-toggle="tooltip" data-bs-title="Due Amount">Due Amt</th>
                                                                 <th data-bs-toggle="tooltip" data-bs-title="Discount">Disc</th>
@@ -152,6 +153,7 @@
                                                                     <td>{{$setting->batch->time_slot->course->name}}</td>
                                                                     <td>{{$setting->batch->name}}</td>
                                                                     <td>{{$setting->batch->time_slot->time_table->day}} [{{$setting->batch->time_slot->time_table->start_time}}-{{$setting->batch->time_slot->time_table->end_time}}]</td>
+                                                                    <td>{{$setting->admissionBranch? $setting->admissionBranch->branch->name : '-'}}</td>
                                                                     <td>{{$setting->date}}</td>
                                                                     <td>{{$setting->payable_amount}}</td>
                                                                     <td>{{$setting->discount->amount}}</td>

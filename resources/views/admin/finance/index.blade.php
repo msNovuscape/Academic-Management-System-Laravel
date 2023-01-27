@@ -110,6 +110,11 @@
                                                                     <label>Course/Batch</label>
                                                                 </div>
                                                             </th>
+                                                            <th rowspan="2">
+                                                                <div class="filter-btnwrap d-flex flex-column">
+                                                                    <label>Branch</label>
+                                                                </div>
+                                                            </th>
                                                             <th colspan="2">
                                                                 <div class="filter-btnwrap d-flex flex-column">
                                                                     <label>Installment 1</label>
@@ -227,6 +232,9 @@
                                                             <td>
                                                                 <p class="mb-0">{{$setting->batch->time_slot->course->name}}</p>
                                                                 <p class="mb-0">{{$setting->batch->name}}</p>
+                                                            </td>
+                                                            <td>
+                                                                {{$setting->admissionBranch ? $setting->admissionBranch->branch->name : ''}}
                                                             </td>
                                                             <td>
                                                                 @if($setting->finances[0]->status == 1)

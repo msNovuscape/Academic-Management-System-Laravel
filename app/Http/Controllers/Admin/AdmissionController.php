@@ -10,6 +10,7 @@ use App\Mail\AdmissionEmail;
 use App\Models\Admission;
 use App\Models\Admission as Model;
 use App\Models\Batch;
+use App\Models\Branch;
 use App\Models\Course;
 use App\Models\StudentQuizBatch;
 use App\Models\TimeSlot;
@@ -40,8 +41,9 @@ class AdmissionController extends Controller
 
     public function create()
     {
-        $courses = Course::where('status',1)->get();
-        return view($this->view.'create',compact('courses'));
+        $courses = Course::where('status', 1)->get();
+        $branches = Branch::where('status', 1)->get();
+        return view($this->view.'create', compact('courses', 'branches'));
     }
 
     public function getBatch($course_id)
@@ -80,10 +82,11 @@ class AdmissionController extends Controller
     {
         $setting = Admission::findOrFail($id);
         $courses = Course::where('status',1)->get();
+        $branches = Branch::where('status', 1)->get();
         $time_slot = TimeSlot::where('status', 1)->get();
         $course = Course::findOrFail($setting->batch->time_slot->course_id);
         $batches = $course->batches->where('end_date','>=',date('Y-m-d'))->where('status',array_search('Active',config('custom.status')));
-        return view($this->view.'edit', compact('courses','setting','time_slot','batches'));
+        return view($this->view.'edit', compact('courses','setting','time_slot','batches', 'branches'));
     }
 
     public function update(AdmissionUpdateRequest $request, $id)
@@ -91,6 +94,7 @@ class AdmissionController extends Controller
 
        // dd($request);
         $validatedData = $request->validated();
+
         //dd($validatedData);
         $admission = $this->admissionService->updateData($validatedData,$id);
         Mail::to(request('email'))->send(new AdmissionEmail($admission));

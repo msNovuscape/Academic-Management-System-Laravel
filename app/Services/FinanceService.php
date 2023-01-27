@@ -64,7 +64,7 @@ class FinanceService {
 
     public function search()
     {
-        $settings = Admission::orderBy('id','desc');
+        $settings = Admission::whereHas('admissionBranch.branch.userBranches')->orderBy('id','desc');
         if(request('name')){
             $key = \request('name');
             $settings = $settings->whereHas('user',function ($u) use ($key){

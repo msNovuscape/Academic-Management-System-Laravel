@@ -33,6 +33,7 @@ class UserRequest extends FormRequest
             'tutor' => ['required','numeric'],
             'remark' => ['nullable','string'],
             'status' => ['required','numeric'],
+            'branch_id' => ['required', 'array']
         ];
     }
 
@@ -46,6 +47,7 @@ class UserRequest extends FormRequest
             'address.required' => 'Address is required',
             'tutor.required' => 'Tutor status is required',
             'status.required' => 'Status is required',
+            'branch_id.required' => 'Branch is required',
         ];
     }
 }

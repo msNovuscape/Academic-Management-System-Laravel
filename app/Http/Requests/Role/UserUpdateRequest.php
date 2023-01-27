@@ -36,6 +36,7 @@ class UserUpdateRequest extends FormRequest
             'remark' => ['nullable','string'],
             'status' => ['required','numeric'],
             'status.required' => 'Status is required',
+            'branch_id' => ['required', 'array']
         ];
     }
 
@@ -47,6 +48,7 @@ class UserUpdateRequest extends FormRequest
             'mobile_no.required' => 'Mobile number is required',
             'address.required' => 'Address is required',
             'tutor.required' => 'Tutor status is required',
+            'branch_id.required' => 'Branch is required',
         ];
     }
 }

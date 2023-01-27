@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Role\UserRequest;
 use App\Http\Requests\Role\UserUpdateRequest;
 use App\Mail\UserEmail;
+use App\Models\Branch;
 use App\Models\Course;
 use App\Models\User;
 use App\Services\Role\UserService;
@@ -35,7 +36,8 @@ class UserController extends Controller
     public function create()
     {
         $courses = Course::where('name', '!=', 'Career Counselling')->get();
-        return view($this->view.'create', compact('courses'));
+        $branches = Branch::where('status', 1)->get();
+        return view($this->view.'create', compact('courses', 'branches'));
     }
 
     public function store(UserRequest $request)
@@ -61,7 +63,8 @@ class UserController extends Controller
     {
         $setting = User::findOrFail($id);
         $courses = Course::where('name', '!=', 'Career Counselling')->get();
-        return view($this->view.'edit', compact('courses', 'setting'));
+        $branches = Branch::where('status', 1)->get();
+        return view($this->view.'edit', compact('courses', 'setting', 'branches'));
     }
 
     public function update(UserUpdateRequest $request, $id)

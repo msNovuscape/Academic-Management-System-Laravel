@@ -199,6 +199,28 @@
                                                             <div class="col-md-12">
                                                                 <div class="row">
                                                                     <div class="col-md-3">
+                                                                        <label>Branch</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <div class="input-group">
+                                                                            <select name="branch_id" id="branch_id" class="form-control" required>
+                                                                                <option value="" selected disabled >Please Select the Branch</option>
+                                                                                @foreach($branches as $branch)
+                                                                                    <option value="{{$branch->id}}" @if(old('branch_id') == $branch->id) selected @endif>{{$branch->name}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-6 mt-4">
+                                                        <div class="form-group batch-form">
+                                                            <div class="col-md-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
                                                                         <label>Date</label>
                                                                     </div>
                                                                     <div class="col-md-9">

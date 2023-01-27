@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\Admission;
 use App\Models\Admission as Model;
+use App\Models\AdmissionBranch;
 use App\Models\AdmissionEmailInfo;
 use App\Models\Batch;
 use App\Models\Count;
@@ -120,6 +121,11 @@ class AdmissionService
             $discount->amount = $requestAll['discount'];
             $discount->date = $requestAll['date'];
             $discount->save();
+            // assigning students in branch
+            $admissionBranch = new AdmissionBranch();
+            $admissionBranch->admission_id = $setting->id;
+            $admissionBranch->branch_id = $requestAll['branch_id'];
+            $admissionBranch->save();
             DB::commit();
             return $setting;
         }
@@ -206,6 +212,11 @@ class AdmissionService
             $discount->amount = $requestAll['discount'];
             $discount->date = $requestAll['date'];
             $discount->save();
+            // edit assigning students in branch
+            $admissionBranch = $setting->admissionBranch ? $setting->admissionBranch : new AdmissionBranch();
+            $admissionBranch->admission_id = $setting->id;
+            $admissionBranch->branch_id = $requestAll['branch_id'];
+            $admissionBranch->save();
             DB::commit();
             return $setting;
         }

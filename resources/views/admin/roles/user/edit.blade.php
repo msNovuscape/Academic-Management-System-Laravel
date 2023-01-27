@@ -165,6 +165,33 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-12 col-md-6 mt-4">
+                                                <div class="form-group batch-form">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label>Branch</label>
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group">
+                                                                    <select multiple  name="branch_id[]" id="branch_id" class="form-control" required>
+                                                                        <option value="" selected disabled >Please Select the Branch</option>
+                                                                        @if($setting->userBranches->count() > 0)
+                                                                            @foreach($branches as $branch)
+                                                                                <option value="{{$branch->id}}" @if($setting->userBranches->where('branch_id', $branch->id)->count() > 0) selected @endif>{{$branch->name}}</option>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach($branches as $branch)
+                                                                                <option value="{{$branch->id}}" @if(old('branch_id') == $branch->id) selected @endif>{{$branch->name}}</option>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-sm-12 col-md-12 mt-4">
                                                 <div class="form-group batch-form">
                                                     <div class="col-md-12">
