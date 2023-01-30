@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -129,16 +130,26 @@ class FinanceController extends Controller
     public function edit($admission_id)
     {
         $setting = Admission::findOrFail($admission_id);
-        if ($setting->admissionBranch->branch->userBranches->count() > 0) {
+        // for Super Admin
+        if (Auth::user()->user_type == 1) {
             $paid_amount = $setting->finances->sum('amount');
             $start_date = $setting->batch->start_date;
             $end_date = $setting->batch->end_date;
 //        dd($setting->extend_dates);
             return view($this->view.'edit', compact('setting','paid_amount','start_date','end_date'));
         } else {
-            Session::flash('custom_error', 'You are not allowed!');
-            return redirect('finances');
+            if ($setting->admissionBranch->branch->userBranches->count() > 0) {
+                $paid_amount = $setting->finances->sum('amount');
+                $start_date = $setting->batch->start_date;
+                $end_date = $setting->batch->end_date;
+//        dd($setting->extend_dates);
+                return view($this->view.'edit', compact('setting','paid_amount','start_date','end_date'));
+            } else {
+                Session::flash('custom_error', 'You are not allowed!');
+                return redirect('finances');
+            }
         }
+
 
     }
 

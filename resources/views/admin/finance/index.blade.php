@@ -338,7 +338,8 @@
                             </div>
                             <div class="row">
                                 <div class="pagination-section">
-                                    {{$settings->links()}}
+{{--                                    {{$settings->appends(['per_page' => request('per_page')])->links()}}--}}
+                                    {{$settings->withQueryString()->links()}}
                                 </div>
                             </div>
                         </div>
