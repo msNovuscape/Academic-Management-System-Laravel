@@ -92,7 +92,6 @@ class AdmissionController extends Controller
     public function update(AdmissionUpdateRequest $request, $id)
     {
 
-       // dd($request);
         $validatedData = $request->validated();
 
         //dd($validatedData);
