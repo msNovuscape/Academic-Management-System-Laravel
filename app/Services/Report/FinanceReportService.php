@@ -4,12 +4,19 @@ namespace App\Services\Report;
 use App\Models\Admission;
 use App\Models\DueEmailInfo;
 use App\Models\Finance;
+use Illuminate\Support\Facades\Auth;
 
 class FinanceReportService {
 
     public function getReportData()
     {
-        $settings = Admission::orderBy('id','asc');
+//        $settings = Admission::orderBy('id','asc');
+        //for Super Admin
+        if (Auth::user()->user_type == 1) {
+            $settings = Admission::orderBy('id', 'asc');
+        } else {
+            $settings = Admission::whereHas('admissionBranch.branch.userBranches')->orderBy('id', 'asc');
+        }
         $from_date = \request('from_date');
         $to_date = \request('to_date');
         if(request('fiscal_year_id')&& request('branch_id') && request('course_id') && request('batch_id') && request('name') && request('from_date') && request('to_date')){

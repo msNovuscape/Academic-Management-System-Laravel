@@ -80,7 +80,7 @@ class FinanceReportController extends Controller
             $pdf = Pdf::loadView($this->view.'pdf.pdf', compact('settings','installment1','installment2','installment3'));
             return $pdf->download('finance.pdf');
        }elseif (\request('report_type') == array_search('excel',config('custom.report_types'))){
-            return Excel::download(new FinanceExport(),'finance.xlsx');
+            return Excel::download(new FinanceExport(), 'finance.xlsx');
        }
 
     }

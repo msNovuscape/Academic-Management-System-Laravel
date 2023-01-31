@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\Admission;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -17,7 +18,13 @@ class FinanceExport implements FromView, ShouldAutoSize, WithEvents
     */
     public function view(): view
     {
-        $settings = Admission::orderBy('id','asc');
+//        $settings = Admission::orderBy('id','asc');
+        //for Super Admin
+        if (Auth::user()->user_type == 1) {
+            $settings = Admission::orderBy('id', 'asc');
+        } else {
+            $settings = Admission::whereHas('admissionBranch.branch.userBranches')->orderBy('id', 'asc');
+        }
         $from_date = \request('from_date');
         $to_date = \request('to_date');
         if(request('fiscal_year_id')&& request('branch_id') && request('course_id') && request('batch_id') && request('name') && request('from_date') && request('to_date')){
