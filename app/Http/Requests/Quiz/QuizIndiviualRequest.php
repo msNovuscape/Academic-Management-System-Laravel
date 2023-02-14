@@ -27,6 +27,7 @@ class QuizIndiviualRequest extends FormRequest
             'admission_id' => ['required','numeric'],
             'quiz_id' => ['required','numeric'],
             'status' => ['required','numeric'],
+            'no_of_attempt' => ['required','numeric'],
         ];
     }
 

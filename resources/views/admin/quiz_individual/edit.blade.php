@@ -90,6 +90,23 @@
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <div class="col-md-3">
+                                                                <label>No of Attempts</label>
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <div class="input-group">
+                                                                    <input type="number" name="no_of_attempt" min="2" class="form-control" value="{{$setting->no_of_attempt}}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6 mt-4">
+                                                <div class="form-group batch-form">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
                                                                 <label>Status</label>
                                                             </div>
                                                             <div class="col-md-9">

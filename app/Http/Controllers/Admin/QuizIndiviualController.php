@@ -58,16 +58,17 @@ class QuizIndiviualController extends Controller
     {
         $validatedData = $request->validated();
         $admission = Admission::findOrFail(\request('admission_id'));
-        $check = QuizBatch::where('quiz_id',\request('quiz_id'))->where('batch_id',$admission->batch_id)->get();
-        if(count($check) > 0){
-            Session::flash('custom_success','Quiz has been already assigned to respective '.$admission->user->name.' in Batch');
-        }else{
+//        $check = QuizBatch::where('quiz_id',\request('quiz_id'))->where('batch_id',$admission->batch_id)->get();
+//        if(count($check) > 0){
+//            Session::flash('custom_success','Quiz has been already assigned to respective '.$admission->user->name.' in Batch');
+//        }else{
             $setting = QuizIndiviual::firstOrNew(['quiz_id' => \request('quiz_id'),'admission_id' => \request('admission_id')]);
             $setting->user_id = Auth::user()->id;
+            $setting->no_of_attempt = $validatedData['no_of_attempt'];
             $setting->status = \request('status');
             $setting->save();
             Session::flash('success','Quiz has been assigned individually!');
-        }
+//        }
         return redirect($this->redirect);
     }
 
@@ -85,15 +86,16 @@ class QuizIndiviualController extends Controller
         $validatedData = $request->validated();
         $setting = QuizIndiviual::findOrFail($id);
         $check = QuizBatch::where('quiz_id',\request('quiz_id'))->where('batch_id',$setting->admission->batch_id)->get();
-        if(count($check) > 0){
-            Session::flash('custom_success','Quiz has been already assigned to respective '.$setting->admission->user->name.' in Batch');
-        }else {
+//        if(count($check) > 0){
+//            Session::flash('custom_success','Quiz has been already assigned to respective '.$setting->admission->user->name.' in Batch');
+//        }else {
             $setting->quiz_id = \request('quiz_id');
+            $setting->no_of_attempt = $validatedData['no_of_attempt'];
             $setting->status = \request('status');
             $setting->user_id = Auth::user()->id;
             $setting->save();
             Session::flash('success', 'Quiz has been assigned to individual has updated!');
-        }
+//        }
         return redirect($this->redirect);
     }
 }

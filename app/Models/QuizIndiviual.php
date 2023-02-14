@@ -10,7 +10,7 @@ class QuizIndiviual extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['admission_id','quiz_id','user_id','status'];
+    protected $fillable = ['admission_id','quiz_id','user_id','status', 'no_of_attempt'];
 
     public function user()
     {

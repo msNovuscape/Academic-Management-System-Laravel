@@ -127,6 +127,7 @@
                                                             <th>Quiz</th>
                                                             <th>Batch</th>
                                                             <th>course</th>
+                                                            <th>No. of Attempt</th>
                                                             <th>Action</th>
                                                         </tr>
                                                         </thead>
@@ -138,10 +139,12 @@
                                                                     <td>{{$setting->quiz->name}}</td>
                                                                     <td>{{$setting->admission->batch->name}}</td>
                                                                     <td>{{$setting->admission->batch->time_slot->course->name}}</td>
+                                                                    <td>{{$setting->no_of_attempt}}</td>
                                                                     <td class="action-icons">
                                                                         <ul class="icon-button d-flex">
                                                                             <li>
-                                                                                <a class="dropdown-item"  href="{{url('quiz_individual_edit/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
+                                                                                <a class="
+                                                                                -item"  href="{{url('quiz_individual_edit/'.$setting->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
                                                                             </li>
                                                                         </ul>
                                                                     </td>
