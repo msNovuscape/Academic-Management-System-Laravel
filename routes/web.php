@@ -137,6 +137,12 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('admissions/{id}', [AdmissionController::class,'update'])->middleware('checkuserpermission:update_admissions');
     Route::get('admission_email/{id}', [AdmissionController::class,'admissionEmail'])->middleware('checkuserpermission:create_admissions');
 
+    //routes for reset password
+    Route::get('admissions/student_password_reset', [AdmissionController::class,'studentPasswordReset'])->middleware('checkuserpermission:create_admissions');
+    Route::get('admissions/student_password_reset/{admission_id}', [AdmissionController::class,'getStudentPasswordReset'])->middleware('checkuserpermission:create_admissions');
+    Route::post('admissions/student_password_reset/{admission_id}', [AdmissionController::class,'postStudentPasswordReset'])->middleware('checkuserpermission:create_admissions');
+
+
     //showing student detail view
     Route::get('admissions/general/{admissionId}', [AdminStudentController::class,'index'])->middleware('checkuserpermission:show_admissions');
     Route::get('admissions/attendances/{admissionId}', [AdminStudentController::class,'attendance'])->middleware('checkuserpermission:show_admissions');

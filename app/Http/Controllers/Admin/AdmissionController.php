@@ -7,6 +7,7 @@ use App\Http\Requests\AdmissionRequest;
 use App\Http\Requests\AdmissionUpdateRequest;
 use App\Jobs\SendAdmissionEmailJob;
 use App\Mail\AdmissionEmail;
+use App\Mail\ChangePassword;
 use App\Models\Admission;
 use App\Models\Admission as Model;
 use App\Models\Batch;
@@ -16,6 +17,7 @@ use App\Models\StudentQuizBatch;
 use App\Models\TimeSlot;
 use App\Services\AdmissionService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Ramsey\Uuid\Type\Time;
@@ -133,6 +135,37 @@ class AdmissionController extends Controller
 //        dd($setting->batch->quiz_batches[0]->student_quiz_batches);
         return view('admin.student_detail_view.index', compact('setting',
             'finances', 'attendances', 'presentCount', 'absentCount', 'quizBatches'));
+    }
+
+    public function studentPasswordReset()
+    {
+        if (request('name')) {
+            $settings = $this->admissionService->search();
+        } else {
+            $settings = [];
+        }
+        return view('admin.reset_password.index', compact('settings'));
+    }
+
+    public function getStudentPasswordReset($admissionId)
+    {
+        $setting = Admission::findOrFail($admissionId);
+        return view('admin.reset_password.create', compact('setting'));
+    }
+
+    public function postStudentPasswordReset($admissionId)
+    {
+        $this->validate(request(), [
+            'password' => 'required'
+        ]);
+        $setting = Admission::findOrFail($admissionId);
+        $setting->user->password = Hash::make(request('password'));
+        $setting->user->student_password->password = request('password');
+        $setting->user->save();
+        $setting->user->student_password->save();
+        Mail::to($setting->user->email)->send(new ChangePassword($setting));
+        Session::flash('success', 'Password has been Changed');
+        return redirect('admissions/student_password_reset');
     }
 
 }

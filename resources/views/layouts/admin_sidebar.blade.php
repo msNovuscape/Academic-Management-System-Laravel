@@ -86,6 +86,13 @@
                             </a>
                         </li>
                     @endif
+                    @if(Auth::user()->customMenuPermission('create_admissions') > 0)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('admissions/student_password_reset')}}">
+                                <i class="fa fa-key" aria-hidden="true"></i>Reset Student Password
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </li>
