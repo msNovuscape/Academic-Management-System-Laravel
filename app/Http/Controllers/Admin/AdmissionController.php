@@ -49,7 +49,8 @@ class AdmissionController extends Controller
     public function getBatch($course_id)
     {
         $course = Course::findOrFail($course_id);
-        $settings = $course->batches->where('end_date','>=',date('Y-m-d'))->where('status',array_search('Active',config('custom.status')));
+//        $settings = $course->batches->where('end_date','>=',date('Y-m-d'))->where('status',array_search('Active',config('custom.status')));
+        $settings = $course->batches->where('status', array_search('Active',config('custom.status')));
         $returnHtml = view($this->view.'batch_dom',['settings' => $settings])->render();
         return response()->json(array('success' =>true, 'html' => $returnHtml));
     }

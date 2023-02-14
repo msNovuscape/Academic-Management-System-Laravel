@@ -83,7 +83,7 @@
                                                         @foreach($settings as $setting)
                                                             <tr>
                                                                 <td>{{$loop->iteration}}</td>
-                                                                <td>{{$setting->name}}</td>
+                                                                <td>{{$setting->name_other}}</td>
                                                                 <td>{{$setting->time_slot->course->name}}</td>
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">

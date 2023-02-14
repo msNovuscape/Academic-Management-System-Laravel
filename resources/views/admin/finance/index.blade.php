@@ -51,7 +51,7 @@
                                             <select class="form-select" aria-label="Default select example" name="batch_id">
                                                 <option selected disabled >Search by Batch</option>
                                                 @foreach($batches as $batch)
-                                                    <option value="{{$batch->id}}">{{$batch->name}}</option>
+                                                    <option value="{{$batch->id}}">{{$batch->name_other}}</option>
                                                 @endforeach
                                             </select>
                                             <span>
@@ -64,6 +64,11 @@
                                             <p class="m-0">
                                                 Show
                                             </p>
+                                            <select class="form-select mx-2 show-select reset-class" aria-label="Default select example" name="per_page">
+                                                @foreach(config('custom.pagination') as $in1 => $val1)
+                                                    <option value="{{$val1}}" @if(request('per_page') == $val1) selected @endif>{{$val1}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 
@@ -231,7 +236,7 @@
                                                             </td>
                                                             <td>
                                                                 <p class="mb-0">{{$setting->batch->time_slot->course->name}}</p>
-                                                                <p class="mb-0">{{$setting->batch->name}}</p>
+                                                                <p class="mb-0">{{$setting->batch->name_other}}</p>
                                                             </td>
                                                             <td>
                                                                 {{$setting->admissionBranch ? $setting->admissionBranch->branch->name : ''}}

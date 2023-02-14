@@ -92,7 +92,7 @@
                                                                     <select name="batch_id" id="batch_id" class="form-control" required>
                                                                         <option value="" selected disabled class="option">Please Select the Batch</option>
                                                                         @foreach($batches as $batch)
-                                                                            <option value="{{$batch->id}}"  class="option" @if($setting->batch_id == $batch->id) selected @endif>{{$batch->name}}</option>
+                                                                            <option value="{{$batch->id}}"  class="option" @if($setting->batch_id == $batch->id) selected @endif>{{$batch->name_other}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>

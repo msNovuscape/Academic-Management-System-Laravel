@@ -56,7 +56,7 @@
                                                         <select name="batch_id" class="form-control reset-class">
                                                             <option value="" selected disabled>Search by Batch </option>
                                                             @foreach($batches as $batch)
-                                                                <option value="{{$batch->id}}" @if(old('batch_id') == $batch->id) selected @endif>{{$batch->name}}</option>
+                                                                <option value="{{$batch->id}}" @if(old('batch_id') == $batch->id) selected @endif>{{$batch->name_other}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -151,7 +151,7 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>{{$setting->batch->time_slot->course->name}}</td>
-                                                                    <td>{{$setting->batch->name}}</td>
+                                                                    <td>{{$setting->batch->name_other}}</td>
                                                                     <td>{{$setting->batch->time_slot->time_table->day}} [{{$setting->batch->time_slot->time_table->start_time}}-{{$setting->batch->time_slot->time_table->end_time}}]</td>
                                                                     <td>{{$setting->admissionBranch? $setting->admissionBranch->branch->name : '-'}}</td>
                                                                     <td>{{$setting->date}}</td>

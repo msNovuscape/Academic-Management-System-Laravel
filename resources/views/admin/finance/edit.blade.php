@@ -49,7 +49,7 @@
                                                 <label>Batch:</label>
                                             </div>
                                             <div class="col-md-8">
-                                                <p class="mb-0">{{$setting->batch->name}}</p>
+                                                <p class="mb-0">{{$setting->batch->name_other}}</p>
                                             </div>
                                         </div>
                                     </div>
