@@ -23,7 +23,7 @@
                                                 <select class="form-select" aria-label="Default select example" name="batch_id">
                                                     <option selected disabled value="" id="batch-reset">Search by Batch</option>
                                                     @foreach($batches as $bat)
-                                                        <option value="{{$bat->id}}">{{$bat->name}}</option>
+                                                        <option value="{{$bat->id}}">{{$bat->name_other}}</option>
                                                     @endforeach
                                                 </select>
                                                 <span>
@@ -60,7 +60,7 @@
                                     <div class="block-header bg-header d-flex justify-content-between p-4 py-0">
                                         <div class="col-md-11 d-flex justify-content-between align-items-center">
                                             <div class="d-flex flex-column">
-                                                <h3>{{$batch->time_slot->course->name}} [{{$batch->name}}]</h3>
+                                                <h3>{{$batch->time_slot->course->name}} [{{$batch->name_other}}]</h3>
                                                 <p class="mt-1 sub-header">{{$batch->time_slot->time_table->day}} [{{$batch->time_slot->time_table->start_time}} - {{$batch->time_slot->time_table->end_time}}]</p>
                                             </div>
                                             @if(Auth::user()->crudPermission('create_attendances') || Auth::user()->crudPermission('update_attendances'))

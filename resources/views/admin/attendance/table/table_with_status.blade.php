@@ -41,7 +41,7 @@
             <td class="action-icons">
                 <ul class="icon-button d-flex">
                     <li>
-                        <a class="dropdown-item"   href="{{url('admin/students/attendance/'.$setting->student->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
+                        <a class="dropdown-item"   href="{{url('admissions/attendances/'.$setting->student->admission->id)}}" role="button" data-bs-toggle="tooltip" data-bs-title="view"><i class="fa-solid fa-eye"></i></a>
                     </li>
                 </ul>
             </td>
