@@ -66,8 +66,10 @@ class BatchCourseMaterial
             return $user;
         } elseif (request('admissionId')) {
             $courseModule = CourseModule::findOrFail(request('course_module_id'));
-            if ($courseModule->admission_batch_materials->count() > 0) {
-                $courseModule->admission_batch_materials()->delete();
+            $batch = Batch::findOrFail($batch_id);
+            if ($courseModule->admission_batch_materials->where('batch_id', $batch->id)->count() > 0) {
+//                $courseModule->admission_batch_materials()->delete();
+                $courseModule->admission_batch_materials()->where('batch_id', $batch->id)->delete();
             }
             foreach (request('admissionId') as $admissionId) {
                 $admissionBatchMaterial = AdmissionBatchMaterial::firstOrNew(['course_module_id' => request('course_module_id'),
@@ -78,9 +80,10 @@ class BatchCourseMaterial
             return $admissionBatchMaterial;
         } else {
             if(request('batch_id') && request('course_module_id')) {
+                $batch = Batch::findOrFail($batch_id);
                 $courseModule = CourseModule::findOrFail(request('course_module_id'));
-                if ($courseModule->admission_batch_materials->count() > 0) {
-                    $courseModule->admission_batch_materials()->delete();
+                if ($courseModule->admission_batch_materials->where('batch_id', $batch->id)->count() > 0) {
+                    $courseModule->admission_batch_materials()->where('batch_id', $batch->id)->delete();
                 }
             } elseif (request('batch_id')) {
                 $batch = Batch::findOrFail($batch_id);
