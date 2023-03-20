@@ -54,7 +54,7 @@ class BatchCourseMaterial
         }
     }
 
-    public function updateData($requestAll ,$batch_id )
+    public function updateData($requestAll, $batch_id)
     {
         if (request('course_material_id')) {
             $batch = Batch::findOrFail($batch_id);
