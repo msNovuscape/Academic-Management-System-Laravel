@@ -22,7 +22,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label>Course</label>
                                                         </div>
@@ -43,7 +43,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label>Batch</label>
                                                         </div>
@@ -64,7 +64,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label>Name</label>
                                                         </div>
@@ -82,7 +82,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label for="exampleInputEmail1">From Date</label>
                                                         </div>
@@ -103,7 +103,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label for="exampleInputEmail1">To Date</label>
                                                         </div>

@@ -24,7 +24,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label for="exampleInputEmail1">Due Days</label>
                                                         </div>
@@ -45,7 +45,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label for="exampleInputEmail1">Installment</label>
                                                         </div>
@@ -66,7 +66,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label for="exampleInputEmail1">Type</label>
                                                         </div>

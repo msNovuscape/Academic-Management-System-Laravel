@@ -18,11 +18,11 @@
                         <div class="row p-4">
                             {!! Form::open(['url' => 'reports/finance','method' => 'POST', 'onsubmit' => 'return validateForm()']) !!}
                                 <div class="col-12 grid-margin">
-                                    <div class="row">
+                                    <div class="row g-2">
                                         <div class="col-md-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label>Fiscal Year</label>
                                                         </div>
@@ -43,7 +43,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label>Branch</label>
                                                         </div>
@@ -64,7 +64,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label>Course</label>
                                                         </div>
@@ -85,7 +85,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label>Batch</label>
                                                         </div>
@@ -106,7 +106,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label>Name</label>
                                                         </div>
@@ -124,7 +124,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label for="exampleInputEmail1">From Date</label>
                                                         </div>
@@ -145,7 +145,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label for="exampleInputEmail1">To Date</label>
                                                         </div>
@@ -166,7 +166,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label for="exampleInputEmail1">Payment</label>
                                                         </div>
@@ -187,7 +187,7 @@
                                         <div class="col-md-4 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
-                                                    <div class="row align-items-baseline">
+                                                    <div class="row g-2 align-items-baseline">
                                                         <div class="col-md-3">
                                                             <label for="exampleInputEmail1">Bank Status</label>
                                                         </div>

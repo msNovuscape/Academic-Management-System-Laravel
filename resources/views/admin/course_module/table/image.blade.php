@@ -17,13 +17,13 @@
                                     <input type="text" class="form-control image" name="name_old[{{$courseModule->id}}]" value="{{$courseModule->name}}" required>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger"  role="button" onclick="getPermanentyDelete({{$courseModule->id}})">Delete</a>
+                                    <a class="delete-btns"  role="button" onclick="getPermanentyDelete({{$courseModule->id}})">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    <a class="btn btn-primary"  role="button" style="float: right" onclick="getMore()">Add More</a>
+                    <a class="add-more-btn"  role="button" style="float: right" onclick="getMore()">Add More</a>
                 </div>
             </div>
         </div>

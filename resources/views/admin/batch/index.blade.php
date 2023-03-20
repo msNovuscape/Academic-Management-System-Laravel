@@ -21,7 +21,7 @@
                     {!! Form::open(['url' => 'batches', 'method' => 'GET']) !!}
                         <div class="filter-btnwrap mt-4">
                             <div class="col-md-10">
-                                <div class="row align-items-center">
+                                <div class="row g-2 align-items-center">
                                     <div class="col-md-4">
                                         <div class="input-group">
                                                 <span>
