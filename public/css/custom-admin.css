@@ -2504,10 +2504,23 @@ table tr:first-child td:last-child {
 .career-table{
     background:  #ffffff;
 }
-
+.attendance-head,
+.career-counselling-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     .student-material-search .col-md-10{
         width: 100% !important;
+    }
+    .admin-breadcrumb{
+        display: none;
+    }
+    .attendance-head,
+    .career-counselling-head{
+        flex-direction: column;
+        align-items: start;
     }
 }
 /* roles css */

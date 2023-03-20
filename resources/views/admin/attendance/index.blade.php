@@ -58,7 +58,7 @@
                             <div class="col-sm-12 col-md-12 stretch-card mt-4">
                                 <div class="card-wrap form-block p-0">
                                     <div class="block-header bg-header d-flex justify-content-between p-4 py-0">
-                                        <div class="col-md-11 d-flex justify-content-between align-items-center">
+                                        <div class="col-md-11 attendance-head">
                                             <div class="d-flex flex-column">
                                                 <h3>{{$batch->time_slot->course->name}} [{{$batch->name_other}}]</h3>
                                                 <p class="mt-1 sub-header">{{$batch->time_slot->time_table->day}} [{{$batch->time_slot->time_table->start_time}} - {{$batch->time_slot->time_table->end_time}}]</p>

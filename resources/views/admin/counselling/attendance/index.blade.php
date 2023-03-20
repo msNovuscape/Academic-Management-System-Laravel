@@ -55,9 +55,9 @@
                         </div>
                         {!! Form::close() !!}
                         <div class="col-sm-12 col-md-12 stretch-card mt-4">
-                                <div class="card-wrap form-block p-0 pt-4">
+                                <div class="card-wrap form-block p-0">
                                     <div class="block-header bg-header d-flex justify-content-between p-4 py-0">
-                                        <div class="col-md-11 d-flex justify-content-between align-items-center">
+                                        <div class="col-md-11 career-counselling-head">
                                             <div class="d-flex flex-column">
                                                 <h3>Career Counselling Attendance</h3>
                                             </div>

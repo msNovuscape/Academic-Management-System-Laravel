@@ -26,7 +26,7 @@
                     {!! Form::open(['url' => 'finances', 'method' => 'GET']) !!}
                         <div class="filter-btnwrap my-2">
                             <div class="col-md-12">
-                                <div class="row align-items-center">
+                                <div class="row g-2 align-items-center">
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
@@ -100,7 +100,7 @@
                                 <div class="col-sm-12 col-md-12 stretch-card sl-stretch-card">
                                     <div class="card-wrap card-wrap-bs-none form-block p-4 pt-0">
                                         <div class="row">
-                                            <div class="col-12 table-details">
+                                            <div class="col-12 table-details table-responsive">
                                                 <table class="table table-bordered table-installment mb-0" id="">
                                                     <thead>
                                                     <tr>
