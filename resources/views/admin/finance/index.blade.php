@@ -70,19 +70,18 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-4 d-flex">
-                                        <div class="filter-group mx-2">
-                                            <span>
-                                                <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
-                                            </span>
-                                            <button class="fltr-btn" type="submit">Filter</button>
-                                        </div>
-                                        <div class="refresh-group mx-2">
-                                            <a onclick="getReset('{{Request::segment(1)}}')">
-                                                <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
-                                            </a>
+                                        <div class="col-md-4 d-flex">
+                                            <div class="filter-group mx-2">
+                                                <span>
+                                                    <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                </span>
+                                                <button class="fltr-btn" type="submit">Filter</button>
+                                            </div>
+                                            <div class="refresh-group mx-2">
+                                                <a onclick="getReset('{{Request::segment(1)}}')">
+                                                    <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
