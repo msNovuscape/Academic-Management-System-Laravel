@@ -2536,6 +2536,9 @@ table tr:first-child td:last-child {
         flex-direction: column;
         align-items: start;
     }
+    .batchlist-card .col-md-6{
+        width: 50%;
+    }
 }
 /* roles css */
 .role-form{

@@ -106,7 +106,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="card-session-body"> <img src="" alt="">
+                                                    <div class="card-session-body batchlist-card"> <img src="" alt="">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <p>Course:</p>
