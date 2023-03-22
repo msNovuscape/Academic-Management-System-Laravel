@@ -59,4 +59,9 @@ class TechnicalExamService
             throw $e;
         }
     }
+
+    public function viewData($id){
+        $data = TechnicalExam::with('courses','branches','technical_exam_timeslots')->findOrFail($id);
+        return $data;
+    }
 }

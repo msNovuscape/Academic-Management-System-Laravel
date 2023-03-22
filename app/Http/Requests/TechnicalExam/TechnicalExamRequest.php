@@ -29,18 +29,21 @@ class TechnicalExamRequest extends FormRequest
             'timeslot_ids'=>['required', 'array'],
             'exam_type' => ['required'],
             'status'=>['required'],
-            'branch_ids'=>['required', 'array']
+            'branch_ids'=>['required_if:exam_type,==,2', 'array']
         ];
     }
 
     public function messages()
     {
         return [
+
             'date.required' => 'Date is required',
-            'course_id.required' => 'Course is required',
-            'start_time.required' => 'Start time is required',
-            'end_time.required' => 'End time is required',
-            'branch_id.required' => 'Branch is required',
+            'course_ids.required' => 'Course is required',
+            'timeslot_ids.required' => 'Timeslot is required',
+            'exam_type.required' => 'Exam Type is required',
+            'branch_ids.required' => 'Branch is required',
+            'status.required' => 'Status is required',
+
         ];
     }
 }

@@ -306,6 +306,8 @@ Route::group(['middleware'=>['auth']], function () {
     //  Route::get('technical-exam', [TechnicalExamController::class, 'index']);
      Route::get('technical_exam/create', [TechnicalExamController::class, 'create']);
      Route::post('technical_exam', [TechnicalExamController::class, 'store']);
+     Route::get('technical_exam/{id}/view', [TechnicalExamController::class, 'view']);
+     Route::get('technical_exam/{id}/edit', [TechnicalExamController::class, 'edit']);
 
 
     //routes for zoom link
