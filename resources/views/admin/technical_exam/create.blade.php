@@ -10,7 +10,7 @@
                     <div class="card-wrap form-block p-0">
                         <div class="block-header p-4">
                             <h3>Add Technical Exam</h3>
-                            <p class="ms-4">Fill the following fields to add a exam</p>
+                            <p class="m-4">Fill the following fields to add a exam</p>
                             <div class="tbl-buttons">
                                 <ul>
                                     <li class="m-0">
@@ -47,7 +47,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6 mt-4">
+                                        <div class="col-sm-12 col-md-6">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
                                                     <div class="row">
@@ -76,13 +76,15 @@
                                                             <label for="exampleInputEmail1">Branch</label>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="input-group">
-                                                                <select name="branch_ids[]" class="form-control" required multiple>
-                                                                    <option value="" selected disabled>Please Select Branch</option>
-                                                                    @foreach($branches as $branch)
-                                                                        <option value="{{$branch->id}}">{{$branch->name}}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                            <div class="technical-exam-checkbox">
+                                                                @foreach($branches as $branch)
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="{{$branch->id}}">
+                                                                        <label class="form-check-label" for="{{$branch->id}}">
+                                                                            {{$branch->name}}
+                                                                        </label>
+                                                                    </div>
+                                                                @endforeach
                                                             </div>
                                                         </div>
                                                     </div>
@@ -97,13 +99,15 @@
                                                             <label for="exampleInputEmail1">Course</label>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="input-group">
-                                                                <select name="course_ids[]" class="form-control" required multiple>
-                                                                    <option value="" selected disabled>Please Select Course</option>
-                                                                    @foreach($courses as $course)
-                                                                        <option value="{{$course->id}}">{{$course->name}}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                            <div class="technical-exam-checkbox">
+                                                                @foreach($courses as $course)
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="{{$course->id}}">
+                                                                        <label class="form-check-label" for="{{$course->id}}">
+                                                                            {{$course->name}}
+                                                                        </label>
+                                                                    </div>
+                                                                @endforeach
                                                             </div>
                                                         </div>
                                                     </div>
@@ -118,20 +122,22 @@
                                                             <label for="exampleInputEmail1">Timeslots</label>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <div class="input-group">
-                                                                <select name="timeslot_ids[]" class="form-control" required multiple>
-                                                                    <option value="" selected disabled>Please Select Timeslot</option>
-                                                                    @foreach($timeslots as $timeslot)
-                                                                        <option value="{{$timeslot->id}}">{{$timeslot->start_time . '-'. $timeslot->end_time}}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                            <div class="technical-exam-checkbox">
+                                                                @foreach($timeslots as $timeslot)
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="{{$timeslot->id}}">
+                                                                        <label class="form-check-label" for="{{$timeslot->id}}">
+                                                                            {{$timeslot->start_time . '-'. $timeslot->end_time}}
+                                                                        </label>
+                                                                    </div>
+                                                                @endforeach
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 mt-4">
                                             <div class="form-group batch-form">
                                                 <div class="col-md-12">
                                                     <div class="row">
@@ -141,7 +147,7 @@
                                                         <div class="col-md-9">
                                                             <div class="input-group">
                                                                 <select name="status" class="form-control" required>
-                                                                    <option value="" selected disabled>Please Select Status</option>
+                                                                    <option value="" selected disabled hidden>Please Select Status</option>
                                                                     @foreach(config('custom.status') as $index => $value)
                                                                         <option value="{{$index}}">{{$value}}</option>
                                                                     @endforeach

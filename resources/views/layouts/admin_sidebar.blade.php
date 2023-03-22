@@ -293,9 +293,9 @@
         </li>
     @endif
     @if(Auth::user()->menuPermission('technical_exams') > 0)
-        <li class="nav-item">
+        <li class="nav-item @if(Request::segment(1) == 'technical_exams') active @endif">
             <a class="nav-link">
-                <div class="sidebar-icon w-100">
+                <div class="sidebar-icon w-100" id="myExamBtn">
                     <i class="bi bi-speedometer"></i>
                     <span class="menu-title w-100">Technical Exam<i class="fa-solid fa-angle-down" id="icon-toggle-exam"></i></span>
                 </div>
@@ -312,7 +312,7 @@
         </li>
     @endif
     @if(Auth::user()->menuPermission('roles') > 0 || Auth::user()->menuPermission('users') > 0)
-        <li class="nav-item @if(Request::segment(1) == 'roles' || Request::segment(1) == 'permissions') active @endif ">
+        <li class="nav-item @if(Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'permissions') active @endif ">
             <a class="nav-link">
                 <div class="sidebar-icon w-100" id="myRoleBtn">
                     <i class="fa-solid fa-user-gear"></i>

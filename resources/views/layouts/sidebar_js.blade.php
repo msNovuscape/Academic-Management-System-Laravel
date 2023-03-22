@@ -82,6 +82,12 @@
                 var x = document.getElementById('icon-toggle-report');
                 x.classList.toggle("fa-angle-right");
             });
+            $("#myExamBtn").click(function(){
+                $("#myExam").collapse("toggle");
+                var x = document.getElementById('icon-toggle-report');
+                x.classList.toggle("fa-angle-right");
+            });
+
             $('#attendence').click(function(){
                 console.log("clciked")
                 $('#attendence').addClass('active')
