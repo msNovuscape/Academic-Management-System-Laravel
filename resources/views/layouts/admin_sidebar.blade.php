@@ -294,12 +294,21 @@
     @endif
     @if(Auth::user()->menuPermission('technical_exams') > 0)
         <li class="nav-item">
-            <a class="nav-link" href="#" aria-expanded="false" aria-controls="ui-basic">
-                <div class="sidebar-icon">
+            <a class="nav-link">
+                <div class="sidebar-icon w-100">
                     <i class="bi bi-speedometer"></i>
-                    <span class="menu-title">Technical Exam</span>
+                    <span class="menu-title w-100">Technical Exam<i class="fa-solid fa-angle-down" id="icon-toggle-exam"></i></span>
                 </div>
             </a>
+            <div class="collapse" id="myExam">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item" >
+                            <a class="nav-link" href="{{url('users')}}">
+                                <i class="fa-solid fa-user"></i>Time Slots
+                            </a>
+                    </li>
+                </ul>
+            </div>
         </li>
     @endif
     @if(Auth::user()->menuPermission('roles') > 0 || Auth::user()->menuPermission('users') > 0)

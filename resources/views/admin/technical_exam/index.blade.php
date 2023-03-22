@@ -17,7 +17,7 @@
                                 <li>Technical Exam</li>
                             </ul>
                         </div>
-                        <div class="col-sm-12 col-md-12 stretch-card mt-4 attendence-nav-tabs">
+                        {{-- <div class="col-sm-12 col-md-12 stretch-card mt-4 attendence-nav-tabs">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link" id="student-tab" data-toggle="tab" href="#" role="tab" aria-controls="home" aria-selected="true">Student Details</a>
@@ -35,7 +35,7 @@
                                     <a class="nav-link active" id="tech-tab" data-toggle="tab" role="tab" href="{{url('technical_exam')}}" aria-controls="settings" aria-selected="false">Technical Exam</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                         </div>
                     </div>
                 </div>

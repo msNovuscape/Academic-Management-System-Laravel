@@ -988,3 +988,8 @@ h2 {
 .career-table .table td {
     padding: 10px 16px;
 }
+
+.block-hide
+{
+    display:none;
+}

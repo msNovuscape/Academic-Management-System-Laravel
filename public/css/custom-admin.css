@@ -2573,3 +2573,7 @@ table tr:first-child td:last-child {
     align-items: center;
     gap: 20px;
 }
+.block-hide
+{
+    display: none;
+}
