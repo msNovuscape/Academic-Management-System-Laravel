@@ -31,11 +31,11 @@
                                 {!! Form::open(['url' => 'admissions','method' => 'POST','onsubmit' => 'return validateForm()']) !!}
                                     <div class="row">
                                             <div class="col-12 table-responsive">
-                                                <div class="row">
+                                                <div class="row g-2">
                                                     <div class="col-sm-12 col-md-6 mt-2">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Student's Name</label>
                                                                     </div>
@@ -51,7 +51,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-2">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Student's Email</label>
                                                                     </div>
@@ -67,7 +67,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Course</label>
                                                                     </div>
@@ -88,7 +88,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Batch</label>
                                                                     </div>
@@ -107,7 +107,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>First Installment</label>
                                                                     </div>
@@ -123,7 +123,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Discount ( Amount )</label>
                                                                     </div>
@@ -139,7 +139,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Transaction No.</label>
                                                                     </div>
@@ -155,7 +155,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Bank Status</label>
                                                                     </div>
@@ -176,7 +176,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Payment Status</label>
                                                                     </div>
@@ -197,7 +197,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Branch</label>
                                                                     </div>
@@ -219,7 +219,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Date</label>
                                                                     </div>
@@ -235,7 +235,7 @@
                                                     <div class="col-sm-12 col-md-6 mt-4">
                                                         <div class="form-group batch-form">
                                                             <div class="col-md-12">
-                                                                <div class="row">
+                                                                <div class="row g-2">
                                                                     <div class="col-md-3">
                                                                         <label>Remark</label>
                                                                     </div>

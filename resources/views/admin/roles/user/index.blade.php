@@ -21,18 +21,19 @@
                             </ul>
                         </div>
                         {!! Form::open(['url' => 'users', 'method' => 'GET']) !!}
-                        <div class="row">
+                        <div class="filter-btnwrap">
                             <div class="col-md-11">
-                                <div class="row">
-                                    <div class="filter-btnwrap justify-content-between">
-                                        <div class="d-flex">
-                                            <div class="input-group mx-4">
+                                <div class="row g-2">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
                                                         <span>
                                                             <i class="fa-solid fa-magnifying-glass"></i>
                                                         </span>
                                                 <input type="text" class="form-control reset-class"  placeholder="Search by Name" name="name" value="{{old('name')}}"/>
                                             </div>
-                                            <div class="input-group mx-4">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
                                                         <span>
                                                             <i class="fa-solid fa-book-open"></i>
                                                         </span>
@@ -43,7 +44,9 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-md-2 d-flex justify-content-end">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="d-flex">
                                                 <div class="d-flex align-items-center">
                                                     <p class="m-0">
                                                         Show
@@ -54,20 +57,20 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                            </div>
-
-                                            <div class="filter-group mx-2">
-                                                     <span>
-                                                            <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
-                                                        </span>
-                                                <button class="fltr-btn" type="submit">Filter</button>
-                                            </div>
-                                            <div class="refresh-group mx-2">
-                                                <a onclick="getReset('{{Request::segment(1)}}')">
-                                                    <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
-                                                </a>
+                                                <div class="filter-group mx-2">
+                                                         <span>
+                                                                <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                            </span>
+                                                    <button class="fltr-btn" type="submit">Filter</button>
+                                                </div>
+                                                <div class="refresh-group mx-2">
+                                                    <a onclick="getReset('{{Request::segment(1)}}')">
+                                                        <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

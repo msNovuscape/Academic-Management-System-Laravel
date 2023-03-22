@@ -20,7 +20,7 @@
                     {!! Form::open(['url' => 'timeslots', 'method' => 'GET']) !!}
                         <div class="filter-btnwrap mt-4">
                             <div class="col-md-10">
-                                <div class="row align-items-center">
+                                <div class="row g-2 align-items-center">
                                     <div class="col-md-3">
                                         <div class="input-group">
                                             <span>
@@ -121,7 +121,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="card-session-body"> <img src="" alt="">
+                                                    <div class="card-session-body batchlist-card"> <img src="" alt="">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <p>Branch:</p>

@@ -102,7 +102,7 @@
                 '<input type="text" class="form-control image" name="name[]" required>'+
                 '</td>'+
                 '<td>'+
-                '<a class="btn btn-danger"  role="button" onclick="getDelete('+count+')">Delete</a>'+
+                '<a class="delete-btns"  role="button" onclick="getDelete('+count+')">Delete</a>'+
                 '</td>'+
                 '</tr>';
             $('#my-table > tbody:last').append(html);

@@ -21,18 +21,19 @@
                             </ul>
                         </div>
                         {!! Form::open(['url' => 'quiz_batch', 'method' => 'GET']) !!}
-                            <div class="row">
+                            <div class="filter-btnwrap">
                                 <div class="col-md-11">
-                                    <div class="row">
-                                        <div class="filter-btnwrap justify-content-between">
-                                            <div class="d-flex">
+                                    <div class="row g-2">
+                                            <div class="col-md-4">
                                                 <div class="input-group">
                                                     <span>
                                                         <i class="fa-solid fa-magnifying-glass"></i>
                                                     </span>
                                                     <input type="text" class="form-control" id="inputText" placeholder="Search by Quiz" name="name"/>
                                                 </div>
-                                                <div class="input-group mx-4">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group">
                                                     <span>
                                                         <i class="bi bi-grid"></i>
                                                     </span>
@@ -43,16 +44,20 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="filter-group mx-2">
-                                                    <span>
-                                                        <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
-                                                    </span>
-                                                    <button class="fltr-btn" type="submit">Filter</button>
-                                                </div>
-                                                <div class="refresh-group mx-2">
-                                                    <a onclick="getReset('{{Request::segment(1)}}')">
-                                                        <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
-                                                    </a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex">
+                                                    <div class="filter-group mx-2">
+                                                        <span>
+                                                            <img src="{{url('icons/filter-icon.svg')}}" alt="" class="img-flud">
+                                                        </span>
+                                                        <button class="fltr-btn" type="submit">Filter</button>
+                                                    </div>
+                                                    <div class="refresh-group mx-2">
+                                                        <a onclick="getReset('{{Request::segment(1)}}')">
+                                                            <img src="{{url('icons/refresh-top-icon.svg')}}" alt="" class="img-flud">
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
