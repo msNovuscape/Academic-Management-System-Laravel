@@ -84,7 +84,9 @@
             <div class="tab-pane fade" id="nav-performance" role="tabpanel" aria-labelledby="nav-profile-tab">
                 @include('student.career_counselling.index')
             </div>
-            <div class="tab-pane fade" id="nav-exam" role="tabpanel" aria-labelledby="nav-contact-tab">Book Exam</div>
+            <div class="tab-pane fade" id="nav-exam" role="tabpanel" aria-labelledby="nav-contact-tab">
+                @include('student.technical_exam.index')
+            </div>
         </div>
     </div>
 </section>

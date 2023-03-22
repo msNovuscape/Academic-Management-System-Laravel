@@ -33,14 +33,11 @@ use App\Http\Controllers\Admin\ZoomLinkBatchController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserRoleController;
+use App\Http\Controllers\Admin\TechnicalExamLocationController;
 use App\Http\Controllers\Admin\TechnicalExamController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\CourseModuleController;
-
-
-
-
-
+use App\Http\Controllers\Admin\TechnicalExamTimeslotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -295,7 +292,20 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('counsellings-attendance-by-date', [SCounsellingController::class,'counsellingsAttendanceByDate'])->middleware('checkuserpermission:create_s_counselling_attendances');
 
     //routes for technical exam
-     Route::get('technical_exam', [TechnicalExamController::class, 'index']);
+    Route::get('technical_exam_locations', [TechnicalExamLocationController::class, 'index']);
+    Route::get('technical_exam_location/create', [TechnicalExamLocationController::class, 'create']);
+    Route::post('technical_exam_location', [TechnicalExamLocationController::class, 'store']);
+
+    Route::get('technical_exam_timeslots', [TechnicalExamTimeslotController::class, 'index']);
+    Route::get('technical_exam_timeslot/create', [TechnicalExamTimeslotController::class, 'create']);
+    Route::post('technical_exam_timeslot', [TechnicalExamTimeslotController::class, 'store']);
+    Route::get('technical_exam_timeslot/delete/{id}', [TechnicalExamTimeslotController::class, 'delete']);
+    Route::post('technical_exam_timeslot/edit/{id}', [TechnicalExamTimeslotController::class, 'update']);
+
+     Route::get('technical_exams', [TechnicalExamController::class, 'index']);
+    //  Route::get('technical-exam', [TechnicalExamController::class, 'index']);
+     Route::get('technical_exam/create', [TechnicalExamController::class, 'create']);
+     Route::post('technical_exam', [TechnicalExamController::class, 'store']);
 
 
     //routes for zoom link
