@@ -13,14 +13,17 @@ use App\Services\TechnicalExam\TechnicalExamService;
 class TechnicalExamController extends Controller
 {
     private $technicalExamService;
+    protected $view = 'admin.technical_exam.';
 
     public function __construct(TechnicalExamService $service)
     {
         $this->technicalExamService = $service;
     }
 
-    public function index(){
-        return view('admin.technical_exam.index');
+    public function index()
+    {
+        $settings = $this->technicalExamService->search();
+        return view($this->view.'index',compact('settings'));
     }
     public function create(){
         $branches = Branch::where('status',1)->get();

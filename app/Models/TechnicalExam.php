@@ -18,11 +18,11 @@ class TechnicalExam extends Model
 
     }
     public function branches(){
-        return $this->belongsToMany(Branch::class);
+        return $this->belongsToMany(Branch::class,'branch_technical_exam','technical_exam_id','branch_id');
 
     }
     public function technical_exam_timeslots(){
-        return $this->belongsToMany(TechnicalExamTimeslot::class);
+        return $this->belongsToMany(TechnicalExamTimeslot::class,'timeslot_technical_exam','technical_exam_id','technical_exam_timeslot_id');
 
     }
 }

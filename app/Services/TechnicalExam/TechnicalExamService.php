@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\DB;
 
 class TechnicalExamService
 {
+    public function search()
+    {
+        $settings = TechnicalExam::orderBy('id','desc')->with('courses','technical_exam_timeslots','branches');
+        if(request('name')){
+            $key = \request('name');
+            $settings = $settings->where('name','like','%'.$key.'%')
+                                ->orWhere('code','like','%'.$key.'%');
+        }
+        return $settings->paginate(config('custom.per_page'));
+    }
 
     public function storeData($validatedData)
     {
@@ -22,11 +32,10 @@ class TechnicalExamService
                 $setting->exam_type = $validatedData['exam_type'];
                 $setting->user_id = Auth::user()->id;
                 $setting->save();
-                dd($validatedData['course_ids']);
                 $setting->courses()->attach($validatedData['course_ids']);
-                $setting->timeslots()->attach($validatedData['timeslot_ids']);
-                if($validatedData['examp_type'] == '2' && $validatedData['branch_ids'] !== null ){
-                    $setting->branches()->attach($validatedData['branchs_ids']);
+                $setting->technical_exam_timeslots()->attach($validatedData['timeslot_ids']);
+                if($validatedData['exam_type'] == '2' && $validatedData['branch_ids'] !== null ){
+                    $setting->branches()->attach($validatedData['branch_ids']);
                 }
 
 

@@ -2,6 +2,7 @@
 @section('title')
     <title>Technical Exam</title>
 @endsection
+{{ dd($settings) }}
 @section('main-panel')
     <div class="main-panel">
         <div class="content-wrapper content-wrapper-bg">
@@ -17,38 +18,18 @@
                                 <li>Technical Exam</li>
                             </ul>
                         </div>
-                        {{-- <div class="col-sm-12 col-md-12 stretch-card mt-4 attendence-nav-tabs">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link" id="student-tab" data-toggle="tab" href="#" role="tab" aria-controls="home" aria-selected="true">Student Details</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " id="finance-tab" data-toggle="tab" href="#" role="tab" aria-controls="profile" aria-selected="false">Finance</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " id="quiz-tab" data-toggle="tab" href="#" role="tab" aria-controls="messages" aria-selected="false">Quiz</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="counselling-tab" data-toggle="tab" href="" role="tab" aria-controls="settings" aria-selected="false">Career Counselling</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="tech-tab" data-toggle="tab" role="tab" href="{{url('technical_exam')}}" aria-controls="settings" aria-selected="false">Technical Exam</a>
-                                </li>
-                            </ul>
-                        </div> --}}
+
                         </div>
                     </div>
                 </div>
 
                 <input type="text"  id="myCal" style="display: none">
                 <div id="my-calendar"></div>
-                <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Launch demo modal
                 </button>
 
                 <div class="calendar-container"></div>
-                <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -72,10 +53,10 @@
                                 <input type="text" class="form-control" placeholder="10 minutes"/>
                             </div>
                         </div>
-                        {{-- <div class="modal-footer">
+                        <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save changes</button>
-                        </div> --}}
+                        </div>
                     </div>
                     </div>
                 </div>
