@@ -139,7 +139,10 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('admission_email/{id}', [AdmissionController::class,'admissionEmail'])->middleware('checkuserpermission:create_admissions');
 
     //routes for batch transfer
-    Route::get('batch-transfers', [BatchTransferController::class,'index'])->middleware('checkuserpermission:show_admissions');
+    Route::get('batch-transfers', [BatchTransferController::class,'index'])->middleware('checkuserpermission:create_admissions');
+    Route::get('batch-transfers/course/{course_id}', [BatchTransferController::class,'getBatches'])->middleware('checkuserpermission:create_admissions');
+    Route::get('batch-transfers/batch/{batch_id}', [BatchTransferController::class,'getBatchStudents'])->middleware('checkuserpermission:create_admissions');
+    Route::post('batch-transfers/batch/{batch_id}', [BatchTransferController::class,'postBatchTransfer'])->middleware('checkuserpermission:create_admissions');
 
 
     //routes for reset password
