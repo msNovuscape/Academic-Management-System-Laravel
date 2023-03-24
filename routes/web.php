@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\Admin\TechnicalExamController;
 use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\CourseModuleController;
+use App\Http\Controllers\Admin\BatchTransferController;
 
 
 
@@ -137,6 +138,10 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('admissions/{id}', [AdmissionController::class,'update'])->middleware('checkuserpermission:update_admissions');
     Route::get('admission_email/{id}', [AdmissionController::class,'admissionEmail'])->middleware('checkuserpermission:create_admissions');
 
+    //routes for batch transfer
+    Route::get('batch-transfers', [BatchTransferController::class,'index'])->middleware('checkuserpermission:show_admissions');
+
+
     //routes for reset password
     Route::get('admissions/student_password_reset', [AdmissionController::class,'studentPasswordReset'])->middleware('checkuserpermission:create_admissions');
     Route::get('admissions/student_password_reset/{admission_id}', [AdmissionController::class,'getStudentPasswordReset'])->middleware('checkuserpermission:create_admissions');
@@ -220,20 +225,6 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('batch-course-materials/{batch_id}/edit', [BatchCourseMaterialController::class,'edit'])->middleware('checkuserpermission:update_batch_course_materials');
     Route::post('batch-course-materials/{batch_id}', [BatchCourseMaterialController::class,'update'])->middleware('checkuserpermission:update_batch_course_materials');
 
-//route access to admin for students
-    Route::get('tests', [StudentController::class,'getTests']);
-
-//    Route::group(['prefix' => 'admin'],function (){
-//
-//        Route::get('score', [StudentController::class,'getScore']);
-//
-//        Route::get('students', [AdminStudentController::class,'index']);
-//        Route::get('students/show/{id}', [AdminStudentController::class,'show']);
-//        Route::get('students/{id}/edit', [AdminStudentController::class,'edit']);
-//        Route::post('students/{id}', [AdminStudentController::class,'update']);
-//        Route::get('students/attendance/{id}', [AdminStudentController::class,'getAttendance']);
-//    });
-
 //    routes for attendance
     Route::get('attendance', [AttendanceController::class,'index'])->middleware('checkuserpermission:show_attendances');
     Route::post('attendance', [AttendanceController::class,'store'])->middleware('checkuserpermission:create_attendances'); //ajax call for make batch attendance
@@ -260,10 +251,6 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('finances/{finance_id}/edit', [FinanceController::class,'edit'])->middleware('checkuserpermission:update_finances');
     Route::post('extend_date', [FinanceController::class,'extend_date'])->middleware('checkuserpermission:update_finances');
     Route::post('finances/update/{finance_id}', [FinanceController::class,'update'])->middleware('checkuserpermission:update_finances');
-
-//    Route::get('email', [EmailController::class,'index']);
-
-//    Route::get('pdf', [PdfController::class,'index']);
 
 //routes for report
     //route for finance report
