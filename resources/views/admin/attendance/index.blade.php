@@ -66,13 +66,13 @@
                                             @if(Auth::user()->crudPermission('create_attendances') || Auth::user()->crudPermission('update_attendances'))
                                                 <div class="d-flex attendance-toggle">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" onclick="getAttendance(1)">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" onclick="getAttendance(1, {{$batch->id}})">
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Present
                                                         </label>
                                                     </div>
                                                     <div class="form-check mx-4">
-                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2" onclick="getAttendance(2)">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2" onclick="getAttendance(2, {{$batch->id}})">
                                                         <label class="form-check-label" for="flexRadioDefault2">
                                                             Absent
                                                         </label>
@@ -203,7 +203,7 @@
         //
         // }
 
-        function getAttendance(att_status) {
+        function getAttendance(att_status, batch_id) {
             var arr = [];
             if(att_status === 1){
                 var checked_status = 1;
@@ -232,6 +232,7 @@
                     arr.push({student_id,status,symbol});
                 }
             }
+            debugger;
             if(arr.length > 0){
                 //start  confirmation for attendance
                     $.confirm({
@@ -246,10 +247,13 @@
                                 action: function(){
                                     start_loader();
                                     var formData = new FormData();
+                                    debugger;
                                     var myJson = JSON.stringify(arr);
+                                    debugger;
                                     var attendance_date  = $('#fromDateToDate').val();
                                     formData.append('attendance', myJson);
                                     formData.append('attendance_date', attendance_date);
+                                    formData.append('real_batch_id', batch_id);
                                     //start ajax call
                                         $.ajax({
                                             /* the route pointing to the post function */
@@ -262,6 +266,7 @@
                                             /* remind that 'data' is the response of the AjaxController */
                                             success: function (data) {
                                                 end_loader();
+                                                debugger;
                                                 if(data['success']){
                                                     $('#attendance_table').remove();
                                                     $('#mytable').append(data['html']);
@@ -272,6 +277,7 @@
                                             },
                                             error: function(error) {
                                                 end_loader();
+                                                debugger;
                                                 errorDisplay('Something went wrong !');
 
                                             }
@@ -369,12 +375,14 @@
                     /* remind that 'data' is the response of the AjaxController */
                     success: function (data) {
                         end_loader();
+                        debugger;
                         $('#attendance_table').remove();
                         $('#mytable').append(data['html']);
                         mySelectAllInitiate();
                     },
                     error: function(error) {
                         end_loader();
+                        debugger;
                         errorDisplay('Something went wrong !');
                     }
                 });

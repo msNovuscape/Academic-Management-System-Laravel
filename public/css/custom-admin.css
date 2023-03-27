@@ -2601,3 +2601,7 @@ table tr:first-child td:last-child {
     align-items: center;
     gap: 20px;
 }
+
+.batch-transfer-indication{
+    background: #23e6e5;
+}

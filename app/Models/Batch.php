@@ -64,5 +64,15 @@ class Batch extends Model
         return $this->hasMany(AdmissionBatchMaterial::class);
     }
 
+    public function active_previous_batch()
+    {
+       return $this->hasMany(BatchTransfer::class, 'previous_batch_id')->where('status', '1');
+    }
+
+    public function active_batch_transfer()
+    {
+        return $this->hasMany(BatchTransfer::class, 'batch_id')->where('status', 1);
+    }
+
 
 }

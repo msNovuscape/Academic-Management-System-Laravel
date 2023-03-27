@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('student_id');
             $table->float('payable_amount');
-            $table->enum('batch_transfer_status', [1, 2])->default(1); // 1 for not transfer, 2 for transfer to other batch
+            $table->enum('batch_transfer_status', [1, 2])->default(1); // 1 for  transfer, 2 for not transfer to other batch
             $table->softDeletes();
             $table->timestamps();
         });

@@ -90,43 +90,86 @@
                                                                         <th>Name</th>
                                                                         <th>Email</th>
                                                                         <th>Transfer Status</th>
+                                                                        <th>Transfer Date</th>
                                                                         <th>Admission Date</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody id="student_list">
                                                                     @foreach($batch->admissions as $admission)
-                                                                        <tr>
-                                                                            <td>
-                                                                                <div class="form-check ms-1">
-                                                                                    <input class="form-check-input checkbox" type="checkbox" value="{{$admission->id}}"  name="admissionId[]" onclick="allCheck()">
-                                                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                                                    </label>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>{{$loop->iteration}}</td>
-                                                                            <td class="">
-                                                                                <div class="d-flex">
-                                                                                    <div class="table-image">
-                                                                                        @if($admission->student)
-                                                                                            <img src="{{url($admission->student->image)}}" alt=""/>
-                                                                                        @else
-                                                                                            <img src="{{url('images/no_images.png')}}" alt=""/>
-                                                                                        @endif
+                                                                        @if ($admission->batch_transfer_status == 2)
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="form-check ms-1">
+                                                                                        <input class="form-check-input checkbox" type="checkbox" value="{{$admission->id}}"  name="admissionId[]" onclick="allCheck()">
+                                                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                                                        </label>
                                                                                     </div>
-                                                                                    <div class="d-flex flex-column name-table">
-                                                                                        <p>{{$admission->user->name}}</p>
-                                                                                        <p>{{$admission->student_id}}</p>
+                                                                                </td>
+                                                                                <td>{{$loop->iteration}}</td>
+                                                                                <td class="">
+                                                                                    <div class="d-flex">
+                                                                                        <div class="table-image">
+                                                                                            @if($admission->student)
+                                                                                                <img src="{{url($admission->student->image)}}" alt=""/>
+                                                                                            @else
+                                                                                                <img src="{{url('images/no_images.png')}}" alt=""/>
+                                                                                            @endif
+                                                                                        </div>
+                                                                                        <div class="d-flex flex-column name-table">
+                                                                                            <p>{{$admission->user->name}}</p>
+                                                                                            <p>{{$admission->student_id}}</p>
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                {{$admission->user->email}}
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                No
-                                                                            </td>
-                                                                            <td>{{$admission->date}}</td>
-                                                                        </tr>
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{$admission->user->email}}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    No
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    -
+                                                                                </td>
+                                                                                <td>{{$admission->date}}</td>
+                                                                            </tr>
+                                                                        @else
+                                                                            <tr class="batch-transfer-indication">
+                                                                                <td>
+                                                                                    <div class="form-check ms-1">
+                                                                                        <input class="form-check-input checkbox" type="checkbox" value="{{$admission->id}}"  name="admissionId[]" onclick="allCheck()">
+                                                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>{{$loop->iteration}}</td>
+                                                                                <td class="">
+                                                                                    <div class="d-flex">
+                                                                                        <div class="table-image">
+                                                                                            @if($admission->student)
+                                                                                                <img src="{{url($admission->student->image)}}" alt=""/>
+                                                                                            @else
+                                                                                                <img src="{{url('images/no_images.png')}}" alt=""/>
+                                                                                            @endif
+                                                                                        </div>
+                                                                                        <div class="d-flex flex-column name-table">
+                                                                                            <p>{{$admission->user->name}}</p>
+                                                                                            <p>{{$admission->student_id}}</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{$admission->user->email}}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{$admission->activeBatchTransfer->first()->batch->name_other}}
+
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{$admission->activeBatchTransfer->first()->date}}
+                                                                                </td>
+                                                                                <td>{{$admission->date}}</td>
+                                                                            </tr>
+                                                                        @endif
                                                                     @endforeach
                                                                     </tbody>
                                                                 </table>

@@ -87,6 +87,10 @@ return [
         '6' => '150',
         '7' => '200',
     ],
+    'batch_transfer_status' => [
+        '1' => 'Batch  Transfer',
+        '2' => 'Batch Not Transfer'
+    ]
 
 ]
 

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\EnrollmentRequest;
+use App\Models\Admission;
 use App\Models\Attendance;
 use App\Models\Batch;
+use App\Models\BatchTransfer;
 use App\Models\Country;
 use App\Models\Course;
 use App\Models\Student;
@@ -64,24 +66,42 @@ class AttendanceController extends Controller
                 $maxDate = $attendance_date;
                 $default_date = $attendance_date;
             }
+
             if(\request('batch_id') && \request('search_date')){
                 $attendance_date = \request('search_date');
-                $settings = $this->attendanceService->getBatchAttendances($batch->id,$attendance_date);
+                $settings = $this->attendanceService->getBatchAttendances($batch->id, $attendance_date);
                 $default_date = $attendance_date;
             }else{
-                $settings = $this->attendanceService->getBatchAttendances($batch->id,$attendance_date);
+                $settings = $this->attendanceService->getBatchAttendances($batch->id, $attendance_date);
             }
 
             //start if
             if ($settings->count() > 0) {
                 $att = 1; //attendance data is available for given date
-                return view($this->view.'index',compact('settings','batch','att','attendance_date','minDate','maxDate','default_date','courses','batches'));
+                $batchTransfers = Student::whereHas('admission.activeBatchTransfer', function ($ab) use ($batch) {
+                    $ab->where('date', '<=', date('Y-m-d'))->where('batch_id', $batch->id);
+                })->get();
+                return view($this->view.'index',compact('settings','batch','att','attendance_date','minDate','maxDate','default_date','courses','batches', 'batchTransfers'));
             } else {
                 //attendance data is not available for given date
-                $settings = Student::whereHas('admission', function ($q) use ($batch) {
-                                        $q->where('batch_id', $batch->id);
-                                    })->get();
-                return view($this->view.'index',compact('settings','batch','minDate','maxDate','default_date','courses','batches'));
+                $settings1 = Student::whereHas('admission', function ($q) use ($batch) {
+                    $q->where('batch_id', $batch->id);
+                })->get();
+
+                $settings = $settings1->map(function ($item) use ($batch, $settings1) {
+                    if ($item->admission->activeBatchTransferWithPreviousBatch($batch)->count() > 0) {
+                        if (date('Y-m-d') < $item->admission->activeBatchTransferWithPreviousBatch($batch)->first()->date) {
+                            return $item;
+                        }
+                    } else {
+                        return $item;
+                    }
+                });
+                $settings = $settings->filter();
+                $batchTransfers = Student::whereHas('admission.activeBatchTransfer', function ($ab) use ($batch) {
+                                            $ab->where('date', '<=', date('Y-m-d'))->where('batch_id', $batch->id);
+                                        })->get();
+                return view($this->view.'index',compact('settings','batch','minDate','maxDate','default_date','courses','batches', 'batchTransfers'));
             }
             //endif
         }else{
@@ -93,7 +113,8 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         $this->validate(\request(),[
-            'attendance_date' => 'required|date'
+            'attendance_date' => 'required|date',
+            'real_batch_id' => 'required|numeric'
         ]);
         $attendance_data = json_decode(\request('attendance'));
         $attendance_date = \request('attendance_date');
@@ -138,12 +159,29 @@ class AttendanceController extends Controller
             return response()->json( array('success' => true,'message' => 'Attendance has been done !', 'html'=>$returnHTML) );
         }else{
             //attendance data is not available for given date
-            $settings = Student::whereHas('admission', function ($q) use ($batch,$attendance_date) {
-                $q->where('batch_id', $batch->id)
-                    ->where('date','<=',$attendance_date);
+//            $settings = Student::whereHas('admission', function ($q) use ($batch,$attendance_date) {
+//                $q->where('batch_id', $batch->id)
+//                    ->where('date','<=',$attendance_date);
+//            })->get();
+            //attendance data is not available for given date
+            $settings1 = Student::whereHas('admission', function ($q) use ($batch) {
+                $q->where('batch_id', $batch->id);
             })->get();
-            $returnHTML = view($this->view.'table.table_without_status',['settings'=> $settings,'attendance_date' => $attendance_date])->render();// or method that you prefere to return data + RENDER is the key here
-            return response()->json( array('success' => true,'message' => 'Attendance has been done !', 'html'=>$returnHTML) );
+            $settings = $settings1->map(function ($item) use ($batch, $settings1, $attendance_date) {
+                if ($item->admission->activeBatchTransferWithPreviousBatch($batch)->count() > 0) {
+                    if ($attendance_date < $item->admission->activeBatchTransferWithPreviousBatch($batch)->first()->date) {
+                        return $item;
+                    }
+                } else {
+                    return $item;
+                }
+            });
+            $settings = $settings->filter();
+            $batchTransfers = Student::whereHas('admission.activeBatchTransfer', function ($ab) use ($batch, $attendance_date) {
+                $ab->where('date', '<=', date("Y-m-d", strtotime($attendance_date)))->where('batch_id', $batch->id);
+            })->get();
+            $returnHTML = view($this->view.'table.table_without_status',['settings'=> $settings,'attendance_date' => $attendance_date, 'batchTransfers' => $batchTransfers])->render();// or method that you prefere to return data + RENDER is the key here
+            return response()->json( array('success' => true,'message' => 'Attendance has been done !', 'html'=>$returnHTML, 'date' => date("Y-m-d", strtotime($attendance_date))) );
         }
         //endif
     }

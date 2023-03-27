@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('batch_tranfers', function (Blueprint $table) {
+        Schema::create('batch_transfers', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('users');
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('batch_tranfers');
+        Schema::dropIfExists('batch_transfers');
     }
 };

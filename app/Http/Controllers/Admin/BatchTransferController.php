@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BatchTranfer\BatchTransferRequest;
 use App\Models\Batch;
+use App\Models\BatchTranfer;
+use App\Models\BatchTransfer;
 use App\Models\Course;
 use App\Services\BatchTransfer\BatchTransferService;
 use Illuminate\Http\Request;
@@ -50,11 +52,13 @@ class BatchTransferController extends Controller
 
     public function postBatchTransfer(BatchTransferRequest $request, $batchId)
     {
+
         $validatedData = $request->validated();
         $batch = Batch::findOrFail($batchId);
-        $this->batchTransferService->storeData($validatedData, $batch);
-
-
+        $validatedData['previous_batch_id'] = $batch->id;
+        $this->batchTransferService->storeData($validatedData);
+        Session::flash('success', 'Batch has been transferred!');
+        return redirect('batch-transfers/course/'.$batch->time_slot->course_id);
     }
 
 }

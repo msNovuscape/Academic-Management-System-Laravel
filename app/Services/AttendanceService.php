@@ -34,11 +34,13 @@ class AttendanceService {
         $attendances = Attendance::whereHas('student',function ($s) use ($batch_id){
             $s->whereHas('admission',function ($a) use ($batch_id){
                 $a->where('batch_id',$batch_id);
+            })->orWhereHas('admission.activeBatchTransfer', function ($bt) use($batch_id) {
+                $bt->where('batch_id', $batch_id);
             });
         })->where('date',$attendance_date)
             ->with('student')
             ->with('student.admission')
-            ->with('student.admission.user')->get();
+            ->with('student.admission.user')->orderBy('id', 'desc')->get();
         return $attendances;
     }
 
@@ -51,8 +53,9 @@ class AttendanceService {
     public function storeData($attendance_data,$attendance_date)
     {
         if(count($attendance_data) > 0){
-            $std = Student::findOrFail($attendance_data[0]->student_id);
-            $batch = $std->admission->batch;
+//            $std = Student::findOrFail($attendance_data[0]->student_id);
+//            $batch = $std->admission->batch;
+            $batch = Batch::findOrFail(request('real_batch_id'));
             //start if condition for the attendance date must in between batch start and batch end date and attendance date is not greater than current date
             if(($attendance_date >= $batch->start_date) && ($attendance_date <= $batch->end_date) && ($attendance_date <= date('Y-m-d')) ){
                 foreach ($attendance_data as $req_att){
