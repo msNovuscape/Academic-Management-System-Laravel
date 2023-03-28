@@ -13,18 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admissions', function (Blueprint $table) {
+        Schema::create('batch_transfers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('users');
             $table->bigInteger('batch_id')->unsigned();
             $table->foreign('batch_id')->references('id')->on('batches');
+            $table->bigInteger('previous_batch_id')->unsigned();
+            $table->foreign('previous_batch_id')->references('id')->on('batches');
+            $table->bigInteger('admission_id')->unsigned();
+            $table->foreign('admission_id')->references('id')->on('admissions');
             $table->date('date');
-            $table->string('student_id');
-            $table->float('payable_amount');
-            $table->enum('batch_transfer_status', [1, 2])->default(1); // 1 for  transfer, 2 for not transfer to other batch
+            $table->enum('status', [1, 2]); // 1 for active and 2 for deactive
             $table->softDeletes();
             $table->timestamps();
         });
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admissions');
+        Schema::dropIfExists('batch_transfers');
     }
 };

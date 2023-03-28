@@ -65,7 +65,7 @@
     @endif
 
     @if(Auth::user()->menuPermission('admissions') > 0)
-        <li class="nav-item @if(Request::segment(1) == 'admissions') active @endif ">
+        <li class="nav-item @if(Request::segment(1) == 'admissions' || Request::segment(1) == 'batch-transfers') active @endif ">
             <a class="nav-link" >
                 <div class="sidebar-icon w-100" id="myBtnAdmission">
                     <i class="bi bi-card-checklist"></i>
@@ -83,6 +83,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('admissions/create')}}">
                                 <i class="fa-solid fa-user-plus fa-sm"></i>Add Admission
+                            </a>
+                        </li>
+                    @endif
+                    @if(Auth::user()->customMenuPermission('create_admissions') > 0)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('batch-transfers')}}">
+                                <i class="fa-solid fa-user-plus fa-sm"></i>Batch Transfer
                             </a>
                         </li>
                     @endif

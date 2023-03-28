@@ -208,7 +208,7 @@
             passnumError.innerHTML = "Please provide your valid passport number!";
             return false;
         }
-        if(!passportNum.match(/^[a-zA-Z0-9]{7,8}$/)){
+        if(!passportNum.match(/^[a-zA-Z0-9]{6,10}$/)){
             passnumError.innerHTML = "Invalid passport number!";
             return false;
         }

@@ -818,7 +818,35 @@ li {
 .batch-form .row {
     align-items: center;
 }
-
+.batch-card{
+    background: #ffffff;
+    padding: 12px 18px;
+    border: 1px solid #848484;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.batch-card:hover{
+    background: #2367c7;
+}
+.batch-card:hover h4,
+.batch-card:hover .fa-solid{
+    color: #FFFFFF;
+}
+.card-tip{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.card-tip h4{
+    color: #000000;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.batch-card .fa-solid{
+    color: #848484;
+}
 .igt-calender {
     padding: 0px !important;
     margin-right: 10px;
@@ -2615,7 +2643,10 @@ table tr:first-child td:last-child {
     align-items: center;
     gap: 20px;
 }
-.block-hide
-{
+.block-hide {
     display: none;
+}
+
+.batch-transfer-indication{
+    background: #23e6e5;
 }

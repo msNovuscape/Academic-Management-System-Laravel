@@ -104,5 +104,20 @@ class Admission extends Model
         return $this->hasOne(AdmissionBranch::class);
     }
 
+    public function activeBatchTransfer()
+    {
+       return $this->hasMany(BatchTransfer::class)->where('status', 1);
+    }
+
+    public function activeBatchTransferWithBatch($batch)
+    {
+        return $this->hasMany(BatchTransfer::class)->where('batch_id', $batch->id)->where('status', 1);
+    }
+
+    public function activeBatchTransferWithPreviousBatch($batch)
+    {
+        return $this->hasMany(BatchTransfer::class)->where('previous_batch_id', $batch->id)->where('status', 1);
+    }
+
 
 }
