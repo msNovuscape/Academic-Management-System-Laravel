@@ -31,11 +31,37 @@ class AttendanceService {
      */
     public function getBatchAttendances($batch_id,$attendance_date)
     {
-        $attendances = Attendance::whereHas('student',function ($s) use ($batch_id){
-            $s->whereHas('admission',function ($a) use ($batch_id){
+        $attendances = Attendance::whereHas('student',function ($s) use ($batch_id, $attendance_date){
+            $s->whereHas('admission',function ($a) use ($batch_id, $attendance_date){
+                //for admission which has not batch transfer
+                $a->doesntHave('activeBatchTransfer')->where('batch_id', $batch_id)
+                    //for admission which has  batch transfer but less than batch transfer date
+                    ->orWhereHas('activeBatchTransfer', function ($pt) use ($batch_id, $attendance_date) {
+                        $pt->where('date', '>', $attendance_date)
+                            ->where('previous_batch_id', $batch_id);
+                    })
+                    //for admission which has  batch transfer from another branch and greater than equal to transfer date
+                    ->orWhereHas('activeBatchTransfer', function ($bt) use ($batch_id, $attendance_date) {
+                        $bt->where('date', '<=', $attendance_date)
+                            ->where('batch_id', $batch_id);
+                    });
+            });
+        })->where('date',$attendance_date)
+            ->with('student')
+            ->with('student.admission')
+            ->with('student.admission.user')->orderBy('student_id', 'ASC')->get();
+        return $attendances;
+    }
+
+
+    public function getBatchAttendancesOld($batch_id,$attendance_date)
+    {
+        $attendances = Attendance::whereHas('student',function ($s) use ($batch_id, $attendance_date){
+            $s->whereHas('admission',function ($a) use ($batch_id, $attendance_date){
                 $a->where('batch_id',$batch_id);
-            })->orWhereHas('admission.activeBatchTransfer', function ($bt) use($batch_id) {
-                $bt->where('batch_id', $batch_id);
+            })->orWhereHas('admission.activeBatchTransfer', function ($bt) use($batch_id, $attendance_date) {
+                $bt->where('date', '<=', $attendance_date)
+                    ->where('batch_id', $batch_id);
             });
         })->where('date',$attendance_date)
             ->with('student')
