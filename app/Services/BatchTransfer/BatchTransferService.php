@@ -3,7 +3,6 @@
 namespace App\Services\BatchTransfer;
 
 use App\Models\Batch;
-use App\Models\BatchTranfer;
 use App\Models\BatchTransfer;
 use Exception;
 use Illuminate\Support\Facades\Auth;

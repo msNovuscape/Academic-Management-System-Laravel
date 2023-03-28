@@ -17,7 +17,7 @@
     </thead>
     <tbody id="student_list">
     @foreach($settings as $setting)
-        <tr>
+        <tr @if($setting->student->admission->batch_transfer_status == 1) class="batch-transfer-indication" @endif>
             <td>
                 <div class="tblform-check">
                     <input class="checkbox" type="checkbox" value="{{$setting->student->id}}" id="form-check-input{{$setting->id}}">
