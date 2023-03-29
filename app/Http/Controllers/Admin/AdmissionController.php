@@ -163,7 +163,7 @@ class AdmissionController extends Controller
         $setting->user->student_password->password = request('password');
         $setting->user->save();
         $setting->user->student_password->save();
-        Mail::to($setting->user->email)->send(new ChangePassword($setting));
+//        Mail::to($setting->user->email)->send(new ChangePassword($setting));
         Session::flash('success', 'Password has been Changed');
         return redirect('admissions/student_password_reset');
     }
