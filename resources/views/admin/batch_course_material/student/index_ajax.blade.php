@@ -68,7 +68,7 @@
                                                 </label>
                                             </div>
                                         </td>
-                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$loop->iteration + count($setting->admissions)}}</td>
                                         <td class="">
                                             <div class="d-flex">
                                                 <div class="table-image">
