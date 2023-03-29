@@ -3,12 +3,16 @@
 namespace App\Services;
 
 use App\Http\Controllers\Admin\BatchCourseMaterialController;
+use App\Models\Admission;
 use App\Models\AdmissionBatchMaterial;
 use App\Models\Batch;
 use App\Models\CourseModule;
+use App\Models\TransferBatchMaterial;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\BatchCourseMaterial as Model;
+use Exception;
 
 class BatchCourseMaterial
 {
@@ -38,52 +42,113 @@ class BatchCourseMaterial
     public function storeData($requestAll)
     {
         if (request('course_material_id')) {
-            foreach ($requestAll['course_material_id'] as $value) {
-                $user = Model::firstOrNew(['batch_id' => request('batch_id'),'course_material_id' => $value]);
-                $user->save();
+            try {
+                DB::beginTransaction();
+                    foreach ($requestAll['course_material_id'] as $value) {
+                        $user = Model::firstOrNew(['batch_id' => request('batch_id'),'course_material_id' => $value]);
+                        $user->save();
+                    }
+                DB::commit();
+                return $user;
+            } catch (Exception $e) {
+                DB::rollBack();
+                throw $e;
             }
-            return $user;
-        } elseif (request('admissionId')) {
-                foreach (request('admissionId') as $admissionId) {
-                    $admissionBatchMaterial = AdmissionBatchMaterial::firstOrNew(['course_module_id' => request('course_module_id'),
-                        'admission_id' => $admissionId]);
-                    $admissionBatchMaterial->batch_id = request('batch_id');
-                    $admissionBatchMaterial->save();
-                }
-                return $admissionBatchMaterial;
+
+        } elseif (request('admissionId') || request('transferAdmissionId')) {
+            try {
+                DB::beginTransaction();
+                    if (request('admissionId')) {
+                        foreach (request('admissionId') as $admissionId) {
+                            $admissionBatchMaterial = AdmissionBatchMaterial::firstOrNew(['course_module_id' => request('course_module_id'),
+                                'admission_id' => $admissionId]);
+                            $admissionBatchMaterial->batch_id = request('batch_id');
+                            $admissionBatchMaterial->save();
+                        }
+                    }
+                    if (request('transferAdmissionId')) {
+                        foreach (request('transferAdmissionId') as $transferAdmissionId) {
+                            $admission = Admission::findOrFail($transferAdmissionId);
+                            $transferBatchMaterial = TransferBatchMaterial::firstOrNew(['course_module_id' => request('course_module_id'),
+                                'admission_id' => $admission->id]);
+                            $transferBatchMaterial->batch_id = request('batch_id');
+                            $transferBatchMaterial->batch_transfer_id = $admission->activeBatchTransfer->first()->id;
+                            $transferBatchMaterial->save();
+                        }
+                    }
+                DB::commit();
+            } catch (Exception $e) {
+                DB::rollBack();
+                throw $e;
+            }
+
+
         }
     }
 
     public function updateData($requestAll, $batch_id)
     {
         if (request('course_material_id')) {
-            $batch = Batch::findOrFail($batch_id);
-            $batch->batch_course_materials()->delete();
-            foreach ($requestAll['course_material_id'] as $value) {
-                $user = Model::firstOrNew(['batch_id' => request('batch_id'),'course_material_id' => $value]);
-                $user->save();
+            try {
+                DB::beginTransaction();
+                    $batch = Batch::findOrFail($batch_id);
+                    $batch->batch_course_materials()->delete();
+                    foreach ($requestAll['course_material_id'] as $value) {
+                        $user = Model::firstOrNew(['batch_id' => request('batch_id'),'course_material_id' => $value]);
+                        $user->save();
+                    }
+                DB::commit();
+                return $user;
+            } catch (Exception $e) {
+                DB::rollBack();
+                throw $e;
             }
-            return $user;
-        } elseif (request('admissionId')) {
-            $courseModule = CourseModule::findOrFail(request('course_module_id'));
-            $batch = Batch::findOrFail($batch_id);
-            if ($courseModule->admission_batch_materials->where('batch_id', $batch->id)->count() > 0) {
-//                $courseModule->admission_batch_materials()->delete();
-                $courseModule->admission_batch_materials()->where('batch_id', $batch->id)->delete();
+
+        } elseif (request('admissionId') || request('transferAdmissionId')) {
+            try {
+                DB::beginTransaction();
+                    $courseModule = CourseModule::findOrFail(request('course_module_id'));
+                    $batch = Batch::findOrFail($batch_id);
+                    if ($courseModule->admission_batch_materials->where('batch_id', $batch->id)->count() > 0) {
+                        $courseModule->admission_batch_materials()->where('batch_id', $batch->id)->delete();
+                    }
+                    if ($courseModule->transfer_batch_materials->where('batch_id', $batch->id)->count() > 0) {
+                        $courseModule->transfer_batch_materials()->where('batch_id', $batch->id)->delete();
+                    }
+                    if (request('admissionId')) {
+                        foreach (request('admissionId') as $admissionId) {
+                            $admissionBatchMaterial = AdmissionBatchMaterial::firstOrNew(['course_module_id' => request('course_module_id'),
+                                'admission_id' => $admissionId]);
+                            $admissionBatchMaterial->batch_id = request('batch_id');
+                            $admissionBatchMaterial->save();
+                        }
+                    }
+                    if (request('transferAdmissionId')) {
+                        foreach (request('transferAdmissionId') as $transferAdmissionId) {
+                            $admission = Admission::findOrFail($transferAdmissionId);
+                            $transferBatchMaterial = TransferBatchMaterial::firstOrNew(['course_module_id' => request('course_module_id'),
+                                'admission_id' => $admission->id]);
+                            $transferBatchMaterial->batch_id = request('batch_id');
+                            $transferBatchMaterial->batch_transfer_id = $admission->activeBatchTransfer->first()->id;
+                            $transferBatchMaterial->save();
+                        }
+                    }
+                DB::commit();
+            } catch (Exception $e) {
+                DB::rollBack();
+                throw $e;
             }
-            foreach (request('admissionId') as $admissionId) {
-                $admissionBatchMaterial = AdmissionBatchMaterial::firstOrNew(['course_module_id' => request('course_module_id'),
-                    'admission_id' => $admissionId]);
-                $admissionBatchMaterial->batch_id = request('batch_id');
-                $admissionBatchMaterial->save();
-            }
-            return $admissionBatchMaterial;
+
+
         } else {
             if(request('batch_id') && request('course_module_id')) {
                 $batch = Batch::findOrFail($batch_id);
                 $courseModule = CourseModule::findOrFail(request('course_module_id'));
                 if ($courseModule->admission_batch_materials->where('batch_id', $batch->id)->count() > 0) {
                     $courseModule->admission_batch_materials()->where('batch_id', $batch->id)->delete();
+                }
+                if ($courseModule->transfer_batch_materials->where('batch_id', $batch->id)->count() > 0) {
+                    $courseModule->transfer_batch_materials()->where('batch_id', $batch->id)->delete();
                 }
             } elseif (request('batch_id')) {
                 $batch = Batch::findOrFail($batch_id);

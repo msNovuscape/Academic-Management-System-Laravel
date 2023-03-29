@@ -27,7 +27,8 @@ class BatchCourseMaterialRequest extends FormRequest
             'batch_id'=>'required',
             'course_material_id'=>'nullable',
             'course_module_id' => 'nullable',
-            'admissionId' => 'nullable|array'
+            'admissionId' => 'nullable|array',
+            'transferAdmissionId' => 'nullable|array',
         ];
     }
 

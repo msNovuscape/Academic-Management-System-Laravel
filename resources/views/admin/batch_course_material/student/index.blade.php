@@ -23,6 +23,7 @@
                                     </th>
                                     <th>S.N.</th>
                                     <th>Name</th>
+                                    <th>Transfer Status</th>
                                     <th>Admission Date</th>
                                 </tr>
                                 </thead>
@@ -52,7 +53,39 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td>No</td>
                                         <td>{{$admission->date}}</td>
+                                    </tr>
+                                @endforeach
+                                @foreach($batch->active_batch_transfer as $batch_transfer)
+                                    <tr class="batch-transfer-indication">
+                                        <td>
+                                            <div class="form-check ms-1">
+                                                <input class="form-check-input checkbox" type="checkbox" value="{{$batch_transfer->admission_id}}"  name="transferAdmissionId[]" onclick="allCheck()">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>{{$loop->iteration + count($batch->admissions)}}</td>
+                                        <td class="">
+                                            <div class="d-flex">
+                                                <div class="table-image">
+                                                    @if($batch_transfer->admission->student)
+                                                        <img src="{{url($batch_transfer->admission->student->image)}}" alt=""/>
+                                                    @else
+                                                        <img src="{{url('images/no_images.png')}}" alt=""/>
+                                                    @endif
+                                                </div>
+                                                <div class="d-flex flex-column name-table">
+                                                    <p>{{$batch_transfer->admission->user->name}}</p>
+                                                    <p>{{$batch_transfer->admission->student_id}}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{$batch_transfer->previous_batch->name_other}}
+                                        </td>
+                                        <td>{{$batch_transfer->admission->date}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -83,6 +83,11 @@ class Admission extends Model
         return $this->hasMany(AdmissionBatchMaterial::class)->where('course_module_id', $moduleId);
     }
 
+    public function transferBatchMaterialsByModule($moduleId)
+    {
+        return $this->hasMany(TransferBatchMaterial::class)->where('course_module_id', $moduleId);
+    }
+
     public function admissionBatchMaterials()
     {
         return $this->hasMany(AdmissionBatchMaterial::class);

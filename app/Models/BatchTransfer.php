@@ -19,4 +19,9 @@ class BatchTransfer extends Model
     {
         return $this->belongsTo(Batch::class);
     }
+
+    public function previous_batch()
+    {
+        return $this->belongsTo(Batch::class, 'previous_batch_id');
+    }
 }

@@ -18,4 +18,9 @@ class CourseModule extends Model
     {
         return $this->hasMany(AdmissionBatchMaterial::class);
     }
+
+    public function transfer_batch_materials()
+    {
+        return $this->hasMany(TransferBatchMaterial::class);
+    }
 }
