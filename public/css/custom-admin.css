@@ -2693,3 +2693,12 @@ table tr:first-child td:last-child {
 .exam-types label{
     font-weight: 600;
 }
+.buttonload{
+    display: none;
+}
+.displayBtn{
+    display: block;
+}
+.displayEnqBtn{
+    display: inline-block;
+}

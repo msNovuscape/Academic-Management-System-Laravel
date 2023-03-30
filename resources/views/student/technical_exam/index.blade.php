@@ -119,9 +119,9 @@
                 <div class="modal-footer">
                     <button type="button" class="btn cancel-modal" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" onclick = "submitBooking()" class="btn btn-primary" id="appointmentbtn">Confirm Booking</button>
-                    {{-- <button class="buttonload btn btn-primary" id="buttonenqload" disabled>
+                    <button class="buttonload btn btn-primary" id="buttonenqload" disabled>
                         <i class="fas fa-spinner fa-pulse"></i> Submiting
-                    </button> --}}
+                    </button>
                 </div>
             </div>
         </div>
@@ -317,14 +317,22 @@
         });
     }
 
+
+    loaderenqBtn = document.getElementById('buttonenqload');
+    appointmentBtn = document.getElementById('appointmentbtn');
     function submitBooking(){
+        loaderenqBtn.classList.add('displayBtn')
+        appointmentBtn.classList.add('buttonload')
             $.ajax({
                 url: "/student/technical_exam_submit",
                 type: "post",
                 data: $("#appointment-form").serialize(),
                 success: function(response) {
                     $("#modal").modal("hide");
-                    // loaderenqBtn.classList.remove('displayBtn');
+                    // var isAmStart = response.appointment.start_time < '12:00:00';
+                    // var isAmEnd = response.appointment.end_time < '12:00:00';
+
+                    loaderenqBtn.classList.remove('displayBtn');
                     Swal.fire({
                         title: 'Booked!!',
                         text: 'Exam Successfully Booked',
