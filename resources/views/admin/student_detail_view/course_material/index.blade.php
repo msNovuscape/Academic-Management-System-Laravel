@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-6 course-col">
                     <div class="course-general">
-                        <h1>{{$setting->batch->time_slot->course->name}} [{{$setting->batch->name}}]</h1>
+                        <h1>{{$setting->batch->time_slot->course->name}} [{{$setting->batch->name_other}}]</h1>
                         <h2>{{$setting->batch->time_slot->time_table->day}}
                             {{$setting->batch->time_slot->time_table->start_time}}
                             {{$setting->batch->time_slot->time_table->end_time}}
@@ -47,7 +47,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             @if(count($course_materials) > 0)
-                                @include('admin.student_detail_view.course_material.show')
+                                @include('admin.student_detail_view.course_material.show1')
                             @endif
                         </div>
                     </div>
@@ -59,7 +59,6 @@
 @section('script')
     <script>
         function getUpdate(admissionId, courseMaterialId) {
-            debugger;
             start_loader();
             if ($("#course_material"+courseMaterialId).is(":checked")) {
                 // do something if the checkbox is NOT checked
@@ -75,7 +74,6 @@
                     },
                     error: function (error){
                         end_loader();
-                        debugger;
                         errorDisplay('Something went worng !');
                     }
                 });
@@ -93,7 +91,6 @@
                     },
                     error: function (error){
                         end_loader();
-                        debugger;
                         errorDisplay('Something went worng !');
                     }
                 });

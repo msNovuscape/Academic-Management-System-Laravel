@@ -31,4 +31,5 @@ class CourseMaterial extends Model
 
 
 
+
 }

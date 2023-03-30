@@ -7,6 +7,7 @@ use App\Models\Admission;
 use App\Models\CourseMaterial;
 use App\Models\CourseMaterialNotAssigned;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminStudentController extends Controller
 {
@@ -67,6 +68,8 @@ class AdminStudentController extends Controller
         if ($setting->batch->time_slot->course->course_modules->count() > 0) {
             $course_materials_assigned = CourseMaterial::whereHas('course_material_module.course_module.admission_batch_materials', function ($q) use ($setting) {
                 $q->where('admission_id', $setting->id);
+            })->orWhereHas('course_material_module.course_module.transfer_batch_materials', function ($q1) use($setting) {
+                $q1->where('admission_id', $setting->id);
             });
             $course_materials_assigned = $course_materials_assigned->get();
         } else {
@@ -74,9 +77,10 @@ class AdminStudentController extends Controller
                 $q->where('batch_id', $setting->batch_id);
             });
         }
-//        dd($course_materials_assigned->get());
         return view('admin.student_detail_view.course_material.index', compact('setting', 'course_materials', 'course_materials_assigned'));
     }
+
+
 
     public function updateCourseMaterialChecked($admissionId, $courseMaterialId)
     {

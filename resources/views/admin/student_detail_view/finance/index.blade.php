@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-6 course-col">
                     <div class="course-general">
-                        <h1>{{$setting->batch->time_slot->course->name}} [{{$setting->batch->name}}]</h1>
+                        <h1>{{$setting->batch->time_slot->course->name}} [{{$setting->batch->name_other}}]</h1>
                         <h2>{{$setting->batch->time_slot->time_table->day}}
                             {{$setting->batch->time_slot->time_table->start_time}}
                             {{$setting->batch->time_slot->time_table->end_time}}
