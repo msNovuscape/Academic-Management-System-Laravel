@@ -993,3 +993,84 @@ h2 {
 {
     display:none;
 }
+
+.zabuto-calendar{
+    margin-top: 20px !important;
+}
+table.lightgrey-weekends tbody td:nth-child(n+6) {
+    background-color: #f3f3f3;
+}
+.appointment-section h1{
+    color: #296AC7;
+}
+.calender-section h3{
+    font-size: 18px;
+    color: #9f9f9f;
+}
+.calender-section h2{
+    color: #296AC7;
+}
+.calender-disable{
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.calender-disable:hover{
+    cursor: not-allowed;
+}
+.available-dates{
+    /* background: #f0f0f0; */
+    display: inline-block;
+    justify-content: center;
+    color: #272626;
+    margin-top: 1rem;
+}
+.available-dates button{
+    display: inline-block;
+    background: #e5f0ff;
+    border: 1px solid #e0ecfb;
+    color:#1a60c5;
+    padding: 10px 12px;
+    margin: 6px;
+}
+/* .available-dates button:nth-of-type(1){
+    margin-left:0;
+} */
+.available-dates button, .appointment-section .modal-footer button{
+    transition: all 250ms ease-in-out;
+}
+.available-dates button:hover{
+    background: #296ac7;
+    border:1px solid #2464c0;
+    color:#fff;
+}
+.available-dates h5{
+    margin-bottom: 0;
+}
+.zabuto-calendar.table>thead>tr>th,
+.zabuto-calendar.table>thead:first-child>tr:first-child>td {
+    color: #000000;
+}
+.zabuto-calendar.table>thead:first-child>tr:first-child>td{
+    pointer-events: all;
+}
+table.lightgrey-weekends tbody td:nth-child(n+6) {
+    background-color: #f3f3f3 !important;
+    color: #d30000;
+    pointer-events: none !important;
+}
+.event-colourful {
+    color: #d7d7d7 !important;
+    cursor: not-allowed;
+}
+.event-colourful .zabuto-calendar__day{
+    pointer-events: none;
+}
+.event-clickable{
+    pointer-events: all !important;
+    color: #000000;
+    cursor: pointer;
+    background-color: #ecf4ff !important;
+}
+.event-clickable.active{
+    background-color: #27ab00 !important;
+}

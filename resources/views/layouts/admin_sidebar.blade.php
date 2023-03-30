@@ -310,10 +310,15 @@
             <div class="collapse" id="myExam">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item" >
-                            <a class="nav-link" href="{{url('users')}}">
+                            <a class="nav-link" href="{{url('technical_exam_timeslots')}}">
                                 <i class="fa-solid fa-user"></i>Time Slots
                             </a>
                     </li>
+                    <li class="nav-item" >
+                        <a class="nav-link" href="{{url('technical_exams')}}">
+                            <i class="fa-solid fa-user"></i>List Technical Exams
+                        </a>
+                </li>
                 </ul>
             </div>
         </li>

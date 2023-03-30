@@ -33,6 +33,7 @@
     <!-- {!! Html::style('css/style.css') !!} -->
     {!! Html::style('css/navigation.css') !!}
     {!! Html::style('css/bootstrap-multiselect.css') !!}
+    {!! Html::script('plugins/jquery/jquery-ui.min.css') !!}
     {!! Html::style('vendors/mdi/css/materialdesignicons.min.css') !!}
     {!! Html::style('plugins/flatpickr/dist/flatpickr.min.css') !!}
     {!! Html::style('plugins/vanilla-calendar-main/vanilla-calendar.min.css') !!}
@@ -41,7 +42,7 @@
     {{--    for dispalying confirmation--}}
     {!! Html::style('confirm/jquery-confirm.min.css') !!}
     {{-- zabuto calender --}}
-    {!! Html::style('calendar/zabuto_calendar.min.css') !!}
+    {!! Html::style('plugins/zabuto-calendar/zabuto_calendar.min.css') !!}
     @yield('style')
 </head>
 <body>
@@ -50,10 +51,10 @@
     @include('layouts.sidebar')
 @endif
 @yield('content')
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
-
+{{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> --}}
 <!-- {!! Html::script('js/jquery-3.6.0.slim.min.js') !!} -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -61,11 +62,14 @@
 {!! Html::script('vendors/js/vendor.bundle.base.js') !!}
 {!! Html::script('js/misc.js') !!}
 {!! Html::script('plugins/flatpickr/dist/flatpickr.js') !!}
+{!! Html::script('plugins/jquery/jquery-ui.min.js') !!}
 {!! Html::style('plugins/vanilla-calendar-main/vanilla-calendar.min.js') !!}
 {!! Html::script('confirm/jquery-confirm.min.js') !!}
 
 {{-- zabuto calender --}}
-{!! Html::script('calendar/zabuto_calendar.js') !!}
+{!! Html::script('plugins/zabuto-calendar/zabuto_calendar.min.js') !!}
+
+
 
 <script>
     Laravel = {

@@ -4,6 +4,7 @@
 @endsection
 @section('style')
     {!! Html::style('css/student-detail.css') !!}
+    {!! Html::script('plugins/jquery/jquery-ui.min.css') !!}
 @endsection
 @section('main-panel')
     <section class='attendence-section'>

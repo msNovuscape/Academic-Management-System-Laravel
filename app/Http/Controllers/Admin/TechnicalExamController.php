@@ -7,6 +7,7 @@ use App\Http\Requests\TechnicalExam\TechnicalExamRequest;
 use App\Models\Branch;
 use App\Models\Course;
 use App\Models\TechnicalExamTimeslot;
+use App\Models\TechnicalExam;
 use Illuminate\Http\Request;
 use App\Services\TechnicalExam\TechnicalExamService;
 use Illuminate\Support\Facades\Session;
@@ -38,6 +39,7 @@ class TechnicalExamController extends Controller
 
     public function store(TechnicalExamRequest $request){
 
+
         $validatedData = $request->validated();
         $this->technicalExamService->storeData($validatedData);
         Session::flash('success','Technical Exam has been created!');
@@ -58,5 +60,17 @@ class TechnicalExamController extends Controller
         return view($this->view.'edit',compact('technical_exam'));
 
 
+    }
+
+    public function delete($id)
+    {
+        $setting = TechnicalExam::findOrFail($id);
+        // if ($setting->time_slots->count() > 0) {
+        //    Session::flash('custom_error', 'The Course has been assigned to Time slot!');
+        // }else {
+            $setting->delete();
+            Session::flash('success', 'Exam has been deleted!');
+        // }
+        return redirect($this->redirect);
     }
 }

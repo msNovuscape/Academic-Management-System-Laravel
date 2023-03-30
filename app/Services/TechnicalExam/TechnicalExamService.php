@@ -32,11 +32,22 @@ class TechnicalExamService
                 $setting->exam_type = $validatedData['exam_type'];
                 $setting->user_id = Auth::user()->id;
                 $setting->save();
-                $setting->courses()->attach($validatedData['course_ids']);
-                $setting->technical_exam_timeslots()->attach($validatedData['timeslot_ids']);
-                if($validatedData['exam_type'] == '2' && $validatedData['branch_ids'] !== null ){
-                    $setting->branches()->attach($validatedData['branch_ids']);
+
+                foreach($validatedData['course_ids'] as $key => $value){
+                    $setting->technical_exam_details()->create([
+                        'technical_exam_id' => $setting->id,
+                        'course_id' => $value,
+                        'branch_id' => ($validatedData['exam_type'] == '2' && $validatedData['branch_ids'] !== null ) ? $validatedData['branch_ids'][$key]: null,
+                        // 'branch_id' => $validatedData['course']
+                        'technical_exam_timeslot_id' => $validatedData['timeslot_ids'][$key],
+                        'capacity' => $validatedData['capacity'][$key],
+                    ]);
                 }
+                // $setting->technical_exam_details()->attach($validatedData['course_ids'],$validatedData['timeslot_ids'],$validatedData['capacity']);
+                // $setting->technical_exam_timeslots()->attach($validatedData['timeslot_ids']);
+                // if($validatedData['exam_type'] == '2' && $validatedData['branch_ids'] !== null ){
+                //     $setting->branches()->attach($validatedData['branch_ids']);
+                // }
 
 
                 // foreach ($validatedData['course_ids'] as $courseId) {

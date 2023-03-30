@@ -77,9 +77,9 @@
                                                             <th>S.N.</th>
                                                             <th>Exam Type</th>
                                                             <th>Date</th>
-                                                            <th>Course</th>
+                                                            {{-- <th>Course</th>
                                                             <th>Timeslot</th>
-                                                            <th>Branch</th>
+                                                            <th>Branch</th> --}}
                                                             <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -90,7 +90,7 @@
                                                                 <td>{{$loop->iteration}}</td>
                                                                 <td>{{config('custom.exam_types')[$setting->exam_type]}}</td>
                                                                 <td>{{$setting->date}}</td>
-                                                                <td>
+                                                                {{-- <td>
                                                                     @foreach ($setting->courses as $course)
                                                                          {{ $course->name }}<br>
                                                                     @endforeach
@@ -104,15 +104,15 @@
                                                                     @foreach ($setting->branches as $branch)
                                                                          {{ $branch->name}}<br>
                                                                     @endforeach
-                                                                </td>
+                                                                </td> --}}
                                                                 <td>{{config('custom.status')[$setting->status]}}</td>
                                                                 <td class="action-icons">
                                                                     <ul class="icon-button d-flex">
-                                                                        {{-- @if(Auth::user()->customMenuPermission('show_course_materials'))
+                                                                        @if(Auth::user()->customMenuPermission('show_course_materials'))
                                                                             <li>
                                                                                 <a class="dropdown-item" href="{{url('technical_exam/'.$setting->id.'/view')}}" data-bs-toggle="tooltip"  role="button" data-bs-title="details"><i class="fa-solid fa-eye"></i></a>
                                                                             </li>
-                                                                        @endif --}}
+                                                                        @endif
                                                                         @if(Auth::user()->customMenuPermission('update_course_materials'))
                                                                             <li>
                                                                                 <a class="dropdown-item"  href="{{url('technical_exam/'.$setting->id.'/edit')}}" role="button" data-bs-toggle="tooltip" data-bs-title="edit"><i class="fa-solid fa-pen"></i></a>
@@ -162,7 +162,7 @@
                         text: 'Delete',
                         btnClass: 'btn-red',
                         action: function(){
-                            window.location = Laravel.url+'/course-materials/delete/'+id;
+                            window.location = Laravel.url+'/technical_exam/delete/'+id;
                         }
                     },
                     close: function () {
