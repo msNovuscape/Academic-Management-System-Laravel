@@ -2650,3 +2650,46 @@ table tr:first-child td:last-child {
 .batch-transfer-indication{
     background: #23e6e5;
 }
+.physical-wrap ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1rem;
+}
+.not-available{
+    color: #e70404;
+    font-size: 1rem;
+    font-weight: 600;
+    padding-left: 2rem;
+}
+.available-times{
+    display: flex;
+    gap: 1rem;
+}
+.time-slot{
+    border: none;
+    background: #2367C7;
+    padding: .5rem 1rem;
+    color: #FFFFFF;
+    border-radius: 24px;
+}
+.cancel-modal{
+    background: #e70404;
+    opacity: .8;
+    color: #FFFFFF;
+}
+.cancel-modal:hover{
+    background: #e70404;
+    opacity: 1;
+    color: #FFFFFF;
+}
+.booking-modal-title{
+    color: #FFFFFF;
+}
+.exam-types{
+    margin: 1rem 0;
+    display: flex;
+    gap: 2rem;
+}
+.exam-types label{
+    font-weight: 600;
+}

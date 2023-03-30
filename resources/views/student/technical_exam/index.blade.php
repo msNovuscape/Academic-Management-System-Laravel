@@ -34,23 +34,19 @@
       @else
         {{-- <div class="row">  --}}
 
-      <div class="col-sm-12 col-md-6">
+      <div class="mt-4 col-sm-12 col-md-12">
         <div class="checks-wrap">
           <h5>How would you like to take an exam?</h5>
-          <ul>
-            <li>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exam_type" value = "1" data-type="1" id="online-exam" required>
-                <label class="form-check-label" for="online">Online Exam</label>
-              </div>
-            </li>
-            <li>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exam_type" id="physical-exam" value = "2" data-type="2">
-                <label class="form-check-label" for="physical">Physical Exam</label>
-              </div>
-            </li>
-          </ul>
+          <div class="exam-types">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exam_type" value = "1" data-type="1" id="online-exam" required>
+              <label class="form-check-label" for="online">Online Exam</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exam_type" id="physical-exam" value = "2" data-type="2">
+              <label class="form-check-label" for="physical">Physical Exam</label>
+            </div>
+          </div>
         </div>
         <div class="physical-wrap block-hide" id = "location_block">
           <ul>
@@ -86,10 +82,10 @@
           </ul>
         </div>
       </div>
-      <div class="col-sm-12 col-md-6 maintime-wrap block-hide" id = "calendar-container">
-          <h5>Choose the exam date and time below</h5>
-          <div id="calendar-apppearance"></div>
-          <div id='available-times' class="available-times"></div>
+      <div class="mt-4 col-sm-12 col-md-12 maintime-wrap block-hide" id = "calendar-container">
+        <h5>Choose the exam date and time below</h5>
+        <div id="calendar-apppearance"></div>
+        <div id='available-times' class="available-times"></div>
 
 
         {{-- <div name = "selected_date" id="datepicker"> --}}
@@ -108,7 +104,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="appointmentModalLabel">Book Technical Exam</span></h3>
+                    <h3 class="modal-title booking-modal-title" id="appointmentModalLabel">Book Technical Exam</span></h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -121,7 +117,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn cancel-modal" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" onclick = "submitBooking()" class="btn btn-primary" id="appointmentbtn">Confirm Booking</button>
                     {{-- <button class="buttonload btn btn-primary" id="buttonenqload" disabled>
                         <i class="fas fa-spinner fa-pulse"></i> Submiting
