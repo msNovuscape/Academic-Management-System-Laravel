@@ -29,6 +29,7 @@ class TechnicalExamRequest extends FormRequest
             'timeslot_ids'=>['required', 'array'],
             'exam_type' => ['required'],
             'status'=>['required'],
+            'capacity'=>['required','array'],
             'branch_ids'=>['required_if:exam_type,==,2', 'array']
         ];
     }
@@ -43,6 +44,7 @@ class TechnicalExamRequest extends FormRequest
             'exam_type.required' => 'Exam Type is required',
             'branch_ids.required' => 'Branch is required',
             'status.required' => 'Status is required',
+            'capacity.required' => 'Capacity is required',
 
         ];
     }

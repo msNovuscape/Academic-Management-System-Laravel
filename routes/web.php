@@ -297,6 +297,8 @@ Route::group(['middleware'=>['auth']], function () {
      Route::post('technical_exam', [TechnicalExamController::class, 'store']);
      Route::get('technical_exam/{id}/view', [TechnicalExamController::class, 'view']);
      Route::get('technical_exam/{id}/edit', [TechnicalExamController::class, 'edit']);
+     Route::get('technical_exam/delete/{id}', [TechnicalExamController::class, 'delete']);
+
 
 
     //routes for zoom link
@@ -366,4 +368,8 @@ Route::group(['middleware'=>'student','prefix'=>'student'], function () {
     Route::post('student_quiz_individual_next_question', [StudentQuizIndividualController::class,'getNextQuestion']);
     Route::post('student_quiz_individual_time_out', [StudentQuizIndividualController::class,'quizBatchTimeOut']);//ajax call to end quiz when time is out
     Route::get('quiz_individual/{id}', [StudentQuizIndividualController::class,'quizIndividualResult']);
+
+    Route::post('technical_exam_dates', [StudentController::class, 'technical_exam_dates']);
+    Route::post('technical_exam_submit', [StudentController::class, 'technical_exam_submit']);
+
 });

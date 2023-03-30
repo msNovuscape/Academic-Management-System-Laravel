@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Branch;
 use App\Models\Course;
+use App\Models\TechnicalExamDetail;
 use App\Models\TechnicalExamTimeslot;
 
 class TechnicalExam extends Model
@@ -24,5 +25,8 @@ class TechnicalExam extends Model
     public function technical_exam_timeslots(){
         return $this->belongsToMany(TechnicalExamTimeslot::class,'timeslot_technical_exam','technical_exam_id','technical_exam_timeslot_id');
 
+    }
+    public function technical_exam_details(){
+        return $this->hasMany(TechnicalExamDetail::class);
     }
 }
