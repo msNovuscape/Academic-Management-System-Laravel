@@ -8,9 +8,7 @@
       <div class="col-sm-12 col-md-6">
         <div class="exam-details-lblock">
           <h5>Exam Details</h5>
-
         </div>
-
 
         @if($exam->exam_type == '2')
         <div class="physical-exam mt-4">
@@ -22,15 +20,10 @@
         <div class="physical-exam mt-4">
           <h5>Exam Type</h5>
           <h6><i class="mdi mdi-map-marker-radius me-2 "></i>Online</h6>
-          <!-- <p>Suite 132 & 133, Level 3 10 Park Road, Hurstville NSW 2220</p> -->
         </div>
         @endif
 
-        {{-- <div class="physical-exam mt-4">
-          <h5>Exam Booked On</h5>
-          <h6><? echo $row['booking_date']?></h6>
-          <!-- <p>Suite 132 & 133, Level 3 10 Park Road, Hurstville NSW 2220</p> -->
-        </div> --}}
+
       </div>
       <div class="col-sm-12 col-md-6 mt-4 d-time">
           <h5>Your exam Date and Time</h5>
@@ -329,23 +322,28 @@
     }
 
     function submitBooking(){
-
-            // loaderenqBtn.classList.add('displayBtn')
-            // appointmentBtn.classList.add('buttonload')
             $.ajax({
                 url: "/student/technical_exam_submit",
                 type: "post",
                 data: $("#appointment-form").serialize(),
                 success: function(response) {
                     $("#modal").modal("hide");
-                    // var isAmStart = response.appointment.start_time < '12:00:00';
-                    // var isAmEnd = response.appointment.end_time < '12:00:00';
-
                     // loaderenqBtn.classList.remove('displayBtn');
                     Swal.fire({
                         title: 'Booked!!',
                         text: 'Exam Successfully Booked',
                         icon: 'success'
+                        }).then(function(){
+                        location.reload();
+                        }
+                        )
+                },
+                error: function(response) {
+                    $("#modal").modal("hide");
+                    Swal.fire({
+                        title: 'Try again!!',
+                        text: response.error,
+                        icon: 'error'
                         }).then(function(){
                         location.reload();
                         }
