@@ -47,7 +47,7 @@
     @endif
 
     @if(Auth::user()->menuPermission('batches') > 0)
-        <li class="nav-item @if(Request::segment(1) == 'batches') active @endif">
+        <li class="nav-item @if(Request::segment(1) == 'batch-lists') active @endif">
             <a class="nav-link">
                 <div class="sidebar-icon w-100" id="myBtnBatch">
                 <i class="bi bi-grid"></i>
@@ -57,7 +57,7 @@
             <div class="collapse" id="myCollapseBatch">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('batches')}}"><i class="fa-solid fa-list fa-sm"></i> List of Batch</a>
+                        <a class="nav-link" href="{{url('batch-lists')}}"><i class="fa-solid fa-list fa-sm"></i> List of Batch</a>
                     </li>
                 </ul>
             </div>

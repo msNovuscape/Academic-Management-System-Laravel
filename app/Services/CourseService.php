@@ -37,4 +37,15 @@ class CourseService {
         }
         return $settings->paginate(config('custom.per_page'));
     }
+
+    public function mySearch()
+    {
+        $settings = Model::where('id', '!=', 8)->orderBy('id','desc');
+        if(request('name')){
+            $key = \request('name');
+            $settings = $settings->where('name','like','%'.$key.'%')
+                ->orWhere('code','like','%'.$key.'%');
+        }
+        return $settings->paginate(config('custom.per_page'));
+    }
 }

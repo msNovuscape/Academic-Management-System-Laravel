@@ -8,6 +8,7 @@ use App\Models\Batch;
 use App\Models\Batch as Model;
 use App\Models\Course;
 use App\Models\TimeSlot;
+use App\Services\CourseService;
 use Illuminate\Support\Facades\Session;
 use App\Services\BatchServices;
 
@@ -15,22 +16,36 @@ class BatchController extends Controller
 {
 
     protected $view = 'admin.batch.';
-    protected $redirect = 'batches';
+//    protected $redirect = 'batches';
+    protected $redirect = 'batch-lists';
     private $batchService;
 
     public function __construct(BatchServices $service){
         $this->batchService = $service;
     }
+    public function indexCourse()
+    {
+        $courseService = new CourseService();
+        $courses = $courseService->mySearch();
+        return view($this->view.'index',compact('courses'));
+    }
+    public function batchCourses($courseId)
+    {
+        $course = Course::findOrFail($courseId);
+        $settings = $this->batchService->searchByCourse($course);
+        return view($this->view.'batch_index',compact('settings', 'course'));
+    }
+
     public function index()
     {
         $courses = Course::where('status',1)->get();
         $settings = $this->batchService->search();
-        return view($this->view.'index',compact('settings','courses'));
+        return view($this->view.'batch_index',compact('settings','courses'));
     }
 
     public function create()
     {
-        $setting_courses = Course::where('status',1)->get();
+        $setting_courses = Course::where('id', '!=', 8)->where('status',1)->get();
         return view($this->view.'create',compact('setting_courses'));
     }
 

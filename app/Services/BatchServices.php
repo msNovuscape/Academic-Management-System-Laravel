@@ -169,4 +169,22 @@ class BatchServices
         }
         return $settings->paginate(config('custom.per_page'));
     }
+
+    public function searchByCourse($course)
+    {
+        $settings = Batch::whereHas('time_slot.course', function ($q) use($course) {
+                          $q->where('id', $course->id);
+                    })->orderBy('id', 'desc');
+        if(request('name')){
+            $key = \request('name');
+            $settings = $settings->where('name_other','like','%'.$key.'%');
+        }
+        if(request('course_id')){
+            $key = \request('course_id');
+            $settings = $settings->whereHas('time_slot',function ($q) use($key){
+                $q->where('course_id',$key);
+            });
+        }
+        return $settings->paginate(config('custom.per_page'));
+    }
 }

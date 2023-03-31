@@ -113,6 +113,9 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('branches/{id}', [BranchController::class,'update'])->middleware('checkuserpermission:update_fiscal_years');
 
 
+    Route::get('batch-lists', [BatchController::class,'indexCourse'])->middleware('checkuserpermission:show_batches');
+    Route::get('batch-lists/{course_id}', [BatchController::class,'batchCourses'])->middleware('checkuserpermission:show_batches');
+    Route::get('batches', [BatchController::class,'index'])->middleware('checkuserpermission:show_batches');
     Route::get('batches', [BatchController::class,'index'])->middleware('checkuserpermission:show_batches');
     Route::get('batches/create', [BatchController::class,'create'])->middleware('checkuserpermission:create_batches');
     Route::post('batches', [BatchController::class,'store'])->middleware('checkuserpermission:create_batches');

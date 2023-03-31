@@ -14,7 +14,7 @@
                             <div class="tbl-buttons">
                                 <ul class="mb-0 px-2">
                                     <li>
-                                        <a href="{{url('batches')}}">
+                                        <a href="{{url('batch-lists')}}">
                                             <img src="{{url('images/cancel-icon.png')}}" alt="cancel-icon"/>
                                         </a>
                                     </li>
