@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Support\Facades\Cache;
 
 class StudentController extends Controller
 {
@@ -65,7 +67,7 @@ class StudentController extends Controller
 
             $branches = Branch::where('status',1)->get();
             $exam_booking = TechnicalExamBooking::where('student_id', $setting->id)->get();
-            
+
             return view($this->view.'index', compact('setting', 'countries','branches','exam_booking'));
         } else {
             return redirect('');
@@ -148,6 +150,7 @@ class StudentController extends Controller
             $branch_id = $request['branch_id'];
             $course_id = Auth::user()->admission->batch->time_slot->course->id;
             $currentDate = Carbon::now()->toDateString();
+
             if($branch_id == null){
                 $technical_exams = TechnicalExam::whereDate('date', '>=', $currentDate)->where(['technical_exams.exam_type' => 1, 'technical_exams.status' => 1])
                 ->join('technical_exam_details', 'technical_exams.id', '=', 'technical_exam_details.technical_exam_id')
@@ -173,23 +176,33 @@ class StudentController extends Controller
 
     public function technical_exam_submit(Request $request){
 
-        if(Auth::user()->student){
-            $exam_id = $request['exam_id'];
-            $student = Auth::user()->student;
+        try{
+            Cache::lock('bookings')->block(10, function() use ($request){
+                if(Auth::user()->student){
+                    DB::transaction(function () use ($request) {
+                        $exam_id = $request['exam_id'];
+                        $capacity = TechnicalExamDetail::findorfail($exam_id)->capacity;
+                        if($capacity > 0){
+                            $student = Auth::user()->student;
 
-            $booking = TechnicalExamBooking::create([
-                'technical_exam_detail_id' => $exam_id,
-                'student_id' => $student->id
-            ]);
-            if($booking){
-                $exam = TechnicalExamDetail::findorfail($exam_id);
-                $exam->capacity = $exam->capacity - 1;
-                $exam->save();
-                return response()->json([],200);
-            }
+                            $booking = TechnicalExamBooking::create([
+                                'technical_exam_detail_id' => $exam_id,
+                                'student_id' => $student->id
+                            ]);
+                            $exam = TechnicalExamDetail::findorfail($exam_id);
+                            $exam->capacity = $exam->capacity - 1;
+                            $exam->save();
+                        }else {
+                            throw new Exception('Capacity limit reached');
+                        }
+                    });
+                }
+            });
+            return response()->json([],200);
+
+        } catch(Exception $e){
+            return response()->json(['error' => $e->getMessage()], 400);
         }
-
-
 
     }
 
