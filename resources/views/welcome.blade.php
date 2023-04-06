@@ -4,5 +4,5 @@
         @include('success.success')
         @include('errors.error')
     </div>
-    <a href="{{}}">Welcome to Dashboard!</a>
+    <a href="{{url('admin/dashboard')}}">Welcome to Dashboard!</a>
 @endsection

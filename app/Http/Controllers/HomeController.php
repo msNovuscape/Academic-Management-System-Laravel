@@ -25,10 +25,19 @@ class HomeController extends Controller
             if (Auth::user()->updated_at == null) {
                 return redirect('other/new-password');
             } else {
-                return view('welcome');
-//            return redirect('admissions');
+            return redirect('dashboard');
             }
 
+        }
+        return view('auth.login');
+    }
+    public function dashboard()
+    {
+        if(Auth::user()){
+            //redirect for dashboard
+            if(Auth::user()->user_type != array_search('Student', config('custom.user_types'))){
+                return view('welcome');
+            }
         }
         return view('auth.login');
     }

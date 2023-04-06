@@ -51,6 +51,7 @@ use App\Http\Controllers\Admin\BatchTransferController;
 */
 
 Route::get('', [HomeController::class,'index']);
+Route::get('dashboard', [HomeController::class,'dashboard']);
 Route::get('login', [LoginController::class,'getLogin'])->name('login');
 Route::post('login', [LoginController::class,'postLogin']);
 Route::get('student', [StudentController::class,'index']);
