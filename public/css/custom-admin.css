@@ -1719,14 +1719,20 @@ height: 20px;
 .pagination-section .hidden div:nth-child(1) p {
     font-size: 12px;
     margin-top: 20px;
+    margin-left: 28px;
 }
 
 .pagination-section .hidden div:nth-child(2) span {
     border-radius: 4px;
+    padding: 5px!important;
+    margin: 0px 5px;
+    display: inline-block;
 }
 
 .pagination-section .hidden div:nth-child(2) a {
     border-radius: 4px;
+    padding: 5px!important;
+    margin: 0px 5px;
 }
 
 .pagination-section .hidden div:nth-child(2) span a {
@@ -2579,7 +2585,19 @@ table tr:first-child td:last-child {
     .batchlist-card .col-md-6{
         width: 50%;
     }
+    .light-blue .navbar .navbar-menu-wrapper{
+        width: calc(100% - 280px)!important;
+    }
+    .pagination-section .hidden div:nth-child(2) span a{
+        padding:2px!important;
+        margin: 0px;
+    }
+    .pagination-section .hidden div:nth-child(2) span
+    .pagination-section .hidden{
+        margin-bottom:20px;
+    }
 }
+
 /* roles css */
 .role-form{
     display: flex;
