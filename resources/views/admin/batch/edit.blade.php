@@ -214,11 +214,19 @@
                                                                         <input type="text" name="due_date[]"  value="{{$installment->due_date}}" class="form-control batchCalender" id="batchCalender{{$loop->iteration}}" onchange="getCalenderReArrange({{$loop->iteration}})" required/>
                                                                     </div>
                                                                 </td>
+                                                                @if($installment->installment_type == "3")
                                                                 <td class="table-date">
                                                                     <div class="input-group">
-                                                                        <input type="number" name="amount[]" value="{{$installment->amount}}" min="1" class="form-control amount" id="amount{{$loop->iteration}}" required onchange="getTotalAmount()">
+                                                                        <input type="number" name="amount[]" value="{{$installment->amount}}" min="0" class="form-control amount" id="amount{{$loop->iteration}}" required onchange="getTotalAmount()">
                                                                     </div>
                                                                 </td>
+                                                                @else
+                                                                    <td class="table-date">
+                                                                        <div class="input-group">
+                                                                            <input type="number" name="amount[]" value="{{$installment->amount}}" min="1" class="form-control amount" id="amount{{$loop->iteration}}" required onchange="getTotalAmount()">
+                                                                        </div>
+                                                                    </td>
+                                                                @endif
                                                             </tr>
                                                         @endforeach
                                                         <tr id="tr_last">

@@ -206,7 +206,7 @@
                                                         </td>
                                                         <td class="table-date">
                                                             <div class="input-group">
-                                                                <input type="number" name="amount[]" min="1" class="form-control amount" id="amount{{$loop->iteration}}" required onchange="getTotalAmount()">
+                                                                <input type="number" name="amount[]" min="0" class="form-control amount" id="amount{{$loop->iteration}}" required onchange="getTotalAmount()">
                                                             </div>
                                                         </td>
                                                         <td></td>
